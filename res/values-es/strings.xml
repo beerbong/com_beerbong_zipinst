@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">ZipInstaller</string>
+    
+    <string name="alert_reboot_title">"Instalar"</string>
+    <string name="alert_reboot_message">"El teléfono se reiniciará en modo recovery y %1$s será instalado."</string>
+    <string name="alert_reboot_now">"Instalar ahora"</string>
+    <string name="alert_cancel">"Cancelar"</string>
+    <string name="install_file_manager_error">"No se ha encontrado ninguna aplicación para seleccionar el archivo zip. Por favor, instala un administrador de archivos."</string>
+    
+    <string name="alert_sdcard_title">Alerta</string>
+    <string name="alert_sdcard_message">"Por favor, selecciona un zip de la sdcard interna."</string>
+    <string name="alert_sdcard_ok">"Aceptar"</string>
+    
+    <string name="main_zipinstaller">"Selecciona un zip"</string>
+    <string name="main_choose_zip">"Selecciona un zip de la sdcard interna."</string>
+    
+    <string name="menu_about">Sobre</string>
+    <string name="menu_exit">Salir</string>
+    <string name="menu_donate">Donar</string>
+    
+    <string name="about_title">Sobre</string>
+    <string name="about_zip_title">ZipInstaller</string>
+    <string name="about_zip_summary" translatable="false">http://forum.xda-developers.com/showthread.php?t=1906396</string>
+    <string name="about_version_title">"Versión"</string>
+    <string name="about_version_unknown">"Versión desconocida (error en el administrador de paquetes)"</string>
+    
+    <string name="license_title">"Licencia"</string>
+    <string name="license_apache_title">"Licencia apache"</string>
+    <string name="license_error">"Error cargando el archivo de licencia"</string>
+</resources>

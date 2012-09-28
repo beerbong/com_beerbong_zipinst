@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">ZipInstaller</string>
+    
+    <string name="alert_reboot_title">"Instal·lar"</string>
+    <string name="alert_reboot_message">"El telèfon es reiniciarà en mode recovery i %1$s serà instal·lat."</string>
+    <string name="alert_reboot_now">"Instal·lar ara"</string>
+    <string name="alert_cancel">"Cancel·lar"</string>
+    <string name="install_file_manager_error">"No s'ha trobat cap aplicació per seleccionar l'arxiu zip. Per favor, instal·la un administrador d'arxius."</string>
+    
+    <string name="alert_sdcard_title">Alerta</string>
+    <string name="alert_sdcard_message">"Per favor, selecciona un zip de la sdcard interna."</string>
+    <string name="alert_sdcard_ok">"D'acord"</string>
+    
+    <string name="main_zipinstaller">"Selecciona un zip"</string>
+    <string name="main_choose_zip">"Selecciona un zip de la sdcard interna."</string>
+    
+    <string name="menu_about">Quant a</string>
+    <string name="menu_exit">Sortir</string>
+    <string name="menu_donate">Donar</string>
+    
+    <string name="about_title">Quant a</string>
+    <string name="about_zip_title">ZipInstaller</string>
+    <string name="about_zip_summary" translatable="false">http://forum.xda-developers.com/showthread.php?t=1906396</string>
+    <string name="about_version_title">"Versió"</string>
+    <string name="about_version_unknown">"Versió desconeguda (error a l'administrador de paquets)"</string>
+    
+    <string name="license_title">"Llicència"</string>
+    <string name="license_apache_title">"Llicència apache"</string>
+    <string name="license_error">"Error carregant l'arxiu de llicència"</string>
+</resources>
