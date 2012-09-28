@@ -5,7 +5,7 @@ ZipInstaller
 
 Warning!!
 ==========
-      Only tested in a Samsung Galaxy Note (GT-N7000)
+      Only tested in a Samsung Galaxy Note (GT-N7000) with JellyBeer rom
 
 Known Bugs
 ==========
