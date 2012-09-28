@@ -76,22 +76,8 @@ public class Activity extends PreferenceActivity {
 
 			zipPath = data.getData().getEncodedPath();
 			
-			if (zipPath.indexOf("extSdCard") >= 0 || zipPath.indexOf("/sdcard") < 0) {
-				zipPath = null;
-				AlertDialog.Builder alert = new AlertDialog.Builder(this);
-		      alert.setTitle(R.string.alert_sdcard_title);
-		      alert.setMessage(R.string.alert_sdcard_message);
-		      alert.setCancelable(false);
-		      alert.setPositiveButton(R.string.alert_sdcard_ok, new DialogInterface.OnClickListener() {
-		          public void onClick(DialogInterface dialog, int whichButton) {
-		         	 dialog.dismiss();
-		          }
-		      });
-		      alert.show();
-		      return;
-			}
-			
-			zipPath = zipPath.replace("storage/sdcard0", "sdcard");
+			zipPath = zipPath.replace("extSdCard", "sdcard");
+			zipPath = zipPath.replace("storage/sdcard0", "emmc");
 
 			showRebootDialog();
 		}
