@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">ZipInstaller</string>
+    
+    <string name="alert_reboot_title">Install</string>
+    <string name="alert_reboot_message">The phone will be rebooted into recovery and %1$s will be installed.</string>
+    <string name="alert_reboot_now">Install now</string>
+    <string name="alert_cancel">Cancel</string>
+    <string name="install_file_manager_error">No application found to pick the zip file. Please install a file manager.</string>
+    
+    <string name="alert_sdcard_title">Alert</string>
+    <string name="alert_sdcard_message">Please choose a zip from internal sdcard.</string>
+    <string name="alert_sdcard_ok">Ok</string>
+    
+    <string name="main_zipinstaller">Choose a zip</string>
+    <string name="main_choose_zip">Choose a zip from internal sdcard.</string>
+    
+    <string name="menu_about">About</string>
+    <string name="menu_exit">Exit</string>
+    <string name="menu_donate">Donate</string>
+    
+    <string name="about_title">About</string>
+    <string name="about_zip_title">ZipInstaller</string>
+    <string name="about_zip_summary" translatable="false">http://forum.xda-developers.com/showthread.php?t=1906396</string>
+    <string name="about_version_title">Version</string>
+    <string name="about_version_unknown">Unkown Version (error in package manager)</string>
+    
+    <string name="license_title">License</string>
+    <string name="license_apache_title">Apache License</string>
+    <string name="license_error">Error loading license file</string>
+</resources>
