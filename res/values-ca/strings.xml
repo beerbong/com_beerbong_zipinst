@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">ZipInstaller</string>
     
-    <string name="alert_reboot_title">"Instal·lar"</string>
-    <string name="alert_reboot_message">"El telèfon es reiniciarà en mode recovery i %1$s serà instal·lat."</string>
+    <string name="alert_reboot_title">"Instal·lar %1$s"</string>
     <string name="alert_reboot_now">"Instal·lar ara"</string>
     <string name="alert_cancel">"Cancel·lar"</string>
     <string name="install_file_manager_error">"No s'ha trobat cap aplicació per seleccionar l'arxiu zip. Per favor, instal·la un administrador d'arxius."</string>

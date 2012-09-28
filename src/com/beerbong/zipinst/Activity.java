@@ -128,8 +128,17 @@ public class Activity extends PreferenceActivity {
 		if (zipPath == null) return;
 		
 		AlertDialog.Builder alert = new AlertDialog.Builder(this);
-      alert.setTitle(R.string.alert_reboot_title);
-      alert.setMessage(getString(R.string.alert_reboot_message, zipPath));
+      alert.setTitle(getString(R.string.alert_reboot_title, zipPath));
+//      alert.setMessage(getString(R.string.alert_reboot_message, zipPath));
+      
+      String[] wipeOpts = mContext.getResources().getStringArray(R.array.wipe_options);
+      final boolean[] selectedOpts = new boolean[wipeOpts.length];
+      
+      alert.setMultiChoiceItems(wipeOpts, selectedOpts, new DialogInterface.OnMultiChoiceClickListener() {
+         public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+             selectedOpts[which] = isChecked;
+         }
+     });
 
       alert.setPositiveButton(R.string.alert_reboot_now, new DialogInterface.OnClickListener() {
           public void onClick(DialogInterface dialog, int whichButton) {
@@ -137,25 +146,26 @@ public class Activity extends PreferenceActivity {
          	 try {
          		 Process p = Runtime.getRuntime().exec("su");
          		 DataOutputStream os = new DataOutputStream(p.getOutputStream());
-     	         	os.writeBytes("rm -f /cache/recovery/command\n");
-     	         	os.writeBytes("rm -f /cache/recovery/extendedcommand\n");
-     	         	//         if (selectedOpts[0]) {
-     	         	//             os.writeBytes("echo '--wipe_data' >> /cache/recovery/command\n");
-     	         	//         }
-     	         	//         if (selectedOpts[1]) {
-     	         	//             os.writeBytes("echo '--wipe_cache' >> /cache/recovery/command\n");
-     	         	//         }
+         		 os.writeBytes("rm -f /cache/recovery/command\n");
+         		 os.writeBytes("rm -f /cache/recovery/extendedcommand\n");
+
+         		 if (selectedOpts[0]) {
+         			 os.writeBytes("echo '--wipe_data' >> /cache/recovery/command\n");
+         		 }
+         		 if (selectedOpts[1]) {
+         			 os.writeBytes("echo '--wipe_cache' >> /cache/recovery/command\n");
+         		 }
      	
-     	         	os.writeBytes("echo '--update_package=" + zipPath + "' >> /cache/recovery/command\n");
+         		 os.writeBytes("echo '--update_package=" + zipPath + "' >> /cache/recovery/command\n");
      	
-     	         	os.writeBytes("reboot recovery\n");
+         		 os.writeBytes("reboot recovery\n");
      	
-     	         	os.writeBytes("sync\n");
-     	         	os.writeBytes("exit\n");
-     	         	os.flush();
-     	         	p.waitFor();
+         		 os.writeBytes("sync\n");
+         		 os.writeBytes("exit\n");
+         		 os.flush();
+         		 p.waitFor();
      	         
-     	         	((PowerManager)mContext.getSystemService(POWER_SERVICE)).reboot("recovery");
+         		 ((PowerManager)mContext.getSystemService(POWER_SERVICE)).reboot("recovery");
          	 } catch (Exception e) {
          		 e.printStackTrace();
          	 }
