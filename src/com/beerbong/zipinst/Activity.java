@@ -76,6 +76,8 @@ public class Activity extends PreferenceActivity {
 
 			zipPath = data.getData().getEncodedPath();
 			
+			if (zipPath.startsWith("/sdcard")) zipPath = zipPath.replace("/sdcard", "/emmc");
+			
 			zipPath = zipPath.replace("extSdCard", "sdcard");
 			zipPath = zipPath.replace("storage/sdcard0", "emmc");
 
