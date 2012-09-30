@@ -7,11 +7,11 @@
     <string name="install_file_manager_error">"No s'ha trobat cap aplicació per seleccionar l'arxiu zip. Per favor, instal·la un administrador d'arxius."</string>
     
     <string name="alert_sdcard_title">Alerta</string>
-    <string name="alert_sdcard_message">"Per favor, selecciona un zip de la sdcard interna."</string>
+    <string name="alert_sdcard_message">"Per favor, selecciona un zip de la sdcard."</string>
     <string name="alert_sdcard_ok">"D'acord"</string>
     
     <string name="main_zipinstaller">"Selecciona un zip"</string>
-    <string name="main_choose_zip">"Selecciona un zip de la sdcard interna."</string>
+    <string name="main_choose_zip">"Selecciona un zip de la sdcard."</string>
     
     <string name="menu_about">Quant a</string>
     <string name="menu_exit">Sortir</string>
