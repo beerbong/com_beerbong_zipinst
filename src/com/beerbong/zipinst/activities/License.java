@@ -1,13 +1,14 @@
-package com.beerbong.zipinst;
+package com.beerbong.zipinst.activities;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import com.beerbong.zipinst.R;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
@@ -29,7 +30,6 @@ public class License extends Activity {
                 data.append(buf, 0, nRead);
             }
         } catch (IOException e) {
-            Log.e("OTA::Contrib", "IOException reading license file");
             showErrorAndFinish();
             return;
         } finally {

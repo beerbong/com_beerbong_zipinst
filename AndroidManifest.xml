@@ -16,8 +16,8 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.beerbong.zipinst"
-    android:versionCode="13"
-    android:versionName="1.3">
+    android:versionCode="20"
+    android:versionName="2.0">
 
     <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="16" />
     
@@ -37,12 +37,17 @@
         </activity>
         
         <activity
-            android:name=".About"
+            android:name=".activities.Sdcard"
+            android:label="@string/sdcard_title">
+        </activity>
+        
+        <activity
+            android:name=".activities.About"
             android:label="@string/about_title">
         </activity>
         
         <activity
-            android:name=".License"
+            android:name=".activities.License"
             android:label="@string/license_title">
         </activity>
 

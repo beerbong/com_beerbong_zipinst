@@ -1,4 +1,7 @@
-package com.beerbong.zipinst;
+package com.beerbong.zipinst.activities;
+
+import com.beerbong.zipinst.R;
+import com.beerbong.zipinst.util.Constants;
 
 import android.content.Intent;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -20,15 +23,15 @@ public class About extends PreferenceActivity {
 
 		addPreferencesFromResource(R.xml.about);
 
-		Preference versionPref = findPreference("about_version");
+		Preference versionPref = findPreference(Constants.PREFERENCE_ABOUT_VERSION);
 		try {
 			versionPref.setSummary(getPackageManager().getPackageInfo(getPackageName(), 0).versionName);
 		} catch (NameNotFoundException e) {
 			versionPref.setSummary(R.string.about_version_unknown);
 		}
 
-		sitePref = findPreference("about_pref");
-		licensePref = findPreference("license_pref");
+		sitePref = findPreference(Constants.PREFERENCE_ABOUT_SITE);
+		licensePref = findPreference(Constants.PREFERENCE_ABOUT_LICENSE);
 	}
 
 	@Override
@@ -37,7 +40,7 @@ public class About extends PreferenceActivity {
 		if (preference == licensePref) {
 			startActivity(new Intent(About.this, License.class));
         } else if (preference == sitePref) {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://forum.xda-developers.com/showthread.php?t=1906396")));
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.ABOUT_URL)));
         } else {
             return super.onPreferenceTreeClick(preferenceScreen, preference);
         }

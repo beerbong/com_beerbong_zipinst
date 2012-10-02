@@ -1,21 +1,41 @@
 <resources>
     <string name="app_name">ZipInstaller</string>
     
-    <string name="alert_reboot_title">"Instalar %1$s"</string>
+    <string name="alert_reboot_title">"Instalar"</string>
     <string name="alert_reboot_now">"Instalar ahora"</string>
     <string name="alert_cancel">"Cancelar"</string>
+    
     <string name="install_file_manager_error">"No se ha encontrado ninguna aplicación para seleccionar el archivo zip. Por favor, instala un administrador de archivos."</string>
+    <string name="install_file_manager_intsdcard">"Selecciona un archivo de la sd interna."</string>
+    <string name="install_file_manager_zip">"Por favor, selecciona un archivo ZIP."</string>
     
     <string name="alert_sdcard_title">Alerta</string>
-    <string name="alert_sdcard_message">"Por favor, selecciona un zip de la sdcard."</string>
+    <string name="alert_sdcard_message">"Selecciona un zip de la sdcard interna."</string>
     <string name="alert_sdcard_ok">"Aceptar"</string>
     
-    <string name="main_zipinstaller">"Selecciona un zip"</string>
-    <string name="main_choose_zip">"Selecciona un zip de la sdcard."</string>
+    <string name="alert_file_title">"Propiedades"</string>
+    <string name="alert_file_close">"Cerrar"</string>
+    <string name="alert_file_delete">"Borrar de la lista"</string>
     
+    <string name="main_zipinstaller">"Selecciona un zip de la sdcard interna"</string>
+    <string name="main_choose_zip">"Abrir un administrador de archivos"</string>
+    
+    <string name="install_zips_title">"Instalar los zips seleccionados"</string>
+    <string name="install_now">"Instalar ahora"</string>
+    
+    <string name="zip_list">"Lista de zips seleccionados"</string>
+    
+    <string name="menu_sdcard">Sdcard interna</string>
     <string name="menu_about">Sobre</string>
     <string name="menu_exit">Salir</string>
     <string name="menu_donate">Donar</string>
+    
+    <string name="sdcard_title">"Path al internal storage"</string>
+    <string name="sdcard_alert_title">"Path al internal storage"</string>
+    <string name="sdcard_alert_summary">"Especifica el nombre del internal storage"</string>
+    <string name="sdcard_alert_ok">"Aceptar"</string>
+    <string name="sdcard_alert_cancel">"Cancelar"</string>
+    <string name="sdcard_alert_error">"Por favor especifica el nombre del internal storage"</string>
     
     <string name="about_title">Sobre</string>
     <string name="about_zip_title">ZipInstaller</string>

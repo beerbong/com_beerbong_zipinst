@@ -1,21 +1,41 @@
 <resources>
     <string name="app_name">ZipInstaller</string>
     
-    <string name="alert_reboot_title">Install %1$s</string>
+    <string name="alert_reboot_title">Install</string>
     <string name="alert_reboot_now">Install now</string>
     <string name="alert_cancel">Cancel</string>
+    
     <string name="install_file_manager_error">No application found to pick the zip file. Please install a file manager.</string>
+    <string name="install_file_manager_intsdcard">Please select a file from internal sdcard.</string>
+    <string name="install_file_manager_zip">Please select a ZIP file.</string>
     
     <string name="alert_sdcard_title">Alert</string>
-    <string name="alert_sdcard_message">Please choose a zip from sdcard.</string>
+    <string name="alert_sdcard_message">Select a zip from internal sdcard.</string>
     <string name="alert_sdcard_ok">Ok</string>
     
-    <string name="main_zipinstaller">Choose a zip</string>
-    <string name="main_choose_zip">Choose a zip from sdcard.</string>
+    <string name="alert_file_title">Properties</string>
+    <string name="alert_file_close">Close</string>
+    <string name="alert_file_delete">Delete from list</string>
     
+    <string name="main_zipinstaller">Choose a zip from internal sdcard</string>
+    <string name="main_choose_zip">Open a file manager</string>
+    
+    <string name="install_zips_title">Install selected zips</string>
+    <string name="install_now">Install now</string>
+    
+    <string name="zip_list">Selected zips list</string>
+    
+    <string name="menu_sdcard">Internal sdcard</string>
     <string name="menu_about">About</string>
     <string name="menu_exit">Exit</string>
     <string name="menu_donate">Donate</string>
+    
+    <string name="sdcard_title">Internal storage path</string>
+    <string name="sdcard_alert_title">Internal storage path</string>
+    <string name="sdcard_alert_summary">Specify the internal storage name</string>
+    <string name="sdcard_alert_ok">Accept</string>
+    <string name="sdcard_alert_cancel">Cancel</string>
+    <string name="sdcard_alert_error">Please specify the internal storage name</string>
     
     <string name="about_title">About</string>
     <string name="about_zip_title">ZipInstaller</string>

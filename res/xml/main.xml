@@ -6,8 +6,24 @@
 
         <Preference
             android:title="@string/main_choose_zip"
-            android:icon="@drawable/zip"
+            android:icon="@drawable/hammer"
             android:key="choose_zip" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/install_zips_title">
+
+        <Preference
+            android:title="@string/install_now"
+            android:icon="@drawable/device"
+            android:key="install_now" />
+
+    </PreferenceCategory>
+    
+    <PreferenceCategory
+        android:title="@string/zip_list"
+        android:key="file_list">
 
     </PreferenceCategory>
 
