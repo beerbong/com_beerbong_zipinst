@@ -1,11 +1,11 @@
 ZipInstaller
 ==========
 
-      ZipInstaller is a little app that takes an update zip from your sdcard and reboots in recovery to intall it.
+      ZipInstaller is a little app that takes a list of zip files from your internal sdcard and reboots in recovery to intall them.
 
 Warning!!
 ==========
-      Only tested in a Samsung Galaxy Note (GT-N7000) with JellyBeer rom with storage points in external sd card -> sdcard and internal sd card in emmc
+      Only tested in a Samsung Galaxy Note (GT-N7000) with CM10 based ROMs.
 
 Known Bugs
 ==========
