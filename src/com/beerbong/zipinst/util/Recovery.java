@@ -24,6 +24,8 @@ public class Recovery {
 		if (wipeOptions[0]) {
 			commands.add("ui_print(\" Wiping data\");");
 			commands.add("format(\"/data\");");
+			 commands.add("ui_print(\" Wiping android secure\");");
+			 commands.add("__system(\"rm -r /emmc/.android_secure\");");
 		 }
 		 if (wipeOptions[1]) {
 			 commands.add("ui_print(\" Wiping cache\");");
