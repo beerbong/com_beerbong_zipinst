@@ -39,7 +39,7 @@
     
     <string name="about_title">About</string>
     <string name="about_zip_title">ZipInstaller</string>
-    <string name="about_zip_summary" translatable="false">http://forum.xda-developers.com/showthread.php?t=1906396</string>
+    <string name="about_zip_summary" translatable="false">http://forum.xda-developers.com/showthread.php?t=1920057</string>
     <string name="about_version_title">Version</string>
     <string name="about_version_unknown">Unkown Version (error in package manager)</string>
     

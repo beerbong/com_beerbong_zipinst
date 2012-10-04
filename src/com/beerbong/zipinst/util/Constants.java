@@ -1,5 +1,7 @@
 package com.beerbong.zipinst.util;
 
+import com.beerbong.zipinst.R;
+
 /**
  * @author Yamil Ghazi Kantelinen
  * @version 1.0
@@ -24,7 +26,7 @@ public class Constants {
 	public static final String PREFERENCE_ABOUT_CHANGELOG = "changelog_pref";
 	
 	public static final String DONATE_URL = "http://forum.xda-developers.com/donatetome.php?u=1806623";
-	public static final String ABOUT_URL = "http://forum.xda-developers.com/showthread.php?t=1906396";
+	public static final String ABOUT_URL = "http://forum.xda-developers.com/showthread.php?t=1920057";
 	
 	public static final int REQUEST_PICK_ZIP = 203;
 	
