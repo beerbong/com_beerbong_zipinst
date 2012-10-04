@@ -13,6 +13,7 @@ import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.ui.UI;
 import com.beerbong.zipinst.ui.UIListener;
 import com.beerbong.zipinst.util.Constants;
+import com.beerbong.zipinst.util.Recovery;
 import com.beerbong.zipinst.util.StoredPreferences;
 
 /**
@@ -46,11 +47,11 @@ public class RebootManager implements UIListener {
       alert.setTitle(R.string.alert_reboot_title);
       
       String[] wipeOpts = mActivity.getResources().getStringArray(R.array.wipe_options);
-      final boolean[] selectedOpts = new boolean[wipeOpts.length];
+      final boolean[] wipeOptions = new boolean[wipeOpts.length];
       
-      alert.setMultiChoiceItems(wipeOpts, selectedOpts, new DialogInterface.OnMultiChoiceClickListener() {
+      alert.setMultiChoiceItems(wipeOpts, wipeOptions, new DialogInterface.OnMultiChoiceClickListener() {
          public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-             selectedOpts[which] = isChecked;
+         	wipeOptions[which] = isChecked;
          }
       });
 
@@ -63,21 +64,11 @@ public class RebootManager implements UIListener {
          		 os.writeBytes("rm -f /cache/recovery/command\n");
          		 os.writeBytes("rm -f /cache/recovery/extendedcommand\n");
 
-         		 writeCommand(os, "ui_print(\"-------------------------------------\");");
-         		 writeCommand(os, "ui_print(\" ZipInstaller " + mActivity.getPackageManager().getPackageInfo(mActivity.getPackageName(), 0).versionName + "\");");
-         		 writeCommand(os, "ui_print(\"-------------------------------------\");");
-
-         		 if (selectedOpts[0]) {
-         			 writeCommand(os, "format(\"/data\");");
+         		 String[] commands = Recovery.getCommands(mActivity, wipeOptions);
+         		 int size = commands.length, i = 0;
+         		 for (;i<size;i++) {
+         			 os.writeBytes("echo '" + commands[i] + "' >> /cache/recovery/extendedcommand\n");
          		 }
-         		 if (selectedOpts[1]) {
-         			 writeCommand(os, "format(\"/cache\");");
-         		 }
-      			
-      			int size = StoredPreferences.size(), i = 0;
-      			for (;i<size;i++) {
-      				writeCommand(os, "install_zip(\"" + StoredPreferences.getPreference(i).getKey() + "\");");
-      			}
 
          		 os.writeBytes("reboot recovery\n");
 
@@ -99,9 +90,5 @@ public class RebootManager implements UIListener {
       	}
       });
       alert.show();
-	}
-	
-	private void writeCommand(DataOutputStream os, String command) throws Exception {
-		os.writeBytes("echo '" + command + "' >> /cache/recovery/extendedcommand\n");
 	}
 }
