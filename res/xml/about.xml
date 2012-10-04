@@ -29,6 +29,11 @@
             android:key="about_version" />
         
         <Preference 
+            android:title="@string/changelog_title"
+            android:summary="@string/changelog_apache_title"
+            android:key="changelog_pref"/>
+        
+        <Preference 
             android:title="@string/license_title"
             android:summary="@string/license_apache_title"
             android:key="license_pref"/>

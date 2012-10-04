@@ -46,4 +46,8 @@
     <string name="license_title">License</string>
     <string name="license_apache_title">Apache License</string>
     <string name="license_error">Error loading license file</string>
+    
+    <string name="changelog_title">Changelog</string>
+    <string name="changelog_apache_title">ZipInstaller Changelog</string>
+    <string name="changelog_error">Error loading changelog file</string>
 </resources>

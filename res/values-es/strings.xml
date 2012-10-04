@@ -46,4 +46,8 @@
     <string name="license_title">"Licencia"</string>
     <string name="license_apache_title">"Licencia apache"</string>
     <string name="license_error">"Error cargando el archivo de licencia"</string>
+    
+    <string name="changelog_title">Cambios</string>
+    <string name="changelog_apache_title">Cambios en ZipInstaller</string>
+    <string name="changelog_error">"Error cargando el archivo de cambios"</string>
 </resources>

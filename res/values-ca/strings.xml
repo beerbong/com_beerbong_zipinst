@@ -46,4 +46,8 @@
     <string name="license_title">"Llicència"</string>
     <string name="license_apache_title">"Llicència apache"</string>
     <string name="license_error">"Error carregant l'arxiu de llicència"</string>
+    
+    <string name="changelog_title">Canvis</string>
+    <string name="changelog_apache_title">Canvis a ZipInstaller</string>
+    <string name="changelog_error">"Error carregant l'arxiu de canvis"</string>
 </resources>

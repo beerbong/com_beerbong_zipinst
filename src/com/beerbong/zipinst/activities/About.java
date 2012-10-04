@@ -12,7 +12,8 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
 
 public class About extends PreferenceActivity {
-    
+
+	private Preference changelogPref;
 	private Preference licensePref;
 	private Preference sitePref;
 
@@ -32,6 +33,7 @@ public class About extends PreferenceActivity {
 
 		sitePref = findPreference(Constants.PREFERENCE_ABOUT_SITE);
 		licensePref = findPreference(Constants.PREFERENCE_ABOUT_LICENSE);
+		changelogPref = findPreference(Constants.PREFERENCE_ABOUT_CHANGELOG);
 	}
 
 	@Override
@@ -39,12 +41,14 @@ public class About extends PreferenceActivity {
 	public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
 		if (preference == licensePref) {
 			startActivity(new Intent(About.this, License.class));
-        } else if (preference == sitePref) {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.ABOUT_URL)));
-        } else {
-            return super.onPreferenceTreeClick(preferenceScreen, preference);
-        }
+		} else if (preference == changelogPref) {
+			startActivity(new Intent(About.this, Changelog.class));
+		} else if (preference == sitePref) {
+			startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.ABOUT_URL)));
+		} else {
+			return super.onPreferenceTreeClick(preferenceScreen, preference);
+		}
 
-        return true;
-    }
+		return true;
+	}
 }

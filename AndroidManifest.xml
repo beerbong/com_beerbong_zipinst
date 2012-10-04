@@ -50,6 +50,11 @@
             android:name=".activities.License"
             android:label="@string/license_title">
         </activity>
+        
+        <activity
+            android:name=".activities.Changelog"
+            android:label="@string/changelog_title">
+        </activity>
 
     </application>
 
