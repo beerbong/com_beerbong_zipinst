@@ -6,10 +6,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.PowerManager;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.ui.UI;

@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.beerbong.zipinst.R;
