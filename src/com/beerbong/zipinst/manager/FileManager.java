@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.beerbong.zipinst.R;
@@ -24,7 +26,7 @@ public class FileManager implements UIListener {
 	private SharedPreferences settings;
 	private Activity mActivity;
 	
-	public FileManager(Activity activity) {
+	protected FileManager(Activity activity) {
 		mActivity = activity;
 		settings = mActivity.getSharedPreferences(Constants.PREFS_NAME, 0);
 		
@@ -78,5 +80,9 @@ public class FileManager implements UIListener {
 			UI.getInstance().addPreference(zipPath, sdcardPath);
 			
 		}
+	}
+	public void onCreateOptionsMenu(Menu menu) {
+	}
+	public void onOptionsItemSelected(MenuItem item) {
 	}
 }

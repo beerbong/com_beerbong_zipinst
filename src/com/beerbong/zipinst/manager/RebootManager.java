@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.PowerManager;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.ui.UI;
@@ -25,7 +27,7 @@ public class RebootManager implements UIListener {
 	
 	private Activity mActivity;
 	
-	public RebootManager(Activity mActivity) {
+	protected RebootManager(Activity mActivity) {
 		this.mActivity = mActivity;
 		
 		UI.getInstance().addUIListener(this);
@@ -37,6 +39,10 @@ public class RebootManager implements UIListener {
 		}
 	}
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+	}
+	public void onCreateOptionsMenu(Menu menu) {
+	}
+	public void onOptionsItemSelected(MenuItem item) {
 	}
 
 	private void showRebootDialog() {

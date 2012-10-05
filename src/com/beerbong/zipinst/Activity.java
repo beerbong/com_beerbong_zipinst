@@ -1,13 +1,9 @@
 package com.beerbong.zipinst;
 
-import com.beerbong.zipinst.activities.*;
-import com.beerbong.zipinst.manager.FileManager;
-import com.beerbong.zipinst.manager.RebootManager;
+import com.beerbong.zipinst.manager.Manager;
 import com.beerbong.zipinst.ui.UI;
-import com.beerbong.zipinst.util.Constants;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.*;
 
@@ -19,9 +15,6 @@ import android.view.*;
  */
 
 public class Activity extends PreferenceActivity {
-
-	private FileManager fileManager;
-	private RebootManager rebootManager;
 	
 	@Override
    public void onCreate(Bundle savedInstanceState) {
@@ -29,8 +22,7 @@ public class Activity extends PreferenceActivity {
 		
       UI.create(this);
 
-      fileManager = new FileManager(this);
-      rebootManager = new RebootManager(this);
+      Manager.start(this);
 	}
 	
 	@Override
@@ -47,30 +39,14 @@ public class Activity extends PreferenceActivity {
 	}
    @Override
    public boolean onCreateOptionsMenu(Menu menu) {
-       MenuInflater inflater = getMenuInflater();
-       inflater.inflate(R.menu.menu, menu);
-       return true;
+
+       return UI.getInstance().onCreateOptionsMenu(menu);
+       
    }
    @Override
    public boolean onOptionsItemSelected(MenuItem item) {
-   	Intent i;
-   	switch (item.getItemId()) {
-       	case R.id.sdcard:
-       		i = new Intent(this, Sdcard.class);
-       		startActivity(i);
-       		break;
-       	case R.id.about:
-       		i = new Intent(this, About.class);
-       		startActivity(i);
-       		break;
-       	case R.id.donate:
-       		i = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.DONATE_URL));
-       		startActivity(i);
-       		break;
-       	case R.id.exit:
-       		finish();
-       		break;
-   	}
-   	return true;
+   	
+   	return UI.getInstance().onOptionsItemSelected(item);
+   	
    }
 }

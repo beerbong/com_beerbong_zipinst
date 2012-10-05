@@ -15,6 +15,8 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
+import android.view.Menu;
+import android.view.MenuItem;
 
 /**
  * @author Yamil Ghazi Kantelinen
@@ -70,6 +72,20 @@ public class UIImpl extends UI {
 		
 		dispatchOnActivityResult(requestCode, resultCode, data);
 		
+	}
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		
+		dispatchOnCreateOptionsMenu(menu);
+		
+		return true;
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		
+		dispatchOnOptionsItemSelected(item);
+		
+		return true;
 	}
 	@Override
 	public void addPreference(String realPath, String sdcardPath) {
@@ -146,6 +162,18 @@ public class UIImpl extends UI {
 		int size = listeners.size(), i = 0;
 		for (;i<size;i++) {
 			listeners.get(i).onActivityResult(requestCode, resultCode, data);
+		}
+	}
+	private void dispatchOnCreateOptionsMenu(Menu menu) {
+		int size = listeners.size(), i = 0;
+		for (;i<size;i++) {
+			listeners.get(i).onCreateOptionsMenu(menu);
+		}
+	}
+	private void dispatchOnOptionsItemSelected(MenuItem menuItem) {
+		int size = listeners.size(), i = 0;
+		for (;i<size;i++) {
+			listeners.get(i).onOptionsItemSelected(menuItem);
 		}
 	}
 	private void redrawPreferences() {

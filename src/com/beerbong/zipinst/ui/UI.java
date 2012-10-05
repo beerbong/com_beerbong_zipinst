@@ -3,6 +3,8 @@ package com.beerbong.zipinst.ui;
 import android.content.Intent;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 
 /**
  * @author Yamil Ghazi Kantelinen
@@ -30,4 +32,6 @@ public abstract class UI {
 	public abstract void addUIListener(UIListener listener);
 	public abstract void removeUIListener(UIListener listener);
 	public abstract void onActivityResult(int requestCode, int resultCode, Intent data);
+	public abstract boolean onCreateOptionsMenu(Menu menu);
+	public abstract boolean onOptionsItemSelected(MenuItem item);
 }
