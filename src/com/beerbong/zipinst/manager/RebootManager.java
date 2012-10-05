@@ -13,7 +13,7 @@ import android.view.MenuItem;
 
 import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.ui.UI;
-import com.beerbong.zipinst.ui.UIListener;
+import com.beerbong.zipinst.ui.UIAdapter;
 import com.beerbong.zipinst.util.Constants;
 import com.beerbong.zipinst.util.Recovery;
 import com.beerbong.zipinst.util.StoredPreferences;
@@ -23,7 +23,7 @@ import com.beerbong.zipinst.util.StoredPreferences;
  * @version 1.0
  */
 
-public class RebootManager implements UIListener {
+public class RebootManager extends UIAdapter {
 	
 	private Activity mActivity;
 	
@@ -37,12 +37,6 @@ public class RebootManager implements UIListener {
 		if (Constants.PREFERENCE_INSTALL_NOW.equals(id)) {
 			showRebootDialog();
 		}
-	}
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-	}
-	public void onCreateOptionsMenu(Menu menu) {
-	}
-	public void onOptionsItemSelected(MenuItem item) {
 	}
 
 	private void showRebootDialog() {

@@ -11,7 +11,7 @@ import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.activities.About;
 import com.beerbong.zipinst.activities.Sdcard;
 import com.beerbong.zipinst.ui.UI;
-import com.beerbong.zipinst.ui.UIListener;
+import com.beerbong.zipinst.ui.UIAdapter;
 import com.beerbong.zipinst.util.Constants;
 
 /**
@@ -19,7 +19,7 @@ import com.beerbong.zipinst.util.Constants;
  * @version 1.0
  */
 
-public class MenuManager implements UIListener {
+public class MenuManager extends UIAdapter {
 	
 	private Activity mActivity;
 	
@@ -52,9 +52,5 @@ public class MenuManager implements UIListener {
        		mActivity.finish();
        		break;
    	}
-	}
-	public void onPreferenceClicked(String id) {
-	}
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 	}
 }

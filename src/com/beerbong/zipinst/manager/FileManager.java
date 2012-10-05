@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.ui.UI;
-import com.beerbong.zipinst.ui.UIListener;
+import com.beerbong.zipinst.ui.UIAdapter;
 import com.beerbong.zipinst.util.Constants;
 
 /**
@@ -21,7 +21,7 @@ import com.beerbong.zipinst.util.Constants;
  * @version 1.0
  */
 
-public class FileManager implements UIListener {
+public class FileManager extends UIAdapter {
 	
 	private SharedPreferences settings;
 	private Activity mActivity;
@@ -80,9 +80,5 @@ public class FileManager implements UIListener {
 			UI.getInstance().addPreference(zipPath, sdcardPath);
 			
 		}
-	}
-	public void onCreateOptionsMenu(Menu menu) {
-	}
-	public void onOptionsItemSelected(MenuItem item) {
 	}
 }
