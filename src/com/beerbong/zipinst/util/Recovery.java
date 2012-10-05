@@ -43,8 +43,4 @@ public class Recovery {
 		
 		return commands.toArray(new String[commands.size()]);
 	}
-	
-	public static void main(String[] args) {
-		int count = 5;
-	}
 }
