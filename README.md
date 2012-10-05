@@ -3,10 +3,6 @@ ZipInstaller
 
       ZipInstaller is a little app that takes a list of zip files from your internal sdcard and reboots in recovery to intall them.
 
-Warning!!
-==========
-      Only tested in a Samsung Galaxy Note (GT-N7000) with CM10 based ROMs.
-
 Known Bugs
 ==========
       ???
