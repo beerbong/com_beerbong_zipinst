@@ -1,7 +1,5 @@
 package com.beerbong.zipinst.util;
 
-import com.beerbong.zipinst.R;
-
 /**
  * @author Yamil Ghazi Kantelinen
  * @version 1.0
