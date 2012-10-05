@@ -16,6 +16,8 @@ public class Recovery {
 		List<String> commands = new ArrayList();
 
 		int size = StoredPreferences.size(), i = 0;
+		
+		String internalStorage = mActivity.getSharedPreferences(Constants.PREFS_NAME, 0).getString(Constants.PROPERTY_INTERNAL_STORAGE, Constants.DEFAULT_INTERNAL_STORAGE);
 
 		commands.add("ui_print(\"-------------------------------------\");");
 		commands.add("ui_print(\" ZipInstaller " + mActivity.getPackageManager().getPackageInfo(mActivity.getPackageName(), 0).versionName + "\");");
@@ -25,7 +27,7 @@ public class Recovery {
 			commands.add("ui_print(\" Wiping data\");");
 			commands.add("format(\"/data\");");
 			 commands.add("ui_print(\" Wiping android secure\");");
-			 commands.add("__system(\"rm -r /emmc/.android_secure\");");
+			 commands.add("__system(\"rm -r /" + internalStorage + "/.android_secure\");");
 		 }
 		 if (wipeOptions[1]) {
 			 commands.add("ui_print(\" Wiping cache\");");
