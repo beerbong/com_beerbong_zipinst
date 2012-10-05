@@ -1,8 +1,8 @@
 package com.beerbong.zipinst;
 
 import com.beerbong.zipinst.activities.*;
-import com.beerbong.zipinst.file.FileManager;
-import com.beerbong.zipinst.file.RebootManager;
+import com.beerbong.zipinst.manager.FileManager;
+import com.beerbong.zipinst.manager.RebootManager;
 import com.beerbong.zipinst.ui.UI;
 import com.beerbong.zipinst.util.Constants;
 

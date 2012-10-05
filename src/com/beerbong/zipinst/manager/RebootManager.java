@@ -1,4 +1,4 @@
-package com.beerbong.zipinst.file;
+package com.beerbong.zipinst.manager;
 
 import java.io.DataOutputStream;
 
