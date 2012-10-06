@@ -60,11 +60,19 @@ public class RebootManager extends UIAdapter {
          		 DataOutputStream os = new DataOutputStream(p.getOutputStream());
          		 os.writeBytes("rm -f /cache/recovery/command\n");
          		 os.writeBytes("rm -f /cache/recovery/extendedcommand\n");
+         		 os.writeBytes("rm -f /cache/recovery/openrecoveryscript\n");
 
-         		 String[] commands = Recovery.getCommands(mActivity, wipeOptions);
+         		 String[] commands = Recovery.getCWMCommands(mActivity, wipeOptions);
          		 int size = commands.length, i = 0;
          		 for (;i<size;i++) {
          			 os.writeBytes("echo '" + commands[i] + "' >> /cache/recovery/extendedcommand\n");
+         		 }
+
+         		 commands = Recovery.getTWRPCommands(mActivity, wipeOptions);
+         		 size = commands.length;
+         		 i = 0;
+         		 for (;i<size;i++) {
+         			 os.writeBytes("echo '" + commands[i] + "' >> /cache/recovery/openrecoveryscript\n");
          		 }
 
          		 os.writeBytes("reboot recovery\n");
