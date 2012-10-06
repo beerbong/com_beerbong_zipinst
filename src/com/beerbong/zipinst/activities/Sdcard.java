@@ -41,7 +41,7 @@ public class Sdcard extends PreferenceActivity {
 					
 					SharedPreferences settings = getSharedPreferences(Constants.PREFS_NAME, 0);
 			      SharedPreferences.Editor editor = settings.edit();
-			      editor.putString(value, Constants.PROPERTY_INTERNAL_STORAGE);
+			      editor.putString(Constants.PROPERTY_INTERNAL_STORAGE, value);
 			      editor.commit();
 			      Sdcard.this.finish();
 				}
