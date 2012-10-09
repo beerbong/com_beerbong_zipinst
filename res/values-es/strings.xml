@@ -18,7 +18,7 @@
     <string name="alert_file_delete">"Borrar de la lista"</string>
     
     <string name="main_zipinstaller">"Selecciona un zip de la sdcard interna"</string>
-    <string name="main_choose_zip">"Abrir un administrador de archivos"</string>
+    <string name="main_choose_zip">"Añadir un zip a la lista"</string>
     
     <string name="install_zips_title">"Instalar los zips seleccionados"</string>
     <string name="install_now">"Instalar ahora"</string>

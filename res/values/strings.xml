@@ -18,7 +18,7 @@
     <string name="alert_file_delete">Delete from list</string>
     
     <string name="main_zipinstaller">Choose a zip from internal sdcard</string>
-    <string name="main_choose_zip">Open a file manager</string>
+    <string name="main_choose_zip">Add a zip to list</string>
     
     <string name="install_zips_title">Install selected zips</string>
     <string name="install_now">Install now</string>
