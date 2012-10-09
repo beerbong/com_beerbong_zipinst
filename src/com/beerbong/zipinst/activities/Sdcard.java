@@ -39,6 +39,10 @@ public class Sdcard extends PreferenceActivity {
 						return;
 					}
 					
+					if (value.startsWith("/")) {
+						value = value.substring(1);
+					}
+					
 					SharedPreferences settings = getSharedPreferences(Constants.PREFS_NAME, 0);
 			      SharedPreferences.Editor editor = settings.edit();
 			      editor.putString(Constants.PROPERTY_INTERNAL_STORAGE, value);
