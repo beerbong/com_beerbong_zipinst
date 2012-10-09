@@ -11,8 +11,8 @@ import android.view.MenuItem;
 
 public interface UIListener {
 
-	public void onPreferenceClicked(String id);
-	public void onActivityResult(int requestCode, int resultCode, Intent data);
-	public void onCreateOptionsMenu(Menu menu);
-	public void onOptionsItemSelected(MenuItem item);
+    public void onPreferenceClicked(String id);
+    public void onActivityResult(int requestCode, int resultCode, Intent data);
+    public void onCreateOptionsMenu(Menu menu);
+    public void onOptionsItemSelected(MenuItem item);
 }

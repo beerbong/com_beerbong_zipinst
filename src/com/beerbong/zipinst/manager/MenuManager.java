@@ -20,37 +20,37 @@ import com.beerbong.zipinst.util.Constants;
  */
 
 public class MenuManager extends UIAdapter {
-	
-	private Activity mActivity;
-	
-	protected MenuManager(Activity activity) {
-		mActivity = activity;
-		
-		UI.getInstance().addUIListener(this);
-	}
 
-	public void onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = mActivity.getMenuInflater();
-      inflater.inflate(R.menu.menu, menu);
-	}
-	public void onOptionsItemSelected(MenuItem item) {
-		Intent i;
-   	switch (item.getItemId()) {
-       	case R.id.sdcard:
-       		i = new Intent(mActivity, Sdcard.class);
-       		mActivity.startActivity(i);
-       		break;
-       	case R.id.about:
-       		i = new Intent(mActivity, About.class);
-       		mActivity.startActivity(i);
-       		break;
-       	case R.id.donate:
-       		i = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.DONATE_URL));
-       		mActivity.startActivity(i);
-       		break;
-       	case R.id.exit:
-       		mActivity.finish();
-       		break;
-   	}
-	}
+    private Activity mActivity;
+
+    protected MenuManager(Activity activity) {
+        mActivity = activity;
+
+        UI.getInstance().addUIListener(this);
+    }
+
+    public void onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = mActivity.getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+    }
+    public void onOptionsItemSelected(MenuItem item) {
+        Intent i;
+        switch (item.getItemId()) {
+            case R.id.sdcard:
+                i = new Intent(mActivity, Sdcard.class);
+                mActivity.startActivity(i);
+                break;
+            case R.id.about:
+                i = new Intent(mActivity, About.class);
+                mActivity.startActivity(i);
+                break;
+            case R.id.donate:
+                i = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.DONATE_URL));
+                mActivity.startActivity(i);
+                break;
+            case R.id.exit:
+                mActivity.finish();
+                break;
+        }
+    }
 }

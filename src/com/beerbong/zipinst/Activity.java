@@ -15,38 +15,38 @@ import android.view.*;
  */
 
 public class Activity extends PreferenceActivity {
-	
-	@Override
-   public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		
-      UI.create(this);
 
-      Manager.start(this);
-	}
-	
-	@Override
-   public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-		
-		return UI.getInstance().onPreferenceTreeClick(preference);
-		
-	}
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		
-		UI.getInstance().onActivityResult(requestCode, resultCode, data);
-		
-	}
-   @Override
-   public boolean onCreateOptionsMenu(Menu menu) {
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-       return UI.getInstance().onCreateOptionsMenu(menu);
-       
-   }
-   @Override
-   public boolean onOptionsItemSelected(MenuItem item) {
-   	
-   	return UI.getInstance().onOptionsItemSelected(item);
-   	
-   }
+        UI.create(this);
+
+        Manager.start(this);
+    }
+
+    @Override
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+
+        return UI.getInstance().onPreferenceTreeClick(preference);
+
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        UI.getInstance().onActivityResult(requestCode, resultCode, data);
+
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        return UI.getInstance().onCreateOptionsMenu(menu);
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        return UI.getInstance().onOptionsItemSelected(item);
+
+    }
 }

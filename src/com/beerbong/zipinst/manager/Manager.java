@@ -9,10 +9,9 @@ import android.app.Activity;
 
 public class Manager {
 
-	public static void start(Activity mActivity) {
-		
-		new FileManager(mActivity);
-		new RebootManager(mActivity);
-		new MenuManager(mActivity);
-	}
+    public static void start(Activity mActivity) {
+        new FileManager(mActivity);
+        new RebootManager(mActivity);
+        new MenuManager(mActivity);
+    }
 }
