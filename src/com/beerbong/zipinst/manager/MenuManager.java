@@ -8,8 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.beerbong.zipinst.R;
-import com.beerbong.zipinst.activities.About;
-import com.beerbong.zipinst.activities.Sdcard;
+import com.beerbong.zipinst.activities.*;
 import com.beerbong.zipinst.ui.UI;
 import com.beerbong.zipinst.ui.UIAdapter;
 import com.beerbong.zipinst.util.Constants;
@@ -36,6 +35,10 @@ public class MenuManager extends UIAdapter {
     public void onOptionsItemSelected(MenuItem item) {
         Intent i;
         switch (item.getItemId()) {
+            case R.id.recovery:
+                i = new Intent(mActivity, Recovery.class);
+                mActivity.startActivity(i);
+                break;
             case R.id.sdcard:
                 i = new Intent(mActivity, Sdcard.class);
                 mActivity.startActivity(i);

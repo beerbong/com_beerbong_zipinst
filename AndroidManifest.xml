@@ -37,6 +37,11 @@
         </activity>
         
         <activity
+            android:name=".activities.Recovery"
+            android:label="@string/recovery_title">
+        </activity>
+        
+        <activity
             android:name=".activities.Sdcard"
             android:label="@string/sdcard_title">
         </activity>

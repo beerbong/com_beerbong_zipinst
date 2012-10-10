@@ -16,6 +16,9 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item android:id="@+id/recovery"
+        android:title="@string/menu_recovery" />
+
     <item android:id="@+id/sdcard"
         android:title="@string/menu_sdcard" />
 

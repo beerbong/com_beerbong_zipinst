@@ -11,6 +11,8 @@ public class Constants {
 
     public static final String PROPERTY_INTERNAL_STORAGE = "internal-storage";
     public static final String DEFAULT_INTERNAL_STORAGE = "emmc";
+    public static final String PROPERTY_RECOVERY = "recovery";
+    public static final String DEFAULT_RECOVERY = "cwmbased";
 
     // main preferences
     public static final String PREFERENCE_FILE_LIST = "file_list";

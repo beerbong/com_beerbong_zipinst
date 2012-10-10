@@ -12,7 +12,6 @@ import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.ui.UI;
 import com.beerbong.zipinst.ui.UIAdapter;
 import com.beerbong.zipinst.util.Constants;
-import com.beerbong.zipinst.util.Recovery;
 import com.beerbong.zipinst.util.StoredPreferences;
 
 /**
@@ -56,33 +55,37 @@ public class RebootManager extends UIAdapter {
             public void onClick(DialogInterface dialog, int whichButton) {
                 dialog.dismiss();
                 try {
-                    Process p = Runtime.getRuntime().exec("su");
-                    DataOutputStream os = new DataOutputStream(p.getOutputStream());
-                    os.writeBytes("rm -f /cache/recovery/command\n");
-                    os.writeBytes("rm -f /cache/recovery/extendedcommand\n");
-                    os.writeBytes("rm -f /cache/recovery/openrecoveryscript\n");
-
-                    String[] commands = Recovery.getCWMCommands(mActivity, wipeOptions);
-                    int size = commands.length, i = 0;
-                    for (;i<size;i++) {
-                        os.writeBytes("echo '" + commands[i] + "' >> /cache/recovery/extendedcommand\n");
+                    
+                    RecoveryManager manager = Manager.getRecoveryManager();
+                    
+                    if (manager.needsReboot()) {
+                    
+                        Process p = Runtime.getRuntime().exec("su");
+                        DataOutputStream os = new DataOutputStream(p.getOutputStream());
+                        
+                        os.writeBytes("rm -f /cache/recovery/command\n");
+                        os.writeBytes("rm -f /cache/recovery/extendedcommand\n");
+                        os.writeBytes("rm -f /cache/recovery/openrecoveryscript\n");
+                        
+                        String file = manager.getCommandsFile();
+    
+                        String[] commands = manager.getCommands(wipeOptions);
+                        if (commands != null) {
+                            int size = commands.length, i = 0;
+                            for (;i<size;i++) {
+                                os.writeBytes("echo '" + commands[i] + "' >> /cache/recovery/" + file + "\n");
+                            }
+                        }
+    
+                        os.writeBytes("reboot recovery\n");
+    
+                        os.writeBytes("sync\n");
+                        os.writeBytes("exit\n");
+                        os.flush();
+                        p.waitFor();
+    
+                        ((PowerManager)mActivity.getSystemService(Context.POWER_SERVICE)).reboot("recovery");
                     }
-
-                    commands = Recovery.getTWRPCommands(mActivity, wipeOptions);
-                    size = commands.length;
-                    i = 0;
-                    for (;i<size;i++) {
-                        os.writeBytes("echo '" + commands[i] + "' >> /cache/recovery/openrecoveryscript\n");
-                    }
-
-                    os.writeBytes("reboot recovery\n");
-
-                    os.writeBytes("sync\n");
-                    os.writeBytes("exit\n");
-                    os.flush();
-                    p.waitFor();
-
-                    ((PowerManager)mActivity.getSystemService(Context.POWER_SERVICE)).reboot("recovery");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

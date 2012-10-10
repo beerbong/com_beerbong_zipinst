@@ -25,10 +25,17 @@
     
     <string name="zip_list">Selected zips list</string>
     
+    <string name="menu_recovery">Recovery</string>
     <string name="menu_sdcard">Internal sdcard</string>
     <string name="menu_about">About</string>
     <string name="menu_exit">Exit</string>
     <string name="menu_donate">Donate</string>
+    
+    <string name="recovery_title">Select recovery</string>
+    <string name="recovery_alert_title">Select recovery</string>
+    <string name="recovery_alert_summary">Specify the recovery you are using</string>
+    <string name="recovery_alert_ok">Accept</string>
+    <string name="recovery_alert_cancel">Cancel</string>
     
     <string name="sdcard_title">Internal storage path</string>
     <string name="sdcard_alert_title">Internal storage path</string>
