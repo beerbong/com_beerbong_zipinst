@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.beerbong.zipinst.R;
@@ -53,16 +52,6 @@ public class RecoveryManager {
         editor.putString(Constants.PROPERTY_INTERNAL_STORAGE, info.getSdcard());
         editor.commit();
     }
-    public boolean needsReboot() {
-
-        RecoveryInfo info = getRecovery();
-        
-        switch (info.getId()) {
-            case R.id.cwmbased : 
-            case R.id.twrp : return true;
-            default : return false;
-        }
-    }
     public String getCommandsFile() {
 
         RecoveryInfo info = getRecovery();
@@ -73,6 +62,20 @@ public class RecoveryManager {
             default : return null;
         }
     }
+    public String[] getPreviousCommands() throws Exception {
+        List<String> commands = new ArrayList();
+        
+        RecoveryInfo info = getRecovery();
+        
+        switch (info.getId()) {
+            case R.id.cwmbased :
+                commands.add("mkdir -p /sdcard/clockworkmod");
+                commands.add("echo 1 > /sdcard/clockworkmod/.recoverycheckpoint");
+                break;
+        }
+
+        return commands.toArray(new String[commands.size()]);
+    }
     public String[] getCommands(boolean[] wipeOptions) throws Exception {
         List<String> commands = new ArrayList();
 
@@ -82,6 +85,7 @@ public class RecoveryManager {
         
         switch (info.getId()) {
             case R.id.cwmbased :
+            case R.id.fourext :
 
                 String internalStorage = mActivity.getSharedPreferences(Constants.PREFS_NAME, 0).getString(Constants.PROPERTY_INTERNAL_STORAGE, Constants.DEFAULT_INTERNAL_STORAGE);
 
@@ -104,7 +108,7 @@ public class RecoveryManager {
 
                 commands.add("ui_print(\" Installing zips\");");
                 for (;i<size;i++) {
-                    commands.add("install_zip(\"" + StoredPreferences.getPreference(i).getKey() + "\");");
+                    commands.add("assert(install_zip(\"" + StoredPreferences.getPreference(i).getKey() + "\"));");
                 }
 
                 commands.add("ui_print(\" Rebooting\");");
@@ -133,32 +137,6 @@ public class RecoveryManager {
 
                 commands.add("print  Rebooting");
                 break;
-                
-            case R.id.fourext :
-                
-                Intent intent = new Intent("EXT_RecoveryInterface");
-                ArrayList<String> actions = new ArrayList<String>();
-
-                if (wipeOptions[0]) {
-                    actions.add("factory_reset");
-                }
-                if (wipeOptions[1]) {
-                    actions.add("wipe_dalvik");
-                    actions.add("wipe_cache");
-                }
-
-                actions.add("install");
-                intent.putStringArrayListExtra("actions", actions);
-                ArrayList<String> files = new ArrayList<String>();
-                for (;i<size;i++) {
-                    files.add(StoredPreferences.getPreference(i).getKey());
-                }
-                
-                intent.putStringArrayListExtra("files_to_flash", files);
-                
-                mActivity.startActivity(intent);
-                
-                return null;
         }
 
         return commands.toArray(new String[commands.size()]);

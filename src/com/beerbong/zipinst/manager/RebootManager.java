@@ -30,13 +30,14 @@ public class RebootManager extends UIAdapter {
     }
 
     public void onPreferenceClicked(String id) {
+
         if (Constants.PREFERENCE_INSTALL_NOW.equals(id)) {
             showRebootDialog();
         }
     }
 
     private void showRebootDialog() {
-
+        
         if (StoredPreferences.size() == 0) return;
 
         AlertDialog.Builder alert = new AlertDialog.Builder(mActivity);
@@ -58,34 +59,37 @@ public class RebootManager extends UIAdapter {
                     
                     RecoveryManager manager = Manager.getRecoveryManager();
                     
-                    if (manager.needsReboot()) {
+                    Process p = Runtime.getRuntime().exec("su");
+                    DataOutputStream os = new DataOutputStream(p.getOutputStream());
                     
-                        Process p = Runtime.getRuntime().exec("su");
-                        DataOutputStream os = new DataOutputStream(p.getOutputStream());
-                        
-                        os.writeBytes("rm -f /cache/recovery/command\n");
-                        os.writeBytes("rm -f /cache/recovery/extendedcommand\n");
-                        os.writeBytes("rm -f /cache/recovery/openrecoveryscript\n");
-                        
-                        String file = manager.getCommandsFile();
-    
-                        String[] commands = manager.getCommands(wipeOptions);
-                        if (commands != null) {
-                            int size = commands.length, i = 0;
-                            for (;i<size;i++) {
-                                os.writeBytes("echo '" + commands[i] + "' >> /cache/recovery/" + file + "\n");
-                            }
-                        }
-    
-                        os.writeBytes("reboot recovery\n");
-    
-                        os.writeBytes("sync\n");
-                        os.writeBytes("exit\n");
-                        os.flush();
-                        p.waitFor();
-    
-                        ((PowerManager)mActivity.getSystemService(Context.POWER_SERVICE)).reboot("recovery");
+                    os.writeBytes("rm -f /cache/recovery/command\n");
+                    os.writeBytes("rm -f /cache/recovery/extendedcommand\n");
+                    os.writeBytes("rm -f /cache/recovery/openrecoveryscript\n");
+                    
+                    String[] pCommands = manager.getPreviousCommands();
+                    for (int i=0;i<pCommands.length;i++) {
+                        os.writeBytes(pCommands[i] + "\n");
                     }
+                    
+                    String file = manager.getCommandsFile();
+
+                    String[] commands = manager.getCommands(wipeOptions);
+                    if (commands != null) {
+                        int size = commands.length, i = 0;
+                        for (;i<size;i++) {
+                            os.writeBytes("echo '" + commands[i] + "' >> /cache/recovery/" + file + "\n");
+                        }
+                    }
+
+                    os.writeBytes("reboot recovery\n");
+
+                    os.writeBytes("sync\n");
+                    os.writeBytes("exit\n");
+                    os.flush();
+                    p.waitFor();
+
+                    ((PowerManager)mActivity.getSystemService(Context.POWER_SERVICE)).reboot("recovery");
+                        
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

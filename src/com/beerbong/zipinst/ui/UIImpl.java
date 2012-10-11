@@ -58,7 +58,7 @@ public class UIImpl extends UI {
     public boolean onPreferenceTreeClick(Preference preference) {
 
         boolean retValue = false;
-
+        
         if (preference == mChooseZip || preference == mInstallNow) {
             retValue = true;
         }
