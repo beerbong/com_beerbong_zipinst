@@ -66,11 +66,6 @@ public class RebootManager extends UIAdapter {
                     os.writeBytes("rm -f /cache/recovery/extendedcommand\n");
                     os.writeBytes("rm -f /cache/recovery/openrecoveryscript\n");
                     
-                    String[] pCommands = manager.getPreviousCommands();
-                    for (int i=0;i<pCommands.length;i++) {
-                        os.writeBytes(pCommands[i] + "\n");
-                    }
-                    
                     String file = manager.getCommandsFile();
 
                     String[] commands = manager.getCommands(wipeOptions);

@@ -57,24 +57,12 @@ public class RecoveryManager {
         RecoveryInfo info = getRecovery();
         
         switch (info.getId()) {
-            case R.id.cwmbased : return "extendedcommand";
+            case R.id.cwmbased :
+            case R.id.fourext :
+                return "extendedcommand";
             case R.id.twrp : return "openrecoveryscript";
             default : return null;
         }
-    }
-    public String[] getPreviousCommands() throws Exception {
-        List<String> commands = new ArrayList();
-        
-        RecoveryInfo info = getRecovery();
-        
-        switch (info.getId()) {
-            case R.id.cwmbased :
-                commands.add("mkdir -p /sdcard/clockworkmod");
-                commands.add("echo 1 > /sdcard/clockworkmod/.recoverycheckpoint");
-                break;
-        }
-
-        return commands.toArray(new String[commands.size()]);
     }
     public String[] getCommands(boolean[] wipeOptions) throws Exception {
         List<String> commands = new ArrayList();
