@@ -4,9 +4,7 @@ import java.io.DataOutputStream;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.os.PowerManager;
 
 import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.ui.UI;
@@ -83,7 +81,7 @@ public class RebootManager extends UIAdapter {
                     os.flush();
                     p.waitFor();
 
-                    ((PowerManager)mActivity.getSystemService(Context.POWER_SERVICE)).reboot("recovery");
+                    Runtime.getRuntime().exec("/system/bin/reboot recovery");
                         
                 } catch (Exception e) {
                     e.printStackTrace();
