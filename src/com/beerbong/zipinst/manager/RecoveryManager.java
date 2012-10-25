@@ -93,13 +93,15 @@ public class RecoveryManager {
                     commands.add("ui_print(\" Wiping data\");");
                     commands.add("format(\"/data\");");
                     commands.add("ui_print(\" Wiping android secure\");");
-                    commands.add("__system(\"rm -r /" + internalStorage + "/.android_secure\");");
+                    commands.add("format(\"/" + internalStorage + "/.android_secure\");");
                 }
                 if (wipeOptions[1]) {
                     commands.add("ui_print(\" Wiping cache\");");
                     commands.add("format(\"/cache\");");
                     commands.add("ui_print(\" Wiping dalvik cache\");");
-                    commands.add("__system(\"rm -r /data/dalvik-cache\");");
+                    commands.add("format(\"/data/dalvik-cache\");");
+                    commands.add("format(\"/cache/dalvik-cache\");");
+                    commands.add("format(\"/sd-ext/dalvik-cache\");");
                 }
 
                 commands.add("ui_print(\" Installing zips\");");
