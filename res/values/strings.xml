@@ -31,6 +31,13 @@
     <string name="menu_exit">Exit</string>
     <string name="menu_donate">Donate</string>
     
+    <string name="recovery_change_alert_title">Recovery found</string>
+    <string name="recovery_change_alert_message">%1$s recovery folder found. Do you want to configure it as default?</string>
+    <string name="recovery_changed">Recovery %1$s configured.</string>
+    <string name="recovery_cwm">CWM-based</string>
+    <string name="recovery_4ext">4EXT</string>
+    <string name="recovery_twrp">TWRP</string>
+    
     <string name="recovery_title">Select recovery</string>
     <string name="recovery_alert_title">Select recovery</string>
     <string name="recovery_alert_summary">Specify the recovery you are using</string>

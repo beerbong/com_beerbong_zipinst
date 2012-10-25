@@ -31,6 +31,13 @@
     <string name="menu_exit">Salir</string>
     <string name="menu_donate">Donar</string>
     
+    <string name="recovery_change_alert_title">Recovery encontrado</string>
+    <string name="recovery_change_alert_message">Se ha encontrado una carpeta del recovery %1$s. ¿Quieres que se configure por defecto?</string>
+    <string name="recovery_changed">Recovery %1$s configurado.</string>
+    <string name="recovery_cwm">CWM-based</string>
+    <string name="recovery_4ext">4EXT</string>
+    <string name="recovery_twrp">TWRP</string>
+    
     <string name="recovery_title">Seleccionar recovery</string>
     <string name="recovery_alert_title">Seleccionar recovery</string>
     <string name="recovery_alert_summary">Especifica el recovery que utilizas</string>

@@ -1,5 +1,6 @@
 package com.beerbong.zipinst.manager;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -7,7 +8,10 @@ import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.util.Constants;
@@ -30,6 +34,10 @@ public class RecoveryManager {
         recoveries.put(R.id.cwmbased, new RecoveryInfo(R.id.cwmbased, "cwmbased", "emmc"));
         recoveries.put(R.id.twrp, new RecoveryInfo(R.id.twrp, "twrp", "sdcard"));
         recoveries.put(R.id.fourext, new RecoveryInfo(R.id.fourext, "fourext", "sdcard"));
+        
+        if (!mActivity.getSharedPreferences(Constants.PREFS_NAME, 0).contains(Constants.PROPERTY_RECOVERY)) {
+            test(R.id.fourext);
+        }
     }
 
     public RecoveryInfo getRecovery() {
@@ -128,5 +136,64 @@ public class RecoveryManager {
         }
 
         return commands.toArray(new String[commands.size()]);
+    }
+    
+    private void test(final int id) {
+        
+        String name = null, path = null;
+        
+        switch (id) {
+            case R.id.fourext :
+                name = mActivity.getString(R.string.recovery_4ext);
+                path = "/cache/4ext/";
+                break;
+            case R.id.twrp :
+                name = mActivity.getString(R.string.recovery_twrp);
+                path = "/sdcard/TWRP/";
+                break;
+            case R.id.cwmbased :
+                setRecovery(R.id.cwmbased);
+                Toast.makeText(mActivity, mActivity.getString(R.string.recovery_changed, mActivity.getString(R.string.recovery_cwm)), Toast.LENGTH_LONG).show();
+                return;
+        }
+        
+        final String recoveryName = name;
+        
+        File folder = new File(path);
+        if (folder.exists()) {
+            AlertDialog.Builder alert = new AlertDialog.Builder(mActivity);
+            alert.setTitle(R.string.recovery_change_alert_title);
+            alert.setMessage(mActivity.getString(R.string.recovery_change_alert_message, recoveryName));
+            alert.setPositiveButton(R.string.recovery_alert_ok, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    dialog.dismiss();
+                    setRecovery(id);
+                    Toast.makeText(mActivity, mActivity.getString(R.string.recovery_changed, recoveryName), Toast.LENGTH_LONG).show();
+                }
+            });
+            alert.setNegativeButton(R.string.recovery_alert_cancel, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    switch (id) {
+                        case R.id.fourext :
+                            test(R.id.twrp);
+                            break;
+                        case R.id.twrp :
+                            test(R.id.cwmbased);
+                            break;
+                    }
+                }
+            });
+            alert.show();
+        } else {
+            switch (id) {
+                case R.id.fourext :
+                    test(R.id.twrp);
+                    break;
+                case R.id.twrp :
+                    test(R.id.cwmbased);
+                    break;
+            }
+        }
     }
 }
