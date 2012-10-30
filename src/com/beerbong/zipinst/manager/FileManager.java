@@ -2,6 +2,12 @@ package com.beerbong.zipinst.manager;
 
 import java.util.List;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -56,7 +62,7 @@ public class FileManager extends UIAdapter {
 
             String zipPath = data.getData().getEncodedPath();
 
-            if (zipPath.startsWith("/extSdCard") || zipPath.startsWith("/storage/sdcard1")) {
+            if (zipPath.startsWith("/extSdCard") || zipPath.startsWith("/storage/sdcard1") || zipPath.startsWith("/mnt/extsdcard")) {
                 // external sdcard not allowed
                 Toast.makeText(mActivity, R.string.install_file_manager_intsdcard, Toast.LENGTH_SHORT).show();
                 return;
@@ -70,9 +76,21 @@ public class FileManager extends UIAdapter {
             String sdcardPath = new String(zipPath);
 
             String internalStorage = settings.getString(Constants.PROPERTY_INTERNAL_STORAGE, Constants.DEFAULT_INTERNAL_STORAGE);
-
-            if (zipPath.startsWith("/sdcard")) zipPath = zipPath.replace("/sdcard", "/" + internalStorage);
-            else if (zipPath.startsWith("/storage/sdcard0")) zipPath = zipPath.replace("/storage/sdcard0", "/" + internalStorage);
+            
+            try {
+                DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+                DocumentBuilder db = dbf.newDocumentBuilder();
+                Document doc = db.parse(mActivity.getAssets().open("paths.xml"));
+                
+                NodeList list = doc.getElementsByTagName("path");
+                
+                for (int i=0;i<list.getLength();i++) {
+                    String name = list.item(i).getAttributes().getNamedItem("name").getNodeValue();
+                    if (zipPath.startsWith(name)) zipPath = zipPath.replace(name, "/" + internalStorage);
+                }
+            } catch (Exception ex) {
+                Toast.makeText(mActivity, R.string.paths_error, Toast.LENGTH_LONG).show();
+            }
 
             UI.getInstance().addPreference(zipPath, sdcardPath);
 

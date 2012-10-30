@@ -64,4 +64,6 @@
     <string name="changelog_title">Changelog</string>
     <string name="changelog_apache_title">ZipInstaller Changelog</string>
     <string name="changelog_error">Error loading changelog file</string>
+    
+    <string name="paths_error">Error loading paths file</string>
 </resources>

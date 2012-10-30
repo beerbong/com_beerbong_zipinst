@@ -63,4 +63,6 @@
     <string name="changelog_title">Canvis</string>
     <string name="changelog_apache_title">Canvis a ZipInstaller</string>
     <string name="changelog_error">"Error carregant l'arxiu de canvis"</string>
+    
+    <string name="paths_error">"Error carregant l'arxiu de paths"</string>
 </resources>
