@@ -26,19 +26,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" >
 
-        <RadioButton android:text="CWM-based"
+        <RadioButton android:text="@string/recovery_cwm"
                 android:id="@+id/cwmbased"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"></RadioButton>
     
-        <RadioButton android:text="TWRP 2.2+"
+        <RadioButton android:text="@string/recovery_twrp"
                 android:id="@+id/twrp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"></RadioButton>
     
-        <RadioButton android:text="4EXT"
+        <RadioButton android:text="@string/recovery_4ext"
                 android:id="@+id/fourext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
