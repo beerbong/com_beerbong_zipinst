@@ -59,13 +59,31 @@ public class FileManager extends UIAdapter {
                 //Nothing returned by user, probably pressed back button in file manager
                 return;
             }
+            
+            NodeList list = null;
+            
+            try {
+                DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+                DocumentBuilder db = dbf.newDocumentBuilder();
+                Document doc = db.parse(mActivity.getAssets().open("paths.xml"));
+                
+                list = doc.getElementsByTagName("path");
+                
+            } catch (Exception ex) {
+                Toast.makeText(mActivity, R.string.paths_error, Toast.LENGTH_LONG).show();
+                return;
+            }
 
             String zipPath = data.getData().getEncodedPath();
 
-            if (zipPath.startsWith("/extSdCard") || zipPath.startsWith("/storage/sdcard1") || zipPath.startsWith("/mnt/extsdcard")) {
-                // external sdcard not allowed
-                Toast.makeText(mActivity, R.string.install_file_manager_intsdcard, Toast.LENGTH_SHORT).show();
-                return;
+            for (int i=0;i<list.getLength();i++) {
+                String name = list.item(i).getAttributes().getNamedItem("name").getNodeValue();
+                String allowed = list.item(i).getAttributes().getNamedItem("allowed").getNodeValue();
+                if ("0".equals(allowed) && zipPath.startsWith(name)) {
+                    // external sdcard not allowed
+                    Toast.makeText(mActivity, R.string.install_file_manager_intsdcard, Toast.LENGTH_SHORT).show();
+                    return;
+                }
             }
 
             if (!zipPath.endsWith(".zip")) {
@@ -77,21 +95,12 @@ public class FileManager extends UIAdapter {
 
             String internalStorage = settings.getString(Constants.PROPERTY_INTERNAL_STORAGE, Constants.DEFAULT_INTERNAL_STORAGE);
             
-            try {
-                DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-                DocumentBuilder db = dbf.newDocumentBuilder();
-                Document doc = db.parse(mActivity.getAssets().open("paths.xml"));
-                
-                NodeList list = doc.getElementsByTagName("path");
-                
-                for (int i=0;i<list.getLength();i++) {
-                    String name = list.item(i).getAttributes().getNamedItem("name").getNodeValue();
-                    if (zipPath.startsWith(name)) zipPath = zipPath.replace(name, "/" + internalStorage);
-                }
-            } catch (Exception ex) {
-                Toast.makeText(mActivity, R.string.paths_error, Toast.LENGTH_LONG).show();
+            for (int i=0;i<list.getLength();i++) {
+                String name = list.item(i).getAttributes().getNamedItem("name").getNodeValue();
+                String allowed = list.item(i).getAttributes().getNamedItem("allowed").getNodeValue();
+                if ("1".equals(allowed) && zipPath.startsWith(name)) zipPath = zipPath.replace(name, "/" + internalStorage);
             }
-
+            
             UI.getInstance().addPreference(zipPath, sdcardPath);
 
         }
