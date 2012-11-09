@@ -17,8 +17,8 @@
 <resources>
     
     <string-array name="wipe_options">
-        <item>Wipe Data</item>
-        <item>Wipe Cache &amp; Dalvik</item>
+        <item>@string/wipe_data</item>
+        <item>@string/wipe_caches</item>
     </string-array>
 
 </resources>

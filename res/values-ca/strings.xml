@@ -65,4 +65,7 @@
     <string name="changelog_error">"Error carregant l'arxiu de canvis"</string>
     
     <string name="paths_error">"Error carregant l'arxiu de paths"</string>
+    
+    <string name="wipe_data">Wipe Data</string>
+    <string name="wipe_caches">Wipe Cache &amp; Dalvik</string>
 </resources>
