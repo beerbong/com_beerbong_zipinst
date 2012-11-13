@@ -142,6 +142,15 @@ public class UIImpl extends UI {
     public void removeUIListener(UIListener listener) {
         listeners.remove(listener);
     }
+    @Override
+    public void removeAllPreferences() {
+        
+        StoredPreferences.removePreferences();
+        
+        fileList.removeAll();
+        
+        redrawPreferences();
+    }
 
     private void removePreference(Preference preference) {
 

@@ -27,6 +27,7 @@ public abstract class UI {
     }
 
     public abstract void addPreference(String realPath, String sdcardPath);
+    public abstract void removeAllPreferences();
     public abstract void redraw(PreferenceActivity activity);
     public abstract boolean onPreferenceTreeClick(Preference preference);
     public abstract void addUIListener(UIListener listener);

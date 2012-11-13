@@ -23,6 +23,9 @@ public class StoredPreferences {
     public static void addPreference(Preference preference) {
         list.add(preference);
     }
+    public static void removePreferences() {
+        list.clear();
+    }
     public static void removePreference(String key) {
         int size = size(), i = 0;
         for (;i<size;i++) {

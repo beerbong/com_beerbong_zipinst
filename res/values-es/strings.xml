@@ -8,6 +8,7 @@
     <string name="install_file_manager_error">"No se ha encontrado ninguna aplicación para seleccionar el archivo zip. Por favor, instala un administrador de archivos."</string>
     <string name="install_file_manager_intsdcard">"Selecciona un archivo de la sd interna."</string>
     <string name="install_file_manager_zip">"Por favor, selecciona un archivo ZIP."</string>
+    <string name="install_file_manager_invalid_zip">Archivo ZIP no válido.</string>
     
     <string name="alert_sdcard_title">Alerta</string>
     <string name="alert_sdcard_message">"Selecciona un zip de la sdcard interna."</string>
