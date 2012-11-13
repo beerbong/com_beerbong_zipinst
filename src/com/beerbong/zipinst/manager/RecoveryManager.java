@@ -113,27 +113,27 @@ public class RecoveryManager {
                 break;
                 
             case R.id.twrp :
-                commands.add("print -------------------------------------");
-                commands.add("print  ZipInstaller " + mActivity.getPackageManager().getPackageInfo(mActivity.getPackageName(), 0).versionName);
-                commands.add("print -------------------------------------");
+//                commands.add("print -------------------------------------");
+//                commands.add("print  ZipInstaller " + mActivity.getPackageManager().getPackageInfo(mActivity.getPackageName(), 0).versionName);
+//                commands.add("print -------------------------------------");
 
                 if (wipeOptions[0]) {
-                    commands.add("print  Wiping data");
+//                    commands.add("print  Wiping data");
                     commands.add("wipe data");
                 }
                 if (wipeOptions[1]) {
-                    commands.add("print  Wiping cache");
+//                    commands.add("print  Wiping cache");
                     commands.add("wipe cache");
-                    commands.add("print  Wiping dalvik cache");
+//                    commands.add("print  Wiping dalvik cache");
                     commands.add("wipe dalvik");
                 }
 
-                commands.add("print  Installing zips");
+//                commands.add("print  Installing zips");
                 for (;i<size;i++) {
                     commands.add("install " + StoredPreferences.getPreference(i).getKey());
                 }
 
-                commands.add("print  Rebooting");
+//                commands.add("print  Rebooting");
                 break;
         }
 
