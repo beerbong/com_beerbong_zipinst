@@ -15,6 +15,7 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
+import android.preference.PreferenceGroup;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -32,6 +33,16 @@ public class UIImpl extends UI {
     private PreferenceCategory fileList;
     private Preference mChooseZip;
     private Preference mInstallNow;
+    
+    private int mCount = 0;
+    
+    private TouchInterceptor.DropListener mDropListener = new TouchInterceptor.DropListener() {
+        public void drop(int from, int to) {
+            if (to < mCount) return;
+            StoredPreferences.move(from - mCount, to - mCount);
+            redrawPreferences();
+        }
+    };
 
     protected UIImpl(PreferenceActivity activity) {
       
@@ -47,10 +58,17 @@ public class UIImpl extends UI {
         this.activity = activity;
 
         activity.addPreferencesFromResource(R.xml.main);
+        
+        mCount = countPreferences(activity.getPreferenceScreen());
       
         fileList = (PreferenceCategory)activity.findPreference(Constants.PREFERENCE_FILE_LIST);
+        fileList.setOrderingAsAdded(true);
         mChooseZip = activity.findPreference(Constants.PREFERENCE_CHOOSE_ZIP);
         mInstallNow = activity.findPreference(Constants.PREFERENCE_INSTALL_NOW);
+        
+        activity.setContentView(R.xml.list);
+        
+        ((TouchInterceptor)activity.getListView()).setDropListener(mDropListener);
       
         redrawPreferences();
     }
@@ -92,9 +110,11 @@ public class UIImpl extends UI {
 
         StoredPreferences.removePreference(realPath);
 
-        Preference pref = new Preference(activity);
+        ZipPreference pref = new ZipPreference(activity);
+        pref.setLayoutResource(R.xml.order_power_widget_button_list_item);
         pref.setKey(realPath);
         pref.setTitle(sdcardPath);
+        pref.setName(sdcardPath);
         pref.setPersistent(true);
       
         pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
@@ -190,7 +210,22 @@ public class UIImpl extends UI {
         fileList.removeAll();
 
         for (int i=0;i<StoredPreferences.size();i++) {
+            Preference pref = StoredPreferences.getPreference(i);
+            pref.setOrder(Preference.DEFAULT_ORDER);
             fileList.addPreference(StoredPreferences.getPreference(i));
         }
+    }
+    private int countPreferences(PreferenceGroup group) {
+        int children = group.getPreferenceCount();
+        int count = children;
+        if (count > 0) {
+            for (int i=0;i<count;i++) {
+                Preference pref = group.getPreference(i);
+                if (pref instanceof PreferenceGroup) {
+                    children += countPreferences((PreferenceGroup)pref);
+                }
+            }
+        }
+        return children;
     }
 }
