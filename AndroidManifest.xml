@@ -19,9 +19,10 @@
     android:versionCode="244"
     android:versionName="2.4.4">
 
-    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="16" />
+    <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="17" />
 
     <application android:label="@string/app_name"
+        android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:hardwareAccelerated="true">
         
@@ -52,6 +53,16 @@
         <activity
             android:name=".activities.Sdcard"
             android:label="@string/sdcard_title">
+        </activity>
+        
+        <activity
+            android:name=".activities.SaveList"
+            android:label="@string/savelist_title">
+        </activity>
+        
+        <activity
+            android:name=".activities.LoadList"
+            android:label="@string/loadlist_title">
         </activity>
         
         <activity

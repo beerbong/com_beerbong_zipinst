@@ -22,6 +22,12 @@
     <item android:id="@+id/sdcard"
         android:title="@string/menu_sdcard" />
 
+    <item android:id="@+id/savelist"
+        android:title="@string/menu_savelist" />
+
+    <item android:id="@+id/loadlist"
+        android:title="@string/menu_loadlist" />
+
     <item android:id="@+id/about"
         android:title="@string/menu_about" />
     

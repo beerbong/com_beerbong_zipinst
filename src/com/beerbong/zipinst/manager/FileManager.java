@@ -1,7 +1,9 @@
 package com.beerbong.zipinst.manager;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -10,6 +12,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -21,6 +25,7 @@ import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.ui.UI;
 import com.beerbong.zipinst.ui.UIAdapter;
 import com.beerbong.zipinst.util.Constants;
+import com.beerbong.zipinst.util.StoredPreferences;
 
 /**
  * @author Yamil Ghazi Kantelinen
@@ -97,6 +102,51 @@ public class FileManager extends UIAdapter {
             addZip(zipPath);
 
         }
+    }
+    public void saveList() {
+        int size = StoredPreferences.size();
+        if (size == 0) return;
+        
+        StringBuffer list = new StringBuffer();
+        
+        for (int i=0;i<size;i++) {
+            String path = (String)StoredPreferences.getPreference(i).getTitle();
+            list.append(path);
+            if (i < size -1) list.append("\n");
+        }
+        
+        SharedPreferences settings = mActivity.getSharedPreferences(Constants.PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(Constants.PROPERTY_LIST, list.toString());
+        editor.commit();
+        
+        Toast.makeText(mActivity, R.string.list_saved, Toast.LENGTH_SHORT).show();
+    }
+    public void loadList() {
+        String list = mActivity.getSharedPreferences(Constants.PREFS_NAME, 0).getString(Constants.PROPERTY_LIST, "");
+        
+        StringTokenizer tokenizer = new StringTokenizer(list, "\n");
+        while (tokenizer.hasMoreTokens()) {
+            String path = tokenizer.nextToken();
+            
+            File file = new File(path);
+            if (!file.exists()) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(mActivity);
+                alert.setTitle(R.string.list_alert_title);
+                alert.setMessage(mActivity.getString(R.string.list_file_not_exists, path));
+                alert.setPositiveButton(R.string.recovery_alert_ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.dismiss();
+                    }
+                });
+                alert.show();
+                return;
+            }
+            
+            addZip(path);
+        }
+
+        Toast.makeText(mActivity, R.string.list_loaded, Toast.LENGTH_SHORT).show();
     }
 
     private void handleSendZip(Intent intent) {

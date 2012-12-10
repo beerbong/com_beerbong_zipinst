@@ -28,6 +28,8 @@
     
     <string name="menu_recovery">Recovery</string>
     <string name="menu_sdcard">Sdcard interna</string>
+    <string name="menu_savelist">Guardar lista</string>
+    <string name="menu_loadlist">Cargar lista</string>
     <string name="menu_about">Sobre</string>
     <string name="menu_exit">Salir</string>
     <string name="menu_donate">Donar</string>
@@ -69,4 +71,11 @@
     
     <string name="wipe_data">Wipe Data</string>
     <string name="wipe_caches">Wipe Cache &amp; Dalvik</string>
+    
+    <string name="savelist_title">Guardar lista</string>
+    <string name="loadlist_title">Cargar lista</string>
+    <string name="list_saved">Lista guardada satisfactóriamente</string>
+    <string name="list_loaded">Lista cargada satisfactóriamente</string>
+    <string name="list_alert_title">Archivo no encontrado</string>
+    <string name="list_file_not_exists">El archivo %1$s no se ha encontrado</string>
 </resources>

@@ -28,6 +28,8 @@
     
     <string name="menu_recovery">Recovery</string>
     <string name="menu_sdcard">Internal sdcard</string>
+    <string name="menu_savelist">Save list</string>
+    <string name="menu_loadlist">Load list</string>
     <string name="menu_about">About</string>
     <string name="menu_exit">Exit</string>
     <string name="menu_donate">Donate</string>
@@ -56,7 +58,7 @@
     <string name="about_zip_title">ZipInstaller</string>
     <string name="about_zip_summary" translatable="false">http://forum.xda-developers.com/showthread.php?t=1920057</string>
     <string name="about_version_title">Version</string>
-    <string name="about_version_unknown">Unkown Version (error in package manager)</string>
+    <string name="about_version_unknown">Unknown Version (error in package manager)</string>
     
     <string name="license_title">License</string>
     <string name="license_apache_title">Apache License</string>
@@ -70,4 +72,11 @@
     
     <string name="wipe_data">Wipe Data</string>
     <string name="wipe_caches">Wipe Cache &amp; Dalvik</string>
+    
+    <string name="savelist_title">Save list</string>
+    <string name="loadlist_title">Load list</string>
+    <string name="list_saved">List successfully saved</string>
+    <string name="list_loaded">List successfully loaded</string>
+    <string name="list_alert_title">File not found</string>
+    <string name="list_file_not_exists">The file %1$s was not found</string>
 </resources>

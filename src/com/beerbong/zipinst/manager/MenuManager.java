@@ -41,6 +41,12 @@ public class MenuManager extends UIAdapter {
             case R.id.sdcard:
                 i = new Intent(mActivity, Sdcard.class);
                 break;
+            case R.id.loadlist:
+                i = new Intent(mActivity, LoadList.class);
+                break;
+            case R.id.savelist:
+                i = new Intent(mActivity, SaveList.class);
+                break;
             case R.id.about:
                 i = new Intent(mActivity, About.class);
                 break;
