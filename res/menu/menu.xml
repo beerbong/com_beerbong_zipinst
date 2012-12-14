@@ -16,23 +16,14 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/recovery"
-        android:title="@string/menu_recovery" />
-
-    <item android:id="@+id/sdcard"
-        android:title="@string/menu_sdcard" />
+    <item android:id="@+id/settings"
+        android:title="@string/menu_settings" />
 
     <item android:id="@+id/savelist"
         android:title="@string/menu_savelist" />
 
     <item android:id="@+id/loadlist"
         android:title="@string/menu_loadlist" />
-
-    <item android:id="@+id/about"
-        android:title="@string/menu_about" />
-    
-    <item android:id="@+id/donate"
-        android:title="@string/menu_donate" />
 
     <item android:id="@+id/exit"
         android:title="@string/menu_exit" />

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Preference
+        android:key="recovery"
+        android:title="@string/recovery_title"
+        android:summary="@string/recovery_summary" />
+
+    <Preference
+        android:key="sdcard"
+        android:title="@string/sdcard_title"
+        android:summary="@string/sdcard_summary" />
+
+    <Preference
+        android:key="about"
+        android:title="@string/about_title" />
+
+    <Preference
+        android:key="donate"
+        android:title="@string/donate_title" />
+
+</PreferenceScreen>

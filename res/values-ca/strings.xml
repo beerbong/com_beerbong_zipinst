@@ -26,13 +26,10 @@
     
     <string name="zip_list">"Llista de zips seleccionats"</string>
     
-    <string name="menu_recovery">Recovery</string>
-    <string name="menu_sdcard">Sdcard interna</string>
-    <string name="menu_savelist">Guardar llista</string>
+    <string name="menu_settings">Ajustaments</string>
     <string name="menu_loadlist">Carregar llista</string>
-    <string name="menu_about">Quant a</string>
+    <string name="menu_savelist">Guardar llista</string>
     <string name="menu_exit">Sortir</string>
-    <string name="menu_donate">Donar</string>
     
     <string name="recovery_change_alert_title">Recovery trobat</string>
     <string name="recovery_change_alert_message">S\'ha trobat una carpeta del recovery %1$s. Vols que es configuri per defecte?</string>
@@ -42,12 +39,14 @@
     <string name="recovery_twrp">TWRP</string>
     
     <string name="recovery_title">Seleccionar recovery</string>
+    <string name="recovery_summary">"Selecciona el recovery instal·lat al teu dispositiu"</string>
     <string name="recovery_alert_title">Seleccionar recovery</string>
     <string name="recovery_alert_summary">Especifica el recovery que utilitzes</string>
     <string name="recovery_alert_ok">Aceptar</string>
     <string name="recovery_alert_cancel">"Cancel·lar"</string>
     
     <string name="sdcard_title">"Path al internal storage"</string>
+    <string name="sdcard_summary">Especifica la ruta al internal storage utilitzat pel recovery</string>
     <string name="sdcard_alert_title">"Path al internal storage"</string>
     <string name="sdcard_alert_summary">"Especifica el nom del internal storage"</string>
     <string name="sdcard_alert_ok">"Aceptar"</string>
@@ -78,4 +77,8 @@
     <string name="list_loaded">Llista carregada satisfactòriament</string>
     <string name="list_alert_title">Arxiu no trobat</string>
     <string name="list_file_not_exists">L\'arxiu %1$s no s\'ha trobat</string>
+    
+    <string name="donate_title">Donar</string>
+    
+    <string name="settings_title">Ajustaments</string>
 </resources>

@@ -46,23 +46,8 @@
         </activity>
         
         <activity
-            android:name=".activities.Recovery"
-            android:label="@string/recovery_title">
-        </activity>
-        
-        <activity
-            android:name=".activities.Sdcard"
-            android:label="@string/sdcard_title">
-        </activity>
-        
-        <activity
-            android:name=".activities.SaveList"
-            android:label="@string/savelist_title">
-        </activity>
-        
-        <activity
-            android:name=".activities.LoadList"
-            android:label="@string/loadlist_title">
+            android:name=".activities.Settings"
+            android:label="@string/settings_title">
         </activity>
         
         <activity

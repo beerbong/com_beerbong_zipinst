@@ -2,7 +2,6 @@ package com.beerbong.zipinst.manager;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -11,7 +10,6 @@ import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.activities.*;
 import com.beerbong.zipinst.ui.UI;
 import com.beerbong.zipinst.ui.UIAdapter;
-import com.beerbong.zipinst.util.Constants;
 
 /**
  * @author Yamil Ghazi Kantelinen
@@ -33,32 +31,20 @@ public class MenuManager extends UIAdapter {
         inflater.inflate(R.menu.menu, menu);
     }
     public void onOptionsItemSelected(MenuItem item) {
-        Intent i = null;
         switch (item.getItemId()) {
-            case R.id.recovery:
-                i = new Intent(mActivity, Recovery.class);
-                break;
-            case R.id.sdcard:
-                i = new Intent(mActivity, Sdcard.class);
+            case R.id.settings:
+                Intent i = new Intent(mActivity, Settings.class);
+                mActivity.startActivity(i);
                 break;
             case R.id.loadlist:
-                i = new Intent(mActivity, LoadList.class);
+                Manager.getFileManager().loadList();
                 break;
             case R.id.savelist:
-                i = new Intent(mActivity, SaveList.class);
-                break;
-            case R.id.about:
-                i = new Intent(mActivity, About.class);
-                break;
-            case R.id.donate:
-                i = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.DONATE_URL));
+                Manager.getFileManager().saveList();
                 break;
             case R.id.exit:
                 mActivity.finish();
                 return;
-        }
-        if (i != null) {
-            mActivity.startActivity(i);
         }
     }
 }

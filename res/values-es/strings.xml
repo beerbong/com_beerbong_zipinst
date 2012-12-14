@@ -26,13 +26,10 @@
     
     <string name="zip_list">"Lista de zips seleccionados"</string>
     
-    <string name="menu_recovery">Recovery</string>
-    <string name="menu_sdcard">Sdcard interna</string>
-    <string name="menu_savelist">Guardar lista</string>
+    <string name="menu_settings">Ajustes</string>
     <string name="menu_loadlist">Cargar lista</string>
-    <string name="menu_about">Sobre</string>
+    <string name="menu_savelist">Guardar lista</string>
     <string name="menu_exit">Salir</string>
-    <string name="menu_donate">Donar</string>
     
     <string name="recovery_change_alert_title">Recovery encontrado</string>
     <string name="recovery_change_alert_message">Se ha encontrado una carpeta del recovery %1$s. ¿Quieres que se configure por defecto?</string>
@@ -42,12 +39,14 @@
     <string name="recovery_twrp">TWRP</string>
     
     <string name="recovery_title">Seleccionar recovery</string>
+    <string name="recovery_summary">Selecciona el recovery instalado en tu dispositivo</string>
     <string name="recovery_alert_title">Seleccionar recovery</string>
     <string name="recovery_alert_summary">Especifica el recovery que utilizas</string>
     <string name="recovery_alert_ok">Aceptar</string>
     <string name="recovery_alert_cancel">Cancelar</string>
     
     <string name="sdcard_title">"Path al internal storage"</string>
+    <string name="sdcard_summary">Especifica la ruta al internal storage utilizado por el recovery</string>
     <string name="sdcard_alert_title">"Path al internal storage"</string>
     <string name="sdcard_alert_summary">"Especifica el nombre del internal storage"</string>
     <string name="sdcard_alert_ok">"Aceptar"</string>
@@ -78,4 +77,8 @@
     <string name="list_loaded">Lista cargada satisfactóriamente</string>
     <string name="list_alert_title">Archivo no encontrado</string>
     <string name="list_file_not_exists">El archivo %1$s no se ha encontrado</string>
+    
+    <string name="donate_title">Donar</string>
+    
+    <string name="settings_title">Ajustes</string>
 </resources>

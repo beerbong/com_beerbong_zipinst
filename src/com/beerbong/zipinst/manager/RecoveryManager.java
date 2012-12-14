@@ -11,6 +11,12 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.beerbong.zipinst.R;
@@ -40,6 +46,81 @@ public class RecoveryManager {
         }
     }
 
+    public void selectRecovery(Activity activity) {
+        View view = LayoutInflater.from(activity).inflate(R.xml.recovery, (ViewGroup)activity.findViewById(R.id.recovery_layout));
+
+        RadioButton cbCwmbased = (RadioButton)view.findViewById(R.id.cwmbased);
+        RadioButton cbTwrp = (RadioButton)view.findViewById(R.id.twrp);
+        RadioButton cb4ext = (RadioButton)view.findViewById(R.id.fourext);
+        
+        final RadioGroup mGroup = (RadioGroup)view.findViewById(R.id.recovery_radio_group);
+        
+        RecoveryInfo info = getRecovery();
+        switch (info.getId()) {
+            case R.id.cwmbased :
+                cbCwmbased.setChecked(true);
+                break;
+            case R.id.twrp :
+                cbTwrp.setChecked(true);
+                break;
+            case R.id.fourext :
+                cb4ext.setChecked(true);
+                break;
+        }
+
+        new AlertDialog.Builder(activity)
+            .setTitle(R.string.recovery_alert_title)
+            .setMessage(R.string.recovery_alert_summary)
+            .setView(view)
+            .setPositiveButton(R.string.recovery_alert_ok, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    
+                    int id = mGroup.getCheckedRadioButtonId();
+                    
+                    setRecovery(id);
+                    
+                    dialog.dismiss();
+                }
+            }).setNegativeButton(R.string.recovery_alert_cancel, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    dialog.dismiss();
+                }
+            }).show();
+    }
+    public void selectSdcard(final Activity activity) {
+        final EditText input = new EditText(activity);
+        input.setText(activity.getSharedPreferences(Constants.PREFS_NAME, 0).getString(Constants.PROPERTY_INTERNAL_STORAGE, Constants.DEFAULT_INTERNAL_STORAGE));
+
+        new AlertDialog.Builder(activity)
+            .setTitle(R.string.sdcard_alert_title)
+            .setMessage(R.string.sdcard_alert_summary)
+            .setView(input)
+            .setPositiveButton(R.string.sdcard_alert_ok, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    String value = input.getText().toString();
+
+                    if (value == null || "".equals(value.trim())) {
+                        Toast.makeText(activity, R.string.sdcard_alert_error, Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                        return;
+                    }
+
+                    if (value.startsWith("/")) {
+                        value = value.substring(1);
+                    }
+
+                    SharedPreferences settings = activity.getSharedPreferences(Constants.PREFS_NAME, 0);
+                    SharedPreferences.Editor editor = settings.edit();
+                    editor.putString(Constants.PROPERTY_INTERNAL_STORAGE, value);
+                    editor.commit();
+                    dialog.dismiss();
+                }
+            }).setNegativeButton(R.string.sdcard_alert_cancel, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    dialog.dismiss();
+                }
+            }).show();
+    }
     public RecoveryInfo getRecovery() {
         String recovery = mActivity.getSharedPreferences(Constants.PREFS_NAME, 0).getString(Constants.PROPERTY_RECOVERY, Constants.DEFAULT_RECOVERY);
         Iterator<Integer> it = recoveries.keySet().iterator();
@@ -151,7 +232,8 @@ public class RecoveryManager {
                 break;
             case R.id.twrp :
                 name = mActivity.getString(R.string.recovery_twrp);
-                path = "/sdcard/TWRP/";
+                String sdcard = "sdcard";
+                path = "/" + sdcard + "/TWRP/";
                 break;
             case R.id.cwmbased :
                 setRecovery(R.id.cwmbased);
