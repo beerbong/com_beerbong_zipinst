@@ -14,6 +14,8 @@ public class Constants {
     public static final String PROPERTY_RECOVERY = "recovery";
     public static final String DEFAULT_RECOVERY = "cwmbased";
     public static final String PROPERTY_LIST = "list";
+    public static final String PROPERTY_DRAG_AND_DROP = "drag-and-drop";
+    public static final boolean DEFAULT_DRAG_AND_DROP = true;
 
     // main preferences
     public static final String PREFERENCE_FILE_LIST = "file_list";

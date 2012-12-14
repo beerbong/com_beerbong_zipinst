@@ -109,12 +109,24 @@ public class UIImpl extends UI {
     public void addPreference(String realPath, String sdcardPath) {
 
         StoredPreferences.removePreference(realPath);
+        
+        boolean useDad = activity.getSharedPreferences(Constants.PREFS_NAME, 0).getBoolean(Constants.PROPERTY_DRAG_AND_DROP, Constants.DEFAULT_DRAG_AND_DROP);
+        
+        Preference pref = null;
+        
+        if (useDad) {
 
-        ZipPreference pref = new ZipPreference(activity);
-        pref.setLayoutResource(R.xml.order_power_widget_button_list_item);
+            pref = new ZipPreference(activity);
+            pref.setLayoutResource(R.xml.order_power_widget_button_list_item);
+            ((ZipPreference)pref).setName(sdcardPath);
+            
+        } else {
+            
+            pref = new Preference(activity);
+            
+        }
         pref.setKey(realPath);
         pref.setTitle(sdcardPath);
-        pref.setName(sdcardPath);
         pref.setPersistent(true);
       
         pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {

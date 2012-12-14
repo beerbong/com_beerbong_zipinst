@@ -81,5 +81,8 @@
     
     <string name="donate_title">Donate</string>
     
+    <string name="dad_title">Drag &amp; drop</string>
+    <string name="dad_summary">Use drag &amp; drop to reorder the list</string>
+    
     <string name="settings_title">Settings</string>
 </resources>
