@@ -26,7 +26,7 @@ import android.view.MenuItem;
 
 public class UIImpl extends UI {
 
-    private List<UIListener> listeners = new ArrayList();
+    private List<UIListener> listeners = new ArrayList<UIListener>();
 
     private PreferenceActivity activity = null;
 

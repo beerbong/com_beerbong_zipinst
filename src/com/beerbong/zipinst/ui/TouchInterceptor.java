@@ -37,7 +37,6 @@ public class TouchInterceptor extends ListView {
     private Bitmap mDragBitmap;
     private final int mTouchSlop;
     private int mItemHeightNormal;
-    private int mItemHeightExpanded;
     private int mItemHeightHalf;
 
     public TouchInterceptor(Context context, AttributeSet attrs) {
@@ -46,7 +45,6 @@ public class TouchInterceptor extends ListView {
         Resources res = getResources();
         mItemHeightNormal = res.getDimensionPixelSize(R.dimen.normal_height);
         mItemHeightHalf = mItemHeightNormal / 2;
-        mItemHeightExpanded = res.getDimensionPixelSize(R.dimen.expanded_height);
     }
 
     @Override

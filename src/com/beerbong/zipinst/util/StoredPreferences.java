@@ -13,7 +13,7 @@ import android.preference.Preference;
 
 public class StoredPreferences {
 
-    private static List<Preference> list = new ArrayList();
+    private static List<Preference> list = new ArrayList<Preference>();
 
     public static int size() {
         return list.size();

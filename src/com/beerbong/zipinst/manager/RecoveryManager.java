@@ -32,7 +32,7 @@ import com.beerbong.zipinst.util.StoredPreferences;
 public class RecoveryManager {
     
     private Activity mActivity;
-    private Map<Integer, RecoveryInfo> recoveries = new HashMap();
+    private Map<Integer, RecoveryInfo> recoveries = new HashMap<Integer, RecoveryInfo>();
 
     protected RecoveryManager(Activity activity) {
         mActivity = activity;
@@ -154,7 +154,7 @@ public class RecoveryManager {
         }
     }
     public String[] getCommands(boolean[] wipeOptions) throws Exception {
-        List<String> commands = new ArrayList();
+        List<String> commands = new ArrayList<String>();
 
         int size = StoredPreferences.size(), i = 0;
         
