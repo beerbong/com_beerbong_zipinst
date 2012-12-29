@@ -153,7 +153,7 @@ public class RecoveryManager {
             default : return null;
         }
     }
-    public String[] getCommands(boolean[] wipeOptions) throws Exception {
+    public String[] getCommands(boolean[] wipeOptions, String backupFolder) throws Exception {
         List<String> commands = new ArrayList<String>();
 
         int size = StoredPreferences.size(), i = 0;
@@ -169,52 +169,59 @@ public class RecoveryManager {
                 commands.add("ui_print(\"-------------------------------------\");");
                 commands.add("ui_print(\" ZipInstaller " + mActivity.getPackageManager().getPackageInfo(mActivity.getPackageName(), 0).versionName + "\");");
                 commands.add("ui_print(\"-------------------------------------\");");
-
-                if (wipeOptions[0]) {
-                    commands.add("ui_print(\" Wiping data\");");
-                    commands.add("format(\"/data\");");
-                    commands.add("ui_print(\" Wiping android secure\");");
-                    commands.add("format(\"/" + internalStorage + "/.android_secure\");");
-                }
-                if (wipeOptions[1]) {
-                    commands.add("ui_print(\" Wiping cache\");");
-                    commands.add("format(\"/cache\");");
-                    commands.add("ui_print(\" Wiping dalvik cache\");");
-                    commands.add("format(\"/data/dalvik-cache\");");
-                    commands.add("format(\"/cache/dalvik-cache\");");
-                    commands.add("format(\"/sd-ext/dalvik-cache\");");
+                
+                if (backupFolder != null) {
+                    commands.add("ui_print(\" Backup ROM\");");
+                    commands.add("backup_rom(\"/" + internalStorage + "/clockworkmod/backup/" + backupFolder + "\");");
                 }
 
-                commands.add("ui_print(\" Installing zips\");");
-                for (;i<size;i++) {
-                    commands.add("assert(install_zip(\"" + StoredPreferences.getPreference(i).getKey() + "\"));");
+                if (wipeOptions != null) {
+                    if (wipeOptions[1]) {
+                        commands.add("ui_print(\" Wiping data\");");
+                        commands.add("format(\"/data\");");
+                        commands.add("ui_print(\" Wiping android secure\");");
+                        commands.add("format(\"/" + internalStorage + "/.android_secure\");");
+                    }
+                    if (wipeOptions[2]) {
+                        commands.add("ui_print(\" Wiping cache\");");
+                        commands.add("format(\"/cache\");");
+                        commands.add("ui_print(\" Wiping dalvik cache\");");
+                        commands.add("format(\"/data/dalvik-cache\");");
+                        commands.add("format(\"/cache/dalvik-cache\");");
+                        commands.add("format(\"/sd-ext/dalvik-cache\");");
+                    }
+                }
+
+                if (size > 0) {
+                    commands.add("ui_print(\" Installing zips\");");
+                    for (;i<size;i++) {
+                        commands.add("assert(install_zip(\"" + StoredPreferences.getPreference(i).getKey() + "\"));");
+                    }
                 }
 
                 commands.add("ui_print(\" Rebooting\");");
                 break;
                 
             case R.id.twrp :
-//                commands.add("print -------------------------------------");
-//                commands.add("print  ZipInstaller " + mActivity.getPackageManager().getPackageInfo(mActivity.getPackageName(), 0).versionName);
-//                commands.add("print -------------------------------------");
-
-                if (wipeOptions[0]) {
-//                    commands.add("print  Wiping data");
-                    commands.add("wipe data");
-                }
-                if (wipeOptions[1]) {
-//                    commands.add("print  Wiping cache");
-                    commands.add("wipe cache");
-//                    commands.add("print  Wiping dalvik cache");
-                    commands.add("wipe dalvik");
+                
+                if (backupFolder != null) {
+                    commands.add("backup SDCR123BO " + backupFolder);
                 }
 
-//                commands.add("print  Installing zips");
+                if (wipeOptions != null) {
+                    if (wipeOptions[1]) {
+                        commands.add("wipe data");
+                    }
+                    if (wipeOptions[2]) {
+                        commands.add("wipe cache");
+                        commands.add("wipe dalvik");
+                    }
+                }
+
                 for (;i<size;i++) {
                     commands.add("install " + StoredPreferences.getPreference(i).getKey());
                 }
 
-//                commands.add("print  Rebooting");
                 break;
         }
 

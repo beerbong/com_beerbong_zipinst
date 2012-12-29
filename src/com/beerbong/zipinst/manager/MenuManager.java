@@ -36,6 +36,9 @@ public class MenuManager extends UIAdapter {
                 Intent i = new Intent(mActivity, Settings.class);
                 mActivity.startActivity(i);
                 break;
+            case R.id.backup:
+                Manager.getRebootManager().showBackupDialog();
+                break;
             case R.id.loadlist:
                 Manager.getFileManager().loadList();
                 break;

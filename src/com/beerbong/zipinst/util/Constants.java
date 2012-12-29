@@ -1,5 +1,8 @@
 package com.beerbong.zipinst.util;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * @author Yamil Ghazi Kantelinen
  * @version 1.0
@@ -37,11 +40,17 @@ public class Constants {
     public static final String ABOUT_URL = "http://forum.xda-developers.com/showthread.php?t=1920057";
 
     public static final int REQUEST_PICK_ZIP = 203;
+    
+    private static final SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd.HH.mm.ss");
 
     private static final long K = 1024;
     private static final long M = K * K;
     private static final long G = M * K;
     private static final long T = G * K;
+    
+    public static String getDateAndTime() {
+        return SDF.format(new Date(System.currentTimeMillis()));
+    }
 
     public static String formatSize(final long value){
         final long[] dividers = new long[] { T, G, M, K, 1 };

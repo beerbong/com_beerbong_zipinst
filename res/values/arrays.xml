@@ -17,6 +17,7 @@
 <resources>
     
     <string-array name="wipe_options">
+        <item>@string/backup</item>
         <item>@string/wipe_data</item>
         <item>@string/wipe_caches</item>
     </string-array>

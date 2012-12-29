@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">ZipInstaller</string>
     
-    <string name="alert_reboot_title">"Instal·lar"</string>
+    <string name="alert_reboot_title">"Seleccionar accions i instal·lar"</string>
     <string name="alert_reboot_now">"Instal·lar ara"</string>
     <string name="alert_cancel">"Cancel·lar"</string>
     
@@ -13,6 +13,10 @@
     <string name="alert_sdcard_title">Alerta</string>
     <string name="alert_sdcard_message">"Selecciona un zip de la sdcard interna."</string>
     <string name="alert_sdcard_ok">"D'acord"</string>
+    
+    <string name="alert_backup_title">Backup</string>
+    <string name="alert_backup_message">Especifica el nom del backup.</string>
+    <string name="alert_backup_ok">"D'acord"</string>
     
     <string name="alert_file_title">"Propietats"</string>
     <string name="alert_file_close">"Tancar"</string>
@@ -27,6 +31,7 @@
     <string name="zip_list">"Llista de zips seleccionats"</string>
     
     <string name="menu_settings">Ajustaments</string>
+    <string name="menu_backup">Backup</string>
     <string name="menu_loadlist">Carregar llista</string>
     <string name="menu_savelist">Guardar llista</string>
     <string name="menu_exit">Sortir</string>
@@ -68,6 +73,7 @@
     
     <string name="paths_error">"Error carregant l'arxiu de paths"</string>
     
+    <string name="backup">Backup</string>
     <string name="wipe_data">Wipe Data</string>
     <string name="wipe_caches">Wipe Cache &amp; Dalvik</string>
     
