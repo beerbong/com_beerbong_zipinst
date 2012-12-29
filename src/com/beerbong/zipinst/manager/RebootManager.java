@@ -35,12 +35,13 @@ public class RebootManager extends UIAdapter {
         }
     }
     public void showBackupDialog() {
-        showBackupDialog(null);
+        showBackupDialog(true, null);
     }
     
-    private void showBackupDialog(final boolean[] wipeOptions) {
+    private void showBackupDialog(boolean removePreferences, final boolean[] wipeOptions) {
         
-        UI.getInstance().removeAllPreferences();
+        if (removePreferences)
+            UI.getInstance().removeAllPreferences();
         
         AlertDialog.Builder alert = new AlertDialog.Builder(mActivity);
         alert.setTitle(R.string.alert_backup_title);
@@ -87,7 +88,7 @@ public class RebootManager extends UIAdapter {
                 dialog.dismiss();
                 
                 if (wipeOptions[0]) {
-                    showBackupDialog(wipeOptions);
+                    showBackupDialog(false, wipeOptions);
                 } else {
                     reboot(wipeOptions, null);
                 }
