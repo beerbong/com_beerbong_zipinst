@@ -16,6 +16,7 @@ import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceGroup;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -25,19 +26,20 @@ import android.view.MenuItem;
  */
 
 public class UIImpl extends UI {
+    
+    private static final String TAG = "UIImpl";
 
     private List<UIListener> listeners = new ArrayList<UIListener>();
 
     private PreferenceActivity activity = null;
 
     private PreferenceCategory fileList;
-    private Preference mChooseZip;
-    private Preference mInstallNow;
     
     private int mCount = 0;
     
     private TouchInterceptor.DropListener mDropListener = new TouchInterceptor.DropListener() {
         public void drop(int from, int to) {
+            Log.d(TAG, "DROP " + from + ", " + to + ", " + mCount);
             if (to < mCount) return;
             StoredPreferences.move(from - mCount, to - mCount);
             redrawPreferences();
@@ -60,11 +62,11 @@ public class UIImpl extends UI {
         activity.addPreferencesFromResource(R.xml.main);
         
         mCount = countPreferences(activity.getPreferenceScreen());
+        
+        Log.d(TAG, "COUNT = " + mCount);
       
         fileList = (PreferenceCategory)activity.findPreference(Constants.PREFERENCE_FILE_LIST);
         fileList.setOrderingAsAdded(true);
-        mChooseZip = activity.findPreference(Constants.PREFERENCE_CHOOSE_ZIP);
-        mInstallNow = activity.findPreference(Constants.PREFERENCE_INSTALL_NOW);
         
         activity.setContentView(R.xml.list);
         
@@ -75,15 +77,9 @@ public class UIImpl extends UI {
     @Override
     public boolean onPreferenceTreeClick(Preference preference) {
 
-        boolean retValue = false;
-        
-        if (preference == mChooseZip || preference == mInstallNow) {
-            retValue = true;
-        }
-
         dispatchOnPreferenceClicked(preference.getKey());
 
-        return retValue;
+        return false;
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
