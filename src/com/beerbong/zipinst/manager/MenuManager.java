@@ -39,6 +39,9 @@ public class MenuManager extends UIAdapter {
             case R.id.backup:
                 Manager.getRebootManager().showBackupDialog();
                 break;
+            case R.id.restore:
+                Manager.getRebootManager().showRestoreDialog();
+                break;
             case R.id.loadlist:
                 Manager.getFileManager().loadList();
                 break;

@@ -21,6 +21,7 @@ import com.beerbong.zipinst.util.StoredPreferences;
 public class RebootManager extends UIAdapter {
 
     private Activity mActivity;
+    private int selectedBackup;
 
     protected RebootManager(Activity mActivity) {
         this.mActivity = mActivity;
@@ -36,6 +37,39 @@ public class RebootManager extends UIAdapter {
     }
     public void showBackupDialog() {
         showBackupDialog(true, null);
+    }
+    public void showRestoreDialog() {
+        
+        AlertDialog.Builder alert = new AlertDialog.Builder(mActivity);
+        alert.setTitle(R.string.alert_restore_title);
+        
+        final String backupFolder = Manager.getRecoveryManager().getBackupDir();
+        final String[] backups = Manager.getRecoveryManager().getBackupList();
+        selectedBackup = backups.length > 0 ? 0 : -1;
+
+        alert.setSingleChoiceItems(backups, selectedBackup, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                selectedBackup = which;
+            }
+        });
+        
+        alert.setPositiveButton(R.string.alert_restore_ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.dismiss();
+                
+                if (selectedBackup >= 0) {
+                    reboot(null, null, backupFolder + backups[selectedBackup]);
+                }
+            }
+        });
+      
+        alert.setNegativeButton(R.string.alert_cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        alert.show();
+        
     }
     
     private void showBackupDialog(boolean removePreferences, final boolean[] wipeOptions) {
@@ -56,7 +90,7 @@ public class RebootManager extends UIAdapter {
             public void onClick(DialogInterface dialog, int whichButton) {
                 dialog.dismiss();
 
-                reboot(wipeOptions, input.getText().toString());
+                reboot(wipeOptions, input.getText().toString(), null);
             }
         });
       
@@ -90,7 +124,7 @@ public class RebootManager extends UIAdapter {
                 if (wipeOptions[0]) {
                     showBackupDialog(false, wipeOptions);
                 } else {
-                    reboot(wipeOptions, null);
+                    reboot(wipeOptions, null, null);
                 }
 
             }
@@ -104,7 +138,7 @@ public class RebootManager extends UIAdapter {
         alert.show();
     }
     
-    private void reboot(boolean[] wipeOptions, String backupFolder) {
+    private void reboot(boolean[] wipeOptions, String backupFolder, String restore) {
         try {
             
             RecoveryManager manager = Manager.getRecoveryManager();
@@ -118,7 +152,7 @@ public class RebootManager extends UIAdapter {
             
             String file = manager.getCommandsFile();
 
-            String[] commands = manager.getCommands(wipeOptions, backupFolder);
+            String[] commands = manager.getCommands(wipeOptions, backupFolder, restore);
             if (commands != null) {
                 int size = commands.length, i = 0;
                 for (;i<size;i++) {

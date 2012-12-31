@@ -2,6 +2,7 @@ package com.beerbong.zipinst.manager;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -141,6 +142,60 @@ public class RecoveryManager {
         editor.putString(Constants.PROPERTY_INTERNAL_STORAGE, info.getSdcard());
         editor.commit();
     }
+    public String getBackupDir() {
+
+        RecoveryInfo info = getRecovery();
+
+        String sdcard = "sdcard";
+        String str = "";
+        
+        switch (info.getId()) {
+            case R.id.twrp :
+                File f = new File("/" + sdcard + "/TWRP/BACKUPS/");
+                if (f.exists()) {
+                    File[] fs = f.listFiles();
+                    str += fs[0].getName() + "/";
+                }
+                break;
+        }
+        return str;
+    }
+    public String[] getBackupList() {
+
+        RecoveryInfo info = getRecovery();
+
+        String sdcard = "sdcard";
+        String folder = "";
+        
+        switch (info.getId()) {
+            case R.id.cwmbased :
+            case R.id.fourext :
+                folder = "/" + sdcard + "/clockworkmod/backup/";
+                break;
+            case R.id.twrp :
+                folder = "/" + sdcard + "/TWRP/BACKUPS/";
+                File f = new File(folder);
+                if (f.exists()) {
+                    File[] fs = f.listFiles();
+                    folder += fs[0].getName() + "/";
+                }
+                break;
+        }
+        
+        List<String> list = new ArrayList<String>();
+        
+        File f = new File(folder);
+        if (f.exists()) {
+            File[] fs = f.listFiles();
+            for (int i=0;i<fs.length;i++) {
+                list.add(fs[i].getName());
+            }
+        }
+        
+        Collections.sort(list);
+        
+        return list.toArray(new String[list.size()]);
+    }
     public String getCommandsFile() {
 
         RecoveryInfo info = getRecovery();
@@ -153,22 +208,27 @@ public class RecoveryManager {
             default : return null;
         }
     }
-    public String[] getCommands(boolean[] wipeOptions, String backupFolder) throws Exception {
+    public String[] getCommands(boolean[] wipeOptions, String backupFolder, String restore) throws Exception {
         List<String> commands = new ArrayList<String>();
 
         int size = StoredPreferences.size(), i = 0;
         
         RecoveryInfo info = getRecovery();
+
+        String internalStorage = mActivity.getSharedPreferences(Constants.PREFS_NAME, 0).getString(Constants.PROPERTY_INTERNAL_STORAGE, Constants.DEFAULT_INTERNAL_STORAGE);
         
         switch (info.getId()) {
             case R.id.cwmbased :
             case R.id.fourext :
 
-                String internalStorage = mActivity.getSharedPreferences(Constants.PREFS_NAME, 0).getString(Constants.PROPERTY_INTERNAL_STORAGE, Constants.DEFAULT_INTERNAL_STORAGE);
-
                 commands.add("ui_print(\"-------------------------------------\");");
                 commands.add("ui_print(\" ZipInstaller " + mActivity.getPackageManager().getPackageInfo(mActivity.getPackageName(), 0).versionName + "\");");
                 commands.add("ui_print(\"-------------------------------------\");");
+                
+                if (restore != null) {
+                    commands.add("ui_print(\" Restore ROM\");");
+                    commands.add("restore_rom(\"/" + internalStorage + "/clockworkmod/backup/" + restore + "\", \"boot\", \"system\", \"data\", \"cache\", \"sd-ext\")");
+                }
                 
                 if (backupFolder != null) {
                     commands.add("ui_print(\" Backup ROM\");");
@@ -203,9 +263,29 @@ public class RecoveryManager {
                 break;
                 
             case R.id.twrp :
+
+                String sdcard = "sdcard";
+                
+                if (restore != null) {
+                    String str = "restore /" + internalStorage + "/TWRP/BACKUPS/" + restore + " SDCR123B";
+                    if (folderExists("/" + sdcard + "/.android-secure")) {
+                        str += "A";
+                    }
+                    if (folderExists("/sd-ext")) {
+                        str += "E";
+                    }
+                    commands.add(str);
+                }
                 
                 if (backupFolder != null) {
-                    commands.add("backup SDCR123BO " + backupFolder);
+                    String str = "backup SDCR123B";
+                    if (folderExists("/" + sdcard + "/.android-secure")) {
+                        str += "A";
+                    }
+                    if (folderExists("/sd-ext")) {
+                        str += "E";
+                    }
+                    commands.add(str + "O " + backupFolder);
                 }
 
                 if (wipeOptions != null) {
@@ -286,5 +366,9 @@ public class RecoveryManager {
                     break;
             }
         }
+    }
+    private boolean folderExists(String path) {
+        File f = new File(path);
+        return f.exists() && f.isDirectory();
     }
 }
