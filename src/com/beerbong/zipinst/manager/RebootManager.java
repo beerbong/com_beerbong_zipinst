@@ -5,7 +5,7 @@ import java.io.DataOutputStream;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.util.Log;
+import android.os.Build;
 import android.widget.EditText;
 
 import com.beerbong.zipinst.R;
@@ -20,8 +20,6 @@ import com.beerbong.zipinst.util.StoredPreferences;
  */
 
 public class RebootManager extends UIAdapter {
-    
-    private static final String TAG = "RebootManager";
 
     private Activity mActivity;
     private int selectedBackup;
@@ -146,7 +144,6 @@ public class RebootManager extends UIAdapter {
             
             RecoveryManager manager = Manager.getRecoveryManager();
             
-            Log.d(TAG, "Requesting su");
             Process p = Runtime.getRuntime().exec("su");
             DataOutputStream os = new DataOutputStream(p.getOutputStream());
             
@@ -169,12 +166,15 @@ public class RebootManager extends UIAdapter {
             os.writeBytes("sync\n");
             os.writeBytes("exit\n");
             os.flush();
-            Log.d(TAG, "Waiting for su");
             p.waitFor();
-            Log.d(TAG, "Requesting su done");
+            
+            String manufacturer = Build.MANUFACTURER;
 
-            Runtime.getRuntime().exec("/system/bin/reboot recovery");
-            Log.d(TAG, "Rebooting");
+            if (manufacturer.toLowerCase().contains("htc")) {
+                Runtime.getRuntime().exec("/system/xbin/busybox reboot recovery");
+            } else {
+                Runtime.getRuntime().exec("/system/bin/reboot recovery");
+            }
                 
         } catch (Exception e) {
             e.printStackTrace();
