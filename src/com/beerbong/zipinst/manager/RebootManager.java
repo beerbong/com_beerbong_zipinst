@@ -5,7 +5,7 @@ import java.io.DataOutputStream;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.os.Build;
+import android.os.PowerManager;
 import android.widget.EditText;
 
 import com.beerbong.zipinst.R;
@@ -168,10 +168,8 @@ public class RebootManager extends UIAdapter {
             os.flush();
             p.waitFor();
             
-            String manufacturer = Build.MANUFACTURER;
-
-            if (manufacturer.toLowerCase().contains("htc")) {
-                Runtime.getRuntime().exec("/system/xbin/busybox reboot recovery");
+            if (Constants.isSystemApp(mActivity)) {
+                ((PowerManager)mActivity.getSystemService(Activity.POWER_SERVICE)).reboot("recovery");
             } else {
                 Runtime.getRuntime().exec("/system/bin/reboot recovery");
             }

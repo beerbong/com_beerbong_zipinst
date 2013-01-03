@@ -3,6 +3,11 @@ package com.beerbong.zipinst.util;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+
 /**
  * @author Yamil Ghazi Kantelinen
  * @version 1.0
@@ -48,6 +53,8 @@ public class Constants {
     private static final long G = M * K;
     private static final long T = G * K;
     
+    private static int isSystemApp = -1;
+    
     public static String getDateAndTime() {
         return SDF.format(new Date(System.currentTimeMillis()));
     }
@@ -66,6 +73,17 @@ public class Constants {
             }
         }
         return result;
+    }
+    public static boolean isSystemApp(Context context) throws Exception {
+        if (isSystemApp > -1) {
+            return isSystemApp == 1;
+        }
+        PackageManager pm = context.getPackageManager();
+        PackageInfo info = pm.getPackageInfo("com.beerbong.zipinst", PackageManager.GET_ACTIVITIES);
+        ApplicationInfo aInfo = info.applicationInfo;
+        String path = aInfo.sourceDir.substring(0, aInfo.sourceDir.lastIndexOf("/"));
+        isSystemApp = path.contains("system/app") ? 1 : 0;
+        return isSystemApp == 1;
     }
 
     private static String format(final long value, final long divider, final String unit){
