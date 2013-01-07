@@ -39,8 +39,8 @@ public class UIImpl extends UI {
     
     private TouchInterceptor.DropListener mDropListener = new TouchInterceptor.DropListener() {
         public void drop(int from, int to) {
-            Log.d(TAG, "DROP " + from + ", " + to + ", " + mCount);
-            if (to < mCount) return;
+            Log.d(TAG, "DROP " + from + ", " + to + ", " + mCount + ", " + StoredPreferences.size());
+            if (to < mCount) to = mCount;
             StoredPreferences.move(from - mCount, to - mCount);
             redrawPreferences();
         }

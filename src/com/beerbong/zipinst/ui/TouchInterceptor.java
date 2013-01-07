@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,6 +20,8 @@ import android.widget.ListView;
 import com.beerbong.zipinst.R;
 
 public class TouchInterceptor extends ListView {
+    
+    private static final String TAG = "TouchInterceptor";
 
     private ImageView mDragView;
     private WindowManager mWindowManager;
@@ -58,10 +61,12 @@ public class TouchInterceptor extends ListView {
                     if (itemnum == AdapterView.INVALID_POSITION) {
                         break;
                     }
+                    Log.d(TAG, "Selected " + itemnum);
                     Object obj = getChildAt(itemnum - getFirstVisiblePosition());
                     if (!(obj instanceof ViewGroup)) {
                         return false;
                     }
+                    Log.d(TAG, "Selected ViewGroup");
                     ViewGroup item = (ViewGroup) obj;
                     mDragPoint = y - item.getTop();
                     mCoordOffset = ((int) ev.getRawY()) - y;
@@ -69,6 +74,7 @@ public class TouchInterceptor extends ListView {
                     if (dragger == null) {
                         return false;
                     }
+                    Log.d(TAG, "Selected ViewGroup with grabber");
                     Rect r = mTempRect;
                     dragger.getDrawingRect(r);
                     // The dragger icon itself is quite small, so pretend the touch area is bigger
@@ -165,6 +171,7 @@ public class TouchInterceptor extends ListView {
                     int y = (int) ev.getY();
                     dragView(x, y);
                     int itemnum = getItemForPosition(y);
+                    Log.d(TAG, "Drag itemnum = " + itemnum + " (last mDragPos = " + mDragPos + ")");
                     if (itemnum >= 0) {
                         if (action == MotionEvent.ACTION_DOWN || itemnum != mDragPos) {
                             if (mDragListener != null) {
