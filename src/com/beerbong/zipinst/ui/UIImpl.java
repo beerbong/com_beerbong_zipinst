@@ -127,13 +127,17 @@ public class UIImpl extends UI {
         pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
             public boolean onPreferenceClick(final Preference preference) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(activity);
-                alert.setTitle(R.string.alert_file_title);
+                alert.setTitle(activity.getResources().getString(R.string.alert_file_title, new Object[] {preference.getTitle()}));
 
                 String path = (String)preference.getSummary();
                 File file = new File(path);
+                
+                if (path.lastIndexOf("/") >= 0) path = path.substring(0, path.lastIndexOf("/") + 1);
+                else path = "";
 
-                String summary = path + "\n";
-                summary += Constants.formatSize(file.length());
+                String summary = activity.getResources().getString(R.string.alert_file_path, new Object[] {path}) + "\n";
+                summary += activity.getResources().getString(R.string.alert_file_size, new Object[] {Constants.formatSize(file.length())}) + "\n";
+                summary += activity.getResources().getString(R.string.alert_file_modified, new Object[] {file.lastModified()});
 
                 alert.setMessage(summary);
 
