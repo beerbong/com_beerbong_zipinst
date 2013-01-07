@@ -20,10 +20,12 @@
         android:title="@string/menu_settings" />
 
     <item android:id="@+id/backup"
-        android:title="@string/menu_backup" />
+        android:title="@string/menu_backup"
+        android:showAsAction="always" />
 
     <item android:id="@+id/restore"
-        android:title="@string/menu_restore" />
+        android:title="@string/menu_restore"
+        android:showAsAction="always" />
 
     <item android:id="@+id/savelist"
         android:title="@string/menu_savelist" />
