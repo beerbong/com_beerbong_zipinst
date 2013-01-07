@@ -113,8 +113,6 @@ public class UIImpl extends UI {
         if (useDad) {
 
             pref = new ZipPreference(activity);
-            pref.setLayoutResource(R.xml.order_power_widget_button_list_item);
-            ((ZipPreference)pref).setName(sdcardPath);
             
         } else {
             
@@ -122,7 +120,8 @@ public class UIImpl extends UI {
             
         }
         pref.setKey(realPath);
-        pref.setTitle(sdcardPath);
+        pref.setTitle(sdcardPath.substring(sdcardPath.lastIndexOf("/") + 1));
+        pref.setSummary(sdcardPath);
         pref.setPersistent(true);
       
         pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
@@ -130,7 +129,7 @@ public class UIImpl extends UI {
                 AlertDialog.Builder alert = new AlertDialog.Builder(activity);
                 alert.setTitle(R.string.alert_file_title);
 
-                String path = (String)preference.getTitle();
+                String path = (String)preference.getSummary();
                 File file = new File(path);
 
                 String summary = path + "\n";

@@ -110,7 +110,7 @@ public class FileManager extends UIAdapter {
         StringBuffer list = new StringBuffer();
         
         for (int i=0;i<size;i++) {
-            String path = (String)StoredPreferences.getPreference(i).getTitle();
+            String path = (String)StoredPreferences.getPreference(i).getSummary();
             list.append(path);
             if (i < size -1) list.append("\n");
         }
