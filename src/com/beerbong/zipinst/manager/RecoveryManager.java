@@ -3,15 +3,13 @@ package com.beerbong.zipinst.manager;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +31,7 @@ import com.beerbong.zipinst.util.StoredPreferences;
 public class RecoveryManager {
     
     private Activity mActivity;
-    private Map<Integer, RecoveryInfo> recoveries = new HashMap<Integer, RecoveryInfo>();
+    private SparseArray<RecoveryInfo> recoveries = new SparseArray<RecoveryInfo>();
 
     protected RecoveryManager(Activity activity) {
         mActivity = activity;
@@ -124,10 +122,9 @@ public class RecoveryManager {
     }
     public RecoveryInfo getRecovery() {
         String recovery = mActivity.getSharedPreferences(Constants.PREFS_NAME, 0).getString(Constants.PROPERTY_RECOVERY, Constants.DEFAULT_RECOVERY);
-        Iterator<Integer> it = recoveries.keySet().iterator();
-        while (it.hasNext()) {
-            int id = it.next();
-            RecoveryInfo info = recoveries.get(id);
+        for (int i=0;i<recoveries.size();i++) {
+            int key = recoveries.keyAt(i);
+            RecoveryInfo info = recoveries.get(key);
             if (info.getName().equals(recovery)) {
                 return info;
             }
