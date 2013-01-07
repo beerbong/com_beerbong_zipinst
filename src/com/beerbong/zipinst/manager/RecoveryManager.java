@@ -217,6 +217,18 @@ public class RecoveryManager {
 
         String internalStorage = mActivity.getSharedPreferences(Constants.PREFS_NAME, 0).getString(Constants.PROPERTY_INTERNAL_STORAGE, Constants.DEFAULT_INTERNAL_STORAGE);
         
+        boolean wipeData = false, wipeCaches = false;
+        if (wipeOptions != null) {
+            boolean showBackup = mActivity.getSharedPreferences(Constants.PREFS_NAME, 0).getBoolean(Constants.PROPERTY_SHOW_BACKUP, Constants.DEFAULT_SHOW_BACKUP);
+            if (showBackup) {
+                wipeData = wipeOptions[1];
+                wipeCaches = wipeOptions[2];
+            } else {
+                wipeData = wipeOptions[0];
+                wipeCaches = wipeOptions[1];
+            }
+        }
+        
         switch (info.getId()) {
             case R.id.cwmbased :
             case R.id.fourext :
@@ -236,13 +248,13 @@ public class RecoveryManager {
                 }
 
                 if (wipeOptions != null) {
-                    if (wipeOptions[1]) {
+                    if (wipeData) {
                         commands.add("ui_print(\" Wiping data\");");
                         commands.add("format(\"/data\");");
                         commands.add("ui_print(\" Wiping android secure\");");
                         commands.add("format(\"/" + internalStorage + "/.android_secure\");");
                     }
-                    if (wipeOptions[2]) {
+                    if (wipeCaches) {
                         commands.add("ui_print(\" Wiping cache\");");
                         commands.add("format(\"/cache\");");
                         commands.add("ui_print(\" Wiping dalvik cache\");");
@@ -289,10 +301,10 @@ public class RecoveryManager {
                 }
 
                 if (wipeOptions != null) {
-                    if (wipeOptions[1]) {
+                    if (wipeData) {
                         commands.add("wipe data");
                     }
-                    if (wipeOptions[2]) {
+                    if (wipeCaches) {
                         commands.add("wipe cache");
                         commands.add("wipe dalvik");
                     }

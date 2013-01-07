@@ -108,8 +108,13 @@ public class RebootManager extends UIAdapter {
 
         AlertDialog.Builder alert = new AlertDialog.Builder(mActivity);
         alert.setTitle(R.string.alert_reboot_title);
+        
+        final boolean showBackup = mActivity.getSharedPreferences(Constants.PREFS_NAME, 0).getBoolean(Constants.PROPERTY_SHOW_BACKUP, Constants.DEFAULT_SHOW_BACKUP);
       
         String[] wipeOpts = mActivity.getResources().getStringArray(R.array.wipe_options);
+        if (!showBackup) {
+            wipeOpts = mActivity.getResources().getStringArray(R.array.wipe_options_no_backup);
+        }
         final boolean[] wipeOptions = new boolean[wipeOpts.length];
       
         alert.setMultiChoiceItems(wipeOpts, wipeOptions, new DialogInterface.OnMultiChoiceClickListener() {
@@ -122,7 +127,7 @@ public class RebootManager extends UIAdapter {
             public void onClick(DialogInterface dialog, int whichButton) {
                 dialog.dismiss();
                 
-                if (wipeOptions[0]) {
+                if (showBackup && wipeOptions[0]) {
                     showBackupDialog(false, wipeOptions);
                 } else {
                     reboot(wipeOptions, null, null);

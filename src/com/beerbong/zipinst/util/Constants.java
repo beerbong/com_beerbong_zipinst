@@ -23,7 +23,9 @@ public class Constants {
     public static final String DEFAULT_RECOVERY = "cwmbased";
     public static final String PROPERTY_LIST = "list";
     public static final String PROPERTY_DRAG_AND_DROP = "drag-and-drop";
+    public static final String PROPERTY_SHOW_BACKUP = "show-backup";
     public static final boolean DEFAULT_DRAG_AND_DROP = true;
+    public static final boolean DEFAULT_SHOW_BACKUP = true;
 
     // main preferences
     public static final String PREFERENCE_FILE_LIST = "file_list";
@@ -40,6 +42,7 @@ public class Constants {
     public static final String PREFERENCE_SETTINGS_RECOVERY = "recovery";
     public static final String PREFERENCE_SETTINGS_SDCARD = "sdcard";
     public static final String PREFERENCE_SETTINGS_DAD = "draganddrop";
+    public static final String PREFERENCE_SETTINGS_SHOW_BACKUP = "showbackup";
 
     public static final String DONATE_URL = "http://forum.xda-developers.com/donatetome.php?u=1806623";
     public static final String ABOUT_URL = "http://forum.xda-developers.com/showthread.php?t=1920057";

@@ -96,5 +96,8 @@
     <string name="dad_title">Drag &amp; drop</string>
     <string name="dad_summary">Utilizar drag &amp; drop para reordenar la lista</string>
     
+    <string name="settings_backup_title">Mostrar opción backup</string>
+    <string name="settings_backup_summary">"Mostrar opción backup al apretar el botón Instalar Ahora"</string>
+    
     <string name="settings_title">Ajustes</string>
 </resources>

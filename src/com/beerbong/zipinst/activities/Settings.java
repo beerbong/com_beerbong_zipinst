@@ -20,6 +20,7 @@ public class Settings extends PreferenceActivity {
     private Preference mRecovery;
     private Preference mSdcard;
     private CheckBoxPreference mDad;
+    private CheckBoxPreference mShowBackup;
 
     @Override
     @SuppressWarnings("deprecation")
@@ -31,9 +32,13 @@ public class Settings extends PreferenceActivity {
         mRecovery = findPreference(Constants.PREFERENCE_SETTINGS_RECOVERY);
         mSdcard = findPreference(Constants.PREFERENCE_SETTINGS_SDCARD);
         mDad = (CheckBoxPreference)findPreference(Constants.PREFERENCE_SETTINGS_DAD);
+        mShowBackup = (CheckBoxPreference)findPreference(Constants.PREFERENCE_SETTINGS_SHOW_BACKUP);
         
         boolean useDad = getSharedPreferences(Constants.PREFS_NAME, 0).getBoolean(Constants.PROPERTY_DRAG_AND_DROP, Constants.DEFAULT_DRAG_AND_DROP);
         mDad.setChecked(useDad);
+        
+        boolean showBackup = getSharedPreferences(Constants.PREFS_NAME, 0).getBoolean(Constants.PROPERTY_SHOW_BACKUP, Constants.DEFAULT_SHOW_BACKUP);
+        mShowBackup.setChecked(showBackup);
         
         updateSummaries();
     }
@@ -42,13 +47,13 @@ public class Settings extends PreferenceActivity {
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         String key = preference.getKey();
         
-        if ("recovery".equals(key)) {
+        if (Constants.PREFERENCE_SETTINGS_RECOVERY.equals(key)) {
             Manager.getRecoveryManager().selectRecovery(this);
             updateSummaries();
-        } else if ("sdcard".equals(key)) {
+        } else if (Constants.PREFERENCE_SETTINGS_SDCARD.equals(key)) {
             Manager.getRecoveryManager().selectSdcard(this);
             updateSummaries();
-        } else if ("draganddrop".equals(key)) {
+        } else if (Constants.PREFERENCE_SETTINGS_DAD.equals(key)) {
             
             boolean useDad = ((CheckBoxPreference) preference).isChecked();
             
@@ -58,6 +63,15 @@ public class Settings extends PreferenceActivity {
             editor.commit();
             
             UI.getInstance().removeAllPreferences();
+            
+        } else if (Constants.PREFERENCE_SETTINGS_SHOW_BACKUP.equals(key)) {
+            
+            boolean showBackup = ((CheckBoxPreference) preference).isChecked();
+            
+            SharedPreferences settings = getSharedPreferences(Constants.PREFS_NAME, 0);
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putBoolean(Constants.PROPERTY_SHOW_BACKUP, showBackup);
+            editor.commit();
             
         } else if ("about".equals(key)) {
             Intent i = new Intent(this, About.class);

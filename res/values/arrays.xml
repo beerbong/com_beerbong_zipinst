@@ -21,5 +21,10 @@
         <item>@string/wipe_data</item>
         <item>@string/wipe_caches</item>
     </string-array>
+    
+    <string-array name="wipe_options_no_backup">
+        <item>@string/wipe_data</item>
+        <item>@string/wipe_caches</item>
+    </string-array>
 
 </resources>

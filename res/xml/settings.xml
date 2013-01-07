@@ -16,6 +16,11 @@
         android:title="@string/dad_title"
         android:summary="@string/dad_summary" />
 
+    <CheckBoxPreference
+        android:key="showbackup"
+        android:title="@string/settings_backup_title"
+        android:summary="@string/settings_backup_summary" />
+
     <Preference
         android:key="about"
         android:title="@string/about_title" />
