@@ -2,6 +2,7 @@ package com.beerbong.zipinst.ui;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.beerbong.zipinst.R;
@@ -137,7 +138,7 @@ public class UIImpl extends UI {
 
                 String summary = activity.getResources().getString(R.string.alert_file_path, new Object[] {path}) + "\n";
                 summary += activity.getResources().getString(R.string.alert_file_size, new Object[] {Constants.formatSize(file.length())}) + "\n";
-                summary += activity.getResources().getString(R.string.alert_file_modified, new Object[] {file.lastModified()});
+                summary += activity.getResources().getString(R.string.alert_file_modified, new Object[] {new Date(file.lastModified())});
 
                 alert.setMessage(summary);
 
