@@ -16,15 +16,22 @@ public class ZipPreference extends Preference {
 
     private String name;
     private String path;
+    private boolean reorder;
 
-    public ZipPreference(final Context context) {
+    public ZipPreference(final Context context, boolean reorder) {
         super(context);
-        setLayoutResource(R.xml.order_preference);
+        this.reorder = reorder;
+        
+        if (reorder) {
+            setLayoutResource(R.xml.order_preference);
+        }
     }
     
     protected void onBindView(final View view) {
         super.onBindView(view);
 
+        if (!reorder) return;
+        
         TextView nameView = (TextView)view.findViewById(R.id.title);
         if ((nameView != null) && (name != null)) {
             nameView.setText(name);
@@ -36,18 +43,34 @@ public class ZipPreference extends Preference {
     }
     @Override
     public void setTitle(CharSequence title) {
-        this.name = (String)title;
+        if (reorder) {
+            this.name = (String)title;
+        } else {
+            super.setTitle(title);
+        }
     }
     @Override
     public CharSequence getTitle() {
-        return name;
+        if (reorder) {
+            return name;
+        } else {
+            return super.getTitle();
+        }
     }
     @Override
     public void setSummary(CharSequence summary) {
-        this.path = (String)summary;
+        if (reorder) {
+            this.path = (String)summary;
+        } else {
+            super.setSummary(summary);
+        }
     }
     @Override
     public CharSequence getSummary() {
-        return this.path;
+        if (reorder) {
+            return this.path;
+        } else {
+            return super.getSummary();
+        }
     }
 }

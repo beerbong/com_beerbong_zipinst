@@ -111,17 +111,8 @@ public class UIImpl extends UI {
         
         boolean useDad = activity.getSharedPreferences(Constants.PREFS_NAME, 0).getBoolean(Constants.PROPERTY_DRAG_AND_DROP, Constants.DEFAULT_DRAG_AND_DROP);
         
-        Preference pref = null;
-        
-        if (useDad) {
-
-            pref = new ZipPreference(activity);
+        Preference pref = new ZipPreference(activity, useDad);
             
-        } else {
-            
-            pref = new Preference(activity);
-            
-        }
         pref.setKey(realPath);
         pref.setTitle(sdcardPath.substring(sdcardPath.lastIndexOf("/") + 1));
         pref.setSummary(sdcardPath);
