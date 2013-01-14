@@ -22,11 +22,17 @@
     <string name="alert_restore_ok">OK</string>
     
     <string name="alert_file_title">%1$s</string>
-    <string name="alert_file_path">Path: %1$s</string>
-    <string name="alert_file_size">Size: %1$s</string>
-    <string name="alert_file_modified">Modified: %1$s</string>
+    <string name="alert_file_summary">Path: %1$s\nSize: %2$s\nModified: %3$s</string>
     <string name="alert_file_close">Close</string>
+    <string name="alert_file_md5">MD5</string>
     <string name="alert_file_delete">Delete from list</string>
+    
+    <string name="alert_md5_title">Check MD5</string>
+    <string name="alert_md5_summary">Enter the MD5 sum to compare or leave blank to show the MD5</string>
+    <string name="alert_md5_ok">Check</string>
+    <string name="alert_md5_loading">Generating MD5 sum&#8230;</string>
+    <string name="alert_md5_match">The specified MD5 sum is correct</string>
+    <string name="alert_md5_no_match">The MD5 sums does not match:\nSpecified: %1$s\nGenerated: %2$s</string>
     
     <string name="main_zipinstaller">Choose a zip from internal sdcard</string>
     <string name="main_choose_zip">Add a zip to list</string>

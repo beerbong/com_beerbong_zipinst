@@ -1,5 +1,10 @@
 package com.beerbong.zipinst.util;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -92,5 +97,27 @@ public class Constants {
     private static String format(final long value, final long divider, final String unit){
         final double result = divider > 1 ? (double) value / (double) divider : (double) value;
         return String.format("%.1f %s", Double.valueOf(result), unit);
+    }
+    public static String md5(File file) {
+        InputStream is = null;
+        try {
+            is = new FileInputStream(file);
+            MessageDigest digest = MessageDigest.getInstance("MD5");                
+            byte[] buffer = new byte[8192];
+            int read = 0;
+            while( (read = is.read(buffer)) > 0) {
+                digest.update(buffer, 0, read);
+            }       
+            byte[] md5sum = digest.digest();
+            BigInteger bigInt = new BigInteger(1, md5sum);
+            return bigInt.toString(16);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                is.close();
+            } catch (Exception e) {
+            }
+        }
     }
 }

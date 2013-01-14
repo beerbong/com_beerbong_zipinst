@@ -10,6 +10,7 @@ import com.beerbong.zipinst.util.Constants;
 import com.beerbong.zipinst.util.StoredPreferences;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.preference.Preference;
@@ -20,6 +21,7 @@ import android.preference.PreferenceGroup;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 /**
  * @author Yamil Ghazi Kantelinen
@@ -126,36 +128,8 @@ public class UIImpl extends UI {
         pref.setPersistent(true);
       
         pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
-            public boolean onPreferenceClick(final Preference preference) {
-                AlertDialog.Builder alert = new AlertDialog.Builder(activity);
-                alert.setTitle(activity.getResources().getString(R.string.alert_file_title, new Object[] {preference.getTitle()}));
-
-                String path = (String)preference.getSummary();
-                File file = new File(path);
-                
-                if (path.lastIndexOf("/") >= 0) path = path.substring(0, path.lastIndexOf("/") + 1);
-                else path = "";
-
-                String summary = activity.getResources().getString(R.string.alert_file_path, new Object[] {path}) + "\n";
-                summary += activity.getResources().getString(R.string.alert_file_size, new Object[] {Constants.formatSize(file.length())}) + "\n";
-                summary += activity.getResources().getString(R.string.alert_file_modified, new Object[] {new Date(file.lastModified())});
-
-                alert.setMessage(summary);
-
-                alert.setPositiveButton(R.string.alert_file_close, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        dialog.dismiss();
-                    }
-                });
-                alert.setNegativeButton(R.string.alert_file_delete, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        dialog.dismiss();
-                        removePreference(preference);
-                    }
-                });
-
-                alert.show();
-
+            public boolean onPreferenceClick(Preference preference) {
+                showInfoDialog(preference);
                 return false;
             }
         });
@@ -239,5 +213,107 @@ public class UIImpl extends UI {
             }
         }
         return children;
+    }
+    private void showInfoDialog(final Preference preference) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(activity);
+        alert.setTitle(activity.getResources().getString(R.string.alert_file_title, new Object[] {preference.getTitle()}));
+
+        String path = (String)preference.getSummary();
+        File file = new File(path);
+        
+        alert.setMessage(activity.getResources().getString(R.string.alert_file_summary, new Object[] {
+                preference.getTitle(), 
+                Constants.formatSize(file.length()), 
+                new Date(file.lastModified()).toString()
+        }));
+        
+        alert.setPositiveButton(R.string.alert_file_close, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.dismiss();
+            }
+        });
+        alert.setNeutralButton(R.string.alert_file_md5, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.dismiss();
+                showMd5Dialog(preference);
+            }
+        });
+        alert.setNegativeButton(R.string.alert_file_delete, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.dismiss();
+                removePreference(preference);
+            }
+        });
+
+        alert.show();
+    }
+    private void showMd5Dialog(final Preference preference) {
+        
+        AlertDialog.Builder alert = new AlertDialog.Builder(activity);
+        alert.setTitle(R.string.alert_md5_title);
+        alert.setMessage(R.string.alert_md5_summary);
+        
+        final EditText input = new EditText(activity);
+        alert.setView(input);
+        input.selectAll();
+        
+        alert.setPositiveButton(R.string.alert_md5_ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.dismiss();
+                
+                final ProgressDialog pDialog = new ProgressDialog(activity);
+                pDialog.setIndeterminate(true);
+                pDialog.setMessage(activity.getResources().getString(R.string.alert_md5_loading));
+                pDialog.show();
+                
+                (new Thread() {
+                    public void run() {
+                        
+                        String path = (String)preference.getSummary();
+                        File file = new File(path);
+                        final String md5 = Constants.md5(file);
+                        
+                        pDialog.dismiss();
+
+                        final String text = input.getText() == null ? null : input.getText().toString();
+
+                        activity.runOnUiThread(new Runnable() {
+                            public void run() {
+                                showMd5(md5, text);
+                            }
+                        });
+                    }
+                }).start();
+            }
+        });
+        alert.setNegativeButton(R.string.alert_cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        alert.show();
+    }
+    private void showMd5(String md5, String text) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(activity);
+        if (text == null || "".equals(text.trim())) {
+            alert.setMessage(md5);
+        } else {
+            if (md5.equals(text)) {
+                alert.setMessage(activity.getResources().getString(R.string.alert_md5_match));
+            } else {
+                alert.setMessage(activity.getResources().getString(R.string.alert_md5_no_match, new Object[] {text, md5}));
+            }
+        }
+        alert.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.dismiss();
+            }
+        });
+        alert.show();
     }
 }

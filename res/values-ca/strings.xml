@@ -22,11 +22,17 @@
     <string name="alert_restore_ok">OK</string>
     
     <string name="alert_file_title">%1$s</string>
-    <string name="alert_file_path">Ruta: %1$s</string>
-    <string name="alert_file_size">Tamany: %1$s</string>
-    <string name="alert_file_modified">Modificat: %1$s</string>
+    <string name="alert_file_summary">Ruta: %1$s\nTamany: %2$s\nModificat: %3$s</string>
     <string name="alert_file_close">"Tancar"</string>
+    <string name="alert_file_md5">MD5</string>
     <string name="alert_file_delete">"Esborrar de la llista"</string>
+    
+    <string name="alert_md5_title">Comprovar MD5</string>
+    <string name="alert_md5_summary">Introdueix la suma MD5 per comparar o deixar en blanc per mostrar el MD5</string>
+    <string name="alert_md5_ok">Comprovar</string>
+    <string name="alert_md5_loading">Generant suma MD5&#8230;</string>
+    <string name="alert_md5_match">La suma MD5 especificada és correcta</string>
+    <string name="alert_md5_no_match">Les sumes MD5 no concorden:\nEspecificada: %1$s\nGenerada: %2$s</string>
     
     <string name="main_zipinstaller">"Selecciona un zip de la sdcard interna"</string>
     <string name="main_choose_zip">"Afegir un zip a la llista"</string>
