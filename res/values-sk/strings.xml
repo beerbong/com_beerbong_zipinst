@@ -67,7 +67,7 @@
     
     <string name="about_title">O aplikácii</string>
     <string name="about_zip_title">ZipInstaller</string>
-    <string name="about_zip_summary" translatable="false">http://forum.xda-developers.com/showthread.php?t=1920057</string>
+    <string name="about_zip_summary">http://forum.xda-developers.com/showthread.php?t=1920057</string>
     <string name="about_version_title">Verzia</string>
     <string name="about_version_unknown">Neznáma verzia</string>
     
