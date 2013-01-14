@@ -22,11 +22,17 @@
     <string name="alert_restore_ok">OK</string>
     
     <string name="alert_file_title">%1$s</string>
-    <string name="alert_file_path">Cesta: %1$s</string>
-    <string name="alert_file_size">Veľkosť: %1$s</string>
-    <string name="alert_file_modified">Upravené: %1$s</string>
+    <string name="alert_file_summary">Path: %1$s\nSize: %2$s\nModified: %3$s</string>
     <string name="alert_file_close">Zavrieť</string>
+    <string name="alert_file_md5">MD5</string>
     <string name="alert_file_delete">Zmazať zo zoznamu</string>
+    
+    <string name="alert_md5_title">Check MD5</string>
+    <string name="alert_md5_summary">Enter the MD5 sum to compare or leave blank to show the MD5</string>
+    <string name="alert_md5_ok">Check</string>
+    <string name="alert_md5_loading">Generating MD5 sum&#8230;</string>
+    <string name="alert_md5_match">The specified MD5 sum is correct</string>
+    <string name="alert_md5_no_match">The MD5 sums does not match:\nSpecified: %1$s\nGenerated: %2$s</string>
     
     <string name="main_zipinstaller">Vybrať zip súbor z vnútornej SD karty</string>
     <string name="main_choose_zip">Pridať zip súbor do zoznamu</string>
@@ -67,7 +73,6 @@
     
     <string name="about_title">O aplikácii</string>
     <string name="about_zip_title">ZipInstaller</string>
-    <string name="about_zip_summary">http://forum.xda-developers.com/showthread.php?t=1920057</string>
     <string name="about_version_title">Verzia</string>
     <string name="about_version_unknown">Neznáma verzia</string>
     
