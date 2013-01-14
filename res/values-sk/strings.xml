@@ -1,0 +1,104 @@
+<resources>
+    <string name="app_name">ZipInstaller</string>
+    
+    <string name="alert_reboot_title">Vyberte akcie a spustite inštaláciu</string>
+    <string name="alert_reboot_now">Inštalovať teraz</string>
+    <string name="alert_cancel">Zrušiť</string>
+    
+    <string name="install_file_manager_error">Nebola nájdená žiadna aplikácia pre vybratie ZIP súboru. Prosím nainštaluje správcu súborov.</string>
+    <string name="install_file_manager_intsdcard">Prosím vyberte ZIP súbor z vnútornej SD karty..</string>
+    <string name="install_file_manager_zip">Vyberte ZIP súbor.</string>
+    <string name="install_file_manager_invalid_zip">Neplatný ZIP súbor.</string>
+    
+    <string name="alert_sdcard_title">Upozornenie</string>
+    <string name="alert_sdcard_message">Vyberte zip súbor z vnútornej SD karty.</string>
+    <string name="alert_sdcard_ok">OK</string>
+    
+    <string name="alert_backup_title">Zálohovať</string>
+    <string name="alert_backup_message">Zadajte názov zálohy.</string>
+    <string name="alert_backup_ok">OK</string>
+    
+    <string name="alert_restore_title">Obnoviť</string>
+    <string name="alert_restore_ok">OK</string>
+    
+    <string name="alert_file_title">%1$s</string>
+    <string name="alert_file_path">Cesta: %1$s</string>
+    <string name="alert_file_size">Veľkosť: %1$s</string>
+    <string name="alert_file_modified">Upravené: %1$s</string>
+    <string name="alert_file_close">Zavrieť</string>
+    <string name="alert_file_delete">Zmazať zo zoznamu</string>
+    
+    <string name="main_zipinstaller">Vybrať zip súbor z vnútornej SD karty</string>
+    <string name="main_choose_zip">Pridať zip súbor do zoznamu</string>
+    
+    <string name="install_zips_title">Inštalácia vybraných zip súborov</string>
+    <string name="install_now">Inštalovať teraz</string>
+    
+    <string name="zip_list">Zoznam vybraných zip súborov</string>
+    
+    <string name="menu_settings">Nastavenia</string>
+    <string name="menu_backup">Zálohovať</string>
+    <string name="menu_restore">Obnoviť</string>
+    <string name="menu_loadlist">Načítať zoznam</string>
+    <string name="menu_savelist">Uložiť zoznam</string>
+    <string name="menu_exit">Ukončiť</string>
+    
+    <string name="recovery_change_alert_title">Recovery nájdená</string>
+    <string name="recovery_change_alert_message">Nájdená recovery zložka %1$s. Chcete ju nastaviť ako predvolenú?</string>
+    <string name="recovery_changed">Recovery %1$s bola nakonfigurovaná.</string>
+    <string name="recovery_cwm">CWM-based</string>
+    <string name="recovery_4ext">4EXT</string>
+    <string name="recovery_twrp">TWRP</string>
+    
+    <string name="recovery_title">Výber recovery</string>
+    <string name="recovery_summary">Výber recovery, ktorú máte nainštalovanú vo vašom zariadení.</string>
+    <string name="recovery_alert_title">Vyberte recovery</string>
+    <string name="recovery_alert_summary">Vyberte recovery, ktorú používate</string>
+    <string name="recovery_alert_ok">OK</string>
+    <string name="recovery_alert_cancel">Zrušiť</string>
+    
+    <string name="sdcard_title">Cesta k internému úložisku</string>
+    <string name="sdcard_summary">Upresnenie cesty k internému úložisku, ktoré používana recovery</string>
+    <string name="sdcard_alert_title">Cesta k internému úložisku</string>
+    <string name="sdcard_alert_summary">Vyberte názov vnútornej pamäte</string>
+    <string name="sdcard_alert_ok">OK</string>
+    <string name="sdcard_alert_cancel">Zrušiť</string>
+    <string name="sdcard_alert_error">Uveďte prosím názov vnútornej pamäte</string>
+    
+    <string name="about_title">O aplikácii</string>
+    <string name="about_zip_title">ZipInstaller</string>
+    <string name="about_zip_summary" translatable="false">http://forum.xda-developers.com/showthread.php?t=1920057</string>
+    <string name="about_version_title">Verzia</string>
+    <string name="about_version_unknown">Neznáma verzia</string>
+    
+    <string name="license_title">Licencia</string>
+    <string name="license_apache_title">Apache Licencia</string>
+    <string name="license_error">Chyba pri načítavaní licenčného súboru</string>
+    
+    <string name="changelog_title">Zoznam zmien</string>
+    <string name="changelog_apache_title">ZipInstaller - Zoznam zmien</string>
+    <string name="changelog_error">Vyskytla sa chyba pri načítavaní súboru so zoznamom zmien</string>
+    
+    <string name="paths_error">Vyskytla sa chyb pri načítaní súboru s cestami</string>
+    
+    <string name="backup">Zálohovať</string>
+    <string name="wipe_data">Wipe Data</string>
+    <string name="wipe_caches">Wipe Cache &amp; Dalvik</string>
+    
+    <string name="savelist_title">Uloženie zoznamu</string>
+    <string name="loadlist_title">Načítanie zoznamu</string>
+    <string name="list_saved">Zoznam úspešne uložený</string>
+    <string name="list_loaded">Zoznam úspešne načítaný</string>
+    <string name="list_alert_title">Súbor nenájdený</string>
+    <string name="list_file_not_exists">Súbor %1$s nebol nájdený</string>
+    
+    <string name="donate_title">Dar</string>
+    
+    <string name="dad_title">Drag &amp; drop</string>
+    <string name="dad_summary">Pomocou "drag &amp; drop" môžete zmeniť poradie súborov v zozname</string>
+    
+    <string name="settings_backup_title">Zobraziť možnosť "Zálohovať"</string>
+    <string name="settings_backup_summary">Zobrazí možnosť "Zálohovať" po stlačení tlačidla "Inštalovať teraz"</string>
+    
+    <string name="settings_title">Nastavenia</string>
+</resources>
