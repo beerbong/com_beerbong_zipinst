@@ -1,0 +1,110 @@
+<resources>
+    <string name="app_name">ZipInstaller</string>
+    
+    <string name="alert_reboot_title">アクションを選択してインストール</string>
+    <string name="alert_reboot_now">今すぐインストール</string>
+    <string name="alert_cancel">キャンセル</string>
+    
+    <string name="install_file_manager_error">Zipを選択するアプリがありません。ファイルマネージャをインストールしてください。</string>
+    <string name="install_file_manager_intsdcard">SDカードからファイルを選択してください。</string>
+    <string name="install_file_manager_zip">Zipを選択してください。</string>
+    <string name="install_file_manager_invalid_zip">無効なZipです。</string>
+    
+    <string name="alert_sdcard_title">Alert</string>
+    <string name="alert_sdcard_message">Select a zip from internal sdcard.</string>
+    <string name="alert_sdcard_ok">OK</string>
+    
+    <string name="alert_backup_title">バックアップ</string>
+    <string name="alert_backup_message">バックアップ名を指定してください</string>
+    <string name="alert_backup_ok">OK</string>
+    
+    <string name="alert_restore_title">リストア</string>
+    <string name="alert_restore_ok">OK</string>
+    
+    <string name="alert_file_title">%1$s</string>
+    <string name="alert_file_summary">パス: %1$s</string>
+    <string name="alert_file_close">閉じる</string>
+    <string name="alert_file_md5">MD5</string>
+    <string name="alert_file_delete">ﾘｽﾄから削除</string>
+    
+    <string name="alert_md5_title">MD5の確認</string>
+    <string name="alert_md5_summary">比較するためにMD5チェックサムを入力、もしくは空白のままにしてMD5を表示する</string>
+    <string name="alert_md5_ok">確認する</string>
+    <string name="alert_md5_loading">MD5チェックサム生成中&#8230;</string>
+    <string name="alert_md5_match">入力したMD5チェックサムは正しいです。</string>
+    <string name="alert_md5_no_match">MD5チェックサムは一致しませんでした:\n入力: %1$s\n生成: %2$s</string>
+    
+    <string name="main_zipinstaller">SDカードからZipファイルを選択</string>
+    <string name="main_choose_zip">リストにZipを追加</string>
+    
+    <string name="install_zips_title">選択したZipをインストール</string>
+    <string name="install_now">今すぐインストール</string>
+    
+    <string name="zip_list">選択したZipのリスト</string>
+    
+    <string name="menu_settings">設定</string>
+    <string name="menu_backup">バックアップ</string>
+    <string name="menu_restore">リストア</string>
+    <string name="menu_loadlist">リストを読み込む</string>
+    <string name="menu_savelist">リストを保存</string>
+    <string name="menu_exit">終了</string>
+    
+    <string name="recovery_change_alert_title">リカバリがあります</string>
+    <string name="recovery_change_alert_message">%1$s リカバリのフォルダがあります。既定として設定しますか？</string>
+    <string name="recovery_changed">リカバリは %1$s 設定されました。</string>
+    <string name="recovery_cwm">CWM</string>
+    <string name="recovery_4ext">4EXT</string>
+    <string name="recovery_twrp">TWRP</string>
+    
+    <string name="recovery_title">リカバリ選択</string>
+    <string name="recovery_summary">端末にインストールしたリカバリを選択してください</string>
+    <string name="recovery_alert_title">リカバリ選択</string>
+    <string name="recovery_alert_summary">使用中のリカバリを指定してください</string>
+    <string name="recovery_alert_ok">OK</string>
+    <string name="recovery_alert_cancel">キャンセル</string>
+    
+    <string name="sdcard_title">SDカードのパス</string>
+    <string name="sdcard_summary">リカバリーが使うSDカードのパスを指定してください</string>
+    <string name="sdcard_alert_title">SDカードのパス</string>
+    <string name="sdcard_alert_summary">SDカードの名前を指定してください。</string>
+    <string name="sdcard_alert_ok">OK</string>
+    <string name="sdcard_alert_cancel">キャンセル</string>
+    <string name="sdcard_alert_error">SDカードを指定してください。</string>
+    
+    <string name="about_title">このアプリについて</string>
+    <string name="about_zip_title">ZipInstaller</string>
+    <string name="about_zip_summary" translatable="false">http://forum.xda-developers.com/showthread.php?t=1920057</string>
+    <string name="about_version_title">Version</string>
+    <string name="about_version_unknown">不明な Version (パッケージのエラー)</string>
+    
+    <string name="license_title">使用許諾</string>
+    <string name="license_apache_title">Apache License</string>
+    <string name="license_error">ライセンスファイルの読み込みエラー</string>
+    
+    <string name="changelog_title">Changelog</string>
+    <string name="changelog_apache_title">ZipInstaller Changelog</string>
+    <string name="changelog_error">チェンジログの読み込みエラー</string>
+    
+    <string name="paths_error">ファイルの読み込みエラー</string>
+    
+    <string name="backup">Backup</string>
+    <string name="wipe_data">Wipe Data</string>
+    <string name="wipe_caches">Wipe Cache &amp; Dalvik</string>
+    
+    <string name="savelist_title">リストを保存</string>
+    <string name="loadlist_title">リストを読み込む</string>
+    <string name="list_saved">リストを保存しました</string>
+    <string name="list_loaded">リストを読み込みました</string>
+    <string name="list_alert_title">ファイルが見つかりません</string>
+    <string name="list_file_not_exists">%1$s ファイルが見つかりません</string>
+    
+    <string name="donate_title">寄付</string>
+    
+    <string name="dad_title">ドラッグ &amp; ドロップ</string>
+    <string name="dad_summary">リストに追加の際ドラッグ &amp; ドロップを使う</string>
+    
+    <string name="settings_backup_title">バックアップオプション</string>
+    <string name="settings_backup_summary">\""今すぐインストール\""ボタンを押したときにバックアップオプションを表示</string>
+    
+    <string name="settings_title">設定</string>
+</resources>
