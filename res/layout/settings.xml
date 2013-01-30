@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013 ZipInstaller
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/settings_recovery">
+
+        <Preference
+            android:key="recovery"
+            android:title="@string/recovery_title"
+            android:summary="@string/recovery_summary" />
+    
+        <Preference
+            android:key="sdcard"
+            android:title="@string/sdcard_title"
+            android:summary="@string/sdcard_summary" />
+
+        <CheckBoxPreference
+            android:key="showbackup"
+            android:title="@string/settings_backup_title"
+            android:summary="@string/settings_backup_summary" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_security">
+
+        <CheckBoxPreference
+            android:key="checkexists"
+            android:title="@string/settings_checkexists_title"
+            android:summary="@string/settings_checkexists_summary" />
+
+        <CheckBoxPreference
+            android:key="checkmd5"
+            android:title="@string/settings_checkmd5_title"
+            android:summary="@string/settings_checkmd5_summary" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_interface">
+
+        <CheckBoxPreference
+            android:key="draganddrop"
+            android:title="@string/dad_title"
+            android:summary="@string/dad_summary" />
+
+        <CheckBoxPreference
+            android:key="overridelist"
+            android:title="@string/overridelist_title"
+            android:summary="@string/overridelist_summary" />
+
+        <CheckBoxPreference
+            android:key="darktheme"
+            android:title="@string/settings_theme_title"
+            android:summary="@string/settings_theme_summary" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_update">
+
+        <Preference
+            android:key="updates"
+            android:title="@string/check_for_updates" />
+
+        <CheckBoxPreference
+            android:key="updateonstartup"
+            android:title="@string/check_for_updates_startup" />
+
+        <Preference
+            android:key="downloadpath"
+            android:title="@string/download_path" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_misc">
+
+        <Preference
+            android:key="about"
+            android:title="@string/about_title" />
+
+        <Preference
+            android:key="donate"
+            android:title="@string/donate_title" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

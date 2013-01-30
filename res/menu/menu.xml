@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2013 Beerbong ZipInstaller
+<!-- Copyright (C) 2013 ZipInstaller
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -13,7 +13,6 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/settings"
@@ -27,11 +26,17 @@
         android:title="@string/menu_restore"
         android:showAsAction="always" />
 
+    <item android:id="@+id/advanced_recovery"
+        android:title="@string/menu_advanced_recovery"/>
+
     <item android:id="@+id/savelist"
         android:title="@string/menu_savelist" />
 
     <item android:id="@+id/loadlist"
         android:title="@string/menu_loadlist" />
+
+    <item android:id="@+id/downloadzip"
+        android:title="@string/menu_downloadzip" />
 
     <item android:id="@+id/exit"
         android:title="@string/menu_exit" />
