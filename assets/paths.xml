@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <path name="/sdcard" allowed="1"/>
+    <path name="/storage/sdcard0" allowed="1"/>
+    <path name="/mnt/sdcard" allowed="1"/>
+    <path name="/extSdCard" allowed="0"/>
+    <path name="/storage/sdcard1" allowed="0"/>
+    <path name="/mnt/extsdcard" allowed="0"/>
+</paths>
