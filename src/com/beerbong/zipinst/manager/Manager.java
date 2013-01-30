@@ -1,35 +1,28 @@
+/*
+ * Copyright (C) 2013 ZipInstaller
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.beerbong.zipinst.manager;
 
-import android.app.Activity;
-
-/**
- * @author Yamil Ghazi Kantelinen
- * @version 1.0
- */
+import android.content.Context;
 
 public class Manager {
     
-    private static FileManager fileManager;
-    private static RebootManager rebootManager;
-    private static MenuManager menuManager;
-    private static RecoveryManager recoveryManager;
+    protected Context mContext;
 
-    public static void start(Activity mActivity) {
-        fileManager = new FileManager(mActivity);
-        rebootManager = new RebootManager(mActivity);
-        menuManager = new MenuManager(mActivity);
-        recoveryManager = new RecoveryManager(mActivity);
-    }
-    public static FileManager getFileManager() {
-        return fileManager;
-    }
-    public static RebootManager getRebootManager() {
-        return rebootManager;
-    }
-    public static MenuManager getMenuManager() {
-        return menuManager;
-    }
-    public static RecoveryManager getRecoveryManager() {
-        return recoveryManager;
+    protected Manager(Context context) {
+        mContext = context;
     }
 }
