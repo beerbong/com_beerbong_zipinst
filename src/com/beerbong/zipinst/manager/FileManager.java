@@ -489,7 +489,8 @@ public class FileManager extends Manager implements UIListener {
 
         alert.setMessage(mContext.getResources().getString(
                 R.string.alert_file_summary,
-                new Object[] { item.getName(), Constants.formatSize(file.length()),
+                new Object[] { (file.getParent() == null ? "" : file.getParent()) + "/",
+                        Constants.formatSize(file.length()),
                         new Date(file.lastModified()).toString() }));
 
         alert.setPositiveButton(R.string.alert_file_close, new DialogInterface.OnClickListener() {
