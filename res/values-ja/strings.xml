@@ -154,7 +154,7 @@
     <string name="downloading_interrupted">ダウンロードは中断されました</string>
     <string name="downloading_nospace">ダウンロードエラー: 空き容量が不足しています</string>
     
-    <string name="download_alert_title">ダウンロードのパス path</string>
+    <string name="download_alert_title">ダウンロードのパス</string>
     <string name="download_alert_summary">保存先のパスを入力してください</string>
     <string name="download_alert_error">正しい保存先のパスを入力してください</string>
     
