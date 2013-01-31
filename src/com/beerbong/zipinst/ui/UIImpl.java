@@ -1,27 +1,43 @@
+/*
+ * Copyright (C) 2013 ZipInstaller
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.beerbong.zipinst.ui;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import com.beerbong.zipinst.R;
-import com.beerbong.zipinst.util.Constants;
-import com.beerbong.zipinst.util.StoredPreferences;
-
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
-import android.preference.Preference;
-import android.preference.Preference.OnPreferenceClickListener;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceCategory;
-import android.preference.PreferenceGroup;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.beerbong.zipinst.MainActivity;
+import com.beerbong.zipinst.R;
+import com.beerbong.zipinst.manager.ManagerFactory;
+import com.beerbong.zipinst.util.StoredItems;
+import com.beerbong.zipinst.util.ZipItem;
+import com.beerbong.zipinst.widget.Item;
+import com.beerbong.zipinst.widget.TouchInterceptor;
 
 /**
  * @author Yamil Ghazi Kantelinen
@@ -29,67 +45,116 @@ import android.widget.EditText;
  */
 
 public class UIImpl extends UI {
-    
+
+    private class ZipItemsAdapter extends ArrayAdapter<ZipItem> {
+
+        public ZipItemsAdapter(List<ZipItem> items) {
+            super(mActivity,
+                    ManagerFactory.getPreferencesManager().isUseDragAndDrop() ? R.layout.order_item
+                            : R.layout.noorder_item, items);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            LinearLayout itemView;
+            ZipItem item = getItem(position);
+
+            boolean useDad = ManagerFactory.getPreferencesManager().isUseDragAndDrop();
+
+            if (convertView == null) {
+                itemView = new LinearLayout(getContext());
+                LayoutInflater vi = (LayoutInflater) getContext().getSystemService(
+                        Context.LAYOUT_INFLATER_SERVICE);
+                vi.inflate(useDad ? R.layout.order_item : R.layout.noorder_item, itemView, true);
+            } else {
+                itemView = (LinearLayout) convertView;
+            }
+            TextView title = (TextView) itemView.findViewById(R.id.title);
+            TextView summary = (TextView) itemView.findViewById(R.id.summary);
+
+            title.setText(item.getName());
+            summary.setText(item.getPath());
+
+            return itemView;
+        }
+
+    }
+
     private static final String TAG = "UIImpl";
 
-    private List<UIListener> listeners = new ArrayList<UIListener>();
+    private List<UIListener> mListeners = new ArrayList<UIListener>();
+    private MainActivity mActivity = null;
+    private TouchInterceptor mFileList;
 
-    private PreferenceActivity activity = null;
-
-    private PreferenceCategory fileList;
-    
-    private int mCount = 0;
-    
     private TouchInterceptor.DropListener mDropListener = new TouchInterceptor.DropListener() {
+
         public void drop(int from, int to) {
-            Log.d(TAG, "DROP " + from + ", " + to + ", " + mCount + ", " + StoredPreferences.size());
-            if (to < mCount) to = mCount;
-            StoredPreferences.move(from - mCount, to - mCount);
-            redrawPreferences();
+            StoredItems.move(from, to);
+            redrawItems();
         }
     };
 
-    protected UIImpl(PreferenceActivity activity) {
-      
+    protected UIImpl(MainActivity activity) {
+
         redraw(activity);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
-    public void redraw(PreferenceActivity activity) {
-
-        listeners.clear();
-
-        this.activity = activity;
-
-        activity.addPreferencesFromResource(R.xml.main);
-        
-        mCount = countPreferences(activity.getPreferenceScreen());
-        
-        Log.d(TAG, "COUNT = " + mCount);
-      
-        fileList = (PreferenceCategory)activity.findPreference(Constants.PREFERENCE_FILE_LIST);
-        fileList.setOrderingAsAdded(true);
-        
-        activity.setContentView(R.xml.list);
-        
-        ((TouchInterceptor)activity.getListView()).setDropListener(mDropListener);
-      
-        redrawPreferences();
+    public void requestRestart() {
+        Intent mainIntent = new Intent(mActivity, MainActivity.class);
+        mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        mActivity.startActivity(mainIntent);
+        mActivity.finish();
     }
+
     @Override
-    public boolean onPreferenceTreeClick(Preference preference) {
+    public void redraw(MainActivity activity) {
 
-        dispatchOnPreferenceClicked(preference.getKey());
+        boolean darkTheme = ManagerFactory.getPreferencesManager(activity).isDarkTheme();
+        activity.setTheme(darkTheme ? R.style.AppTheme_Dark : R.style.AppTheme);
 
-        return false;
+        mListeners.clear();
+
+        this.mActivity = activity;
+
+        activity.setContentView(R.layout.activity);
+        init();
     }
+
+    private void init() {
+        mFileList = (TouchInterceptor) mActivity.findViewById(R.id.file_list);
+        mFileList.setOnItemClickListener(this);
+        mFileList.setDropListener(mDropListener);
+
+        Item.OnItemClickListener cListener = new Item.OnItemClickListener() {
+
+            @Override
+            public void onClick(int id) {
+                dispatchOnButtonClicked(id);
+            }
+        };
+
+        Item chooseZip = (Item) mActivity.findViewById(R.id.choose_zip);
+        chooseZip.setOnItemClickListener(cListener);
+        Item installNow = (Item) mActivity.findViewById(R.id.install_now);
+        installNow.setOnItemClickListener(cListener);
+
+        redrawItems();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        ZipItem item = StoredItems.getItem(position);
+        dispatchOnZipItemClicked(item);
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         dispatchOnActivityResult(requestCode, resultCode, data);
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -97,6 +162,7 @@ public class UIImpl extends UI {
 
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -104,207 +170,83 @@ public class UIImpl extends UI {
 
         return true;
     }
+
     @Override
-    public void addPreference(String realPath, String sdcardPath) {
+    public void addItem(String realPath, String sdcardPath) {
 
-        StoredPreferences.removePreference(realPath);
-        
-        boolean useDad = activity.getSharedPreferences(Constants.PREFS_NAME, 0).getBoolean(Constants.PROPERTY_DRAG_AND_DROP, Constants.DEFAULT_DRAG_AND_DROP);
-        
-        Preference pref = new ZipPreference(activity, useDad);
-            
-        pref.setKey(realPath);
-        pref.setTitle(sdcardPath.substring(sdcardPath.lastIndexOf("/") + 1));
-        pref.setSummary(sdcardPath);
-        pref.setPersistent(true);
-      
-        pref.setOnPreferenceClickListener(new OnPreferenceClickListener() {
-            public boolean onPreferenceClick(Preference preference) {
-                showInfoDialog(preference);
-                return false;
-            }
-        });
+        StoredItems.removeItem(realPath);
 
-        fileList.addPreference(pref);
+        ZipItem item = new ZipItem(realPath, sdcardPath.substring(sdcardPath.lastIndexOf("/") + 1),
+                sdcardPath);
 
-        StoredPreferences.addPreference(pref);
+        StoredItems.addItem(item);
 
-        redrawPreferences();
+        redrawItems();
     }
+
     @Override
     public void addUIListener(UIListener listener) {
-        listeners.add(listener);
+        mListeners.add(listener);
     }
+
     @Override
     public void removeUIListener(UIListener listener) {
-        listeners.remove(listener);
+        mListeners.remove(listener);
     }
+
     @Override
-    public void removeAllPreferences() {
-        
-        StoredPreferences.removePreferences();
-        
-        fileList.removeAll();
-        
-        redrawPreferences();
+    public void removeAllItems() {
+
+        StoredItems.removeItems();
+
+        redrawItems();
     }
 
-    private void removePreference(Preference preference) {
+    public void removeItem(ZipItem item) {
 
-        StoredPreferences.removePreference(preference.getKey());
+        StoredItems.removeItem(item.getKey());
 
-        fileList.removePreference(preference);
-
-        redrawPreferences();
+        redrawItems();
 
     }
-    private void dispatchOnPreferenceClicked(String id) {
-        int size = listeners.size(), i = 0;
-        for (;i<size;i++) {
-            listeners.get(i).onPreferenceClicked(id);
-        }
-    }
+
     private void dispatchOnActivityResult(int requestCode, int resultCode, Intent data) {
-        int size = listeners.size(), i = 0;
-        for (;i<size;i++) {
-            listeners.get(i).onActivityResult(requestCode, resultCode, data);
+        int size = mListeners.size(), i = 0;
+        for (; i < size; i++) {
+            mListeners.get(i).onActivityResult(requestCode, resultCode, data);
         }
     }
+
     private void dispatchOnCreateOptionsMenu(Menu menu) {
-        int size = listeners.size(), i = 0;
-        for (;i<size;i++) {
-            listeners.get(i).onCreateOptionsMenu(menu);
+        int size = mListeners.size(), i = 0;
+        for (; i < size; i++) {
+            mListeners.get(i).onCreateOptionsMenu(menu);
         }
     }
+
     private void dispatchOnOptionsItemSelected(MenuItem menuItem) {
-        int size = listeners.size(), i = 0;
-        for (;i<size;i++) {
-            listeners.get(i).onOptionsItemSelected(menuItem);
+        int size = mListeners.size(), i = 0;
+        for (; i < size; i++) {
+            mListeners.get(i).onOptionsItemSelected(menuItem);
         }
     }
-    private void redrawPreferences() {
 
-        fileList.removeAll();
-
-        for (int i=0;i<StoredPreferences.size();i++) {
-            Preference pref = StoredPreferences.getPreference(i);
-            pref.setOrder(Preference.DEFAULT_ORDER);
-            fileList.addPreference(StoredPreferences.getPreference(i));
+    private void dispatchOnButtonClicked(int id) {
+        int size = mListeners.size(), i = 0;
+        for (; i < size; i++) {
+            mListeners.get(i).onButtonClicked(id);
         }
     }
-    private int countPreferences(PreferenceGroup group) {
-        int children = group.getPreferenceCount();
-        int count = children;
-        if (count > 0) {
-            for (int i=0;i<count;i++) {
-                Preference pref = group.getPreference(i);
-                if (pref instanceof PreferenceGroup) {
-                    children += countPreferences((PreferenceGroup)pref);
-                }
-            }
+
+    private void dispatchOnZipItemClicked(ZipItem item) {
+        int size = mListeners.size(), i = 0;
+        for (; i < size; i++) {
+            mListeners.get(i).onZipItemClicked(item);
         }
-        return children;
     }
-    private void showInfoDialog(final Preference preference) {
-        AlertDialog.Builder alert = new AlertDialog.Builder(activity);
-        alert.setTitle(activity.getResources().getString(R.string.alert_file_title, new Object[] {preference.getTitle()}));
 
-        String path = (String)preference.getSummary();
-        File file = new File(path);
-        
-        alert.setMessage(activity.getResources().getString(R.string.alert_file_summary, new Object[] {
-                preference.getTitle(), 
-                Constants.formatSize(file.length()), 
-                new Date(file.lastModified()).toString()
-        }));
-        
-        alert.setPositiveButton(R.string.alert_file_close, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
-                dialog.dismiss();
-            }
-        });
-        alert.setNeutralButton(R.string.alert_file_md5, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
-                dialog.dismiss();
-                showMd5Dialog(preference);
-            }
-        });
-        alert.setNegativeButton(R.string.alert_file_delete, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
-                dialog.dismiss();
-                removePreference(preference);
-            }
-        });
+    private void redrawItems() {
 
-        alert.show();
-    }
-    private void showMd5Dialog(final Preference preference) {
-        
-        AlertDialog.Builder alert = new AlertDialog.Builder(activity);
-        alert.setTitle(R.string.alert_md5_title);
-        alert.setMessage(R.string.alert_md5_summary);
-        
-        final EditText input = new EditText(activity);
-        alert.setView(input);
-        input.selectAll();
-        
-        alert.setPositiveButton(R.string.alert_md5_ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
-                dialog.dismiss();
-                
-                final ProgressDialog pDialog = new ProgressDialog(activity);
-                pDialog.setIndeterminate(true);
-                pDialog.setMessage(activity.getResources().getString(R.string.alert_md5_loading));
-                pDialog.show();
-                
-                (new Thread() {
-                    public void run() {
-                        
-                        String path = (String)preference.getSummary();
-                        File file = new File(path);
-                        final String md5 = Constants.md5(file);
-                        
-                        pDialog.dismiss();
-
-                        final String text = input.getText() == null ? null : input.getText().toString();
-
-                        activity.runOnUiThread(new Runnable() {
-                            public void run() {
-                                showMd5(md5, text);
-                            }
-                        });
-                    }
-                }).start();
-            }
-        });
-        alert.setNegativeButton(R.string.alert_cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        alert.show();
-    }
-    private void showMd5(String md5, String text) {
-        AlertDialog.Builder alert = new AlertDialog.Builder(activity);
-        if (text == null || "".equals(text.trim())) {
-            alert.setMessage(md5);
-        } else {
-            if (md5.equals(text)) {
-                alert.setMessage(activity.getResources().getString(R.string.alert_md5_match));
-            } else {
-                alert.setMessage(activity.getResources().getString(R.string.alert_md5_no_match, new Object[] {text, md5}));
-            }
-        }
-        alert.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
-                dialog.dismiss();
-            }
-        });
-        alert.show();
+        mFileList.setAdapter(new ZipItemsAdapter(StoredItems.getItems()));
     }
 }

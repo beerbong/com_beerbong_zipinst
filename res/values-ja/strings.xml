@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013 ZipInstaller
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <string name="app_name">ZipInstaller</string>
+    
+    <string name="alert_reboot_title">アクションを選択してインストール</string>
+    <string name="alert_reboot_now">今すぐインストール</string>
+    
+    <string name="install_file_manager_error">Zipを選択するアプリがありません。ファイルマネージャをインストールしてください。</string>
+    <string name="install_file_manager_intsdcard">SDカードからファイルを選択してください。</string>
+    <string name="install_file_manager_zip">Zipを選択してください。</string>
+    <string name="install_file_manager_invalid_zip">無効なZipです。</string>
+    
+    <string name="alert_sdcard_title">警告</string>
+    <string name="alert_sdcard_message">SDカードからzipをせんたくしてください</string>
+    
+    <string name="alert_backup_title">バックアップ</string>
+    <string name="alert_backup_message">バックアップ名を入力してください</string>
+    
+    <string name="alert_restore_title">リストア</string>
+    
+    <string name="alert_delete_title">削除</string>
+    
+    <string name="alert_file_title">%1$s</string>
+    <string name="alert_file_summary">パス: %1$s</string>
+    <string name="alert_file_close">閉じる</string>
+    <string name="alert_file_md5">MD5</string>
+    <string name="alert_file_delete">ﾘｽﾄから削除</string>
+    
+    <string name="alert_md5_title">MD5の確認</string>
+    <string name="alert_md5_summary">比較するためにMD5チェックサムを入力、もしくは空白のままにしてMD5を表示する</string>
+    <string name="alert_md5_ok">確認する</string>
+    <string name="alert_md5_loading">MD5チェックサム生成中&#8230;</string>
+    <string name="alert_md5_match">入力したMD5チェックサムは正しいです。</string>
+    <string name="alert_md5_no_match">MD5チェックサムは一致しませんでした:\n入力: %1$s\n生成: %2$s</string>
+    
+    <string name="alert_file_checking">ファイルをチェック中&#8230;</string>
+    <string name="alert_file_alert">警告</string>
+    <string name="alert_file_exists_checking">ファイルをチェック中 %1$s&#8230;</string>
+    <string name="alert_file_not_exists">ファイルがありません: %1$s</string>
+    <string name="alert_file_md5_checking">ファイルのMD5をチェック中 %1$s&#8230;</string>
+    <string name="alert_file_incorrect_md5_file">ファイルのMD5が不正: %1$s</string>
+    <string name="alert_file_incorrect_md5">ファイルのMD5が不一致 %1$s</string>
+    
+    <string name="main_choose_zip">リストにZipを追加</string>
+    <string name="main_choose_zip_summary">ファイルマネージャからZipファイルを選択</string>
+    
+    <string name="install_now">今すぐインストール</string>
+    <string name="install_now_summary">リカバリへ再起動し、選択したzipを焼きます</string>
+    
+    <string name="zip_list">選択したZipのリスト</string>
+    
+    <string name="menu_settings">設定</string>
+    <string name="menu_backup">バックアップ</string>
+    <string name="menu_restore">リストア</string>
+    <string name="menu_advanced_recovery">リカバリ</string>
+    <string name="menu_loadlist">リストを読み込む</string>
+    <string name="menu_savelist">リストを保存</string>
+    <string name="menu_downloadzip">URLからzipをダウンロード</string>
+    <string name="menu_exit">終了</string>
+    
+    <string name="recovery_change_alert_title">リカバリがあります</string>
+    <string name="recovery_change_alert_message">%1$s リカバリのフォルダがあります。既定として設定しますか？</string>
+    <string name="recovery_changed">リカバリは %1$s 設定されました。</string>
+    <string name="recovery_cwm">CWM</string>
+    <string name="recovery_4ext">4EXT</string>
+    <string name="recovery_twrp">TWRP</string>
+    
+    <string name="recovery_title">リカバリ選択</string>
+    <string name="recovery_summary">端末にインストールしたリカバリを選択してください</string>
+    <string name="recovery_alert_title">リカバリ選択</string>
+    <string name="recovery_alert_summary">使用中のリカバリを入力してください</string>
+    
+    <string name="sdcard_title">SDカードのパス</string>
+    <string name="sdcard_summary">リカバリーが使うSDカードのパスを入力してください</string>
+    <string name="sdcard_alert_title">SDカードのパス</string>
+    <string name="sdcard_alert_summary">SDカードの名前を入力してください。</string>
+    <string name="sdcard_alert_error">SDカードを入力してください。</string>
+    
+    <string name="about_title">このアプリについて</string>
+    <string name="about_zip_title">ZipInstaller</string>
+    <string name="about_version_title">Version</string>
+    <string name="about_version_unknown">不明な Version (パッケージのエラー)</string>
+    
+    <string name="license_title">使用許諾</string>
+    <string name="license_apache_title">Apache License</string>
+    <string name="license_error">ライセンスファイルの読み込みエラー</string>
+    
+    <string name="changelog_title">Changelog</string>
+    <string name="changelog_apache_title">ZipInstaller Changelog</string>
+    <string name="changelog_error">チェンジログの読み込みエラー</string>
+    
+    <string name="paths_error">ファイルの読み込みエラー</string>
+    
+    <string name="backup">バックアップ</string>
+    <string name="wipe_data">Wipe Data</string>
+    <string name="wipe_caches">Wipe Cache &amp; Dalvik</string>
+    
+    <string name="savelist_title">リストを保存</string>
+    <string name="loadlist_title">リストを読み込む</string>
+    <string name="list_saved">リストを保存しました</string>
+    <string name="list_loaded">リストを読み込みました</string>
+    
+    <string name="donate_title">寄付</string>
+    
+    <string name="dad_title">ドラッグ &amp; ドロップ</string>
+    <string name="dad_summary">リストに追加の際ドラッグ &amp; ドロップを使う</string>
+    
+    <string name="overridelist_title">リストを上書きして読み込む</string>
+    <string name="overridelist_summary">選択したリストを保存されているリストで上書きして読み込む</string>
+    
+    <string name="settings_backup_title">バックアップオプション</string>
+    <string name="settings_backup_summary">\""今すぐインストール\""ボタンを押したときにバックアップオプションを表示</string>
+    
+    <string name="settings_title">設定</string>
+    <string name="settings_recovery">リカバリ</string>
+    <string name="settings_security">セキュリティ</string>
+    <string name="settings_interface">インターフェイス</string>
+    <string name="settings_update">更新</string>
+    <string name="settings_misc">その他</string>
+    
+    <string name="settings_theme_title">dark テーマを使用</string>
+    <string name="settings_theme_summary">Holo テーマの代わりにdark テーマを使用する</string>
+    
+    <string name="settings_checkexists_title">zipのチェック</string>
+    <string name="settings_checkexists_summary">zipを焼く前にファイルがあるかチェックする</string>
+    
+    <string name="settings_checkmd5_title">MD5の確認</string>
+    <string name="settings_checkmd5_summary">zipを焼くまえにMD5チェックサムをチェックする</string>
+    
+    <string name="check_for_updates">更新チェック</string>
+    <string name="check_for_updates_startup">起動時にチェックする</string>
+    <string name="check_for_updates_error">更新チェック中にエラーが発生しました</string>
+    <string name="no_new_version">アップデートはありません</string>
+    <string name="new_version_title">アップデートしてください</string>
+    <string name="new_version_summary">%1$s がありました。今すぐダウンロードしてインストールしますか？</string>
+    <string name="new_version_download">ダウンロード &amp; インストール</string>
+    <string name="download_path">ダウンロードのパス</string>
+    <string name="downloading">%1$s を %2$s へダウンロード中</string>
+    <string name="downloading_error">ファイルのダウンロード中にエラーが発生しました</string>
+    <string name="downloading_interrupted">ダウンロードは中断されました</string>
+    <string name="downloading_nospace">ダウンロードエラー: 空き容量が不足しています</string>
+    
+    <string name="download_alert_title">ダウンロードのパス</string>
+    <string name="download_alert_summary">保存先のパスを入力してください</string>
+    <string name="download_alert_error">正しい保存先のパスを入力してください</string>
+    
+    <string name="downloadzip_alert_title">zipのダウンロード</string>
+    <string name="downloadzip_alert_summary">zipのURLを入力してください。</string>
+    <string name="downloadzip_alert_error">正しいzipのURLを入力してください。</string>
+    
+    <string name="recovery_activity_title">リカバリ</string>
+    <string name="recovery_activity_backup_title">バックアップ</string>
+    <string name="recovery_activity_backup_summary">ROMのバックアップ</string>
+    <string name="recovery_activity_restore_title">リストア</string>
+    <string name="recovery_activity_restore_summary">以前のバックアップへリストア</string>
+    <string name="recovery_activity_delete_title">削除</string>
+    <string name="recovery_activity_delete_summary">以前のバックアップを削除</string>
+    <string name="recovery_activity_reboot_title">リカバリへ再起動</string>
+    
+    <string name="alert_deleting_folder">削除中 %1$s&#8230;</string>
+</resources>

@@ -1,14 +1,31 @@
+/*
+ * Copyright (C) 2013 ZipInstaller
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.beerbong.zipinst.manager;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,110 +36,118 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.beerbong.zipinst.R;
-import com.beerbong.zipinst.util.Constants;
 import com.beerbong.zipinst.util.RecoveryInfo;
-import com.beerbong.zipinst.util.StoredPreferences;
+import com.beerbong.zipinst.util.StoredItems;
 
 /**
  * @author Yamil Ghazi Kantelinen
  * @version 1.0
  */
 
-public class RecoveryManager {
-    
-    private Activity mActivity;
+public class RecoveryManager extends Manager {
+
     private SparseArray<RecoveryInfo> recoveries = new SparseArray<RecoveryInfo>();
 
-    protected RecoveryManager(Activity activity) {
-        mActivity = activity;
-        
+    protected RecoveryManager(Context context) {
+        super(context);
+
         recoveries.put(R.id.cwmbased, new RecoveryInfo(R.id.cwmbased, "cwmbased", "emmc"));
         recoveries.put(R.id.twrp, new RecoveryInfo(R.id.twrp, "twrp", "sdcard"));
         recoveries.put(R.id.fourext, new RecoveryInfo(R.id.fourext, "fourext", "sdcard"));
-        
-        if (!mActivity.getSharedPreferences(Constants.PREFS_NAME, 0).contains(Constants.PROPERTY_RECOVERY)) {
+
+        if (!ManagerFactory.getPreferencesManager().existsRecovery()) {
             test(R.id.fourext);
         }
     }
 
     public void selectRecovery(Activity activity) {
-        View view = LayoutInflater.from(activity).inflate(R.xml.recovery, (ViewGroup)activity.findViewById(R.id.recovery_layout));
+        View view = LayoutInflater.from(activity).inflate(R.layout.recovery,
+                (ViewGroup) activity.findViewById(R.id.recovery_layout));
 
-        RadioButton cbCwmbased = (RadioButton)view.findViewById(R.id.cwmbased);
-        RadioButton cbTwrp = (RadioButton)view.findViewById(R.id.twrp);
-        RadioButton cb4ext = (RadioButton)view.findViewById(R.id.fourext);
-        
-        final RadioGroup mGroup = (RadioGroup)view.findViewById(R.id.recovery_radio_group);
-        
+        RadioButton cbCwmbased = (RadioButton) view.findViewById(R.id.cwmbased);
+        RadioButton cbTwrp = (RadioButton) view.findViewById(R.id.twrp);
+        RadioButton cb4ext = (RadioButton) view.findViewById(R.id.fourext);
+
+        final RadioGroup mGroup = (RadioGroup) view.findViewById(R.id.recovery_radio_group);
+
         RecoveryInfo info = getRecovery();
         switch (info.getId()) {
-            case R.id.cwmbased :
+            case R.id.cwmbased:
                 cbCwmbased.setChecked(true);
                 break;
-            case R.id.twrp :
+            case R.id.twrp:
                 cbTwrp.setChecked(true);
                 break;
-            case R.id.fourext :
+            case R.id.fourext:
                 cb4ext.setChecked(true);
                 break;
         }
 
         new AlertDialog.Builder(activity)
-            .setTitle(R.string.recovery_alert_title)
-            .setMessage(R.string.recovery_alert_summary)
-            .setView(view)
-            .setPositiveButton(R.string.recovery_alert_ok, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    
-                    int id = mGroup.getCheckedRadioButtonId();
-                    
-                    setRecovery(id);
-                    
-                    dialog.dismiss();
-                }
-            }).setNegativeButton(R.string.recovery_alert_cancel, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    dialog.dismiss();
-                }
-            }).show();
+                .setTitle(R.string.recovery_alert_title)
+                .setMessage(R.string.recovery_alert_summary)
+                .setView(view)
+                .setPositiveButton(android.R.string.ok,
+                        new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int whichButton) {
+
+                                int id = mGroup.getCheckedRadioButtonId();
+
+                                setRecovery(id);
+
+                                dialog.dismiss();
+                            }
+                        })
+                .setNegativeButton(android.R.string.cancel,
+                        new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                dialog.dismiss();
+                            }
+                        }).show();
     }
+
     public void selectSdcard(final Activity activity) {
         final EditText input = new EditText(activity);
-        input.setText(activity.getSharedPreferences(Constants.PREFS_NAME, 0).getString(Constants.PROPERTY_INTERNAL_STORAGE, Constants.DEFAULT_INTERNAL_STORAGE));
+        input.setText(ManagerFactory.getPreferencesManager().getInternalStorage());
 
         new AlertDialog.Builder(activity)
-            .setTitle(R.string.sdcard_alert_title)
-            .setMessage(R.string.sdcard_alert_summary)
-            .setView(input)
-            .setPositiveButton(R.string.sdcard_alert_ok, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    String value = input.getText().toString();
+                .setTitle(R.string.sdcard_alert_title)
+                .setMessage(R.string.sdcard_alert_summary)
+                .setView(input)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 
-                    if (value == null || "".equals(value.trim())) {
-                        Toast.makeText(activity, R.string.sdcard_alert_error, Toast.LENGTH_SHORT).show();
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        String value = input.getText().toString();
+
+                        if (value == null || "".equals(value.trim())) {
+                            Toast.makeText(activity, R.string.sdcard_alert_error,
+                                    Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                            return;
+                        }
+
+                        if (value.startsWith("/")) {
+                            value = value.substring(1);
+                        }
+
+                        ManagerFactory.getPreferencesManager().setInternalStorage(value);
                         dialog.dismiss();
-                        return;
                     }
+                })
+                .setNegativeButton(android.R.string.cancel,
+                        new DialogInterface.OnClickListener() {
 
-                    if (value.startsWith("/")) {
-                        value = value.substring(1);
-                    }
-
-                    SharedPreferences settings = activity.getSharedPreferences(Constants.PREFS_NAME, 0);
-                    SharedPreferences.Editor editor = settings.edit();
-                    editor.putString(Constants.PROPERTY_INTERNAL_STORAGE, value);
-                    editor.commit();
-                    dialog.dismiss();
-                }
-            }).setNegativeButton(R.string.sdcard_alert_cancel, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    dialog.dismiss();
-                }
-            }).show();
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                dialog.dismiss();
+                            }
+                        }).show();
     }
+
     public RecoveryInfo getRecovery() {
-        String recovery = mActivity.getSharedPreferences(Constants.PREFS_NAME, 0).getString(Constants.PROPERTY_RECOVERY, Constants.DEFAULT_RECOVERY);
-        for (int i=0;i<recoveries.size();i++) {
+        String recovery = ManagerFactory.getPreferencesManager().getRecovery();
+        for (int i = 0; i < recoveries.size(); i++) {
             int key = recoveries.keyAt(i);
             RecoveryInfo info = recoveries.get(key);
             if (info.getName().equals(recovery)) {
@@ -131,45 +156,50 @@ public class RecoveryManager {
         }
         return null;
     }
+
     public void setRecovery(int id) {
         RecoveryInfo info = recoveries.get(id);
-        SharedPreferences settings = mActivity.getSharedPreferences(Constants.PREFS_NAME, 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString(Constants.PROPERTY_RECOVERY, info.getName());
-        editor.putString(Constants.PROPERTY_INTERNAL_STORAGE, info.getSdcard());
-        editor.commit();
+        ManagerFactory.getPreferencesManager().setRecovery(info.getName());
+        ManagerFactory.getPreferencesManager().setInternalStorage(info.getSdcard());
     }
-    public String getBackupDir() {
+
+    public String getBackupDir(boolean force) {
 
         RecoveryInfo info = getRecovery();
 
         String sdcard = "sdcard";
         String str = "";
-        
+
         switch (info.getId()) {
-            case R.id.twrp :
+            case R.id.twrp:
                 File f = new File("/" + sdcard + "/TWRP/BACKUPS/");
                 if (f.exists()) {
                     File[] fs = f.listFiles();
                     str += fs[0].getName() + "/";
                 }
                 break;
+            default:
+                if (force) {
+                    str = "/" + sdcard + "/clockworkmod/backup/";
+                }
+                break;
         }
         return str;
     }
+
     public String[] getBackupList() {
 
         RecoveryInfo info = getRecovery();
 
         String sdcard = "sdcard";
         String folder = "";
-        
+
         switch (info.getId()) {
-            case R.id.cwmbased :
-            case R.id.fourext :
+            case R.id.cwmbased:
+            case R.id.fourext:
                 folder = "/" + sdcard + "/clockworkmod/backup/";
                 break;
-            case R.id.twrp :
+            case R.id.twrp:
                 folder = "/" + sdcard + "/TWRP/BACKUPS/";
                 File f = new File(folder);
                 if (f.exists()) {
@@ -178,45 +208,59 @@ public class RecoveryManager {
                 }
                 break;
         }
-        
+
         List<String> list = new ArrayList<String>();
-        
+
         File f = new File(folder);
         if (f.exists()) {
             File[] fs = f.listFiles();
-            for (int i=0;i<fs.length;i++) {
+            for (int i = 0; i < fs.length; i++) {
                 list.add(fs[i].getName());
             }
         }
-        
-        Collections.sort(list);
-        
+
+        Collections.sort(list, new Comparator() {
+
+            @Override
+            public int compare(Object lhs, Object rhs) {
+                String s1 = (String) lhs;
+                String s2 = (String) rhs;
+                int value = s1.compareTo(s2);
+                return -value;
+            }
+        });
+
         return list.toArray(new String[list.size()]);
     }
+
     public String getCommandsFile() {
 
         RecoveryInfo info = getRecovery();
-        
+
         switch (info.getId()) {
-            case R.id.cwmbased :
-            case R.id.fourext :
+            case R.id.cwmbased:
+            case R.id.fourext:
                 return "extendedcommand";
-            case R.id.twrp : return "openrecoveryscript";
-            default : return null;
+            case R.id.twrp:
+                return "openrecoveryscript";
+            default:
+                return null;
         }
     }
-    public String[] getCommands(boolean[] wipeOptions, String backupFolder, String restore) throws Exception {
+
+    public String[] getCommands(boolean[] wipeOptions, String backupFolder, String restore)
+            throws Exception {
         List<String> commands = new ArrayList<String>();
 
-        int size = StoredPreferences.size(), i = 0;
-        
+        int size = StoredItems.size(), i = 0;
+
         RecoveryInfo info = getRecovery();
 
-        String internalStorage = mActivity.getSharedPreferences(Constants.PREFS_NAME, 0).getString(Constants.PROPERTY_INTERNAL_STORAGE, Constants.DEFAULT_INTERNAL_STORAGE);
-        
+        String internalStorage = ManagerFactory.getPreferencesManager().getInternalStorage();
+
         boolean wipeData = false, wipeCaches = false;
         if (wipeOptions != null) {
-            boolean showBackup = mActivity.getSharedPreferences(Constants.PREFS_NAME, 0).getBoolean(Constants.PROPERTY_SHOW_BACKUP, Constants.DEFAULT_SHOW_BACKUP);
+            boolean showBackup = ManagerFactory.getPreferencesManager().isShowBackupOption();
             if (showBackup) {
                 wipeData = wipeOptions[1];
                 wipeCaches = wipeOptions[2];
@@ -225,23 +269,28 @@ public class RecoveryManager {
                 wipeCaches = wipeOptions[1];
             }
         }
-        
+
         switch (info.getId()) {
-            case R.id.cwmbased :
-            case R.id.fourext :
+            case R.id.cwmbased:
+            case R.id.fourext:
 
                 commands.add("ui_print(\"-------------------------------------\");");
-                commands.add("ui_print(\" ZipInstaller " + mActivity.getPackageManager().getPackageInfo(mActivity.getPackageName(), 0).versionName + "\");");
+                commands.add("ui_print(\" ZipInstaller "
+                        + mContext.getPackageManager().getPackageInfo(mContext.getPackageName(), 0).versionName
+                        + "\");");
                 commands.add("ui_print(\"-------------------------------------\");");
-                
+
                 if (restore != null) {
                     commands.add("ui_print(\" Restore ROM\");");
-                    commands.add("restore_rom(\"/" + internalStorage + "/clockworkmod/backup/" + restore + "\", \"boot\", \"system\", \"data\", \"cache\", \"sd-ext\")");
+                    commands.add("restore_rom(\"/" + internalStorage + "/clockworkmod/backup/"
+                            + restore
+                            + "\", \"boot\", \"system\", \"data\", \"cache\", \"sd-ext\")");
                 }
-                
+
                 if (backupFolder != null) {
                     commands.add("ui_print(\" Backup ROM\");");
-                    commands.add("backup_rom(\"/" + internalStorage + "/clockworkmod/backup/" + backupFolder + "\");");
+                    commands.add("backup_rom(\"/" + internalStorage + "/clockworkmod/backup/"
+                            + backupFolder + "\");");
                 }
 
                 if (wipeOptions != null) {
@@ -263,20 +312,22 @@ public class RecoveryManager {
 
                 if (size > 0) {
                     commands.add("ui_print(\" Installing zips\");");
-                    for (;i<size;i++) {
-                        commands.add("assert(install_zip(\"" + StoredPreferences.getPreference(i).getKey() + "\"));");
+                    for (; i < size; i++) {
+                        commands.add("assert(install_zip(\"" + StoredItems.getItem(i).getKey()
+                                + "\"));");
                     }
                 }
 
                 commands.add("ui_print(\" Rebooting\");");
                 break;
-                
-            case R.id.twrp :
+
+            case R.id.twrp:
 
                 String sdcard = "sdcard";
-                
+
                 if (restore != null) {
-                    String str = "restore /" + internalStorage + "/TWRP/BACKUPS/" + restore + " SDCR123B";
+                    String str = "restore /" + internalStorage + "/TWRP/BACKUPS/" + restore
+                            + " SDCR123B";
                     if (folderExists("/" + sdcard + "/.android-secure")) {
                         str += "A";
                     }
@@ -285,7 +336,7 @@ public class RecoveryManager {
                     }
                     commands.add(str);
                 }
-                
+
                 if (backupFolder != null) {
                     String str = "backup SDCR123B";
                     if (folderExists("/" + sdcard + "/.android-secure")) {
@@ -307,8 +358,8 @@ public class RecoveryManager {
                     }
                 }
 
-                for (;i<size;i++) {
-                    commands.add("install " + StoredPreferences.getPreference(i).getKey());
+                for (; i < size; i++) {
+                    commands.add("install " + StoredItems.getItem(i).getKey());
                 }
 
                 break;
@@ -316,66 +367,78 @@ public class RecoveryManager {
 
         return commands.toArray(new String[commands.size()]);
     }
-    
+
     private void test(final int id) {
-        
+
         String name = null, path = null;
-        
+
         switch (id) {
-            case R.id.fourext :
-                name = mActivity.getString(R.string.recovery_4ext);
+            case R.id.fourext:
+                name = mContext.getString(R.string.recovery_4ext);
                 path = "/cache/4ext/";
                 break;
-            case R.id.twrp :
-                name = mActivity.getString(R.string.recovery_twrp);
+            case R.id.twrp:
+                name = mContext.getString(R.string.recovery_twrp);
                 String sdcard = "sdcard";
                 path = "/" + sdcard + "/TWRP/";
                 break;
-            case R.id.cwmbased :
+            case R.id.cwmbased:
                 setRecovery(R.id.cwmbased);
-                Toast.makeText(mActivity, mActivity.getString(R.string.recovery_changed, mActivity.getString(R.string.recovery_cwm)), Toast.LENGTH_LONG).show();
+                Toast.makeText(
+                        mContext,
+                        mContext.getString(R.string.recovery_changed,
+                                mContext.getString(R.string.recovery_cwm)), Toast.LENGTH_LONG)
+                        .show();
                 return;
         }
-        
+
         final String recoveryName = name;
-        
+
         File folder = new File(path);
         if (folder.exists()) {
-            AlertDialog.Builder alert = new AlertDialog.Builder(mActivity);
+            AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
             alert.setTitle(R.string.recovery_change_alert_title);
-            alert.setMessage(mActivity.getString(R.string.recovery_change_alert_message, recoveryName));
-            alert.setPositiveButton(R.string.recovery_alert_ok, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    dialog.dismiss();
-                    setRecovery(id);
-                    Toast.makeText(mActivity, mActivity.getString(R.string.recovery_changed, recoveryName), Toast.LENGTH_LONG).show();
-                }
-            });
-            alert.setNegativeButton(R.string.recovery_alert_cancel, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                    switch (id) {
-                        case R.id.fourext :
-                            test(R.id.twrp);
-                            break;
-                        case R.id.twrp :
-                            test(R.id.cwmbased);
-                            break;
-                    }
-                }
-            });
+            alert.setMessage(mContext.getString(R.string.recovery_change_alert_message,
+                    recoveryName));
+            alert.setPositiveButton(android.R.string.ok,
+                    new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            dialog.dismiss();
+                            setRecovery(id);
+                            Toast.makeText(mContext,
+                                    mContext.getString(R.string.recovery_changed, recoveryName),
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
+            alert.setNegativeButton(android.R.string.cancel,
+                    new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            switch (id) {
+                                case R.id.fourext:
+                                    test(R.id.twrp);
+                                    break;
+                                case R.id.twrp:
+                                    test(R.id.cwmbased);
+                                    break;
+                            }
+                        }
+                    });
             alert.show();
         } else {
             switch (id) {
-                case R.id.fourext :
+                case R.id.fourext:
                     test(R.id.twrp);
                     break;
-                case R.id.twrp :
+                case R.id.twrp:
                     test(R.id.cwmbased);
                     break;
             }
         }
     }
+
     private boolean folderExists(String path) {
         File f = new File(path);
         return f.exists() && f.isDirectory();

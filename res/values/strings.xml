@@ -1,9 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013 ZipInstaller
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
 <resources>
     <string name="app_name">ZipInstaller</string>
     
     <string name="alert_reboot_title">Select actions and install</string>
     <string name="alert_reboot_now">Install now</string>
-    <string name="alert_cancel">Cancel</string>
     
     <string name="install_file_manager_error">No application found to pick the zip file. Please install a file manager.</string>
     <string name="install_file_manager_intsdcard">Please select a file from internal sdcard.</string>
@@ -12,14 +26,13 @@
     
     <string name="alert_sdcard_title">Alert</string>
     <string name="alert_sdcard_message">Select a zip from internal sdcard.</string>
-    <string name="alert_sdcard_ok">OK</string>
     
     <string name="alert_backup_title">Backup</string>
-    <string name="alert_backup_message">Specify the backup name.</string>
-    <string name="alert_backup_ok">OK</string>
+    <string name="alert_backup_message">Specify the backup name (spaces will be removed).</string>
     
     <string name="alert_restore_title">Restore</string>
-    <string name="alert_restore_ok">OK</string>
+    
+    <string name="alert_delete_title">Delete</string>
     
     <string name="alert_file_title">%1$s</string>
     <string name="alert_file_summary">Path: %1$s\nSize: %2$s\nModified: %3$s</string>
@@ -34,19 +47,29 @@
     <string name="alert_md5_match">The specified MD5 sum is correct</string>
     <string name="alert_md5_no_match">The MD5 sums does not match:\nSpecified: %1$s\nGenerated: %2$s</string>
     
-    <string name="main_zipinstaller">Choose a zip from internal sdcard</string>
-    <string name="main_choose_zip">Add a zip to list</string>
+    <string name="alert_file_checking">Checking files&#8230;</string>
+    <string name="alert_file_alert">Alert</string>
+    <string name="alert_file_exists_checking">Checking file %1$s&#8230;</string>
+    <string name="alert_file_not_exists">File not found: %1$s</string>
+    <string name="alert_file_md5_checking">Checking MD5 for file %1$s&#8230;</string>
+    <string name="alert_file_incorrect_md5_file">Malformed MD5 file: %1$s</string>
+    <string name="alert_file_incorrect_md5">Mismatch MD5 for file %1$s</string>
     
-    <string name="install_zips_title">Install selected zips</string>
+    <string name="main_choose_zip">Add a zip to list</string>
+    <string name="main_choose_zip_summary">Opens a file manager to select a zip</string>
+    
     <string name="install_now">Install now</string>
+    <string name="install_now_summary">Reboots the device into recovery and perform the requested actions</string>
     
     <string name="zip_list">Selected zips list</string>
     
     <string name="menu_settings">Settings</string>
     <string name="menu_backup">Backup</string>
     <string name="menu_restore">Restore</string>
+    <string name="menu_advanced_recovery">Recovery</string>
     <string name="menu_loadlist">Load list</string>
     <string name="menu_savelist">Save list</string>
+    <string name="menu_downloadzip">Download zip</string>
     <string name="menu_exit">Exit</string>
     
     <string name="recovery_change_alert_title">Recovery found</string>
@@ -60,15 +83,11 @@
     <string name="recovery_summary">Select the recovery intalled in tour device</string>
     <string name="recovery_alert_title">Select recovery</string>
     <string name="recovery_alert_summary">Specify the recovery you are using</string>
-    <string name="recovery_alert_ok">Accept</string>
-    <string name="recovery_alert_cancel">Cancel</string>
     
     <string name="sdcard_title">Internal storage path</string>
     <string name="sdcard_summary">Specify the internal storage path used by the recovery</string>
     <string name="sdcard_alert_title">Internal storage path</string>
     <string name="sdcard_alert_summary">Specify the internal storage name</string>
-    <string name="sdcard_alert_ok">Accept</string>
-    <string name="sdcard_alert_cancel">Cancel</string>
     <string name="sdcard_alert_error">Please specify the internal storage name</string>
     
     <string name="about_title">About</string>
@@ -95,16 +114,63 @@
     <string name="loadlist_title">Load list</string>
     <string name="list_saved">List successfully saved</string>
     <string name="list_loaded">List successfully loaded</string>
-    <string name="list_alert_title">File not found</string>
-    <string name="list_file_not_exists">The file %1$s was not found</string>
     
     <string name="donate_title">Donate</string>
     
     <string name="dad_title">Drag &amp; drop</string>
     <string name="dad_summary">Use drag &amp; drop to reorder the list</string>
     
+    <string name="overridelist_title">Load list overrides</string>
+    <string name="overridelist_summary">Loading the saved list will override the selected zips list</string>
+    
     <string name="settings_backup_title">Show backup option</string>
     <string name="settings_backup_summary">Show backup option when pressing the Install Now button</string>
     
     <string name="settings_title">Settings</string>
+    <string name="settings_recovery">Recovery</string>
+    <string name="settings_security">Security</string>
+    <string name="settings_interface">Interface</string>
+    <string name="settings_update">Updates</string>
+    <string name="settings_misc">Misc</string>
+    
+    <string name="settings_theme_title">Use dark theme</string>
+    <string name="settings_theme_summary">Use dark them instead of Holo</string>
+    
+    <string name="settings_checkexists_title">Check zip files</string>
+    <string name="settings_checkexists_summary">Check whether zip files exists or not before flashing</string>
+    
+    <string name="settings_checkmd5_title">Check MD5</string>
+    <string name="settings_checkmd5_summary">Check MD5 if a md5sum file is present before flashing</string>
+    
+    <string name="check_for_updates">Check for updates</string>
+    <string name="check_for_updates_startup">Check on startup</string>
+    <string name="check_for_updates_error">Error checking for updates</string>
+    <string name="no_new_version">No new update found</string>
+    <string name="new_version_title">New update found</string>
+    <string name="new_version_summary">%1$s found. Do you want to download and install it now?</string>
+    <string name="new_version_download">Download &amp; install</string>
+    <string name="download_path">Download path</string>
+    <string name="downloading">Downloading %1$s to %2$s</string>
+    <string name="downloading_error">Error downloading file</string>
+    <string name="downloading_interrupted">Download interrupted</string>
+    <string name="downloading_nospace">Error downloading file: no space available</string>
+    
+    <string name="download_alert_title">Downloads path</string>
+    <string name="download_alert_summary">Specify the path to save the downloads</string>
+    <string name="download_alert_error">Please specify the path to save the downloads</string>
+    
+    <string name="downloadzip_alert_title">Download zip</string>
+    <string name="downloadzip_alert_summary">Specify the url of the zip</string>
+    <string name="downloadzip_alert_error">Please specify the url of the zip</string>
+    
+    <string name="recovery_activity_title">Recovery</string>
+    <string name="recovery_activity_backup_title">Backup</string>
+    <string name="recovery_activity_backup_summary">Do a backup of your rom</string>
+    <string name="recovery_activity_restore_title">Restore</string>
+    <string name="recovery_activity_restore_summary">Restore a previous backup</string>
+    <string name="recovery_activity_delete_title">Delete</string>
+    <string name="recovery_activity_delete_summary">Delete a previous backup</string>
+    <string name="recovery_activity_reboot_title">Reboot into recovery</string>
+    
+    <string name="alert_deleting_folder">Deleting %1$s&#8230;</string>
 </resources>
