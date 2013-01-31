@@ -51,7 +51,7 @@ public class UIImpl extends UI {
         public ZipItemsAdapter(List<ZipItem> items) {
             super(mActivity,
                     ManagerFactory.getPreferencesManager().isUseDragAndDrop() ? R.layout.order_item
-                            : R.layout.item, items);
+                            : R.layout.noorder_item, items);
         }
 
         @Override
@@ -65,7 +65,7 @@ public class UIImpl extends UI {
                 itemView = new LinearLayout(getContext());
                 LayoutInflater vi = (LayoutInflater) getContext().getSystemService(
                         Context.LAYOUT_INFLATER_SERVICE);
-                vi.inflate(useDad ? R.layout.order_item : R.layout.item, itemView, true);
+                vi.inflate(useDad ? R.layout.order_item : R.layout.noorder_item, itemView, true);
             } else {
                 itemView = (LinearLayout) convertView;
             }
