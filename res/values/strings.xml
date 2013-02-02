@@ -80,7 +80,7 @@
     <string name="recovery_twrp">TWRP</string>
     
     <string name="recovery_title">Select recovery</string>
-    <string name="recovery_summary">Select the recovery intalled in tour device</string>
+    <string name="recovery_summary">Select the recovery intalled in your device</string>
     <string name="recovery_alert_title">Select recovery</string>
     <string name="recovery_alert_summary">Specify the recovery you are using</string>
     
