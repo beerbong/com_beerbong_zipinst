@@ -44,7 +44,7 @@ public class MenuManager extends Manager implements UIListener {
     }
 
     public void onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = ((Activity)mContext).getMenuInflater();
+        MenuInflater inflater = ((Activity) mContext).getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
     }
 
@@ -72,7 +72,7 @@ public class MenuManager extends Manager implements UIListener {
                 ManagerFactory.getFileManager().downloadZip();
                 break;
             case R.id.exit:
-                ((Activity)mContext).finish();
+                ((Activity) mContext).finish();
                 return;
         }
     }

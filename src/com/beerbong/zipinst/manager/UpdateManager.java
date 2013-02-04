@@ -40,10 +40,10 @@ import com.beerbong.zipinst.util.DownloadTask;
 
 public class UpdateManager extends Manager {
 
-    class URLStringReader extends AsyncTask {
+    class URLStringReader extends AsyncTask<Void, Void, Void> {
 
         @Override
-        protected Object doInBackground(Object... params) {
+        protected Void doInBackground(Void... params) {
             try {
                 mBuffer = readString();
                 parseBuffer();
@@ -55,8 +55,7 @@ public class UpdateManager extends Manager {
             return null;
         }
     }
-    
-    private DownloadTask mDownloadTask;
+
     private String mBuffer = null;
     private int mVersion = -1;
 
@@ -79,7 +78,7 @@ public class UpdateManager extends Manager {
         if (mVersion == -1)
             return;
         mBuffer = null;
-        AsyncTask task = new URLStringReader().execute((Object[]) null);
+        new URLStringReader().execute((Void) null);
     }
 
     private void parseBuffer() {
@@ -137,23 +136,31 @@ public class UpdateManager extends Manager {
     }
 
     private void download(String fileName) {
-        
+
         final ProgressDialog progressDialog = new ProgressDialog(mContext);
-        
-        final DownloadTask downloadFile = new DownloadTask(progressDialog, Constants.DOWNLOAD_URL + fileName, fileName);
-        
-        progressDialog.setMessage(mContext.getResources().getString(R.string.downloading,
-                new Object[] { fileName, ManagerFactory.getPreferencesManager().getDownloadPath() }));
+
+        final DownloadTask downloadFile = new DownloadTask(progressDialog, Constants.DOWNLOAD_URL
+                + fileName, fileName);
+
+        progressDialog.setMessage(mContext.getResources()
+                .getString(
+                        R.string.downloading,
+                        new Object[] {
+                                fileName,
+                                ManagerFactory.getPreferencesManager().getDownloadPath() }));
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progressDialog.setCancelable(false);
         progressDialog.setProgress(0);
-        progressDialog.setButton(Dialog.BUTTON_NEGATIVE, mContext.getResources().getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                progressDialog.dismiss();
-                downloadFile.cancel(true);
-            }
-        });
+        progressDialog.setButton(Dialog.BUTTON_NEGATIVE,
+                mContext.getResources().getString(android.R.string.cancel),
+                new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        progressDialog.dismiss();
+                        downloadFile.cancel(true);
+                    }
+                });
 
         downloadFile.attach(progressDialog);
         progressDialog.show();

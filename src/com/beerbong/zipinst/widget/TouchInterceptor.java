@@ -107,9 +107,7 @@ public class TouchInterceptor extends ListView {
         return super.onInterceptTouchEvent(ev);
     }
 
-    /*
-     * pointToPosition() doesn't consider invisible views, but we need to, so implement a slightly different version.
-     */
+    /* pointToPosition() doesn't consider invisible views, but we need to, so implement a slightly different version. */
     private int myPointToPosition(int x, int y) {
 
         if (y < 0) {
@@ -157,9 +155,7 @@ public class TouchInterceptor extends ListView {
         }
     }
 
-    /*
-     * Restore size and visibility for all listitems
-     */
+    /* Restore size and visibility for all listitems */
     private void unExpandViews(boolean deletion) {
         for (int i = 0;; i++) {
             View v = getChildAt(i);
@@ -185,13 +181,11 @@ public class TouchInterceptor extends ListView {
         }
     }
 
-    /*
-     * Adjust visibility and size to make it appear as though an item is being dragged around and other items are making
+    /* Adjust visibility and size to make it appear as though an item is being dragged around and other items are making
      * room for it: If dropping the item would result in it still being in the same place, then make the dragged
      * listitem's size normal, but make the item invisible. Otherwise, if the dragged listitem is still on screen, make
      * it as small as possible and expand the item below the insert point. If the dragged item is not on screen, only
-     * expand the item below the current insertpoint.
-     */
+     * expand the item below the current insertpoint. */
     private void doExpansion() {
         int childnum = mDragPos - getFirstVisiblePosition();
         if (mDragPos > mFirstDragPos) {

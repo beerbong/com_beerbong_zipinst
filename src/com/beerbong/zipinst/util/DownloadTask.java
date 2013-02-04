@@ -92,7 +92,7 @@ public class DownloadTask extends AsyncTask<Void, Integer, Integer> {
     protected Integer doInBackground(Void... params) {
         PreferencesManager pManager = ManagerFactory.getPreferencesManager();
         File destFile = new File(pManager.getDownloadPath() + mFileName);
-        
+
         if (destFile.exists()) {
             destFile.delete();
         }

@@ -16,8 +16,6 @@
 
 package com.beerbong.zipinst.manager;
 
-import org.w3c.dom.NodeList;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -29,6 +27,7 @@ import android.content.SharedPreferences;
 public class PreferencesManager extends Manager {
 
     private static final String PREFS_NAME = "ZipInstallerPrefsFile";
+    private static final String SDCARD = "sdcar";
 
     private static final String PROPERTY_INTERNAL_STORAGE = "internal-storage";
     private static final String PROPERTY_RECOVERY = "recovery";
@@ -44,7 +43,7 @@ public class PreferencesManager extends Manager {
 
     private static final String DEFAULT_RECOVERY = "cwmbased";
     private static final String DEFAULT_INTERNAL_STORAGE = "emmc";
-    private static final String DEFAULT_DOWNLOAD_PATH = "/sdcard/download/";
+    private static final String DEFAULT_DOWNLOAD_PATH = "/" + SDCARD + "/download/";
     private static final boolean DEFAULT_DRAG_AND_DROP = true;
     private static final boolean DEFAULT_SHOW_BACKUP = true;
     private static final boolean DEFAULT_DARK_THEME = true;
@@ -54,7 +53,6 @@ public class PreferencesManager extends Manager {
     private static final boolean DEFAULT_OVERRIDE_LIST = true;
 
     private SharedPreferences settings;
-    private NodeList pathList = null;
 
     protected PreferencesManager(Context context) {
         super(context);
@@ -150,7 +148,8 @@ public class PreferencesManager extends Manager {
     }
 
     public void setDownloadPath(String value) {
-        if (!value.endsWith("/")) value = value + "/";
+        if (!value.endsWith("/"))
+            value = value + "/";
         savePreference(PROPERTY_DOWNLOAD_PATH, value);
     }
 

@@ -83,29 +83,25 @@ public class RecoveryManager extends Manager {
                 break;
         }
 
-        new AlertDialog.Builder(activity)
-                .setTitle(R.string.recovery_alert_title)
-                .setMessage(R.string.recovery_alert_summary)
-                .setView(view)
-                .setPositiveButton(android.R.string.ok,
-                        new DialogInterface.OnClickListener() {
+        new AlertDialog.Builder(activity).setTitle(R.string.recovery_alert_title)
+                .setMessage(R.string.recovery_alert_summary).setView(view)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 
-                            public void onClick(DialogInterface dialog, int whichButton) {
+                    public void onClick(DialogInterface dialog, int whichButton) {
 
-                                int id = mGroup.getCheckedRadioButtonId();
+                        int id = mGroup.getCheckedRadioButtonId();
 
-                                setRecovery(id);
+                        setRecovery(id);
 
-                                dialog.dismiss();
-                            }
-                        })
-                .setNegativeButton(android.R.string.cancel,
-                        new DialogInterface.OnClickListener() {
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
 
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                dialog.dismiss();
-                            }
-                        }).show();
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.dismiss();
+                    }
+                }).show();
     }
 
     public void selectSdcard(final Activity activity) {
@@ -136,13 +132,12 @@ public class RecoveryManager extends Manager {
                         dialog.dismiss();
                     }
                 })
-                .setNegativeButton(android.R.string.cancel,
-                        new DialogInterface.OnClickListener() {
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
 
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                dialog.dismiss();
-                            }
-                        }).show();
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.dismiss();
+                    }
+                }).show();
     }
 
     public RecoveryInfo getRecovery() {
@@ -219,12 +214,10 @@ public class RecoveryManager extends Manager {
             }
         }
 
-        Collections.sort(list, new Comparator() {
+        Collections.sort(list, new Comparator<String>() {
 
             @Override
-            public int compare(Object lhs, Object rhs) {
-                String s1 = (String) lhs;
-                String s2 = (String) rhs;
+            public int compare(String s1, String s2) {
                 int value = s1.compareTo(s2);
                 return -value;
             }
@@ -400,32 +393,30 @@ public class RecoveryManager extends Manager {
             alert.setTitle(R.string.recovery_change_alert_title);
             alert.setMessage(mContext.getString(R.string.recovery_change_alert_message,
                     recoveryName));
-            alert.setPositiveButton(android.R.string.ok,
-                    new DialogInterface.OnClickListener() {
+            alert.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            dialog.dismiss();
-                            setRecovery(id);
-                            Toast.makeText(mContext,
-                                    mContext.getString(R.string.recovery_changed, recoveryName),
-                                    Toast.LENGTH_LONG).show();
-                        }
-                    });
-            alert.setNegativeButton(android.R.string.cancel,
-                    new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    dialog.dismiss();
+                    setRecovery(id);
+                    Toast.makeText(mContext,
+                            mContext.getString(R.string.recovery_changed, recoveryName),
+                            Toast.LENGTH_LONG).show();
+                }
+            });
+            alert.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
 
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                            switch (id) {
-                                case R.id.fourext:
-                                    test(R.id.twrp);
-                                    break;
-                                case R.id.twrp:
-                                    test(R.id.cwmbased);
-                                    break;
-                            }
-                        }
-                    });
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                    switch (id) {
+                        case R.id.fourext:
+                            test(R.id.twrp);
+                            break;
+                        case R.id.twrp:
+                            test(R.id.cwmbased);
+                            break;
+                    }
+                }
+            });
             alert.show();
         } else {
             switch (id) {

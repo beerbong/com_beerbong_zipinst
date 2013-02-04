@@ -53,7 +53,7 @@ public class Constants {
     public static final String PREFERENCE_SETTINGS_CHECK_MD5 = "checkmd5";
     public static final String PREFERENCE_SETTINGS_OVERRIDE_LIST = "overridelist";
     public static final String PREFERENCE_SETTINGS_DOWNLOAD_PATH = "downloadpath";
-    
+
     // recovery preferences
     public static final String PREFERENCE_RECOVERY_BACKUP = "recovery_activity_backup";
     public static final String PREFERENCE_RECOVERY_RESTORE = "recovery_activity_restore";
@@ -70,8 +70,23 @@ public class Constants {
 
     private static final SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd.HH.mm.ss");
 
-    private static final char[] HEX_DIGITS = new char[] { '0', '1', '2', '3', '4', '5', '6', '7',
-            '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
+    private static final char[] HEX_DIGITS = new char[] {
+            '0',
+            '1',
+            '2',
+            '3',
+            '4',
+            '5',
+            '6',
+            '7',
+            '8',
+            '9',
+            'a',
+            'b',
+            'c',
+            'd',
+            'e',
+            'f' };
 
     private static final long K = 1024;
     private static final long M = K * K;

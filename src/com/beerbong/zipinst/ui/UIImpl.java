@@ -80,8 +80,6 @@ public class UIImpl extends UI {
 
     }
 
-    private static final String TAG = "UIImpl";
-
     private List<UIListener> mListeners = new ArrayList<UIListener>();
     private MainActivity mActivity = null;
     private TouchInterceptor mFileList;

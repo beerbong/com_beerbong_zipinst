@@ -27,8 +27,6 @@ import java.util.List;
 
 public class StoredItems {
 
-    private static final String TAG = "StoredItems";
-
     private static List<ZipItem> list = new ArrayList<ZipItem>();
 
     public static int size() {

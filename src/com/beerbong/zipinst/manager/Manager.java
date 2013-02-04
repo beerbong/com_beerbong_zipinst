@@ -19,7 +19,7 @@ package com.beerbong.zipinst.manager;
 import android.content.Context;
 
 public class Manager {
-    
+
     protected Context mContext;
 
     protected Manager(Context context) {
