@@ -95,6 +95,10 @@ public class FileManager extends Manager implements UIListener {
                 handleSendMultipleZips(intent);
             }
         }
+        if (Intent.ACTION_VIEW.equals(action)) {
+            Uri zipUri = (Uri) intent.getData();
+            download(zipUri.toString());
+        }
     }
 
     public void onButtonClicked(int id) {
@@ -439,6 +443,9 @@ public class FileManager extends Manager implements UIListener {
         final ProgressDialog progressDialog = new ProgressDialog(mContext);
 
         String fileName = url.substring(url.lastIndexOf("/") + 1);
+        if (fileName.indexOf("?") >= 0) {
+            fileName = fileName.substring(0, fileName.indexOf("?"));
+        }
 
         final DownloadTask downloadFile = new DownloadTask(progressDialog, url, fileName);
 
