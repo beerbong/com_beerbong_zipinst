@@ -144,7 +144,11 @@ public class Constants {
             }
             byte[] md5sum = digest.digest();
             BigInteger bigInt = new BigInteger(1, md5sum);
-            return bigInt.toString(16);
+            String md5 = bigInt.toString(16);
+            while (md5.length() < 32) {
+                md5 = "0" + md5;
+            }
+            return md5;
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {
