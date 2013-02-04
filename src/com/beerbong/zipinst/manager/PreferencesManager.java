@@ -27,7 +27,7 @@ import android.content.SharedPreferences;
 public class PreferencesManager extends Manager {
 
     private static final String PREFS_NAME = "ZipInstallerPrefsFile";
-    private static final String SDCARD = "sdcar";
+    private static final String SDCARD = "sdcard";
 
     private static final String PROPERTY_INTERNAL_STORAGE = "internal-storage";
     private static final String PROPERTY_RECOVERY = "recovery";
