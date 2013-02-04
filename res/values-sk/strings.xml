@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2013 ZipInstaller
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <string name="app_name">ZipInstaller</string>
+    
+    <string name="alert_reboot_title">Vyberte akcie a spustite inštaláciu</string>
+    <string name="alert_reboot_now">Inštalovať teraz</string>
+    
+    <string name="install_file_manager_error">Nebola nájdená žiadna aplikácia pre vybratie ZIP súboru. Prosím nainštaluje správcu súborov.</string>
+    <string name="install_file_manager_intsdcard">Prosím vyberte ZIP súbor z vnútornej SD karty.</string>
+    <string name="install_file_manager_zip">Vyberte ZIP súbor.</string>
+    <string name="install_file_manager_invalid_zip">Neplatný ZIP súbor.</string>
+    
+    <string name="alert_sdcard_title">Upozornenie</string>
+    <string name="alert_sdcard_message">Vyberte zip súbor z vnútornej SD karty.</string>
+    
+    <string name="alert_backup_title">Záloha</string>
+    <string name="alert_backup_message">Zadajte názov zálohy (medzery budú odstránené).</string>
+    
+    <string name="alert_restore_title">Obnova</string>
+    
+    <string name="alert_delete_title">Vymazať</string>
+    
+    <string name="alert_file_title">%1$s</string>
+    <string name="alert_file_summary">Cesta: %1$s\nVeľkosť: %2$s\nPosledne upravené: %3$s</string>
+    <string name="alert_file_close">Zavrieť</string>
+    <string name="alert_file_md5">MD5</string>
+    <string name="alert_file_delete">Zmazať zo zoznamu</string>
+    
+    <string name="alert_md5_title">Kontrola MD5</string>
+    <string name="alert_md5_summary">Zadajte MD5 súčet pre porovnanie, alebo nechajte prázdne pre zobrazenie MD5 súčtu</string>
+    <string name="alert_md5_ok">Skontrolovať</string>
+    <string name="alert_md5_loading">Generovanie MD5 súčtu&#8230;</string>
+    <string name="alert_md5_match">MD5 súčty sa zhodujú</string>
+    <string name="alert_md5_no_match">MD5 súčty sa nezhodujú:\nZadaný: %1$s\nVygenerovaný: %2$s</string>
+    
+    <string name="alert_file_checking">Kontrolovanie súborov&#8230;</string>
+    <string name="alert_file_alert">Upozornenie</string>
+    <string name="alert_file_exists_checking">Kontrolujem súbor %1$s&#8230;</string>
+    <string name="alert_file_not_exists">Súbor nenájdený: %1$s</string>
+    <string name="alert_file_md5_checking">Kontrolujem MD5 pre súbor %1$s&#8230;</string>
+    <string name="alert_file_incorrect_md5_file">Poškodený MD5 pre súbor: %1$s</string>
+    <string name="alert_file_incorrect_md5">Mismatch MD5 for file %1$s</string>
+    
+    <string name="main_choose_zip">Pridať ZIP súbor do zoznamu</string>
+    <string name="main_choose_zip_summary">Otvorí správcu súborov pre vybratie ZIP súboru</string>
+    
+    <string name="install_now">Inštalovať teraz</string>
+    <string name="install_now_summary">Zariadenie sa reštartuje do recovery a vykonajú sa požadované akcie</string>
+    
+    <string name="zip_list">Zoznam vybraných ZIP súborov</string>
+    
+    <string name="menu_settings">Nastavenia</string>
+    <string name="menu_backup">Zálohovať</string>
+    <string name="menu_restore">Obnoviť</string>
+    <string name="menu_advanced_recovery">Recovery</string>
+    <string name="menu_loadlist">Načítať zoznam</string>
+    <string name="menu_savelist">Uložiť zoznam</string>
+    <string name="menu_downloadzip">Stiahnuť ZIP</string>
+    <string name="menu_exit">Ukončiť</string>
+    
+    <string name="recovery_change_alert_title">Recovery nájdená</string>
+    <string name="recovery_change_alert_message">Nájdená recovery zložka %1$s. Chcete ju nastaviť ako predvolenú?</string>
+    <string name="recovery_changed">Recovery %1$s bola nakonfigurovaná.</string>
+    <string name="recovery_cwm">CWM-based</string>
+    <string name="recovery_4ext">4EXT</string>
+    <string name="recovery_twrp">TWRP</string>
+    
+    <string name="recovery_title">Výber recovery</string>
+    <string name="recovery_summary">Výber recovery, ktorú máte nainštalovanú vo vašom zariadení.</string>
+    <string name="recovery_alert_title">Vyberte recovery</string>
+    <string name="recovery_alert_summary">Vyberte recovery, ktorú používate</string>
+    
+    <string name="sdcard_title">Cesta k internému úložisku</string>
+    <string name="sdcard_summary">Upresnenie cesty k internému úložisku, ktoré používana recovery</string>
+    <string name="sdcard_alert_title">Cesta k internému úložisku</string>
+    <string name="sdcard_alert_summary">Vyberte názov vnútornej pamäte</string>
+    <string name="sdcard_alert_error">Prosím vyberte názov vnútornej pamäte</string>
+    
+    <string name="about_title">O programe</string>
+    <string name="about_zip_title">ZipInstaller</string>
+    <string name="about_version_title">Verzia</string>
+    <string name="about_version_unknown">Neznáma verzia</string>
+    
+    <string name="license_title">Licencia</string>
+    <string name="license_apache_title">Apache Licencia</string>
+    <string name="license_error">Chyba pri načítavaní licenčného súboru</string>
+    
+    <string name="changelog_title">Zoznam zmien</string>
+    <string name="changelog_apache_title">ZipInstaller - Zoznam zmien</string>
+    <string name="changelog_error">Vyskytla sa chyba pri načítavaní súboru so zoznamom zmien</string>
+    
+    <string name="paths_error">Vyskytla sa chyb pri načítaní súboru s cestami</string>
+    
+    <string name="backup">Zálohovať</string>
+    <string name="wipe_data">Wipe Data</string>
+    <string name="wipe_caches">Wipe Cache &amp; Dalvik</string>
+    
+    <string name="savelist_title">Uloženie zoznamu</string>
+    <string name="loadlist_title">Načítanie zoznamu</string>
+    <string name="list_saved">Zoznam bol úspešne uložený</string>
+    <string name="list_loaded">Zoznam bol úspešne načítaný</string>
+    
+    <string name="donate_title">Prispieť</string>
+    
+    <string name="dad_title">Drag &amp; drop</string>
+    <string name="dad_summary">Pomocou "drag &amp; drop" môžete zmeniť poradie súborov v zozname</string>
+    
+    <string name="overridelist_title">Prepísanie načítaného zoznamu</string>
+    <string name="overridelist_summary">Načítaním uloženého zoznamu budú prepísaný zoznam vybraných ZIP súborov</string>
+    
+    <string name="settings_backup_title">Zobraziť možnosť "Zálohovať"</string>
+    <string name="settings_backup_summary">Zobrazí možnosť "Zálohovať" po stlačení tlačidla "Inštalovať teraz"</string>
+    
+    <string name="settings_title">Nastavenia</string>
+    <string name="settings_recovery">Recovery</string>
+    <string name="settings_security">Ochrana</string>
+    <string name="settings_interface">Rozhranie</string>
+    <string name="settings_update">Aktualizácie</string>
+    <string name="settings_misc">Rôzne</string>
+    
+    <string name="settings_theme_title">Použiť tmavú tému</string>
+    <string name="settings_theme_summary">Použiť tmavú tému namiesto Holo témy</string>
+    
+    <string name="settings_checkexists_title">Kontrola ZIP súborov</string>
+    <string name="settings_checkexists_summary">Skontrolovať či ZIP súbory existujú alebo nie pred flashovaním</string>
+    
+    <string name="settings_checkmd5_title">Kontrola MD5</string>
+    <string name="settings_checkmd5_summary">Skontrolovať MD5 ak md5sum súbor je prítomný pred flashovaním</string>
+    
+    <string name="check_for_updates">Kontrola aktualizácií</string>
+    <string name="check_for_updates_startup">Kontrolovať pri štarte</string>
+    <string name="check_for_updates_error">Chyba pri kontrole aktualizácií</string>
+    <string name="no_new_version">Nová aktualizácia nenájdená</string>
+    <string name="new_version_title">Nová aktualizácia nájdená</string>
+    <string name="new_version_summary">%1$s nájdená. Chcete stiahnuť a nainštalovať aktualizáciu teraz?</string>
+    <string name="new_version_download">Stiahnuť &amp; nainštalovať</string>
+    <string name="download_path">Cesta sťahovania</string>
+    <string name="downloading">Sťahujem %1$s do %2$s</string>
+    <string name="downloading_error">Vyskytla sa chyba pri sťahovaní súboru</string>
+    <string name="downloading_interrupted">Sťahovanie prerušené</string>
+    <string name="downloading_nospace">Chyba pri sťahovaní súboru: žiadny priestor k dispozícii</string>
+    
+    <string name="download_alert_title">Cesta sťahovania</string>
+    <string name="download_alert_summary">Vyberte cestu na uloženie sťahovaní</string>
+    <string name="download_alert_error">Prosím vyberte cestu na uloženie sťahovaní</string>
+    
+    <string name="downloadzip_alert_title">Stiahnuť ZIP</string>
+    <string name="downloadzip_alert_summary">Zadajte adresu URL zip súboru</string>
+    <string name="downloadzip_alert_error">Prosím zadajte adresu URL zip súboru</string>
+    
+    <string name="recovery_activity_title">Recovery</string>
+    <string name="recovery_activity_backup_title">Zálohovať</string>
+    <string name="recovery_activity_backup_summary">Vykonanie zálohy Vašej ROM</string>
+    <string name="recovery_activity_restore_title">Obnoviť</string>
+    <string name="recovery_activity_restore_summary">Obnovenie predchádzajúcej zálohy</string>
+    <string name="recovery_activity_delete_title">Vymazať</string>
+    <string name="recovery_activity_delete_summary">Odstránenie predchádzajúcej zálohy</string>
+    <string name="recovery_activity_reboot_title">Reštart do recovery</string>
+    
+    <string name="alert_deleting_folder">Vymazávam %1$s&#8230;</string>
+</resources>
