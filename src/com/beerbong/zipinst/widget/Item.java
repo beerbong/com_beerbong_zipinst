@@ -29,6 +29,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.beerbong.zipinst.R;
+import com.beerbong.zipinst.manager.ManagerFactory;
 
 /**
  * @author Yamil Ghazi Kantelinen
@@ -90,8 +91,11 @@ public class Item extends LinearLayout {
             public boolean onTouch(View view, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        setBackgroundColor(context.getResources().getColor(
-                                android.R.color.holo_blue_light));
+                        setBackgroundColor(context
+                                .getResources()
+                                .getColor(
+                                        ManagerFactory.getPreferencesManager().isDarkTheme() ? android.R.color.holo_blue_dark
+                                                : android.R.color.holo_blue_light));
                         break;
                     case MotionEvent.ACTION_UP:
                         setBackgroundColor(context.getResources().getColor(
