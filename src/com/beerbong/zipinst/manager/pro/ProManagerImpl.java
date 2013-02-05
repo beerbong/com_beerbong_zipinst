@@ -31,7 +31,7 @@ public class ProManagerImpl extends Manager implements ProManager {
         super(context);
 
         try {
-            Class pClass = Class.forName(PRO_CLASS);
+            Class<?> pClass = Class.forName(PRO_CLASS);
             mRealPro = (ProManager) pClass.newInstance();
             mRealPro.setContext(context);
         } catch (Throwable t) {
