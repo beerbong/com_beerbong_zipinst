@@ -118,7 +118,7 @@ public class Settings extends PreferenceActivity {
 
         } else if ("updates".equals(key)) {
 
-            ManagerFactory.getUpdateManager().checkForUpdate();
+            ManagerFactory.getUpdateManager().checkForUpdate(this);
 
         } else if (Constants.PREFERENCE_SETTINGS_CHECK_UPDATE_STARTUP.equals(key)) {
 

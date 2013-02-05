@@ -40,13 +40,13 @@ import com.beerbong.zipinst.util.DownloadTask;
 
 public class UpdateManager extends Manager {
 
-    class URLStringReader extends AsyncTask<Void, Void, Void> {
+    class URLStringReader extends AsyncTask<Context, Void, Void> {
 
         @Override
-        protected Void doInBackground(Void... params) {
+        protected Void doInBackground(Context... params) {
             try {
                 mBuffer = readString();
-                parseBuffer();
+                parseBuffer(params[0]);
                 return null;
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -70,18 +70,18 @@ public class UpdateManager extends Manager {
         }
 
         if (ManagerFactory.getPreferencesManager().isCheckUpdatesStartup()) {
-            checkForUpdate();
+            checkForUpdate(mContext);
         }
     }
 
-    public void checkForUpdate() {
+    public void checkForUpdate(Context context) {
         if (mVersion == -1)
             return;
         mBuffer = null;
-        new URLStringReader().execute((Void) null);
+        new URLStringReader().execute(context);
     }
 
-    private void parseBuffer() {
+    private void parseBuffer(final Context context) {
         try {
             JSONObject object = (JSONObject) new JSONTokener(mBuffer).nextValue();
             JSONArray results = object.getJSONArray("search_result");
@@ -98,10 +98,10 @@ public class UpdateManager extends Manager {
                 showToastOnUiThread(R.string.no_new_version);
             } else {
                 final int nVersion = newVersion;
-                ((Activity) mContext).runOnUiThread(new Runnable() {
+                ((Activity) context).runOnUiThread(new Runnable() {
 
                     public void run() {
-                        requestForDownload(nVersion);
+                        requestForDownload(context, nVersion);
                     }
                 });
             }
@@ -111,10 +111,10 @@ public class UpdateManager extends Manager {
         }
     }
 
-    private void requestForDownload(int version) {
+    private void requestForDownload(Context context, int version) {
         final String fileName = formatVersion(version);
 
-        AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
         alert.setTitle(R.string.new_version_title);
         alert.setMessage(mContext.getResources().getString(R.string.new_version_summary,
                 new Object[] { fileName }));
