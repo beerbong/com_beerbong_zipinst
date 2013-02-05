@@ -173,4 +173,6 @@
     <string name="recovery_activity_reboot_title">Reboot into recovery</string>
 
     <string name="alert_deleting_folder">Deleting %1$s&#8230;</string>
+
+    <string name="consider_becoming_a_pro">Please consider purchasing the pro version</string>
 </resources>

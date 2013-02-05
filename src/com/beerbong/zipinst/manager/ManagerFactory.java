@@ -27,15 +27,16 @@ import android.app.Activity;
 
 public class ManagerFactory {
 
+    private static ProManager mProManager;
     private static FileManager mFileManager;
     private static RebootManager mRebootManager;
     private static MenuManager mMenuManager;
     private static RecoveryManager mRecoveryManager;
     private static PreferencesManager mPreferencesManager;
     private static UpdateManager mUpdateManager;
-    private static ProManager mProManager;
 
     public static void start(Activity mActivity) {
+        mProManager = new ProManagerImpl(mActivity);
         mFileManager = new FileManager(mActivity);
         mRebootManager = new RebootManager(mActivity);
         mMenuManager = new MenuManager(mActivity);
@@ -43,7 +44,6 @@ public class ManagerFactory {
         if (mPreferencesManager == null)
             mPreferencesManager = new PreferencesManager(mActivity);
         mUpdateManager = new UpdateManager(mActivity);
-        mProManager = new ProManagerImpl(mActivity);
     }
 
     public static FileManager getFileManager() {

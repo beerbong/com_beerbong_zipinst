@@ -17,7 +17,9 @@
 package com.beerbong.zipinst.manager.pro;
 
 import android.content.Context;
+import android.widget.Toast;
 
+import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.manager.Manager;
 import com.beerbong.zipinst.manager.ProManager;
 
@@ -37,6 +39,10 @@ public class ProManagerImpl extends Manager implements ProManager {
         } catch (Throwable t) {
             // sorry, you are not a pro
         }
+        
+        if (!iAmPro()) {
+            Toast.makeText(context, R.string.consider_becoming_a_pro, Toast.LENGTH_LONG).show();
+        }
     }
 
     public void setContext(Context context) {
@@ -44,5 +50,8 @@ public class ProManagerImpl extends Manager implements ProManager {
         if (mRealPro != null) {
             mRealPro.setContext(context);
         }
+    }
+    public boolean iAmPro() {
+        return mRealPro != null;
     }
 }

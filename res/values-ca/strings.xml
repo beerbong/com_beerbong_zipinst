@@ -172,4 +172,6 @@
     <string name="recovery_activity_reboot_title">Reiniciar al recovery</string>
 
     <string name="alert_deleting_folder">Esborrant %1$s&#8230;</string>
+
+    <string name="consider_becoming_a_pro">Per favor, considera comprar la versió pro</string>
 </resources>

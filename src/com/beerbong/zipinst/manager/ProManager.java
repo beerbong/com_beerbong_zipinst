@@ -21,4 +21,6 @@ import android.content.Context;
 public interface ProManager {
 
     public void setContext(Context context);
+
+    public boolean iAmPro();
 }
