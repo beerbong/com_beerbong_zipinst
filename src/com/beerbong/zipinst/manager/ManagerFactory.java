@@ -16,6 +16,8 @@
 
 package com.beerbong.zipinst.manager;
 
+import com.beerbong.zipinst.manager.pro.ProManagerImpl;
+
 import android.app.Activity;
 
 /**
@@ -25,50 +27,56 @@ import android.app.Activity;
 
 public class ManagerFactory {
 
-    private static FileManager fileManager;
-    private static RebootManager rebootManager;
-    private static MenuManager menuManager;
-    private static RecoveryManager recoveryManager;
-    private static PreferencesManager preferencesManager;
-    private static UpdateManager updateManager;
+    private static FileManager mFileManager;
+    private static RebootManager mRebootManager;
+    private static MenuManager mMenuManager;
+    private static RecoveryManager mRecoveryManager;
+    private static PreferencesManager mPreferencesManager;
+    private static UpdateManager mUpdateManager;
+    private static ProManager mProManager;
 
     public static void start(Activity mActivity) {
-        fileManager = new FileManager(mActivity);
-        rebootManager = new RebootManager(mActivity);
-        menuManager = new MenuManager(mActivity);
-        recoveryManager = new RecoveryManager(mActivity);
-        if (preferencesManager == null)
-            preferencesManager = new PreferencesManager(mActivity);
-        updateManager = new UpdateManager(mActivity);
+        mFileManager = new FileManager(mActivity);
+        mRebootManager = new RebootManager(mActivity);
+        mMenuManager = new MenuManager(mActivity);
+        mRecoveryManager = new RecoveryManager(mActivity);
+        if (mPreferencesManager == null)
+            mPreferencesManager = new PreferencesManager(mActivity);
+        mUpdateManager = new UpdateManager(mActivity);
+        mProManager = new ProManagerImpl(mActivity);
     }
 
     public static FileManager getFileManager() {
-        return fileManager;
+        return mFileManager;
     }
 
     public static RebootManager getRebootManager() {
-        return rebootManager;
+        return mRebootManager;
     }
 
     public static MenuManager getMenuManager() {
-        return menuManager;
+        return mMenuManager;
     }
 
     public static RecoveryManager getRecoveryManager() {
-        return recoveryManager;
+        return mRecoveryManager;
     }
 
     public static PreferencesManager getPreferencesManager() {
-        return preferencesManager;
+        return mPreferencesManager;
     }
 
     public static PreferencesManager getPreferencesManager(Activity mActivity) {
-        if (preferencesManager == null)
-            preferencesManager = new PreferencesManager(mActivity);
-        return preferencesManager;
+        if (mPreferencesManager == null)
+            mPreferencesManager = new PreferencesManager(mActivity);
+        return mPreferencesManager;
     }
 
     public static UpdateManager getUpdateManager() {
-        return updateManager;
+        return mUpdateManager;
+    }
+
+    public static ProManager getProManager() {
+        return mProManager;
     }
 }
