@@ -21,6 +21,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
+import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
 
 import com.beerbong.zipinst.R;
@@ -72,6 +73,12 @@ public class Settings extends PreferenceActivity {
         mCheckMd5.setChecked(pManager.isCheckMD5());
 
         mOverrideList.setChecked(pManager.isOverrideList());
+
+        if (!ManagerFactory.getProManager().iAmPro()) {
+            PreferenceCategory category = (PreferenceCategory)findPreference("settings_update");
+            category.removePreference(findPreference("updates"));
+            category.removePreference(findPreference(Constants.PREFERENCE_SETTINGS_CHECK_UPDATE_STARTUP));
+        }
 
         updateSummaries();
     }

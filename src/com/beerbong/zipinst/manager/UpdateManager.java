@@ -69,7 +69,7 @@ public class UpdateManager extends Manager {
             Toast.makeText(mContext, R.string.check_for_updates_error, Toast.LENGTH_LONG).show();
         }
 
-        if (ManagerFactory.getPreferencesManager().isCheckUpdatesStartup()) {
+        if (!ManagerFactory.getProManager().iAmPro() && ManagerFactory.getPreferencesManager().isCheckUpdatesStartup()) {
             checkForUpdate(mContext);
         }
     }

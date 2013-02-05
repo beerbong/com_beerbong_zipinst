@@ -71,6 +71,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:key="settings_update"
         android:title="@string/settings_update">
 
         <Preference
