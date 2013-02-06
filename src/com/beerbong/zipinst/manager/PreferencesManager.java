@@ -41,6 +41,8 @@ public class PreferencesManager extends Manager {
     private static final String PROPERTY_CHECK_MD5 = "check_md5";
     private static final String PROPERTY_OVERRIDE_LIST = "override_list";
 
+    public static final String PROPERTY_ENABLE_NOTIFICATIONS = "enable_notifications";
+
     private static final String DEFAULT_RECOVERY = "cwmbased";
     private static final String DEFAULT_INTERNAL_STORAGE = "emmc";
     private static final String DEFAULT_DOWNLOAD_PATH = "/" + SDCARD + "/download/";
@@ -51,6 +53,7 @@ public class PreferencesManager extends Manager {
     private static final boolean DEFAULT_CHECK_UPDATES_STARTUP = false;
     private static final boolean DEFAULT_CHECK_MD5 = true;
     private static final boolean DEFAULT_OVERRIDE_LIST = true;
+    private static final boolean DEFAULT_ENABLE_NOTIFICATIONS = true;
 
     private SharedPreferences settings;
 
@@ -151,6 +154,14 @@ public class PreferencesManager extends Manager {
         if (!value.endsWith("/"))
             value = value + "/";
         savePreference(PROPERTY_DOWNLOAD_PATH, value);
+    }
+
+    public boolean isAcceptNotifications() {
+        return settings.getBoolean(PROPERTY_ENABLE_NOTIFICATIONS, DEFAULT_ENABLE_NOTIFICATIONS);
+    }
+
+    public void setAcceptNotifications(boolean value) {
+        savePreference(PROPERTY_ENABLE_NOTIFICATIONS, value);
     }
 
     private void savePreference(String preference, String value) {
