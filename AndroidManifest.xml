@@ -94,6 +94,9 @@
             android:name="com.beerbong.zipinst.activities.Changelog"
             android:label="@string/changelog_title" >
         </activity>
+        
+        <service android:name="com.beerbong.zipinst.service.Service" >
+        </service>
     </application>
 
 </manifest>
