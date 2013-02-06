@@ -18,6 +18,7 @@ package com.beerbong.zipinst.manager;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 /**
  * @author Yamil Ghazi Kantelinen
@@ -59,7 +60,7 @@ public class PreferencesManager extends Manager {
 
     protected PreferencesManager(Context context) {
         super(context);
-        settings = mContext.getSharedPreferences(PREFS_NAME, 0);
+        settings = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     public String getInternalStorage() {
