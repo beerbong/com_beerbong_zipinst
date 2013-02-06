@@ -74,11 +74,11 @@ public class Settings extends PreferenceActivity {
 
         mOverrideList.setChecked(pManager.isOverrideList());
 
-        if (!ManagerFactory.getProManager().iAmPro()) {
+        if (ManagerFactory.getProManager().iAmPro()) {
             PreferenceCategory category = (PreferenceCategory) findPreference("settings_update");
             category.removePreference(findPreference("updates"));
             category.removePreference(findPreference(Constants.PREFERENCE_SETTINGS_CHECK_UPDATE_STARTUP));
-            
+        } else {
             findPreference("donate").setTitle(R.string.become_a_pro);
         }
 
