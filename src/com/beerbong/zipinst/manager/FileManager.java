@@ -97,7 +97,7 @@ public class FileManager extends Manager implements UIListener {
         }
         if (Intent.ACTION_VIEW.equals(action)) {
             Uri zipUri = (Uri) intent.getData();
-            download(zipUri.toString());
+            download(mContext, zipUri.toString());
         }
     }
 
@@ -278,8 +278,8 @@ public class FileManager extends Manager implements UIListener {
         input.setSelection(input.getText().length());
 
         new AlertDialog.Builder(mContext)
-                .setTitle(R.string.download_alert_title)
-                .setMessage(R.string.download_alert_summary)
+                .setTitle(R.string.downloadzip_alert_title)
+                .setMessage(R.string.downloadzip_alert_summary)
                 .setView(input)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 
@@ -287,7 +287,7 @@ public class FileManager extends Manager implements UIListener {
                         final String value = input.getText().toString();
 
                         if (value == null || "".equals(value.trim())) {
-                            Toast.makeText(mContext, R.string.download_alert_error,
+                            Toast.makeText(mContext, R.string.downloadzip_alert_error,
                                     Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                             return;
@@ -298,7 +298,7 @@ public class FileManager extends Manager implements UIListener {
                         ((Activity) mContext).runOnUiThread(new Runnable() {
 
                             public void run() {
-                                download(value);
+                                download(mContext, value);
                             }
                         });
                     }
@@ -438,9 +438,9 @@ public class FileManager extends Manager implements UIListener {
 
     }
 
-    private void download(String url) {
+    public void download(Context context, String url) {
 
-        final ProgressDialog progressDialog = new ProgressDialog(mContext);
+        final ProgressDialog progressDialog = new ProgressDialog(context);
 
         String fileName = url.substring(url.lastIndexOf("/") + 1);
         if (fileName.indexOf("?") >= 0) {
@@ -449,13 +449,13 @@ public class FileManager extends Manager implements UIListener {
 
         final DownloadTask downloadFile = new DownloadTask(progressDialog, url, fileName);
 
-        progressDialog.setMessage(mContext.getResources().getString(R.string.downloading,
+        progressDialog.setMessage(context.getResources().getString(R.string.downloading,
                 new Object[] { url, ManagerFactory.getPreferencesManager().getDownloadPath() }));
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progressDialog.setCancelable(false);
         progressDialog.setProgress(0);
         progressDialog.setButton(Dialog.BUTTON_NEGATIVE,
-                mContext.getResources().getString(android.R.string.cancel),
+                context.getResources().getString(android.R.string.cancel),
                 new DialogInterface.OnClickListener() {
 
                     @Override
