@@ -27,6 +27,8 @@ import android.preference.PreferenceScreen;
 import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.manager.ManagerFactory;
 import com.beerbong.zipinst.manager.PreferencesManager;
+import com.beerbong.zipinst.manager.ProManager;
+import com.beerbong.zipinst.manager.ProManager.ManageMode;
 import com.beerbong.zipinst.ui.UI;
 import com.beerbong.zipinst.util.Constants;
 import com.beerbong.zipinst.util.RecoveryInfo;
@@ -74,7 +76,9 @@ public class Settings extends PreferenceActivity {
 
         mOverrideList.setChecked(pManager.isOverrideList());
 
-        if (ManagerFactory.getProManager().iAmPro()) {
+        ProManager proManager = ManagerFactory.getProManager();
+
+        if (proManager.iAmPro()) {
             PreferenceCategory category = (PreferenceCategory) findPreference("settings_update");
             category.removePreference(findPreference("updates"));
             category.removePreference(findPreference(Constants.PREFERENCE_SETTINGS_CHECK_UPDATE_STARTUP));
@@ -83,6 +87,8 @@ public class Settings extends PreferenceActivity {
         }
 
         updateSummaries();
+
+        proManager.manage(this, ManageMode.Settings);
     }
 
     @Override
@@ -156,8 +162,8 @@ public class Settings extends PreferenceActivity {
 
         } else if ("donate".equals(key)) {
 
-            Intent i = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse(ManagerFactory.getProManager().iAmPro() ? Constants.DONATE_URL : Constants.PRO_URL));
+            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(ManagerFactory.getProManager()
+                    .iAmPro() ? Constants.DONATE_URL : Constants.PRO_URL));
             startActivity(i);
 
         }
