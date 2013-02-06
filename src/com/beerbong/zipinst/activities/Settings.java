@@ -75,9 +75,11 @@ public class Settings extends PreferenceActivity {
         mOverrideList.setChecked(pManager.isOverrideList());
 
         if (!ManagerFactory.getProManager().iAmPro()) {
-            PreferenceCategory category = (PreferenceCategory)findPreference("settings_update");
+            PreferenceCategory category = (PreferenceCategory) findPreference("settings_update");
             category.removePreference(findPreference("updates"));
             category.removePreference(findPreference(Constants.PREFERENCE_SETTINGS_CHECK_UPDATE_STARTUP));
+            
+            findPreference("donate").setTitle(R.string.become_a_pro);
         }
 
         updateSummaries();
@@ -154,7 +156,8 @@ public class Settings extends PreferenceActivity {
 
         } else if ("donate".equals(key)) {
 
-            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.DONATE_URL));
+            Intent i = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse(ManagerFactory.getProManager().iAmPro() ? Constants.DONATE_URL : Constants.PRO_URL));
             startActivity(i);
 
         }

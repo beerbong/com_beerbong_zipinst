@@ -64,6 +64,7 @@ public class Constants {
     public static final String DOWNLOAD_URL = "http://goo.im/devs/beerbong/apps/ZipInstaller/";
 
     public static final String DONATE_URL = "http://forum.xda-developers.com/donatetome.php?u=1806623";
+    public static final String PRO_URL = "https://play.google.com/store/apps/details?id=com.beerbong.zipinst";
     public static final String ABOUT_URL = "http://forum.xda-developers.com/showthread.php?t=1920057";
 
     public static final int REQUEST_PICK_ZIP = 203;

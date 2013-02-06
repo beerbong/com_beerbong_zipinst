@@ -39,19 +39,29 @@ public class ProManagerImpl extends Manager implements ProManager {
         } catch (Throwable t) {
             // sorry, you are not a pro
         }
-        
+
         if (!iAmPro()) {
             Toast.makeText(context, R.string.consider_becoming_a_pro, Toast.LENGTH_LONG).show();
         }
     }
 
+    @Override
     public void setContext(Context context) {
         mContext = context;
         if (mRealPro != null) {
             mRealPro.setContext(context);
         }
     }
+
+    @Override
     public boolean iAmPro() {
         return mRealPro != null;
+    }
+
+    @Override
+    public void manage(Object input, ManageMode mode) {
+        if (iAmPro()) {
+            mRealPro.manage(input, mode);
+        }
     }
 }
