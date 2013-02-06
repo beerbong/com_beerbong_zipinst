@@ -140,8 +140,7 @@ public class FileManager extends Manager implements UIListener {
     public void onNewIntent(Intent intent) {
 
         if (intent.getExtras() != null && intent.getExtras().containsKey("NOTIFICATION_ID")) {
-            // TODO CHANGE THIS
-            String url = "http://goo.im/devs/beerbong/n7000/JellyBeer/kernels/Kernel_JellyBeer_v1.0_OC2_CWM_Flashable.zip";// intent.getExtras().getString("URL");
+            String url = intent.getExtras().getString("URL");
             String md5 = intent.getStringExtra("MD5");
             String name = intent.getStringExtra("ZIP_NAME");
             if (md5 != null) {
