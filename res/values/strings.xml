@@ -176,4 +176,12 @@
 
     <string name="consider_becoming_a_pro">Please consider purchasing the application</string>
     <string name="become_a_pro">Purchase the application</string>
+    <!-- PRO -->
+    <string name="enable_notifications">Enable notifications</string>
+    <string name="check_rom_updates">Check for ROM updates</string>
+    <string name="check_rom_updates_error">Error checking for ROM updates</string>
+    <string name="check_rom_updates_no_new">No new ROM updates found</string>
+
+    <string name="new_rom_found_title">New ROM version found</string>
+    <string name="new_rom_found_summary">A new version of your ROM has been found. Do you want to download it now?\n\n%1$s\n%2$s\n</string>
 </resources>

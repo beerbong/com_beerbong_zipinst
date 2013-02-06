@@ -175,4 +175,12 @@
 
     <string name="consider_becoming_a_pro">Por favor, considera comprar la aplicación</string>
     <string name="become_a_pro">Compra la aplicación</string>
+    <!-- PRO -->
+    <string name="enable_notifications">Habilitar notificationes</string>
+    <string name="check_rom_updates">Buscar actualizaciones de la ROM</string>
+    <string name="check_rom_updates_error">Error buscando actualizaciones de la ROM</string>
+    <string name="check_rom_updates_no_new">No se ha encontrado ninguna nueva actualización de la ROM</string>
+
+    <string name="new_rom_found_title">Nueva versión de la ROM encontrada</string>
+    <string name="new_rom_found_summary">Se ha encontrado una nueva versión de tu ROM. ¿Quieres descargarla ahora?\n\n%1$s\n%2$s\n</string>
 </resources>
