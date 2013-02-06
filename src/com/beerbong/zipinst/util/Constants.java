@@ -70,6 +70,8 @@ public class Constants {
     public static final String ABOUT_URL = "http://forum.xda-developers.com/showthread.php?t=1920057";
 
     public static final int REQUEST_PICK_ZIP = 203;
+    
+    public static final int NOTIFICATION_ID = 122303221;
 
     private static final SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd.HH.mm.ss");
 

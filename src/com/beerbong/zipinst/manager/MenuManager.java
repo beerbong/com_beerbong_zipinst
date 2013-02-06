@@ -88,4 +88,8 @@ public class MenuManager extends Manager implements UIListener {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
     }
+
+    @Override
+    public void onNewIntent(Intent intent) {
+    }
 }

@@ -38,4 +38,6 @@ public interface UIListener {
     public void onCreateOptionsMenu(Menu menu);
 
     public void onOptionsItemSelected(MenuItem item);
+
+    public void onNewIntent(Intent intent);
 }

@@ -170,6 +170,13 @@ public class UIImpl extends UI {
     }
 
     @Override
+    public void onNewIntent(Intent intent) {
+
+        dispatchOnNewIntent(intent);
+
+    }
+
+    @Override
     public void addItem(String realPath, String sdcardPath) {
 
         StoredItems.removeItem(realPath);
@@ -240,6 +247,13 @@ public class UIImpl extends UI {
         int size = mListeners.size(), i = 0;
         for (; i < size; i++) {
             mListeners.get(i).onZipItemClicked(item);
+        }
+    }
+
+    private void dispatchOnNewIntent(Intent intent) {
+        int size = mListeners.size(), i = 0;
+        for (; i < size; i++) {
+            mListeners.get(i).onNewIntent(intent);
         }
     }
 

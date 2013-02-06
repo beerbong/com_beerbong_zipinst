@@ -73,6 +73,10 @@ public class RebootManager extends Manager implements UIListener {
     public void onOptionsItemSelected(MenuItem item) {
     }
 
+    @Override
+    public void onNewIntent(Intent intent) {
+    }
+
     public void showBackupDialog(Context context) {
         showBackupDialog(context, true, null);
     }

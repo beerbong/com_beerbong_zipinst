@@ -18,6 +18,7 @@ package com.beerbong.zipinst.manager;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Date;
@@ -97,8 +98,10 @@ public class FileManager extends Manager implements UIListener {
         }
         if (Intent.ACTION_VIEW.equals(action)) {
             Uri zipUri = (Uri) intent.getData();
-            download(mContext, zipUri.toString());
+            download(mContext, zipUri.toString(), null);
         }
+
+        onNewIntent(intent);
     }
 
     public void onButtonClicked(int id) {
@@ -113,7 +116,8 @@ public class FileManager extends Manager implements UIListener {
                 intent.setType("file/*");
                 getActivity().startActivityForResult(intent, Constants.REQUEST_PICK_ZIP);
             } else {
-                // No app installed to handle the intent - file explorer required
+                // No app installed to handle the intent - file explorer
+                // required
                 Toast.makeText(mContext, R.string.install_file_manager_error, Toast.LENGTH_SHORT)
                         .show();
             }
@@ -132,10 +136,39 @@ public class FileManager extends Manager implements UIListener {
     public void onOptionsItemSelected(MenuItem item) {
     }
 
+    @Override
+    public void onNewIntent(Intent intent) {
+
+        if (intent.getExtras() != null && intent.getExtras().containsKey("NOTIFICATION_ID")) {
+            // TODO CHANGE THIS
+            String url = "http://goo.im/devs/beerbong/n7000/JellyBeer/kernels/Kernel_JellyBeer_v1.0_OC2_CWM_Flashable.zip";// intent.getExtras().getString("URL");
+            String md5 = intent.getStringExtra("MD5");
+            String name = intent.getStringExtra("ZIP_NAME");
+            if (md5 != null) {
+                FileOutputStream fos = null;
+                try {
+                    fos = new FileOutputStream(new File(ManagerFactory.getPreferencesManager().getDownloadPath(), name
+                            + ".md5sum"));
+                    fos.write((md5 + " " + name).getBytes());
+                } catch (Exception ex) {
+                } finally {
+                    if (fos != null)
+                        try {
+                            fos.close();
+                        } catch (Exception ex) {
+                        }
+                }
+            }
+            download(mContext, url, name);
+        }
+
+    }
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == Constants.REQUEST_PICK_ZIP) {
             if (data == null) {
-                // Nothing returned by user, probably pressed back button in file manager
+                // Nothing returned by user, probably pressed back button in
+                // file manager
                 return;
             }
 
@@ -298,7 +331,7 @@ public class FileManager extends Manager implements UIListener {
                         ((Activity) mContext).runOnUiThread(new Runnable() {
 
                             public void run() {
-                                download(mContext, value);
+                                download(mContext, value, null);
                             }
                         });
                     }
@@ -438,13 +471,15 @@ public class FileManager extends Manager implements UIListener {
 
     }
 
-    public void download(Context context, String url) {
+    public void download(Context context, String url, String fileName) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
 
-        String fileName = url.substring(url.lastIndexOf("/") + 1);
-        if (fileName.indexOf("?") >= 0) {
-            fileName = fileName.substring(0, fileName.indexOf("?"));
+        if (fileName == null) {
+            fileName = url.substring(url.lastIndexOf("/") + 1);
+            if (fileName.indexOf("?") >= 0) {
+                fileName = fileName.substring(0, fileName.indexOf("?"));
+            }
         }
 
         final DownloadTask downloadFile = new DownloadTask(progressDialog, url, fileName);

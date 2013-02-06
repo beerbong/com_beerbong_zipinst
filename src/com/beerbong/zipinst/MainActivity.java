@@ -57,4 +57,11 @@ public class MainActivity extends FragmentActivity {
         return UI.getInstance().onOptionsItemSelected(item);
 
     }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+
+        UI.getInstance().onNewIntent(intent);
+
+    }
 }

@@ -48,4 +48,8 @@ public class UIAdapter implements UIListener {
     @Override
     public void onOptionsItemSelected(MenuItem item) {
     }
+
+    @Override
+    public void onNewIntent(Intent intent) {
+    }
 }

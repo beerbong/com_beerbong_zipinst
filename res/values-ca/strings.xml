@@ -181,6 +181,7 @@
     <string name="check_rom_updates_error">Error cercant actualitzacions de la ROM</string>
     <string name="check_rom_updates_no_new">No s\'ha trobat cap nova actualització de la ROM</string>
 
-    <string name="new_rom_found_title">Nova versió de la ROM trobada</string>
+    <string name="new_rom_found_title">Nova versió de la ROM</string>
     <string name="new_rom_found_summary">S\'ha trobat una nova versió de la teva ROM. Vols descarregar-la ara?\n\n%1$s\n%2$s\n</string>
+    <string name="new_rom_name">%1$s</string>
 </resources>
