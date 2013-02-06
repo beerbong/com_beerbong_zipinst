@@ -17,13 +17,11 @@
 package com.beerbong.zipinst.manager.pro;
 
 import android.content.Context;
-import android.content.Intent;
 import android.widget.Toast;
 
 import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.manager.Manager;
 import com.beerbong.zipinst.manager.ProManager;
-import com.beerbong.zipinst.service.Service;
 
 public class ProManagerImpl extends Manager implements ProManager {
 
@@ -44,9 +42,6 @@ public class ProManagerImpl extends Manager implements ProManager {
 
         if (!iAmPro()) {
             Toast.makeText(context, R.string.consider_becoming_a_pro, Toast.LENGTH_LONG).show();
-        } else {
-            Intent intent = new Intent(context, Service.class);
-            context.startService(intent);
         }
     }
 
