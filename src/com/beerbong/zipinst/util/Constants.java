@@ -16,9 +16,11 @@
 
 package com.beerbong.zipinst.util;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
@@ -167,5 +169,19 @@ public class Constants {
             str.append(HEX_DIGITS[0xF & bytes[q]]);
         }
         return str.toString();
+    }
+
+    public static String getProperty(String prop) {
+        try {
+            String output = null;
+            Process p = Runtime.getRuntime().exec("getprop " + prop);
+            p.waitFor();
+            BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            output = input.readLine();
+            return output;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

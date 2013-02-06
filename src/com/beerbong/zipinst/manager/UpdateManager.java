@@ -16,11 +16,6 @@
 
 package com.beerbong.zipinst.manager;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLConnection;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -31,32 +26,16 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.util.Constants;
 import com.beerbong.zipinst.util.DownloadTask;
+import com.beerbong.zipinst.util.URLStringReader;
+import com.beerbong.zipinst.util.URLStringReader.URLStringReaderListener;
 
-public class UpdateManager extends Manager {
+public class UpdateManager extends Manager implements URLStringReaderListener {
 
-    class URLStringReader extends AsyncTask<Context, Void, Void> {
-
-        @Override
-        protected Void doInBackground(Context... params) {
-            try {
-                mBuffer = readString();
-                parseBuffer(params[0]);
-                return null;
-            } catch (Exception ex) {
-                ex.printStackTrace();
-                showToastOnUiThread(R.string.check_for_updates_error);
-            }
-            return null;
-        }
-    }
-
-    private String mBuffer = null;
     private int mVersion = -1;
 
     public UpdateManager(Context context) {
@@ -75,15 +54,16 @@ public class UpdateManager extends Manager {
     }
 
     public void checkForUpdate(Context context) {
-        if (mVersion == -1)
+        if (mVersion == -1) {
             return;
-        mBuffer = null;
-        new URLStringReader().execute(context);
+        }
+        new URLStringReader(this).execute(Constants.SEARCH_URL);
     }
 
-    private void parseBuffer(final Context context) {
+    @Override
+    public void onReadEnd(String buffer) {
         try {
-            JSONObject object = (JSONObject) new JSONTokener(mBuffer).nextValue();
+            JSONObject object = (JSONObject) new JSONTokener(buffer).nextValue();
             JSONArray results = object.getJSONArray("search_result");
             int newVersion = -1;
             for (int i = 0; i < results.length(); i++) {
@@ -98,10 +78,10 @@ public class UpdateManager extends Manager {
                 showToastOnUiThread(R.string.no_new_version);
             } else {
                 final int nVersion = newVersion;
-                ((Activity) context).runOnUiThread(new Runnable() {
+                ((Activity) mContext).runOnUiThread(new Runnable() {
 
                     public void run() {
-                        requestForDownload(context, nVersion);
+                        requestForDownload(mContext, nVersion);
                     }
                 });
             }
@@ -109,6 +89,11 @@ public class UpdateManager extends Manager {
             ex.printStackTrace();
             showToastOnUiThread(R.string.check_for_updates_error);
         }
+    }
+
+    @Override
+    public void onReadError(Exception ex) {
+        showToastOnUiThread(R.string.check_for_updates_error);
     }
 
     private void requestForDownload(Context context, int version) {
@@ -165,23 +150,6 @@ public class UpdateManager extends Manager {
         downloadFile.attach(progressDialog);
         progressDialog.show();
         downloadFile.execute();
-    }
-
-    private String readString() throws Exception {
-        URL url = new URL(Constants.SEARCH_URL);
-        URLConnection yc = url.openConnection();
-        BufferedReader in = null;
-        StringBuffer sb = new StringBuffer();
-        try {
-            in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
-            String inputLine;
-            while ((inputLine = in.readLine()) != null)
-                sb.append(inputLine);
-        } finally {
-            if (in != null)
-                in.close();
-        }
-        return sb.toString();
     }
 
     private void showToastOnUiThread(final int resourceId) {
