@@ -173,6 +173,6 @@
 
     <string name="alert_deleting_folder">Borrando %1$s&#8230;</string>
 
-    <string name="consider_becoming_a_pro">Por favor, considera comprar la versión pro</string>
-    <string name="become_a_pro">Conviértete en un pro</string>
+    <string name="consider_becoming_a_pro">Por favor, considera comprar la aplicación</string>
+    <string name="become_a_pro">Compra la aplicación</string>
 </resources>
