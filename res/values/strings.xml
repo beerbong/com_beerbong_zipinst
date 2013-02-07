@@ -123,6 +123,9 @@
     <string name="overridelist_title">Load list overrides</string>
     <string name="overridelist_summary">Loading the saved list will override the selected zips list</string>
 
+    <string name="autoloadlist_title">Load list on startup</string>
+    <string name="autoloadlist_summary">Automatically load saved list on sstart application</string>
+
     <string name="settings_backup_title">Show backup option</string>
     <string name="settings_backup_summary">Show backup option when pressing the Install Now button</string>
 

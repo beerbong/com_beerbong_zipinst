@@ -64,6 +64,11 @@
             android:summary="@string/overridelist_summary" />
 
         <CheckBoxPreference
+            android:key="autoloadlist"
+            android:title="@string/autoloadlist_title"
+            android:summary="@string/autoloadlist_summary" />
+
+        <CheckBoxPreference
             android:key="darktheme"
             android:title="@string/settings_theme_title"
             android:summary="@string/settings_theme_summary" />

@@ -44,6 +44,7 @@ public class Settings extends PreferenceActivity {
     private CheckBoxPreference mCheckExists;
     private CheckBoxPreference mCheckMd5;
     private CheckBoxPreference mOverrideList;
+    private CheckBoxPreference mAutoloadList;
     private Preference mDownloadPath;
 
     @Override
@@ -60,6 +61,7 @@ public class Settings extends PreferenceActivity {
         mCheckExists = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_CHECK_EXISTS);
         mCheckMd5 = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_CHECK_MD5);
         mOverrideList = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_OVERRIDE_LIST);
+        mAutoloadList = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_AUTOLOAD_LIST);
         mDownloadPath = findPreference(Constants.PREFERENCE_SETTINGS_DOWNLOAD_PATH);
 
         PreferencesManager pManager = ManagerFactory.getPreferencesManager();
@@ -75,6 +77,8 @@ public class Settings extends PreferenceActivity {
         mCheckMd5.setChecked(pManager.isCheckMD5());
 
         mOverrideList.setChecked(pManager.isOverrideList());
+
+        mAutoloadList.setChecked(pManager.isAutoloadList());
 
         ProManager proManager = ManagerFactory.getProManager();
 
@@ -149,6 +153,11 @@ public class Settings extends PreferenceActivity {
 
             boolean overrideList = ((CheckBoxPreference) preference).isChecked();
             pManager.setOverrideList(overrideList);
+
+        } else if (Constants.PREFERENCE_SETTINGS_AUTOLOAD_LIST.equals(key)) {
+
+            boolean autoloadList = ((CheckBoxPreference) preference).isChecked();
+            pManager.setAutoloadList(autoloadList);
 
         } else if (Constants.PREFERENCE_SETTINGS_DOWNLOAD_PATH.equals(key)) {
 

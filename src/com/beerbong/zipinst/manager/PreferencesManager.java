@@ -40,6 +40,7 @@ public class PreferencesManager extends Manager {
     private static final String PROPERTY_DOWNLOAD_PATH = "download_path";
     private static final String PROPERTY_CHECK_MD5 = "check_md5";
     private static final String PROPERTY_OVERRIDE_LIST = "override_list";
+    private static final String PROPERTY_AUTOLOAD_LIST = "autoload_list";
 
     public static final String PROPERTY_ENABLE_NOTIFICATIONS = "enable_notifications";
 
@@ -53,6 +54,7 @@ public class PreferencesManager extends Manager {
     private static final boolean DEFAULT_CHECK_UPDATES_STARTUP = false;
     private static final boolean DEFAULT_CHECK_MD5 = true;
     private static final boolean DEFAULT_OVERRIDE_LIST = true;
+    private static final boolean DEFAULT_AUTOLOAD_LIST = false;
     private static final boolean DEFAULT_ENABLE_NOTIFICATIONS = true;
 
     private SharedPreferences settings;
@@ -144,6 +146,14 @@ public class PreferencesManager extends Manager {
 
     public void setOverrideList(boolean value) {
         savePreference(PROPERTY_OVERRIDE_LIST, value);
+    }
+
+    public boolean isAutoloadList() {
+        return settings.getBoolean(PROPERTY_AUTOLOAD_LIST, DEFAULT_AUTOLOAD_LIST);
+    }
+
+    public void setAutoloadList(boolean value) {
+        savePreference(PROPERTY_AUTOLOAD_LIST, value);
     }
 
     public String getDownloadPath() {

@@ -122,6 +122,9 @@
     <string name="overridelist_title">Cargar lista sobreescribe</string>
     <string name="overridelist_summary">Cargar la lista guardada sobreescribirá la lista de zips seleccionados</string>
 
+    <string name="autoloadlist_title">Cargar lista al empezar</string>
+    <string name="autoloadlist_summary">Cargar lista guardada automáticamente al comenzar aplicación</string>
+
     <string name="settings_backup_title">Mostrar opción backup</string>
     <string name="settings_backup_summary">"Mostrar opción backup al apretar el botón Instalar Ahora"</string>
 

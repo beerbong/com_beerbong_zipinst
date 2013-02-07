@@ -54,6 +54,7 @@ public class Constants {
     public static final String PREFERENCE_SETTINGS_CHECK_UPDATE_STARTUP = "updateonstartup";
     public static final String PREFERENCE_SETTINGS_CHECK_MD5 = "checkmd5";
     public static final String PREFERENCE_SETTINGS_OVERRIDE_LIST = "overridelist";
+    public static final String PREFERENCE_SETTINGS_AUTOLOAD_LIST = "autoloadlist";
     public static final String PREFERENCE_SETTINGS_DOWNLOAD_PATH = "downloadpath";
 
     // recovery preferences

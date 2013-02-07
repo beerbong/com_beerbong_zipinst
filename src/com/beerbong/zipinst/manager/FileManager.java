@@ -84,6 +84,10 @@ public class FileManager extends Manager implements UIListener {
             Toast.makeText(mContext, R.string.paths_error, Toast.LENGTH_LONG).show();
             return;
         }
+        
+        if (ManagerFactory.getPreferencesManager().isAutoloadList()) {
+            loadList();
+        }
 
         Intent intent = getActivity().getIntent();
         String action = intent.getAction();
