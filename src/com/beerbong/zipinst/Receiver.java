@@ -16,15 +16,15 @@
 
 package com.beerbong.zipinst;
 
+import com.beerbong.zipinst.pro.updater.RomUpdater;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.beerbong.zipinst.pro.RomUpdater;
-
 public class Receiver extends BroadcastReceiver {
 
-    private static final String SERVICE_CLASS = "";
+    private static final String SERVICE_CLASS = "com.beerbong.zipinst.pro.Service";
 
     @Override
     public void onReceive(Context context, Intent intent) {
