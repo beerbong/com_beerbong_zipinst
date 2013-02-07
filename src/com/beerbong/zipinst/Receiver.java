@@ -16,8 +16,6 @@
 
 package com.beerbong.zipinst;
 
-import com.beerbong.zipinst.pro.updater.RomUpdater;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -30,11 +28,8 @@ public class Receiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         try {
             Class<?> pClass = Class.forName(SERVICE_CLASS);
-            RomUpdater romUpdater = new RomUpdater(context, false);
-            if (romUpdater.canUpdate()) {
-                Intent service = new Intent(context, pClass);
-                context.startService(service);
-            }
+            Intent service = new Intent(context, pClass);
+            context.startService(service);
         } catch (Exception ex) {
             // ignore
         }
