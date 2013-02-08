@@ -19,6 +19,7 @@ package com.beerbong.zipinst.manager;
 import com.beerbong.zipinst.manager.pro.ProManagerImpl;
 
 import android.app.Activity;
+import android.content.Context;
 
 /**
  * @author Yamil Ghazi Kantelinen
@@ -66,9 +67,9 @@ public class ManagerFactory {
         return mPreferencesManager;
     }
 
-    public static PreferencesManager getPreferencesManager(Activity mActivity) {
+    public static PreferencesManager getPreferencesManager(Context context) {
         if (mPreferencesManager == null)
-            mPreferencesManager = new PreferencesManager(mActivity);
+            mPreferencesManager = new PreferencesManager(context);
         return mPreferencesManager;
     }
 
