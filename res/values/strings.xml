@@ -179,6 +179,12 @@
 
     <string name="consider_becoming_a_pro">Please consider purchasing the application</string>
     <string name="become_a_pro">Purchase the application</string>
+
+    <string name="zipposition_title">Zip position</string>
+    <string name="zipposition_summary">Position to add the new zip files added to the list</string>
+    <string name="zip_position_first">First</string>
+    <string name="zip_position_last">Last</string>
+
     <!-- PRO -->
     <string name="enable_notifications">Enable notifications</string>
     <string name="check_rom_updates">Check for ROM updates</string>

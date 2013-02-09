@@ -178,6 +178,12 @@
 
     <string name="consider_becoming_a_pro">Per favor, considera comprar l\'aplicació</string>
     <string name="become_a_pro">Compra l\'aplicació</string>
+
+    <string name="zipposition_title">Posició dels zip</string>
+    <string name="zipposition_summary">Posició on afegir els nous zips afegits a la llista</string>
+    <string name="zip_position_first">Primer</string>
+    <string name="zip_position_last">Darrer</string>
+
     <!-- PRO -->
     <string name="enable_notifications">Habilitar notifications</string>
     <string name="check_rom_updates">Cercar actualitzacions de la ROM</string>

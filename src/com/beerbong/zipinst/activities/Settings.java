@@ -20,6 +20,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
@@ -46,6 +47,7 @@ public class Settings extends PreferenceActivity {
     private CheckBoxPreference mOverrideList;
     private CheckBoxPreference mAutoloadList;
     private Preference mDownloadPath;
+    private ListPreference mZipPosition;
 
     @Override
     @SuppressWarnings("deprecation")
@@ -63,6 +65,7 @@ public class Settings extends PreferenceActivity {
         mOverrideList = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_OVERRIDE_LIST);
         mAutoloadList = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_AUTOLOAD_LIST);
         mDownloadPath = findPreference(Constants.PREFERENCE_SETTINGS_DOWNLOAD_PATH);
+        mZipPosition = (ListPreference) findPreference(Constants.PREFERENCE_SETTINGS_ZIP_POSITION);
 
         PreferencesManager pManager = ManagerFactory.getPreferencesManager();
 
@@ -79,6 +82,8 @@ public class Settings extends PreferenceActivity {
         mOverrideList.setChecked(pManager.isOverrideList());
 
         mAutoloadList.setChecked(pManager.isAutoloadList());
+
+        mZipPosition.setValue(pManager.getZipPosition());
 
         ProManager proManager = ManagerFactory.getProManager();
 
@@ -163,6 +168,11 @@ public class Settings extends PreferenceActivity {
 
             ManagerFactory.getFileManager().selectDownloadPath(this);
             updateSummaries();
+
+        } else if (Constants.PREFERENCE_SETTINGS_ZIP_POSITION.equals(key)) {
+
+            String zipPosition = ((ListPreference) preference).getValue();
+            pManager.setZipPosition(zipPosition);
 
         } else if ("about".equals(key)) {
 

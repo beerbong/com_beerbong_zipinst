@@ -45,6 +45,10 @@ public class StoredItems {
         list.add(item);
     }
 
+    public static void addItem(ZipItem item, int position) {
+        list.add(position, item);
+    }
+
     public static void removeItems() {
         list.clear();
     }

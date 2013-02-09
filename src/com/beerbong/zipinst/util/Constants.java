@@ -56,6 +56,7 @@ public class Constants {
     public static final String PREFERENCE_SETTINGS_OVERRIDE_LIST = "overridelist";
     public static final String PREFERENCE_SETTINGS_AUTOLOAD_LIST = "autoloadlist";
     public static final String PREFERENCE_SETTINGS_DOWNLOAD_PATH = "downloadpath";
+    public static final String PREFERENCE_SETTINGS_ZIP_POSITION = "zipposition";
 
     // recovery preferences
     public static final String PREFERENCE_RECOVERY_BACKUP = "recovery_activity_backup";
@@ -71,7 +72,7 @@ public class Constants {
     public static final String ABOUT_URL = "http://forum.xda-developers.com/showthread.php?t=1920057";
 
     public static final int REQUEST_PICK_ZIP = 203;
-    
+
     public static final int NOTIFICATION_ID = 122303221;
 
     private static final SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd.HH.mm.ss");

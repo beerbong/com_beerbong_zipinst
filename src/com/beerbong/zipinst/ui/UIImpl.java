@@ -184,7 +184,11 @@ public class UIImpl extends UI {
         ZipItem item = new ZipItem(realPath, sdcardPath.substring(sdcardPath.lastIndexOf("/") + 1),
                 sdcardPath);
 
-        StoredItems.addItem(item);
+        if ("first".equals(ManagerFactory.getPreferencesManager().getZipPosition())) {
+            StoredItems.addItem(item, 0);
+        } else {
+            StoredItems.addItem(item);
+        }
 
         redrawItems();
     }

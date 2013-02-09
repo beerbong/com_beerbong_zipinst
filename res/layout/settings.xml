@@ -58,6 +58,14 @@
             android:title="@string/dad_title"
             android:summary="@string/dad_summary" />
 
+        <ListPreference
+            android:key="zipposition"
+            android:title="@string/zipposition_title"
+            android:summary="@string/zipposition_summary"
+            android:dialogTitle="@string/zipposition_title"
+            android:entries="@array/zip_position_options"
+            android:entryValues="@array/zip_position_values" />
+
         <CheckBoxPreference
             android:key="overridelist"
             android:title="@string/overridelist_title"
