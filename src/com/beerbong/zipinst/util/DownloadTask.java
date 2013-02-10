@@ -93,9 +93,15 @@ public class DownloadTask extends AsyncTask<Void, Integer, Integer> {
         PreferencesManager pManager = ManagerFactory.getPreferencesManager();
         File destFile = new File(pManager.getDownloadPath(), mFileName);
 
-        if (destFile.exists()) {
-            destFile.delete();
+        String extension = mFileName.substring(mFileName.lastIndexOf("."));
+        String name = mFileName.substring(0, mFileName.lastIndexOf("."));
+        int i = 0;
+        while (destFile.exists()) {
+            i++;
+            mFileName = name + "(" + i + ")" + extension;
+            destFile = new File(pManager.getDownloadPath(), mFileName);
         }
+
         InputStream is = null;
         OutputStream os = null;
         try {
