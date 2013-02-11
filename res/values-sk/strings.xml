@@ -70,7 +70,6 @@
     <string name="menu_loadlist">Načítať zoznam</string>
     <string name="menu_savelist">Uložiť zoznam</string>
     <string name="menu_downloadzip">Stiahnuť ZIP</string>
-    <string name="menu_exit">Ukončiť</string>
 
     <string name="recovery_change_alert_title">Recovery nájdená</string>
     <string name="recovery_change_alert_message">Nájdená recovery zložka %1$s. Chcete ju nastaviť ako predvolenú?</string>

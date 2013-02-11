@@ -70,7 +70,6 @@
     <string name="menu_loadlist">Cargar lista</string>
     <string name="menu_savelist">Guardar lista</string>
     <string name="menu_downloadzip">Descargar zip</string>
-    <string name="menu_exit">Salir</string>
 
     <string name="recovery_change_alert_title">Recovery encontrado</string>
     <string name="recovery_change_alert_message">Se ha encontrado una carpeta del recovery %1$s. ¿Quieres que se configure por defecto?</string>

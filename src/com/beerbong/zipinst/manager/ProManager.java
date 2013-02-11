@@ -21,7 +21,8 @@ import android.content.Context;
 public interface ProManager {
 
     public static enum ManageMode {
-        Settings
+        Settings,
+        Menu
     }
 
     public void setContext(Context context);

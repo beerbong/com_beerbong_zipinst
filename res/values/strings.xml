@@ -70,7 +70,6 @@
     <string name="menu_loadlist">Load list</string>
     <string name="menu_savelist">Save list</string>
     <string name="menu_downloadzip">Download zip</string>
-    <string name="menu_exit">Exit</string>
 
     <string name="recovery_change_alert_title">Recovery found</string>
     <string name="recovery_change_alert_message">%1$s recovery folder found. Do you want to configure it as default?</string>
@@ -194,4 +193,6 @@
     <string name="new_rom_found_title">New ROM version found</string>
     <string name="new_rom_found_summary">A new version of your ROM has been found. Do you want to download it now?\n\n%1$s\n%2$s\n</string>
     <string name="new_rom_name">%1$s</string>
+
+    <string name="menu_gooim">Goo.im</string>
 </resources>

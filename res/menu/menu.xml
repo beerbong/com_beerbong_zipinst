@@ -38,7 +38,4 @@
     <item android:id="@+id/downloadzip"
         android:title="@string/menu_downloadzip" />
 
-    <item android:id="@+id/exit"
-        android:title="@string/menu_exit" />
-
 </menu>

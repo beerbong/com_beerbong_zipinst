@@ -37,15 +37,26 @@ import com.beerbong.zipinst.util.ZipItem;
 
 public class MenuManager extends Manager implements UIListener {
 
+    private Menu mMenu;
+
     protected MenuManager(Context context) {
         super(context);
 
         UI.getInstance().addUIListener(this);
     }
 
+    public Menu getMenu() {
+        return mMenu;
+    }
+
     public void onCreateOptionsMenu(Menu menu) {
+
+        mMenu = menu;
+
         MenuInflater inflater = ((Activity) mContext).getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
+
+        ManagerFactory.getProManager().manage(this, ProManager.ManageMode.Menu);
     }
 
     public void onOptionsItemSelected(MenuItem item) {
@@ -71,9 +82,6 @@ public class MenuManager extends Manager implements UIListener {
             case R.id.downloadzip:
                 ManagerFactory.getFileManager().downloadZip();
                 break;
-            case R.id.exit:
-                ((Activity) mContext).finish();
-                return;
         }
     }
 
