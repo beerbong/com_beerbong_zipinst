@@ -47,12 +47,13 @@ public class DownloadTask extends AsyncTask<Void, Integer, Integer> {
     private Context mContext;
     private String mUrl;
     private String mFileName;
+    private String mMd5;
     private final WakeLock mWakeLock;
 
     private boolean mDone = false;
 
     @SuppressWarnings("deprecation")
-    public DownloadTask(ProgressDialog dialog, String url, String fileName) {
+    public DownloadTask(ProgressDialog dialog, String url, String fileName, String md5) {
         this.attach(dialog);
 
         File dPath = new File(ManagerFactory.getPreferencesManager().getDownloadPath());
@@ -60,6 +61,7 @@ public class DownloadTask extends AsyncTask<Void, Integer, Integer> {
 
         mUrl = url;
         mFileName = fileName;
+        mMd5 = md5;
 
         PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
         mWakeLock = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, MainActivity.class.getName());
@@ -100,6 +102,22 @@ public class DownloadTask extends AsyncTask<Void, Integer, Integer> {
             i++;
             mFileName = name + "(" + i + ")" + extension;
             destFile = new File(pManager.getDownloadPath(), mFileName);
+        }
+
+        if (mMd5 != null) {
+            FileOutputStream fos = null;
+            try {
+                fos = new FileOutputStream(new File(ManagerFactory.getPreferencesManager()
+                        .getDownloadPath(), mFileName + ".md5sum"));
+                fos.write((mMd5 + " " + mFileName).getBytes());
+            } catch (Exception ex) {
+            } finally {
+                if (fos != null)
+                    try {
+                        fos.close();
+                    } catch (Exception ex) {
+                    }
+            }
         }
 
         InputStream is = null;

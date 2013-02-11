@@ -102,7 +102,7 @@ public class FileManager extends Manager implements UIListener {
         }
         if (Intent.ACTION_VIEW.equals(action)) {
             Uri zipUri = (Uri) intent.getData();
-            download(mContext, zipUri.toString(), null);
+            download(mContext, zipUri.toString(), null, null);
         }
 
         onNewIntent(intent);
@@ -147,22 +147,8 @@ public class FileManager extends Manager implements UIListener {
             String url = intent.getExtras().getString("URL");
             String md5 = intent.getStringExtra("MD5");
             String name = intent.getStringExtra("ZIP_NAME");
-            if (md5 != null) {
-                FileOutputStream fos = null;
-                try {
-                    fos = new FileOutputStream(new File(ManagerFactory.getPreferencesManager().getDownloadPath(), name
-                            + ".md5sum"));
-                    fos.write((md5 + " " + name).getBytes());
-                } catch (Exception ex) {
-                } finally {
-                    if (fos != null)
-                        try {
-                            fos.close();
-                        } catch (Exception ex) {
-                        }
-                }
-            }
-            download(mContext, url, name);
+
+            download(mContext, url, name, md5);
         }
 
     }
@@ -334,7 +320,7 @@ public class FileManager extends Manager implements UIListener {
                         ((Activity) mContext).runOnUiThread(new Runnable() {
 
                             public void run() {
-                                download(mContext, value, null);
+                                download(mContext, value, null, null);
                             }
                         });
                     }
@@ -474,7 +460,7 @@ public class FileManager extends Manager implements UIListener {
 
     }
 
-    public void download(Context context, String url, String fileName) {
+    public void download(Context context, String url, String fileName, String md5) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
 
@@ -485,7 +471,7 @@ public class FileManager extends Manager implements UIListener {
             }
         }
 
-        final DownloadTask downloadFile = new DownloadTask(progressDialog, url, fileName);
+        final DownloadTask downloadFile = new DownloadTask(progressDialog, url, fileName, md5);
 
         progressDialog.setMessage(context.getResources().getString(R.string.downloading,
                 new Object[] { url, ManagerFactory.getPreferencesManager().getDownloadPath() }));
