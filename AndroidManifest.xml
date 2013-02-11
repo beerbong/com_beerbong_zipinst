@@ -107,6 +107,9 @@
             android:label="@string/changelog_title" >
         </activity>
 
+        <!-- PRO -->
+        <activity
+            android:name="com.beerbong.zipinst.pro.activities.GooActivity" />
         <service android:name="com.beerbong.zipinst.pro.Service" >
         </service>
 

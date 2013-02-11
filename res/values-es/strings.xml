@@ -192,4 +192,8 @@
     <string name="new_rom_found_title">Nueva versión de la ROM</string>
     <string name="new_rom_found_summary">Se ha encontrado una nueva versión de tu ROM. ¿Quieres descargarla ahora?\n\n%1$s\n%2$s\n</string>
     <string name="new_rom_name">%1$s</string>
+
+    <string name="menu_gooim">Goo.im</string>
+    <string name="goo_browse_all_compatible">Navegar por ROMs compatibles</string>
+    <string name="goo_browse_all">Navegar por todos los archivos</string>
 </resources>
