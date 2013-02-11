@@ -83,7 +83,7 @@ public class FileManager extends Manager implements UIListener {
             Toast.makeText(mContext, R.string.paths_error, Toast.LENGTH_LONG).show();
             return;
         }
-        
+
         if (ManagerFactory.getPreferencesManager().isAutoloadList()) {
             loadList();
         }
@@ -467,6 +467,9 @@ public class FileManager extends Manager implements UIListener {
             fileName = url.substring(url.lastIndexOf("/") + 1);
             if (fileName.indexOf("?") >= 0) {
                 fileName = fileName.substring(0, fileName.indexOf("?"));
+            }
+            if (!fileName.contains(".zip") && !fileName.contains(".apk")) {
+                fileName = "unknown-file-name.zip";
             }
         }
 
