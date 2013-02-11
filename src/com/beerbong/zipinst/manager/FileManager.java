@@ -18,7 +18,6 @@ package com.beerbong.zipinst.manager;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Date;
