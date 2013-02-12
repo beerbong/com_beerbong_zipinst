@@ -44,11 +44,13 @@ public class PreferencesManager extends Manager {
     private static final String PROPERTY_ZIP_POSITION = "zip_position";
 
     public static final String PROPERTY_ENABLE_NOTIFICATIONS = "enable_notifications";
+    public static final String PROPERTY_TIME_NOTIFICATIONS = "time_notifications";
 
     private static final String DEFAULT_RECOVERY = "cwmbased";
     private static final String DEFAULT_INTERNAL_STORAGE = "emmc";
     private static final String DEFAULT_DOWNLOAD_PATH = "/" + SDCARD + "/download/";
     private static final String DEFAULT_ZIP_POSITION = "last";
+    private static final String DEFAULT_TIME_NOTIFICATIONS = "3600000"; // an hour
     private static final boolean DEFAULT_DRAG_AND_DROP = true;
     private static final boolean DEFAULT_SHOW_BACKUP = true;
     private static final boolean DEFAULT_DARK_THEME = true;
@@ -174,6 +176,14 @@ public class PreferencesManager extends Manager {
 
     public void setAcceptNotifications(boolean value) {
         savePreference(PROPERTY_ENABLE_NOTIFICATIONS, value);
+    }
+
+    public long getTimeNotifications() {
+        return Long.parseLong(settings.getString(PROPERTY_TIME_NOTIFICATIONS, DEFAULT_TIME_NOTIFICATIONS));
+    }
+
+    public void setTimeNotifications(long value) {
+        savePreference(PROPERTY_TIME_NOTIFICATIONS, String.valueOf(value));
     }
 
     public String getZipPosition() {

@@ -185,6 +185,13 @@
 
     <!-- PRO -->
     <string name="enable_notifications">Enable notifications</string>
+    <string name="time_notifications_title">Notifications time</string>
+    <string name="time_notifications_summary">Time between each search for ROM updates</string>
+    <string name="time_notifications_half_an_hour">Half an hour</string>
+    <string name="time_notifications_an_hour">An hour</string>
+    <string name="time_notifications_two_hours">Two hours</string>
+    <string name="time_notifications_five_hours">Five hours</string>
+    <string name="time_notifications_twentyfour_hours">Twenty four hours</string>
     <string name="check_rom_updates">Check for ROM updates</string>
     <string name="check_rom_updates_error">Error checking for ROM updates</string>
     <string name="check_rom_updates_no_new">No new ROM updates found</string>

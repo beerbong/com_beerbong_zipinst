@@ -33,5 +33,19 @@
         <item>first</item>
         <item>last</item>
     </string-array>
+    <string-array name="time_notifications_options">
+        <item>@string/time_notifications_half_an_hour</item>
+        <item>@string/time_notifications_an_hour</item>
+        <item>@string/time_notifications_two_hours</item>
+        <item>@string/time_notifications_five_hours</item>
+        <item>@string/time_notifications_twentyfour_hours</item>
+    </string-array>
+    <string-array name="time_notifications_values" translatable="false">
+        <item>1800000</item>
+        <item>3600000</item>
+        <item>7200000</item>
+        <item>18000000</item>
+        <item>86400000</item>
+    </string-array>
 
 </resources>

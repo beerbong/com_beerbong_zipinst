@@ -185,6 +185,13 @@
 
     <!-- PRO -->
     <string name="enable_notifications">Habilitar notifications</string>
+    <string name="time_notifications_title">Temps notificacions</string>
+    <string name="time_notifications_summary">Temps d\'espera per buscar actualitzacions de la ROM</string>
+    <string name="time_notifications_half_an_hour">Mitja hora</string>
+    <string name="time_notifications_an_hour">Una hora</string>
+    <string name="time_notifications_two_hours">Dues hores</string>
+    <string name="time_notifications_five_hours">Cinc hores</string>
+    <string name="time_notifications_twentyfour_hours">Vint-i-quatre hores</string>
     <string name="check_rom_updates">Cercar actualitzacions de la ROM</string>
     <string name="check_rom_updates_error">Error cercant actualitzacions de la ROM</string>
     <string name="check_rom_updates_no_new">No s\'ha trobat cap nova actualització de la ROM</string>
