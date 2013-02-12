@@ -16,8 +16,8 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.beerbong.zipinst"
-    android:versionCode="304"
-    android:versionName="3.0.4" >
+    android:versionCode="305"
+    android:versionName="3.0.5" >
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -108,8 +108,8 @@
         </activity>
 
         <!-- PRO -->
-        <activity
-            android:name="com.beerbong.zipinst.pro.activities.GooActivity" />
+        <activity android:name="com.beerbong.zipinst.pro.activities.GooActivity" />
+
         <service android:name="com.beerbong.zipinst.pro.Service" >
         </service>
 
