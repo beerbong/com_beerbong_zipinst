@@ -160,7 +160,7 @@ public class FileManager extends Manager implements UIListener {
                 return;
             }
 
-            String zipPath = data.getData().getEncodedPath();
+            String zipPath = data.getData().getPath();
 
             addZip(zipPath);
 
