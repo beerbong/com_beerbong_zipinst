@@ -53,11 +53,6 @@ import com.beerbong.zipinst.util.DownloadTask;
 import com.beerbong.zipinst.util.StoredItems;
 import com.beerbong.zipinst.util.ZipItem;
 
-/**
- * @author Yamil Ghazi Kantelinen
- * @version 1.0
- */
-
 public class FileManager extends Manager implements UIListener {
 
     private NodeList pathList = null;

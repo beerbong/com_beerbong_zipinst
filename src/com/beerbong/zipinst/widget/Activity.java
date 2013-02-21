@@ -21,11 +21,6 @@ import android.os.Bundle;
 import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.manager.ManagerFactory;
 
-/**
- * @author Yamil Ghazi Kantelinen
- * @version 1.0
- */
-
 public class Activity extends android.app.Activity {
 
     @Override

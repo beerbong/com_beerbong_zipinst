@@ -20,11 +20,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * @author Yamil Ghazi Kantelinen
- * @version 1.0
- */
-
 public class StoredItems {
 
     private static List<ZipItem> list = new ArrayList<ZipItem>();

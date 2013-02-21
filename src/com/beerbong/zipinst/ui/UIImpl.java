@@ -39,11 +39,6 @@ import com.beerbong.zipinst.util.ZipItem;
 import com.beerbong.zipinst.widget.Item;
 import com.beerbong.zipinst.widget.TouchInterceptor;
 
-/**
- * @author Yamil Ghazi Kantelinen
- * @version 1.0
- */
-
 public class UIImpl extends UI {
 
     private class ZipItemsAdapter extends ArrayAdapter<ZipItem> {

@@ -31,11 +31,6 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
-/**
- * @author Yamil Ghazi Kantelinen
- * @version 1.0
- */
-
 public class Constants {
 
     // about preferences

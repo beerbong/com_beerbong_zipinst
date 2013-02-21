@@ -31,11 +31,6 @@ import android.widget.TextView;
 import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.manager.ManagerFactory;
 
-/**
- * @author Yamil Ghazi Kantelinen
- * @version 1.0
- */
-
 public class Item extends LinearLayout {
 
     public static interface OnItemClickListener {

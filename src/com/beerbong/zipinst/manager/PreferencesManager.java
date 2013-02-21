@@ -20,11 +20,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-/**
- * @author Yamil Ghazi Kantelinen
- * @version 1.0
- */
-
 public class PreferencesManager extends Manager {
 
     private static final String SDCARD = "sdcard";

@@ -30,11 +30,6 @@ import com.beerbong.zipinst.ui.UI;
 import com.beerbong.zipinst.ui.UIListener;
 import com.beerbong.zipinst.util.ZipItem;
 
-/**
- * @author Yamil Ghazi Kantelinen
- * @version 1.0
- */
-
 public class MenuManager extends Manager implements UIListener {
 
     private Menu mMenu;

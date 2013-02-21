@@ -22,11 +22,6 @@ import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
 
-/**
- * @author Yamil Ghazi Kantelinen
- * @version 1.0
- */
-
 public interface UIListener {
 
     public void onButtonClicked(int id);

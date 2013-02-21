@@ -39,11 +39,6 @@ import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.util.RecoveryInfo;
 import com.beerbong.zipinst.util.StoredItems;
 
-/**
- * @author Yamil Ghazi Kantelinen
- * @version 1.0
- */
-
 public class RecoveryManager extends Manager {
 
     private SparseArray<RecoveryInfo> recoveries = new SparseArray<RecoveryInfo>();

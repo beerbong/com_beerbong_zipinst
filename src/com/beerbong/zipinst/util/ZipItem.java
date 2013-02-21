@@ -16,11 +16,6 @@
 
 package com.beerbong.zipinst.util;
 
-/**
- * @author Yamil Ghazi Kantelinen
- * @version 1.0
- */
-
 public class ZipItem {
 
     private String key;

@@ -21,11 +21,6 @@ import com.beerbong.zipinst.manager.pro.ProManagerImpl;
 import android.app.Activity;
 import android.content.Context;
 
-/**
- * @author Yamil Ghazi Kantelinen
- * @version 1.0
- */
-
 public class ManagerFactory {
 
     private static ProManager mProManager;

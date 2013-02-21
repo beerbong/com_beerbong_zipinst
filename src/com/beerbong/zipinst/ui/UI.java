@@ -24,11 +24,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView.OnItemClickListener;
 
-/**
- * @author Yamil Ghazi Kantelinen
- * @version 1.0
- */
-
 public abstract class UI implements OnItemClickListener {
 
     private static UI instance = null;
