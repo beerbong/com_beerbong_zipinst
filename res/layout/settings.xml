@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2013 ZipInstaller
+<!--
+     Copyright (C) 2013 ZipInstaller
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -13,79 +14,76 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <PreferenceCategory
-        android:title="@string/settings_recovery">
+    <PreferenceCategory android:title="@string/settings_recovery" >
 
         <Preference
             android:key="recovery"
-            android:title="@string/recovery_title"
-            android:summary="@string/recovery_summary" />
-    
+            android:summary="@string/recovery_summary"
+            android:title="@string/recovery_title" />
+
         <Preference
             android:key="sdcard"
-            android:title="@string/sdcard_title"
-            android:summary="@string/sdcard_summary" />
+            android:summary="@string/sdcard_summary"
+            android:title="@string/sdcard_title" />
 
-        <CheckBoxPreference
-            android:key="showbackup"
-            android:title="@string/settings_backup_title"
-            android:summary="@string/settings_backup_summary" />
-
+        <com.beerbong.zipinst.widget.ListPreferenceMultiSelect
+            android:defaultValue="BACKUP|WIPEDATA|WIPECACHES"
+            android:entries="@array/wipe_options"
+            android:entryValues="@array/wipe_options_values"
+            android:key="showoptions"
+            android:summary="@string/settings_showoptions_summary"
+            android:title="@string/settings_showoptions_title" />
     </PreferenceCategory>
 
-    <PreferenceCategory
-        android:title="@string/settings_security">
+    <PreferenceCategory android:title="@string/settings_security" >
 
         <CheckBoxPreference
             android:key="checkexists"
-            android:title="@string/settings_checkexists_title"
-            android:summary="@string/settings_checkexists_summary" />
+            android:summary="@string/settings_checkexists_summary"
+            android:title="@string/settings_checkexists_title" />
 
         <CheckBoxPreference
             android:key="checkmd5"
-            android:title="@string/settings_checkmd5_title"
-            android:summary="@string/settings_checkmd5_summary" />
-
+            android:summary="@string/settings_checkmd5_summary"
+            android:title="@string/settings_checkmd5_title" />
     </PreferenceCategory>
 
-    <PreferenceCategory
-        android:title="@string/settings_interface">
+    <PreferenceCategory android:title="@string/settings_interface" >
 
         <CheckBoxPreference
             android:key="draganddrop"
-            android:title="@string/dad_title"
-            android:summary="@string/dad_summary" />
+            android:summary="@string/dad_summary"
+            android:title="@string/dad_title" />
 
         <ListPreference
-            android:key="zipposition"
-            android:title="@string/zipposition_title"
-            android:summary="@string/zipposition_summary"
             android:dialogTitle="@string/zipposition_title"
             android:entries="@array/zip_position_options"
-            android:entryValues="@array/zip_position_values" />
+            android:entryValues="@array/zip_position_values"
+            android:key="zipposition"
+            android:summary="@string/zipposition_summary"
+            android:title="@string/zipposition_title" />
 
         <CheckBoxPreference
             android:key="overridelist"
-            android:title="@string/overridelist_title"
-            android:summary="@string/overridelist_summary" />
+            android:summary="@string/overridelist_summary"
+            android:title="@string/overridelist_title" />
 
         <CheckBoxPreference
             android:key="autoloadlist"
-            android:title="@string/autoloadlist_title"
-            android:summary="@string/autoloadlist_summary" />
+            android:summary="@string/autoloadlist_summary"
+            android:title="@string/autoloadlist_title" />
 
         <CheckBoxPreference
             android:key="darktheme"
-            android:title="@string/settings_theme_title"
-            android:summary="@string/settings_theme_summary" />
-
+            android:summary="@string/settings_theme_summary"
+            android:title="@string/settings_theme_title" />
     </PreferenceCategory>
 
     <PreferenceCategory
         android:key="settings_update"
-        android:title="@string/settings_update">
+        android:title="@string/settings_update" >
 
         <Preference
             android:key="updates"
@@ -98,11 +96,9 @@
         <Preference
             android:key="downloadpath"
             android:title="@string/download_path" />
-
     </PreferenceCategory>
 
-    <PreferenceCategory
-        android:title="@string/settings_misc">
+    <PreferenceCategory android:title="@string/settings_misc" >
 
         <Preference
             android:key="about"
@@ -111,7 +107,6 @@
         <Preference
             android:key="donate"
             android:title="@string/donate_title" />
-
     </PreferenceCategory>
 
 </PreferenceScreen>

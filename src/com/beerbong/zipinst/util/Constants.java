@@ -48,7 +48,6 @@ public class Constants {
     public static final String PREFERENCE_SETTINGS_RECOVERY = "recovery";
     public static final String PREFERENCE_SETTINGS_SDCARD = "sdcard";
     public static final String PREFERENCE_SETTINGS_DAD = "draganddrop";
-    public static final String PREFERENCE_SETTINGS_SHOW_BACKUP = "showbackup";
     public static final String PREFERENCE_SETTINGS_DARK_THEME = "darktheme";
     public static final String PREFERENCE_SETTINGS_CHECK_EXISTS = "checkexists";
     public static final String PREFERENCE_SETTINGS_CHECK_UPDATE_STARTUP = "updateonstartup";
@@ -57,6 +56,7 @@ public class Constants {
     public static final String PREFERENCE_SETTINGS_AUTOLOAD_LIST = "autoloadlist";
     public static final String PREFERENCE_SETTINGS_DOWNLOAD_PATH = "downloadpath";
     public static final String PREFERENCE_SETTINGS_ZIP_POSITION = "zipposition";
+    public static final String PREFERENCE_SETTINGS_OPTIONS = "showoptions";
 
     // recovery preferences
     public static final String PREFERENCE_RECOVERY_BACKUP = "recovery_activity_backup";

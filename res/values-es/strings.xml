@@ -124,8 +124,8 @@
     <string name="autoloadlist_title">Cargar lista al empezar</string>
     <string name="autoloadlist_summary">Cargar lista guardada automáticamente al comenzar aplicación</string>
 
-    <string name="settings_backup_title">Mostrar opción backup</string>
-    <string name="settings_backup_summary">"Mostrar opción backup al apretar el botón Instalar Ahora"</string>
+    <string name="settings_showoptions_title">Opciones</string>
+    <string name="settings_showoptions_summary">Elije las opciones a mostrar al presionar el botón Instalar ahora</string>
 
     <string name="settings_title">Ajustes</string>
     <string name="settings_recovery">Recovery</string>
@@ -204,7 +204,7 @@
     <string name="goo_browse_all_compatible">Navegar por ROMs compatibles</string>
     <string name="goo_browse_all">Navegar por todos los archivos</string>
     <string name="goo_browse_error">Error navegando por los archivos</string>
-    <string name="goo_browse_searching">Buscando...</string>
+    <string name="goo_browse_searching">Buscando&#8230;</string>
     <string name="goo_category_title">Navegando %1$s</string>
     <string name="goo_download_title">Descargar</string>
     <string name="goo_download_summary">¿Quieres descargar este archivo ahora?\n\n%1$s\n%2$s\n</string>

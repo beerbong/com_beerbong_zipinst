@@ -33,7 +33,7 @@ public class PreferencesManager extends Manager {
     private static final String PROPERTY_RECOVERY = "recovery";
     private static final String PROPERTY_LIST = "list";
     private static final String PROPERTY_DRAG_AND_DROP = "drag-and-drop";
-    private static final String PROPERTY_SHOW_BACKUP = "show-backup";
+    private static final String PROPERTY_SHOW_OPTIONS = "show-options";
     private static final String PROPERTY_DARK_THEME = "dark-theme";
     private static final String PROPERTY_CHECK_EXISTS = "check_exists";
     private static final String PROPERTY_CHECK_UPDATES_STARTUP = "check_updates_startup";
@@ -51,8 +51,8 @@ public class PreferencesManager extends Manager {
     private static final String DEFAULT_DOWNLOAD_PATH = "/" + SDCARD + "/download/";
     private static final String DEFAULT_ZIP_POSITION = "last";
     private static final String DEFAULT_TIME_NOTIFICATIONS = "3600000"; // an hour
+    private static final String DEFAULT_SHOW_OPTIONS = "BACKUP|WIPEDATA|WIPECACHES";
     private static final boolean DEFAULT_DRAG_AND_DROP = true;
-    private static final boolean DEFAULT_SHOW_BACKUP = true;
     private static final boolean DEFAULT_DARK_THEME = true;
     private static final boolean DEFAULT_CHECK_EXISTS = true;
     private static final boolean DEFAULT_CHECK_UPDATES_STARTUP = false;
@@ -96,12 +96,17 @@ public class PreferencesManager extends Manager {
         savePreference(PROPERTY_LIST, value);
     }
 
-    public boolean isShowBackupOption() {
-        return settings.getBoolean(PROPERTY_SHOW_BACKUP, DEFAULT_SHOW_BACKUP);
+    public boolean isShowOption(String option) {
+        String opts = settings.getString(PROPERTY_SHOW_OPTIONS, DEFAULT_SHOW_OPTIONS);
+        return opts.indexOf(option) >= 0;
     }
 
-    public void setShowBackupOption(boolean value) {
-        savePreference(PROPERTY_SHOW_BACKUP, value);
+    public String getShowOptions() {
+        return settings.getString(PROPERTY_SHOW_OPTIONS, DEFAULT_SHOW_OPTIONS);
+    }
+
+    public void setShowOptions(String options) {
+        savePreference(PROPERTY_SHOW_OPTIONS, options);
     }
 
     public boolean isUseDragAndDrop() {
@@ -179,7 +184,8 @@ public class PreferencesManager extends Manager {
     }
 
     public long getTimeNotifications() {
-        return Long.parseLong(settings.getString(PROPERTY_TIME_NOTIFICATIONS, DEFAULT_TIME_NOTIFICATIONS));
+        return Long.parseLong(settings.getString(PROPERTY_TIME_NOTIFICATIONS,
+                DEFAULT_TIME_NOTIFICATIONS));
     }
 
     public void setTimeNotifications(long value) {

@@ -124,8 +124,8 @@
     <string name="autoloadlist_title">Carregar llista en començar</string>
     <string name="autoloadlist_summary">Carregar llista guardada automàticament en començar aplicació</string>
 
-    <string name="settings_backup_title">Mostrar opció backup</string>
-    <string name="settings_backup_summary">"Mostrar opció backup en prèmer el botó Instal·lar Ara"</string>
+    <string name="settings_showoptions_title">Opcions</string>
+    <string name="settings_showoptions_summary">"Tria les opcions a mostrar en presionar el botó Instal·lar ara"</string>
 
     <string name="settings_title">Ajustaments</string>
     <string name="settings_recovery">Recovery</string>
@@ -204,7 +204,7 @@
     <string name="goo_browse_all_compatible">Navegar per ROMs compatibles</string>
     <string name="goo_browse_all">Navegar per tots els arxius</string>
     <string name="goo_browse_error">Error navegant pels arxius</string>
-    <string name="goo_browse_searching">Buscant...</string>
+    <string name="goo_browse_searching">Buscant&#8230;</string>
     <string name="goo_category_title">Navegant %1$s</string>
     <string name="goo_download_title">Descarregar</string>
     <string name="goo_download_summary">Vols descarregar aquest arxiu ara?\n\n%1$s\n%2$s\n</string>

@@ -17,6 +17,8 @@
 package com.beerbong.zipinst.manager;
 
 import java.io.DataOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -42,7 +44,9 @@ import com.beerbong.zipinst.util.ZipItem;
 
 public class RebootManager extends Manager implements UIListener {
 
-    private int selectedBackup;
+    private int mSelectedBackup;
+    private int mWipeDataIndex;
+    private int mWipeCachesIndex;
 
     protected RebootManager(Context context) {
         super(context);
@@ -78,7 +82,7 @@ public class RebootManager extends Manager implements UIListener {
     }
 
     public void showBackupDialog(Context context) {
-        showBackupDialog(context, true, null);
+        showBackupDialog(context, true, false, false);
     }
 
     public void showRestoreDialog(Context context) {
@@ -88,12 +92,12 @@ public class RebootManager extends Manager implements UIListener {
 
         final String backupFolder = ManagerFactory.getRecoveryManager().getBackupDir(false);
         final String[] backups = ManagerFactory.getRecoveryManager().getBackupList();
-        selectedBackup = backups.length > 0 ? 0 : -1;
+        mSelectedBackup = backups.length > 0 ? 0 : -1;
 
-        alert.setSingleChoiceItems(backups, selectedBackup, new DialogInterface.OnClickListener() {
+        alert.setSingleChoiceItems(backups, mSelectedBackup, new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int which) {
-                selectedBackup = which;
+                mSelectedBackup = which;
             }
         });
 
@@ -102,8 +106,8 @@ public class RebootManager extends Manager implements UIListener {
             public void onClick(DialogInterface dialog, int whichButton) {
                 dialog.dismiss();
 
-                if (selectedBackup >= 0) {
-                    reboot(null, null, backupFolder + backups[selectedBackup]);
+                if (mSelectedBackup >= 0) {
+                    reboot(false, false, null, backupFolder + backups[mSelectedBackup]);
                 }
             }
         });
@@ -148,7 +152,7 @@ public class RebootManager extends Manager implements UIListener {
     }
 
     private void showBackupDialog(Context context, boolean removePreferences,
-            final boolean[] wipeOptions) {
+            final boolean wipeData, final boolean wipeCaches) {
 
         if (removePreferences)
             UI.getInstance().removeAllItems();
@@ -170,7 +174,7 @@ public class RebootManager extends Manager implements UIListener {
                 String text = input.getText().toString();
                 text = text.replace(" ", "");
 
-                reboot(wipeOptions, text, null);
+                reboot(wipeData, wipeCaches, text, null);
             }
         });
 
@@ -191,15 +195,26 @@ public class RebootManager extends Manager implements UIListener {
         AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
         alert.setTitle(R.string.alert_reboot_title);
 
-        final boolean showBackup = ManagerFactory.getPreferencesManager().isShowBackupOption();
+        final PreferencesManager pManager = ManagerFactory.getPreferencesManager();
+        List<String> wipeOpts = new ArrayList<String>();
 
-        String[] wipeOpts = mContext.getResources().getStringArray(R.array.wipe_options);
-        if (!showBackup) {
-            wipeOpts = mContext.getResources().getStringArray(R.array.wipe_options_no_backup);
+        mWipeDataIndex = 0;
+        mWipeCachesIndex = 1;
+        if (pManager.isShowOption("BACKUP")) {
+            mWipeDataIndex++;
+            mWipeCachesIndex++;
+            wipeOpts.add(mContext.getResources().getString(R.string.backup));
         }
-        final boolean[] wipeOptions = new boolean[wipeOpts.length];
+        if (pManager.isShowOption("WIPEDATA")) {
+            wipeOpts.add(mContext.getResources().getString(R.string.wipe_data));
+        }
+        if (pManager.isShowOption("WIPECACHES")) {
+            wipeOpts.add(mContext.getResources().getString(R.string.wipe_caches));
+        }
 
-        alert.setMultiChoiceItems(wipeOpts, wipeOptions,
+        final boolean[] wipeOptions = new boolean[wipeOpts.size()];
+
+        alert.setMultiChoiceItems(wipeOpts.toArray(new String[wipeOpts.size()]), wipeOptions,
                 new DialogInterface.OnMultiChoiceClickListener() {
 
                     public void onClick(DialogInterface dialog, int which, boolean isChecked) {
@@ -212,10 +227,11 @@ public class RebootManager extends Manager implements UIListener {
             public void onClick(DialogInterface dialog, int whichButton) {
                 dialog.dismiss();
 
-                if (showBackup && wipeOptions[0]) {
-                    showBackupDialog(mContext, false, wipeOptions);
+                if (pManager.isShowOption("BACKUP") && wipeOptions[0]) {
+                    showBackupDialog(mContext, false, wipeOptions[mWipeDataIndex],
+                            wipeOptions[mWipeCachesIndex]);
                 } else {
-                    reboot(wipeOptions, null, null);
+                    reboot(wipeOptions[mWipeDataIndex], wipeOptions[mWipeCachesIndex], null, null);
                 }
 
             }
@@ -230,7 +246,7 @@ public class RebootManager extends Manager implements UIListener {
         alert.show();
     }
 
-    private void reboot(boolean[] wipeOptions, String backupFolder, String restore) {
+    private void reboot(boolean wipeData, boolean wipeCaches, String backupFolder, String restore) {
         try {
 
             RecoveryManager manager = ManagerFactory.getRecoveryManager();
@@ -244,7 +260,7 @@ public class RebootManager extends Manager implements UIListener {
 
             String file = manager.getCommandsFile();
 
-            String[] commands = manager.getCommands(wipeOptions, backupFolder, restore);
+            String[] commands = manager.getCommands(wipeData, wipeCaches, backupFolder, restore);
             if (commands != null) {
                 int size = commands.length, i = 0;
                 for (; i < size; i++) {

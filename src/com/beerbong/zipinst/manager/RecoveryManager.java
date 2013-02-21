@@ -241,8 +241,8 @@ public class RecoveryManager extends Manager {
         }
     }
 
-    public String[] getCommands(boolean[] wipeOptions, String backupFolder, String restore)
-            throws Exception {
+    public String[] getCommands(boolean wipeData, boolean wipeCaches, String backupFolder,
+            String restore) throws Exception {
         List<String> commands = new ArrayList<String>();
 
         int size = StoredItems.size(), i = 0;
@@ -250,18 +250,6 @@ public class RecoveryManager extends Manager {
         RecoveryInfo info = getRecovery();
 
         String internalStorage = ManagerFactory.getPreferencesManager().getInternalStorage();
-
-        boolean wipeData = false, wipeCaches = false;
-        if (wipeOptions != null) {
-            boolean showBackup = ManagerFactory.getPreferencesManager().isShowBackupOption();
-            if (showBackup) {
-                wipeData = wipeOptions[1];
-                wipeCaches = wipeOptions[2];
-            } else {
-                wipeData = wipeOptions[0];
-                wipeCaches = wipeOptions[1];
-            }
-        }
 
         switch (info.getId()) {
             case R.id.cwmbased:
@@ -286,21 +274,19 @@ public class RecoveryManager extends Manager {
                             + backupFolder + "\");");
                 }
 
-                if (wipeOptions != null) {
-                    if (wipeData) {
-                        commands.add("ui_print(\" Wiping data\");");
-                        commands.add("format(\"/data\");");
-                        commands.add("ui_print(\" Wiping android secure\");");
-                        commands.add("format(\"/" + internalStorage + "/.android_secure\");");
-                    }
-                    if (wipeCaches) {
-                        commands.add("ui_print(\" Wiping cache\");");
-                        commands.add("format(\"/cache\");");
-                        commands.add("ui_print(\" Wiping dalvik cache\");");
-                        commands.add("format(\"/data/dalvik-cache\");");
-                        commands.add("format(\"/cache/dalvik-cache\");");
-                        commands.add("format(\"/sd-ext/dalvik-cache\");");
-                    }
+                if (wipeData) {
+                    commands.add("ui_print(\" Wiping data\");");
+                    commands.add("format(\"/data\");");
+                    commands.add("ui_print(\" Wiping android secure\");");
+                    commands.add("format(\"/" + internalStorage + "/.android_secure\");");
+                }
+                if (wipeCaches) {
+                    commands.add("ui_print(\" Wiping cache\");");
+                    commands.add("format(\"/cache\");");
+                    commands.add("ui_print(\" Wiping dalvik cache\");");
+                    commands.add("format(\"/data/dalvik-cache\");");
+                    commands.add("format(\"/cache/dalvik-cache\");");
+                    commands.add("format(\"/sd-ext/dalvik-cache\");");
                 }
 
                 if (size > 0) {
@@ -341,14 +327,12 @@ public class RecoveryManager extends Manager {
                     commands.add(str + "O " + backupFolder);
                 }
 
-                if (wipeOptions != null) {
-                    if (wipeData) {
-                        commands.add("wipe data");
-                    }
-                    if (wipeCaches) {
-                        commands.add("wipe cache");
-                        commands.add("wipe dalvik");
-                    }
+                if (wipeData) {
+                    commands.add("wipe data");
+                }
+                if (wipeCaches) {
+                    commands.add("wipe cache");
+                    commands.add("wipe dalvik");
                 }
 
                 for (; i < size; i++) {

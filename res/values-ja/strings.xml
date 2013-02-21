@@ -124,8 +124,8 @@
     <string name="autoloadlist_title">Load list on startup</string>
     <string name="autoloadlist_summary">Automatically load saved list on sstart application</string>
 
-    <string name="settings_backup_title">バックアップオプション</string>
-    <string name="settings_backup_summary">\""今すぐインストール\""ボタンを押したときにバックアップオプションを表示</string>
+    <string name="settings_showoptions_title">Options</string>
+    <string name="settings_showoptions_summary">Chose options to show when pressing the Install Now button</string>
 
     <string name="settings_title">設定</string>
     <string name="settings_recovery">リカバリ</string>
@@ -204,7 +204,7 @@
     <string name="goo_browse_all_compatible">Browse compatible ROMs</string>
     <string name="goo_browse_all">Browse all files</string>
     <string name="goo_browse_error">Error browsing files</string>
-    <string name="goo_browse_searching">Searching...</string>
+    <string name="goo_browse_searching">Searching&#8230;</string>
     <string name="goo_category_title">Browsing %1$s</string>
     <string name="goo_download_title">Download</string>
     <string name="goo_download_summary">Do you want to download this file now?\n\n%1$s\n%2$s\n</string>

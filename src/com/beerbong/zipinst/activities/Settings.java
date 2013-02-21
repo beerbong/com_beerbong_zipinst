@@ -16,12 +16,15 @@
 
 package com.beerbong.zipinst.activities;
 
+import java.util.List;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
 
@@ -35,12 +38,11 @@ import com.beerbong.zipinst.util.Constants;
 import com.beerbong.zipinst.util.RecoveryInfo;
 import com.beerbong.zipinst.widget.PreferenceActivity;
 
-public class Settings extends PreferenceActivity {
+public class Settings extends PreferenceActivity implements OnPreferenceChangeListener {
 
     private Preference mRecovery;
     private Preference mSdcard;
     private CheckBoxPreference mDad;
-    private CheckBoxPreference mShowBackup;
     private CheckBoxPreference mDarkTheme;
     private CheckBoxPreference mCheckExists;
     private CheckBoxPreference mCheckMd5;
@@ -48,6 +50,7 @@ public class Settings extends PreferenceActivity {
     private CheckBoxPreference mAutoloadList;
     private Preference mDownloadPath;
     private ListPreference mZipPosition;
+    private ListPreference mOptions;
 
     @Override
     @SuppressWarnings("deprecation")
@@ -58,7 +61,6 @@ public class Settings extends PreferenceActivity {
         mRecovery = findPreference(Constants.PREFERENCE_SETTINGS_RECOVERY);
         mSdcard = findPreference(Constants.PREFERENCE_SETTINGS_SDCARD);
         mDad = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_DAD);
-        mShowBackup = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_SHOW_BACKUP);
         mDarkTheme = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_DARK_THEME);
         mCheckExists = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_CHECK_EXISTS);
         mCheckMd5 = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_CHECK_MD5);
@@ -66,12 +68,11 @@ public class Settings extends PreferenceActivity {
         mAutoloadList = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_AUTOLOAD_LIST);
         mDownloadPath = findPreference(Constants.PREFERENCE_SETTINGS_DOWNLOAD_PATH);
         mZipPosition = (ListPreference) findPreference(Constants.PREFERENCE_SETTINGS_ZIP_POSITION);
+        mOptions = (ListPreference) findPreference(Constants.PREFERENCE_SETTINGS_OPTIONS);
 
         PreferencesManager pManager = ManagerFactory.getPreferencesManager();
 
         mDad.setChecked(pManager.isUseDragAndDrop());
-
-        mShowBackup.setChecked(pManager.isShowBackupOption());
 
         mDarkTheme.setChecked(pManager.isDarkTheme());
 
@@ -84,6 +85,9 @@ public class Settings extends PreferenceActivity {
         mAutoloadList.setChecked(pManager.isAutoloadList());
 
         mZipPosition.setValue(pManager.getZipPosition());
+
+        mOptions.setValue(pManager.getShowOptions());
+        mOptions.setOnPreferenceChangeListener(this);
 
         ProManager proManager = ManagerFactory.getProManager();
 
@@ -122,11 +126,6 @@ public class Settings extends PreferenceActivity {
             pManager.setUseDragAndDrop(useDad);
 
             UI.getInstance().removeAllItems();
-
-        } else if (Constants.PREFERENCE_SETTINGS_SHOW_BACKUP.equals(key)) {
-
-            boolean showBackup = ((CheckBoxPreference) preference).isChecked();
-            pManager.setShowBackupOption(showBackup);
 
         } else if (Constants.PREFERENCE_SETTINGS_DARK_THEME.equals(key)) {
 
@@ -188,6 +187,23 @@ public class Settings extends PreferenceActivity {
         }
 
         return true;
+    }
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        String key = preference.getKey();
+
+        if (Constants.PREFERENCE_SETTINGS_OPTIONS.equals(key)) {
+            List<String> values = (List<String>) newValue;
+            String result = "";
+            for (int i = 0; i < values.size(); i++) {
+                result += values.get(i);
+                if (i < values.size() - 1)
+                    result += "|";
+            }
+            ManagerFactory.getPreferencesManager().setShowOptions(result);
+        }
+        return false;
     }
 
     private void updateSummaries() {
