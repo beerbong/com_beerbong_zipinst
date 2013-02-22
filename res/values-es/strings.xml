@@ -107,6 +107,7 @@
     <string name="backup">Backup</string>
     <string name="wipe_data">Wipe Data</string>
     <string name="wipe_caches">Wipe Cache &amp; Dalvik</string>
+    <string name="fix_permissions">Fix permissions</string>
 
     <string name="savelist_title">Guardar lista</string>
     <string name="loadlist_title">Cargar lista</string>

@@ -43,6 +43,7 @@ public class RebootManager extends Manager implements UIListener {
     private int mSelectedBackup;
     private int mWipeDataIndex;
     private int mWipeCachesIndex;
+    private int mFixPermissionsIndex;
 
     protected RebootManager(Context context) {
         super(context);
@@ -80,7 +81,7 @@ public class RebootManager extends Manager implements UIListener {
     }
 
     public void showBackupDialog(Context context) {
-        showBackupDialog(context, true, false, false);
+        showBackupDialog(context, true, false, false, false);
     }
 
     public void showRestoreDialog(Context context) {
@@ -131,23 +132,30 @@ public class RebootManager extends Manager implements UIListener {
     }
 
     public void fixPermissions() {
-        
+
         StoredItems.removeItems();
-        
+
         FileManager fManager = ManagerFactory.getFileManager();
-        
+
         String data = fManager.readAssets(mContext, "fix_permissions.sh");
-        
-        if (data != null && fManager.writeToFile(data, "/data/data/com.beerbong.zipinst/files/", "fix_permissions.sh")) {
-        
-            ManagerFactory.getSUManager().runWaitFor("cp /data/data/com.beerbong.zipinst/files/fix_permissions.sh /cache/fix_permissions.sh");
-            
+
+        if (data != null
+                && fManager.writeToFile(data,
+                        "/data/data/com.beerbong.zipinst/files/",
+                        "fix_permissions.sh")) {
+
+            ManagerFactory
+                    .getSUManager()
+                    .runWaitFor(
+                            "cp /data/data/com.beerbong.zipinst/files/fix_permissions.sh /cache/fix_permissions.sh");
+
             reboot(false, false, true, null, null, false);
         }
     }
 
     private void showBackupDialog(Context context, boolean removePreferences,
-            final boolean wipeData, final boolean wipeCaches) {
+            final boolean wipeData, final boolean wipeCaches,
+            final boolean fixPermissions) {
 
         if (removePreferences)
             UI.getInstance().removeAllItems();
@@ -198,9 +206,11 @@ public class RebootManager extends Manager implements UIListener {
 
         mWipeDataIndex = 0;
         mWipeCachesIndex = 1;
+        mFixPermissionsIndex = 2;
         if (pManager.isShowOption("BACKUP")) {
             mWipeDataIndex++;
             mWipeCachesIndex++;
+            mFixPermissionsIndex++;
             wipeOpts.add(mContext.getResources().getString(R.string.backup));
         }
         if (pManager.isShowOption("WIPEDATA")) {
@@ -209,6 +219,10 @@ public class RebootManager extends Manager implements UIListener {
         if (pManager.isShowOption("WIPECACHES")) {
             wipeOpts.add(mContext.getResources()
                     .getString(R.string.wipe_caches));
+        }
+        if (pManager.isShowOption("FIXPERM")) {
+            wipeOpts.add(mContext.getResources().getString(
+                    R.string.fix_permissions));
         }
 
         final boolean[] wipeOptions = new boolean[wipeOpts.size()];
@@ -232,10 +246,12 @@ public class RebootManager extends Manager implements UIListener {
                         if (pManager.isShowOption("BACKUP") && wipeOptions[0]) {
                             showBackupDialog(mContext, false,
                                     wipeOptions[mWipeDataIndex],
-                                    wipeOptions[mWipeCachesIndex]);
+                                    wipeOptions[mWipeCachesIndex],
+                                    wipeOptions[mFixPermissionsIndex]);
                         } else {
                             reboot(wipeOptions[mWipeDataIndex],
-                                    wipeOptions[mWipeCachesIndex], false, null,
+                                    wipeOptions[mWipeCachesIndex],
+                                    wipeOptions[mFixPermissionsIndex], null,
                                     null);
                         }
 
