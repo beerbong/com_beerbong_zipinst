@@ -233,7 +233,7 @@ public class RebootManager extends Manager implements UIListener {
             os.writeBytes("rm -f /cache/recovery/extendedcommand\n");
             os.writeBytes("rm -f /cache/recovery/openrecoveryscript\n");
 
-            if (skipCommands) {
+            if (!skipCommands) {
                 String file = manager.getCommandsFile();
 
                 String[] commands = manager
