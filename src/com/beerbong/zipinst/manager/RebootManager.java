@@ -118,32 +118,7 @@ public class RebootManager extends Manager implements UIListener {
     }
 
     public void simpleReboot() {
-        try {
-
-            Process p = Runtime.getRuntime().exec("su");
-            DataOutputStream os = new DataOutputStream(p.getOutputStream());
-
-            os.writeBytes("rm -f /cache/recovery/command\n");
-            os.writeBytes("rm -f /cache/recovery/extendedcommand\n");
-            os.writeBytes("rm -f /cache/recovery/openrecoveryscript\n");
-
-            os.writeBytes("reboot recovery\n");
-
-            os.writeBytes("sync\n");
-            os.writeBytes("exit\n");
-            os.flush();
-            p.waitFor();
-
-            if (Constants.isSystemApp(mContext)) {
-                ((PowerManager) mContext.getSystemService(Activity.POWER_SERVICE))
-                        .reboot("recovery");
-            } else {
-                Runtime.getRuntime().exec("/system/bin/reboot recovery");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        reboot(false, false, null, null, true);
     }
 
     private void showBackupDialog(Context context, boolean removePreferences,
@@ -242,6 +217,11 @@ public class RebootManager extends Manager implements UIListener {
     }
 
     private void reboot(boolean wipeData, boolean wipeCaches, String backupFolder, String restore) {
+        reboot(wipeData, wipeCaches, backupFolder, restore, false);
+    }
+
+    private void reboot(boolean wipeData, boolean wipeCaches, String backupFolder, String restore,
+            boolean skipCommands) {
         try {
 
             RecoveryManager manager = ManagerFactory.getRecoveryManager();
@@ -253,13 +233,17 @@ public class RebootManager extends Manager implements UIListener {
             os.writeBytes("rm -f /cache/recovery/extendedcommand\n");
             os.writeBytes("rm -f /cache/recovery/openrecoveryscript\n");
 
-            String file = manager.getCommandsFile();
+            if (skipCommands) {
+                String file = manager.getCommandsFile();
 
-            String[] commands = manager.getCommands(wipeData, wipeCaches, backupFolder, restore);
-            if (commands != null) {
-                int size = commands.length, i = 0;
-                for (; i < size; i++) {
-                    os.writeBytes("echo '" + commands[i] + "' >> /cache/recovery/" + file + "\n");
+                String[] commands = manager
+                        .getCommands(wipeData, wipeCaches, backupFolder, restore);
+                if (commands != null) {
+                    int size = commands.length, i = 0;
+                    for (; i < size; i++) {
+                        os.writeBytes("echo '" + commands[i] + "' >> /cache/recovery/" + file
+                                + "\n");
+                    }
                 }
             }
 
