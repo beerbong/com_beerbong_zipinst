@@ -16,17 +16,15 @@
 
 package com.beerbong.zipinst.activities;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
 import com.beerbong.zipinst.R;
+import com.beerbong.zipinst.manager.ManagerFactory;
 import com.beerbong.zipinst.widget.Activity;
 
 public class Changelog extends Activity {
@@ -36,29 +34,12 @@ public class Changelog extends Activity {
 
         super.onCreate(savedInstanceState);
 
-        BufferedReader in = null;
-        StringBuilder data = null;
-        try {
-            data = new StringBuilder(2048);
-            char[] buf = new char[2048];
-            int nRead = -1;
-            in = new BufferedReader(new InputStreamReader(getAssets().open("changelog.html")));
-            while ((nRead = in.read(buf)) != -1) {
-                data.append(buf, 0, nRead);
-            }
-        } catch (IOException e) {
-            showErrorAndFinish();
-            return;
-        } finally {
-            if (in != null) {
-                try {
-                    in.close();
-                } catch (IOException e) {
-                }
-            }
-        }
+        String data = null;
 
-        if (TextUtils.isEmpty(data)) {
+        try {
+            data = ManagerFactory.getFileManager().readAssets(this,
+                    "changelog.html");
+        } catch (IOException e) {
             showErrorAndFinish();
             return;
         }
@@ -66,7 +47,7 @@ public class Changelog extends Activity {
         WebView webView = new WebView(this);
 
         // Begin the loading. This will be done in a separate thread in WebView.
-        webView.loadDataWithBaseURL(null, data.toString(), "text/html", "utf-8", null);
+        webView.loadDataWithBaseURL(null, data, "text/html", "utf-8", null);
         webView.setWebViewClient(new WebViewClient() {
 
             @Override
@@ -78,7 +59,8 @@ public class Changelog extends Activity {
     }
 
     private void showErrorAndFinish() {
-        Toast.makeText(this, R.string.changelog_error, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.changelog_error, Toast.LENGTH_LONG)
+                .show();
         finish();
     }
 }

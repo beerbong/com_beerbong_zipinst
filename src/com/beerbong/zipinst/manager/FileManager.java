@@ -19,6 +19,8 @@ package com.beerbong.zipinst.manager;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -40,6 +42,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -75,7 +78,8 @@ public class FileManager extends Manager implements UIListener {
             pathList = doc.getElementsByTagName("path");
 
         } catch (Exception ex) {
-            Toast.makeText(mContext, R.string.paths_error, Toast.LENGTH_LONG).show();
+            Toast.makeText(mContext, R.string.paths_error, Toast.LENGTH_LONG)
+                    .show();
             return;
         }
 
@@ -112,12 +116,13 @@ public class FileManager extends Manager implements UIListener {
             if (list.size() > 0) {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
                 intent.setType("file/*");
-                getActivity().startActivityForResult(intent, Constants.REQUEST_PICK_FILE);
+                getActivity().startActivityForResult(intent,
+                        Constants.REQUEST_PICK_FILE);
             } else {
                 // No app installed to handle the intent - file explorer
                 // required
-                Toast.makeText(mContext, R.string.install_file_manager_error, Toast.LENGTH_SHORT)
-                        .show();
+                Toast.makeText(mContext, R.string.install_file_manager_error,
+                        Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -137,7 +142,8 @@ public class FileManager extends Manager implements UIListener {
     @Override
     public void onNewIntent(Intent intent) {
 
-        if (intent.getExtras() != null && intent.getExtras().containsKey("NOTIFICATION_ID")) {
+        if (intent.getExtras() != null
+                && intent.getExtras().containsKey("NOTIFICATION_ID")) {
             String url = intent.getExtras().getString("URL");
             String md5 = intent.getStringExtra("MD5");
             String name = intent.getStringExtra("ZIP_NAME");
@@ -178,7 +184,8 @@ public class FileManager extends Manager implements UIListener {
 
         ManagerFactory.getPreferencesManager().setList(list.toString());
 
-        Toast.makeText(mContext, R.string.list_saved, Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, R.string.list_saved, Toast.LENGTH_SHORT)
+                .show();
     }
 
     public void loadList() {
@@ -197,13 +204,16 @@ public class FileManager extends Manager implements UIListener {
             addFile(path);
         }
 
-        Toast.makeText(mContext, R.string.list_loaded, Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, R.string.list_loaded, Toast.LENGTH_SHORT)
+                .show();
     }
 
     public void checkFilesAndMd5(final RebootManager manager) {
 
-        final boolean checkExists = ManagerFactory.getPreferencesManager().isCheckExists();
-        final boolean checkMd5 = ManagerFactory.getPreferencesManager().isCheckMD5();
+        final boolean checkExists = ManagerFactory.getPreferencesManager()
+                .isCheckExists();
+        final boolean checkMd5 = ManagerFactory.getPreferencesManager()
+                .isCheckMD5();
 
         if (!checkExists && !checkMd5) {
             manager.showRebootDialog();
@@ -212,7 +222,8 @@ public class FileManager extends Manager implements UIListener {
 
         final ProgressDialog pDialog = new ProgressDialog(mContext);
         pDialog.setIndeterminate(true);
-        pDialog.setMessage(mContext.getResources().getString(R.string.alert_file_checking));
+        pDialog.setMessage(mContext.getResources().getString(
+                R.string.alert_file_checking));
         pDialog.setCancelable(false);
         pDialog.setCanceledOnTouchOutside(false);
         pDialog.show();
@@ -230,16 +241,19 @@ public class FileManager extends Manager implements UIListener {
                     getActivity().runOnUiThread(new Runnable() {
 
                         public void run() {
-                            pDialog.setMessage(mContext.getResources().getString(
-                                    R.string.alert_file_exists_checking,
-                                    new Object[] { file.getName() }));
+                            pDialog.setMessage(mContext
+                                    .getResources()
+                                    .getString(
+                                            R.string.alert_file_exists_checking,
+                                            new Object[] { file.getName() }));
                         }
                     });
 
                     if (checkExists && !file.exists()) {
                         pDialog.dismiss();
                         showAlertOnUIThread(R.string.alert_file_alert,
-                                R.string.alert_file_not_exists, new Object[] { file.getName() });
+                                R.string.alert_file_not_exists,
+                                new Object[] { file.getName() });
                         return;
                     }
 
@@ -248,14 +262,17 @@ public class FileManager extends Manager implements UIListener {
                         getActivity().runOnUiThread(new Runnable() {
 
                             public void run() {
-                                pDialog.setMessage(mContext.getResources().getString(
-                                        R.string.alert_file_md5_checking,
-                                        new Object[] { file.getName() }));
+                                pDialog.setMessage(mContext
+                                        .getResources()
+                                        .getString(
+                                                R.string.alert_file_md5_checking,
+                                                new Object[] { file.getName() }));
                             }
                         });
 
                         File folder = file.getParentFile();
-                        File md5File = new File(folder, file.getName() + ".md5sum");
+                        File md5File = new File(folder, file.getName()
+                                + ".md5sum");
                         if (md5File.exists()) {
                             String content[] = readMd5File(md5File);
                             if (!file.getName().equals(content[1])) {
@@ -297,34 +314,41 @@ public class FileManager extends Manager implements UIListener {
                 .setTitle(R.string.downloadzip_alert_title)
                 .setMessage(R.string.downloadzip_alert_summary)
                 .setView(input)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                .setPositiveButton(android.R.string.ok,
+                        new DialogInterface.OnClickListener() {
 
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        final String value = input.getText().toString();
+                            public void onClick(DialogInterface dialog,
+                                    int whichButton) {
+                                final String value = input.getText().toString();
 
-                        if (value == null || "".equals(value.trim())) {
-                            Toast.makeText(mContext, R.string.downloadzip_alert_error,
-                                    Toast.LENGTH_SHORT).show();
-                            dialog.dismiss();
-                            return;
-                        }
+                                if (value == null || "".equals(value.trim())) {
+                                    Toast.makeText(mContext,
+                                            R.string.downloadzip_alert_error,
+                                            Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
+                                    return;
+                                }
 
-                        dialog.dismiss();
+                                dialog.dismiss();
 
-                        ((Activity) mContext).runOnUiThread(new Runnable() {
+                                ((Activity) mContext)
+                                        .runOnUiThread(new Runnable() {
 
-                            public void run() {
-                                download(mContext, value, null, null);
+                                            public void run() {
+                                                download(mContext, value, null,
+                                                        null);
+                                            }
+                                        });
                             }
-                        });
-                    }
-                })
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                        })
+                .setNegativeButton(android.R.string.cancel,
+                        new DialogInterface.OnClickListener() {
 
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        dialog.dismiss();
-                    }
-                }).show();
+                            public void onClick(DialogInterface dialog,
+                                    int whichButton) {
+                                dialog.dismiss();
+                            }
+                        }).show();
     }
 
     public void selectDownloadPath(final Activity activity) {
@@ -335,63 +359,76 @@ public class FileManager extends Manager implements UIListener {
                 .setTitle(R.string.download_alert_title)
                 .setMessage(R.string.download_alert_summary)
                 .setView(input)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                .setPositiveButton(android.R.string.ok,
+                        new DialogInterface.OnClickListener() {
 
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        String value = input.getText().toString();
+                            public void onClick(DialogInterface dialog,
+                                    int whichButton) {
+                                String value = input.getText().toString();
 
-                        if (value == null || "".equals(value.trim()) || !value.startsWith("/")) {
-                            Toast.makeText(activity, R.string.download_alert_error,
-                                    Toast.LENGTH_SHORT).show();
-                            dialog.dismiss();
-                            return;
-                        }
+                                if (value == null || "".equals(value.trim())
+                                        || !value.startsWith("/")) {
+                                    Toast.makeText(activity,
+                                            R.string.download_alert_error,
+                                            Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
+                                    return;
+                                }
 
-                        ManagerFactory.getPreferencesManager().setDownloadPath(value);
-                        dialog.dismiss();
-                    }
-                })
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                                ManagerFactory.getPreferencesManager()
+                                        .setDownloadPath(value);
+                                dialog.dismiss();
+                            }
+                        })
+                .setNegativeButton(android.R.string.cancel,
+                        new DialogInterface.OnClickListener() {
 
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        dialog.dismiss();
-                    }
-                }).show();
+                            public void onClick(DialogInterface dialog,
+                                    int whichButton) {
+                                dialog.dismiss();
+                            }
+                        }).show();
     }
 
     public void addFile(String filePath) {
 
-        if (filePath == null || (!filePath.endsWith(".zip") && !filePath.endsWith(".sh"))) {
-            Toast.makeText(mContext, R.string.install_file_manager_invalid_zip, Toast.LENGTH_SHORT)
-                    .show();
+        if (filePath == null
+                || (!filePath.endsWith(".zip") && !filePath.endsWith(".sh"))) {
+            Toast.makeText(mContext, R.string.install_file_manager_invalid_zip,
+                    Toast.LENGTH_SHORT).show();
             return;
         }
 
         for (int i = 0; i < pathList.getLength(); i++) {
-            String name = pathList.item(i).getAttributes().getNamedItem("name").getNodeValue();
-            String allowed = pathList.item(i).getAttributes().getNamedItem("allowed")
+            String name = pathList.item(i).getAttributes().getNamedItem("name")
                     .getNodeValue();
+            String allowed = pathList.item(i).getAttributes()
+                    .getNamedItem("allowed").getNodeValue();
             if ("0".equals(allowed) && filePath.startsWith(name)) {
                 // external sdcard not allowed
-                Toast.makeText(mContext, R.string.install_file_manager_intsdcard,
+                Toast.makeText(mContext,
+                        R.string.install_file_manager_intsdcard,
                         Toast.LENGTH_SHORT).show();
                 return;
             }
         }
 
         if (!filePath.endsWith(".zip") && !filePath.endsWith(".sh")) {
-            Toast.makeText(mContext, R.string.install_file_manager_zip, Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, R.string.install_file_manager_zip,
+                    Toast.LENGTH_SHORT).show();
             return;
         }
 
         String sdcardPath = new String(filePath);
 
-        String internalStorage = ManagerFactory.getPreferencesManager().getInternalStorage();
+        String internalStorage = ManagerFactory.getPreferencesManager()
+                .getInternalStorage();
 
         for (int i = 0; i < pathList.getLength(); i++) {
-            String name = pathList.item(i).getAttributes().getNamedItem("name").getNodeValue();
-            String allowed = pathList.item(i).getAttributes().getNamedItem("allowed")
+            String name = pathList.item(i).getAttributes().getNamedItem("name")
                     .getNodeValue();
+            String allowed = pathList.item(i).getAttributes()
+                    .getNamedItem("allowed").getNodeValue();
             if ("1".equals(allowed) && filePath.startsWith(name)) {
                 if (filePath.endsWith(".sh")) {
                     filePath = filePath.replace(name, "/" + "sdcard");
@@ -409,57 +446,65 @@ public class FileManager extends Manager implements UIListener {
         AlertDialog.Builder alert = new AlertDialog.Builder(context);
         alert.setTitle(R.string.alert_delete_title);
 
-        final String backupFolder = ManagerFactory.getRecoveryManager().getBackupDir(true);
-        final String[] backups = ManagerFactory.getRecoveryManager().getBackupList();
+        final String backupFolder = ManagerFactory.getRecoveryManager()
+                .getBackupDir(true);
+        final String[] backups = ManagerFactory.getRecoveryManager()
+                .getBackupList();
         mSelectedBackup = backups.length > 0 ? 0 : -1;
 
-        alert.setSingleChoiceItems(backups, mSelectedBackup, new DialogInterface.OnClickListener() {
+        alert.setSingleChoiceItems(backups, mSelectedBackup,
+                new DialogInterface.OnClickListener() {
 
-            public void onClick(DialogInterface dialog, int which) {
-                mSelectedBackup = which;
-            }
-        });
+                    public void onClick(DialogInterface dialog, int which) {
+                        mSelectedBackup = which;
+                    }
+                });
 
-        alert.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+        alert.setPositiveButton(android.R.string.ok,
+                new DialogInterface.OnClickListener() {
 
-            public void onClick(DialogInterface dialog, int whichButton) {
-                dialog.dismiss();
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.dismiss();
 
-                if (mSelectedBackup >= 0) {
-                    final String toDelete = backupFolder + backups[mSelectedBackup];
+                        if (mSelectedBackup >= 0) {
+                            final String toDelete = backupFolder
+                                    + backups[mSelectedBackup];
 
-                    final ProgressDialog pDialog = new ProgressDialog(context);
-                    pDialog.setIndeterminate(true);
-                    pDialog.setMessage(context.getResources().getString(
-                            R.string.alert_deleting_folder));
-                    pDialog.setCancelable(false);
-                    pDialog.setCanceledOnTouchOutside(false);
-                    pDialog.show();
+                            final ProgressDialog pDialog = new ProgressDialog(
+                                    context);
+                            pDialog.setIndeterminate(true);
+                            pDialog.setMessage(context.getResources()
+                                    .getString(R.string.alert_deleting_folder));
+                            pDialog.setCancelable(false);
+                            pDialog.setCanceledOnTouchOutside(false);
+                            pDialog.show();
 
-                    (new Thread() {
+                            (new Thread() {
 
-                        public void run() {
+                                public void run() {
 
-                            recursiveDelete(new File(toDelete));
+                                    recursiveDelete(new File(toDelete));
 
-                            pDialog.dismiss();
+                                    pDialog.dismiss();
+                                }
+                            }).start();
                         }
-                    }).start();
-                }
-            }
-        });
+                    }
+                });
 
-        alert.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+        alert.setNegativeButton(android.R.string.cancel,
+                new DialogInterface.OnClickListener() {
 
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
         alert.show();
 
     }
 
-    public void download(Context context, String url, String fileName, String md5) {
+    public void download(Context context, String url, String fileName,
+            String md5) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
 
@@ -473,15 +518,20 @@ public class FileManager extends Manager implements UIListener {
             }
         }
 
-        final DownloadTask downloadFile = new DownloadTask(progressDialog, url, fileName, md5);
+        final DownloadTask downloadFile = new DownloadTask(progressDialog, url,
+                fileName, md5);
 
-        progressDialog.setMessage(context.getResources().getString(R.string.downloading,
-                new Object[] { url, ManagerFactory.getPreferencesManager().getDownloadPath() }));
+        progressDialog.setMessage(context.getResources().getString(
+                R.string.downloading,
+                new Object[] {
+                        url,
+                        ManagerFactory.getPreferencesManager()
+                                .getDownloadPath() }));
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progressDialog.setCancelable(false);
         progressDialog.setProgress(0);
-        progressDialog.setButton(Dialog.BUTTON_NEGATIVE,
-                context.getResources().getString(android.R.string.cancel),
+        progressDialog.setButton(Dialog.BUTTON_NEGATIVE, context.getResources()
+                .getString(android.R.string.cancel),
                 new DialogInterface.OnClickListener() {
 
                     @Override
@@ -504,7 +554,8 @@ public class FileManager extends Manager implements UIListener {
     }
 
     private void handleSendMultipleZips(Intent intent) {
-        ArrayList<Uri> zipUris = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
+        ArrayList<Uri> zipUris = intent
+                .getParcelableArrayListExtra(Intent.EXTRA_STREAM);
         if (zipUris != null) {
             for (int i = 0; i < zipUris.size(); i++) {
                 addFile(zipUris.get(i).getEncodedPath());
@@ -514,8 +565,8 @@ public class FileManager extends Manager implements UIListener {
 
     private void showInfoDialog(final FileItem item) {
         AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
-        alert.setTitle(mContext.getResources().getString(R.string.alert_file_title,
-                new Object[] { item.getName() }));
+        alert.setTitle(mContext.getResources().getString(
+                R.string.alert_file_title, new Object[] { item.getName() }));
 
         String path = item.getPath();
         File file = new File(path);
@@ -523,33 +574,36 @@ public class FileManager extends Manager implements UIListener {
         alert.setMessage(mContext.getResources().getString(
                 R.string.alert_file_summary,
                 new Object[] {
-                        (file.getParent() == null ? "" : file.getParent()) + "/",
-                        Constants.formatSize(file.length()),
+                        (file.getParent() == null ? "" : file.getParent())
+                                + "/", Constants.formatSize(file.length()),
                         new Date(file.lastModified()).toString() }));
 
-        alert.setPositiveButton(R.string.alert_file_close, new DialogInterface.OnClickListener() {
+        alert.setPositiveButton(R.string.alert_file_close,
+                new DialogInterface.OnClickListener() {
 
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
-                dialog.dismiss();
-            }
-        });
-        alert.setNeutralButton(R.string.alert_file_md5, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.dismiss();
+                    }
+                });
+        alert.setNeutralButton(R.string.alert_file_md5,
+                new DialogInterface.OnClickListener() {
 
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
-                dialog.dismiss();
-                showMd5Dialog(item);
-            }
-        });
-        alert.setNegativeButton(R.string.alert_file_delete, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.dismiss();
+                        showMd5Dialog(item);
+                    }
+                });
+        alert.setNegativeButton(R.string.alert_file_delete,
+                new DialogInterface.OnClickListener() {
 
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
-                dialog.dismiss();
-                UI.getInstance().removeItem(item);
-            }
-        });
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.dismiss();
+                        UI.getInstance().removeItem(item);
+                    }
+                });
 
         alert.show();
     }
@@ -564,48 +618,52 @@ public class FileManager extends Manager implements UIListener {
         alert.setView(input);
         input.selectAll();
 
-        alert.setPositiveButton(R.string.alert_md5_ok, new DialogInterface.OnClickListener() {
+        alert.setPositiveButton(R.string.alert_md5_ok,
+                new DialogInterface.OnClickListener() {
 
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
-                dialog.dismiss();
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.dismiss();
 
-                final ProgressDialog pDialog = new ProgressDialog(mContext);
-                pDialog.setIndeterminate(true);
-                pDialog.setMessage(mContext.getResources().getString(R.string.alert_md5_loading));
-                pDialog.setCancelable(false);
-                pDialog.setCanceledOnTouchOutside(false);
-                pDialog.show();
+                        final ProgressDialog pDialog = new ProgressDialog(
+                                mContext);
+                        pDialog.setIndeterminate(true);
+                        pDialog.setMessage(mContext.getResources().getString(
+                                R.string.alert_md5_loading));
+                        pDialog.setCancelable(false);
+                        pDialog.setCanceledOnTouchOutside(false);
+                        pDialog.show();
 
-                (new Thread() {
-
-                    public void run() {
-
-                        String path = item.getPath();
-                        File file = new File(path);
-                        final String md5 = Constants.md5(file);
-
-                        pDialog.dismiss();
-
-                        final String text = input.getText() == null ? null : input.getText()
-                                .toString();
-
-                        getActivity().runOnUiThread(new Runnable() {
+                        (new Thread() {
 
                             public void run() {
-                                showMd5(md5, text);
-                            }
-                        });
-                    }
-                }).start();
-            }
-        });
-        alert.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
 
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
+                                String path = item.getPath();
+                                File file = new File(path);
+                                final String md5 = Constants.md5(file);
+
+                                pDialog.dismiss();
+
+                                final String text = input.getText() == null ? null
+                                        : input.getText().toString();
+
+                                getActivity().runOnUiThread(new Runnable() {
+
+                                    public void run() {
+                                        showMd5(md5, text);
+                                    }
+                                });
+                            }
+                        }).start();
+                    }
+                });
+        alert.setNegativeButton(android.R.string.cancel,
+                new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
         alert.show();
     }
 
@@ -615,19 +673,22 @@ public class FileManager extends Manager implements UIListener {
             alert.setMessage(md5);
         } else {
             if (md5.equals(text)) {
-                alert.setMessage(mContext.getResources().getString(R.string.alert_md5_match));
+                alert.setMessage(mContext.getResources().getString(
+                        R.string.alert_md5_match));
             } else {
-                alert.setMessage(mContext.getResources().getString(R.string.alert_md5_no_match,
-                        new Object[] { text, md5 }));
+                alert.setMessage(mContext.getResources()
+                        .getString(R.string.alert_md5_no_match,
+                                new Object[] { text, md5 }));
             }
         }
-        alert.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+        alert.setPositiveButton(android.R.string.ok,
+                new DialogInterface.OnClickListener() {
 
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
-                dialog.dismiss();
-            }
-        });
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.dismiss();
+                    }
+                });
         alert.show();
     }
 
@@ -660,13 +721,16 @@ public class FileManager extends Manager implements UIListener {
             public void run() {
                 AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
                 alert.setTitle(titleId);
-                alert.setMessage(mContext.getResources().getString(messageId, messageParams));
-                alert.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                alert.setMessage(mContext.getResources().getString(messageId,
+                        messageParams));
+                alert.setPositiveButton(android.R.string.ok,
+                        new DialogInterface.OnClickListener() {
 
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        dialog.dismiss();
-                    }
-                });
+                            public void onClick(DialogInterface dialog,
+                                    int whichButton) {
+                                dialog.dismiss();
+                            }
+                        });
                 alert.show();
             }
         });
@@ -676,7 +740,7 @@ public class FileManager extends Manager implements UIListener {
         return (Activity) mContext;
     }
 
-    public static boolean recursiveDelete(File f) {
+    public boolean recursiveDelete(File f) {
         try {
             if (f.isDirectory()) {
                 File[] files = f.listFiles();
@@ -696,5 +760,33 @@ public class FileManager extends Manager implements UIListener {
         } catch (Exception ignore) {
         }
         return true;
+    }
+
+    public String readAssets(Context contex, String fileName)
+            throws IOException {
+        BufferedReader in = null;
+        StringBuilder data = null;
+        try {
+            data = new StringBuilder(2048);
+            char[] buf = new char[2048];
+            int nRead = -1;
+            in = new BufferedReader(new InputStreamReader(contex.getAssets()
+                    .open("changelog.html")));
+            while ((nRead = in.read(buf)) != -1) {
+                data.append(buf, 0, nRead);
+            }
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                }
+            }
+        }
+
+        if (TextUtils.isEmpty(data)) {
+            throw new IOException("Empty file");
+        }
+        return data.toString();
     }
 }
