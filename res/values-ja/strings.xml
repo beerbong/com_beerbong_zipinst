@@ -171,6 +171,8 @@
     <string name="recovery_activity_restore_summary">以前のバックアップへリストア</string>
     <string name="recovery_activity_delete_title">削除</string>
     <string name="recovery_activity_delete_summary">以前のバックアップを削除</string>
+    <string name="recovery_activity_fixperm_title">Fix permissions</string>
+    <string name="recovery_activity_fixperm_summary">Reboot into recovery and execute fix permissions</string>
     <string name="recovery_activity_reboot_title">リカバリへ再起動</string>
 
     <string name="alert_deleting_folder">削除中 %1$s&#8230;</string>

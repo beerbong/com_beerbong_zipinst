@@ -42,6 +42,8 @@ public class Recovery extends PreferenceActivity {
             ManagerFactory.getRebootManager().showRestoreDialog(this);
         } else if (Constants.PREFERENCE_RECOVERY_DELETE.equals(key)) {
             ManagerFactory.getFileManager().showDeleteDialog(this);
+        } else if (Constants.PREFERENCE_RECOVERY_FIXPERM.equals(key)) {
+            ManagerFactory.getRebootManager().fixPermissions();
         } else if (Constants.PREFERENCE_RECOVERY_REBOOT.equals(key)) {
             ManagerFactory.getRebootManager().simpleReboot();
         }

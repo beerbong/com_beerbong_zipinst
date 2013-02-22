@@ -34,6 +34,11 @@
             android:key="recovery_activity_delete"/>
         
         <Preference 
+            android:title="@string/recovery_activity_fixperm_title"
+            android:summary="@string/recovery_activity_fixperm_summary"
+            android:key="recovery_activity_fixperm"/>
+        
+        <Preference 
             android:title="@string/recovery_activity_reboot_title"
             android:key="recovery_activity_reboot"/>
 

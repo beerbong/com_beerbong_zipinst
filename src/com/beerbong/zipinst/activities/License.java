@@ -16,8 +16,6 @@
 
 package com.beerbong.zipinst.activities;
 
-import java.io.IOException;
-
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -34,12 +32,10 @@ public class License extends Activity {
 
         super.onCreate(savedInstanceState);
 
-        String data = null;
+        String data = ManagerFactory.getFileManager().readAssets(this,
+                "license.html");
 
-        try {
-            data = ManagerFactory.getFileManager().readAssets(this,
-                    "license.html");
-        } catch (IOException e) {
+        if (data == null) {
             showErrorAndFinish();
             return;
         }

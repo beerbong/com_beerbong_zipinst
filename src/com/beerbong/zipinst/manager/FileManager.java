@@ -18,6 +18,7 @@ package com.beerbong.zipinst.manager;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -762,8 +763,32 @@ public class FileManager extends Manager implements UIListener {
         return true;
     }
 
-    public String readAssets(Context contex, String fileName)
-            throws IOException {
+    public boolean writeToFile(String data, String path, String fileName) {
+
+        File folder = new File(path);
+        File file = new File(folder, fileName);
+        
+        folder.mkdirs();
+        
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(file);
+            fos.write(data.getBytes());
+            return true;
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return false;
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException ex) {
+                }
+            }
+        }
+    }
+
+    public String readAssets(Context contex, String fileName) {
         BufferedReader in = null;
         StringBuilder data = null;
         try {
@@ -771,10 +796,13 @@ public class FileManager extends Manager implements UIListener {
             char[] buf = new char[2048];
             int nRead = -1;
             in = new BufferedReader(new InputStreamReader(contex.getAssets()
-                    .open("changelog.html")));
+                    .open(fileName)));
             while ((nRead = in.read(buf)) != -1) {
                 data.append(buf, 0, nRead);
             }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
         } finally {
             if (in != null) {
                 try {
@@ -785,7 +813,7 @@ public class FileManager extends Manager implements UIListener {
         }
 
         if (TextUtils.isEmpty(data)) {
-            throw new IOException("Empty file");
+            return null;
         }
         return data.toString();
     }

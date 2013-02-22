@@ -171,6 +171,8 @@
     <string name="recovery_activity_restore_summary">Obnovenie predchádzajúcej zálohy</string>
     <string name="recovery_activity_delete_title">Vymazať</string>
     <string name="recovery_activity_delete_summary">Odstránenie predchádzajúcej zálohy</string>
+    <string name="recovery_activity_fixperm_title">Fix permissions</string>
+    <string name="recovery_activity_fixperm_summary">Reboot into recovery and execute fix permissions</string>
     <string name="recovery_activity_reboot_title">Reštart do recovery</string>
 
     <string name="alert_deleting_folder">Vymazávam %1$s&#8230;</string>

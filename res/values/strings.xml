@@ -172,6 +172,8 @@
     <string name="recovery_activity_restore_summary">Restore a previous backup</string>
     <string name="recovery_activity_delete_title">Delete</string>
     <string name="recovery_activity_delete_summary">Delete a previous backup</string>
+    <string name="recovery_activity_fixperm_title">Fix permissions</string>
+    <string name="recovery_activity_fixperm_summary">Reboot into recovery and execute fix permissions</string>
     <string name="recovery_activity_reboot_title">Reboot into recovery</string>
 
     <string name="alert_deleting_folder">Deleting %1$s&#8230;</string>

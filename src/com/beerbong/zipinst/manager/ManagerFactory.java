@@ -30,6 +30,7 @@ public class ManagerFactory {
     private static RecoveryManager mRecoveryManager;
     private static PreferencesManager mPreferencesManager;
     private static UpdateManager mUpdateManager;
+    private static SUManager mSUManager;
 
     public static void start(Activity mActivity) {
         mProManager = new ProManagerImpl(mActivity);
@@ -40,6 +41,7 @@ public class ManagerFactory {
         if (mPreferencesManager == null)
             mPreferencesManager = new PreferencesManager(mActivity);
         mUpdateManager = new UpdateManager(mActivity);
+        mSUManager = new SUManager(mActivity);
     }
 
     public static FileManager getFileManager() {
@@ -70,6 +72,10 @@ public class ManagerFactory {
 
     public static UpdateManager getUpdateManager() {
         return mUpdateManager;
+    }
+
+    public static SUManager getSUManager() {
+        return mSUManager;
     }
 
     public static ProManager getProManager() {

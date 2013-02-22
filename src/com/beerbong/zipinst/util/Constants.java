@@ -57,6 +57,7 @@ public class Constants {
     public static final String PREFERENCE_RECOVERY_BACKUP = "recovery_activity_backup";
     public static final String PREFERENCE_RECOVERY_RESTORE = "recovery_activity_restore";
     public static final String PREFERENCE_RECOVERY_DELETE = "recovery_activity_delete";
+    public static final String PREFERENCE_RECOVERY_FIXPERM = "recovery_activity_fixperm";
     public static final String PREFERENCE_RECOVERY_REBOOT = "recovery_activity_reboot";
 
     public static final String SEARCH_URL = "http://goo.im/json2&action=search&query=ZipInstaller";
