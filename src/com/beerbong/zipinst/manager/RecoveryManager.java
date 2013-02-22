@@ -247,7 +247,7 @@ public class RecoveryManager extends Manager {
 
         String internalStorage = ManagerFactory.getPreferencesManager().getInternalStorage();
 
-        String sh = getSHCommand();
+        String sbin = getSBINFolder();
 
         switch (info.getId()) {
             case R.id.cwmbased:
@@ -297,8 +297,10 @@ public class RecoveryManager extends Manager {
                             commands.add("ui_print(\" Executing script\");");
                             commands.add("run_program(\"/sbin/busybox\", \"cp\", \""
                                     + item.getKey() + "\", \"/cache/" + item.getName() + "\");");
-                            commands.add("run_program(\"" + sh + "\", \"/cache/" + item.getName()
-                                    + "\");");
+                            commands.add("run_program(\"" + sbin + "chmod\", \"+x\", \"/cache/"
+                                    + item.getName() + "\");");
+                            commands.add("run_program(\"" + sbin + "sh\", \"/cache/"
+                                    + item.getName() + "\");");
                             commands.add("run_program(\"/sbin/busybox\", \"rm\", \"/cache/"
                                     + item.getName() + "\");");
                         }
@@ -350,7 +352,8 @@ public class RecoveryManager extends Manager {
                     } else if (item.isScript()) {
                         commands.add("cmd /sbin/busybox cp " + item.getKey() + " /cache/"
                                 + item.getName());
-                        commands.add("cmd " + sh + " /cache/" + item.getName());
+                        commands.add("cmd " + sbin + "chmod +x /cache/" + item.getName());
+                        commands.add("cmd " + sbin + "sh /cache/" + item.getName());
                         commands.add("cmd /sbin/busybox rm /cache/" + item.getName());
                     }
                 }
@@ -430,11 +433,11 @@ public class RecoveryManager extends Manager {
         }
     }
 
-    private String getSHCommand() {
+    private String getSBINFolder() {
         if (folderExists("/sbin")) {
-            return "/sbin/sh";
+            return "/sbin/";
         } else if (folderExists("/system/sbin")) {
-            return "/system/sbin/sh";
+            return "/system/sbin/";
         }
         return null;
     }
