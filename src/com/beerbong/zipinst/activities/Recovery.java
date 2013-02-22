@@ -30,7 +30,7 @@ public class Recovery extends PreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        super.onCreate(savedInstanceState, R.layout.recovery_activity);
+        super.onCreate(savedInstanceState, R.xml.recovery_activity);
     }
 
     @Override

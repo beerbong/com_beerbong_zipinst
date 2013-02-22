@@ -33,7 +33,7 @@ public class About extends PreferenceActivity {
     @SuppressWarnings("deprecation")
     protected void onCreate(Bundle savedInstanceState) {
 
-        super.onCreate(savedInstanceState, R.layout.about);
+        super.onCreate(savedInstanceState, R.xml.about);
 
         Preference versionPref = findPreference(Constants.PREFERENCE_ABOUT_VERSION);
         try {

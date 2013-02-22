@@ -56,7 +56,7 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
     @SuppressWarnings("deprecation")
     protected void onCreate(Bundle savedInstanceState) {
 
-        super.onCreate(savedInstanceState, R.layout.settings);
+        super.onCreate(savedInstanceState, R.xml.settings);
 
         mRecovery = findPreference(Constants.PREFERENCE_SETTINGS_RECOVERY);
         mSdcard = findPreference(Constants.PREFERENCE_SETTINGS_SDCARD);

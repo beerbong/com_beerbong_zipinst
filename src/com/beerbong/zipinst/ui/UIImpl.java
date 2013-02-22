@@ -110,7 +110,7 @@ public class UIImpl extends UI {
 
         this.mActivity = activity;
 
-        activity.setContentView(R.layout.activity);
+        activity.setContentView(R.xml.activity);
         init();
     }
 
