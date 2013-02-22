@@ -236,7 +236,7 @@ public class DownloadTask extends AsyncTask<Void, Integer, Integer> {
                             "application/vnd.android.package-archive");
                     mContext.startActivity(intent);
                 } else if (mFileName.endsWith(".zip")) {
-                    ManagerFactory.getFileManager().addZip(path);
+                    ManagerFactory.getFileManager().addFile(path);
                 }
                 break;
             case 2:

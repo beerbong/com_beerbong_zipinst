@@ -36,6 +36,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.beerbong.zipinst.R;
+import com.beerbong.zipinst.util.FileItem;
 import com.beerbong.zipinst.util.RecoveryInfo;
 import com.beerbong.zipinst.util.StoredItems;
 
@@ -246,6 +247,8 @@ public class RecoveryManager extends Manager {
 
         String internalStorage = ManagerFactory.getPreferencesManager().getInternalStorage();
 
+        String sh = getSHCommand();
+
         switch (info.getId()) {
             case R.id.cwmbased:
             case R.id.fourext:
@@ -285,10 +288,20 @@ public class RecoveryManager extends Manager {
                 }
 
                 if (size > 0) {
-                    commands.add("ui_print(\" Installing zips\");");
                     for (; i < size; i++) {
-                        commands.add("assert(install_zip(\"" + StoredItems.getItem(i).getKey()
-                                + "\"));");
+                        FileItem item = StoredItems.getItem(i);
+                        if (item.isZip()) {
+                            commands.add("ui_print(\" Installing zip\");");
+                            commands.add("assert(install_zip(\"" + item.getKey() + "\"));");
+                        } else if (item.isScript()) {
+                            commands.add("ui_print(\" Executing script\");");
+                            commands.add("run_program(\"/sbin/busybox\", \"cp\", \""
+                                    + item.getKey() + "\", \"/cache/" + item.getName() + "\");");
+                            commands.add("run_program(\"" + sh + "\", \"/cache/" + item.getName()
+                                    + "\");");
+                            commands.add("run_program(\"/sbin/busybox\", \"rm\", \"/cache/"
+                                    + item.getName() + "\");");
+                        }
                     }
                 }
 
@@ -331,7 +344,15 @@ public class RecoveryManager extends Manager {
                 }
 
                 for (; i < size; i++) {
-                    commands.add("install " + StoredItems.getItem(i).getKey());
+                    FileItem item = StoredItems.getItem(i);
+                    if (item.isZip()) {
+                        commands.add("install " + item.getKey());
+                    } else if (item.isScript()) {
+                        commands.add("cmd /sbin/busybox cp " + item.getKey() + " /cache/"
+                                + item.getName());
+                        commands.add("cmd " + sh + " /cache/" + item.getName());
+                        commands.add("cmd /sbin/busybox rm /cache/" + item.getName());
+                    }
                 }
 
                 break;
@@ -407,6 +428,15 @@ public class RecoveryManager extends Manager {
                     break;
             }
         }
+    }
+
+    private String getSHCommand() {
+        if (folderExists("/sbin")) {
+            return "/sbin/sh";
+        } else if (folderExists("/system/sbin")) {
+            return "/system/sbin/sh";
+        }
+        return null;
     }
 
     private boolean folderExists(String path) {

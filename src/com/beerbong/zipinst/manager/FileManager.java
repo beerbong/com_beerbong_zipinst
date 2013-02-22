@@ -51,7 +51,7 @@ import com.beerbong.zipinst.ui.UIListener;
 import com.beerbong.zipinst.util.Constants;
 import com.beerbong.zipinst.util.DownloadTask;
 import com.beerbong.zipinst.util.StoredItems;
-import com.beerbong.zipinst.util.ZipItem;
+import com.beerbong.zipinst.util.FileItem;
 
 public class FileManager extends Manager implements UIListener {
 
@@ -112,7 +112,7 @@ public class FileManager extends Manager implements UIListener {
             if (list.size() > 0) {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
                 intent.setType("file/*");
-                getActivity().startActivityForResult(intent, Constants.REQUEST_PICK_ZIP);
+                getActivity().startActivityForResult(intent, Constants.REQUEST_PICK_FILE);
             } else {
                 // No app installed to handle the intent - file explorer
                 // required
@@ -122,7 +122,7 @@ public class FileManager extends Manager implements UIListener {
         }
     }
 
-    public void onZipItemClicked(ZipItem item) {
+    public void onFileItemClicked(FileItem item) {
         showInfoDialog(item);
     }
 
@@ -148,16 +148,16 @@ public class FileManager extends Manager implements UIListener {
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == Constants.REQUEST_PICK_ZIP) {
+        if (requestCode == Constants.REQUEST_PICK_FILE) {
             if (data == null) {
                 // Nothing returned by user, probably pressed back button in
                 // file manager
                 return;
             }
 
-            String zipPath = data.getData().getPath();
+            String filePath = data.getData().getPath();
 
-            addZip(zipPath);
+            addFile(filePath);
 
         }
     }
@@ -194,7 +194,7 @@ public class FileManager extends Manager implements UIListener {
         StringTokenizer tokenizer = new StringTokenizer(list, "\n");
         while (tokenizer.hasMoreTokens()) {
             String path = tokenizer.nextToken();
-            addZip(path);
+            addFile(path);
         }
 
         Toast.makeText(mContext, R.string.list_loaded, Toast.LENGTH_SHORT).show();
@@ -223,7 +223,7 @@ public class FileManager extends Manager implements UIListener {
 
                 int size = StoredItems.size();
                 for (int i = 0; i < size; i++) {
-                    ZipItem item = StoredItems.getItem(i);
+                    FileItem item = StoredItems.getItem(i);
                     String path = item.getPath();
                     final File file = new File(path);
 
@@ -359,9 +359,9 @@ public class FileManager extends Manager implements UIListener {
                 }).show();
     }
 
-    public void addZip(String zipPath) {
+    public void addFile(String filePath) {
 
-        if (zipPath == null || !zipPath.endsWith(".zip")) {
+        if (filePath == null || (!filePath.endsWith(".zip") && !filePath.endsWith(".sh"))) {
             Toast.makeText(mContext, R.string.install_file_manager_invalid_zip, Toast.LENGTH_SHORT)
                     .show();
             return;
@@ -371,7 +371,7 @@ public class FileManager extends Manager implements UIListener {
             String name = pathList.item(i).getAttributes().getNamedItem("name").getNodeValue();
             String allowed = pathList.item(i).getAttributes().getNamedItem("allowed")
                     .getNodeValue();
-            if ("0".equals(allowed) && zipPath.startsWith(name)) {
+            if ("0".equals(allowed) && filePath.startsWith(name)) {
                 // external sdcard not allowed
                 Toast.makeText(mContext, R.string.install_file_manager_intsdcard,
                         Toast.LENGTH_SHORT).show();
@@ -379,12 +379,12 @@ public class FileManager extends Manager implements UIListener {
             }
         }
 
-        if (!zipPath.endsWith(".zip")) {
+        if (!filePath.endsWith(".zip") && !filePath.endsWith(".sh")) {
             Toast.makeText(mContext, R.string.install_file_manager_zip, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        String sdcardPath = new String(zipPath);
+        String sdcardPath = new String(filePath);
 
         String internalStorage = ManagerFactory.getPreferencesManager().getInternalStorage();
 
@@ -392,11 +392,16 @@ public class FileManager extends Manager implements UIListener {
             String name = pathList.item(i).getAttributes().getNamedItem("name").getNodeValue();
             String allowed = pathList.item(i).getAttributes().getNamedItem("allowed")
                     .getNodeValue();
-            if ("1".equals(allowed) && zipPath.startsWith(name))
-                zipPath = zipPath.replace(name, "/" + internalStorage);
+            if ("1".equals(allowed) && filePath.startsWith(name)) {
+                if (filePath.endsWith(".sh")) {
+                    filePath = filePath.replace(name, "/" + "sdcard");
+                } else {
+                    filePath = filePath.replace(name, "/" + internalStorage);
+                }
+            }
         }
 
-        UI.getInstance().addItem(zipPath, sdcardPath);
+        UI.getInstance().addItem(filePath, sdcardPath);
     }
 
     public void showDeleteDialog(final Context context) {
@@ -494,7 +499,7 @@ public class FileManager extends Manager implements UIListener {
     private void handleSendZip(Intent intent) {
         Uri zipUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
         if (zipUri != null) {
-            addZip(zipUri.getEncodedPath());
+            addFile(zipUri.getEncodedPath());
         }
     }
 
@@ -502,12 +507,12 @@ public class FileManager extends Manager implements UIListener {
         ArrayList<Uri> zipUris = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
         if (zipUris != null) {
             for (int i = 0; i < zipUris.size(); i++) {
-                addZip(zipUris.get(i).getEncodedPath());
+                addFile(zipUris.get(i).getEncodedPath());
             }
         }
     }
 
-    private void showInfoDialog(final ZipItem item) {
+    private void showInfoDialog(final FileItem item) {
         AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
         alert.setTitle(mContext.getResources().getString(R.string.alert_file_title,
                 new Object[] { item.getName() }));
@@ -549,7 +554,7 @@ public class FileManager extends Manager implements UIListener {
         alert.show();
     }
 
-    private void showMd5Dialog(final ZipItem item) {
+    private void showMd5Dialog(final FileItem item) {
 
         AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
         alert.setTitle(R.string.alert_md5_title);

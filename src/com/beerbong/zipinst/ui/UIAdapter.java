@@ -16,7 +16,7 @@
 
 package com.beerbong.zipinst.ui;
 
-import com.beerbong.zipinst.util.ZipItem;
+import com.beerbong.zipinst.util.FileItem;
 
 import android.content.Intent;
 import android.view.Menu;
@@ -29,7 +29,7 @@ public class UIAdapter implements UIListener {
     }
 
     @Override
-    public void onZipItemClicked(ZipItem item) {
+    public void onFileItemClicked(FileItem item) {
     }
 
     @Override

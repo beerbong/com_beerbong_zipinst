@@ -16,13 +16,13 @@
 
 package com.beerbong.zipinst.util;
 
-public class ZipItem {
+public class FileItem {
 
     private String key;
     private String name;
     private String path;
 
-    public ZipItem(String key, String name, String path) {
+    public FileItem(String key, String name, String path) {
         this.key = key;
         this.name = name;
         this.path = path;
@@ -38,5 +38,13 @@ public class ZipItem {
 
     public String getPath() {
         return this.path;
+    }
+
+    public boolean isZip() {
+        return key.endsWith(".zip") || path.endsWith(".zip");
+    }
+
+    public boolean isScript() {
+        return key.endsWith(".sh") || path.endsWith(".sh");
     }
 }

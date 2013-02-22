@@ -21,8 +21,8 @@
 
     <string name="install_file_manager_error">"No se ha encontrado ninguna aplicación para seleccionar el archivo zip. Por favor, instala un administrador de archivos."</string>
     <string name="install_file_manager_intsdcard">"Selecciona un archivo de la sd interna."</string>
-    <string name="install_file_manager_zip">"Por favor, selecciona un archivo ZIP."</string>
-    <string name="install_file_manager_invalid_zip">Archivo ZIP no válido.</string>
+    <string name="install_file_manager_zip">"Por favor, selecciona un archivo ZIP o SH."</string>
+    <string name="install_file_manager_invalid_zip">Archivo ZIP/SH no válido.</string>
 
     <string name="alert_sdcard_title">Alerta</string>
     <string name="alert_sdcard_message">"Selecciona un zip de la sdcard interna."</string>
@@ -55,13 +55,13 @@
     <string name="alert_file_incorrect_md5_file">Archivo MD5 incorrecto: %1$s</string>
     <string name="alert_file_incorrect_md5">MD5 no coincide para el archivo %1$s</string>
 
-    <string name="main_choose_zip">"Añadir un zip a la lista"</string>
-    <string name="main_choose_zip_summary">Abre un administrador de archivos para seleccionar un zip</string>
+    <string name="main_choose_zip">"Añadir un zip/sh a la lista"</string>
+    <string name="main_choose_zip_summary">Abre un administrador de archivos para seleccionar un zip/sh</string>
 
     <string name="install_now">"Instalar ahora"</string>
     <string name="install_now_summary">Reinicia el dispositivo en recovery y ejecuta las acciones</string>
 
-    <string name="zip_list">"Lista de zips seleccionados"</string>
+    <string name="zip_list">"Lista de zip/sh seleccionados"</string>
 
     <string name="menu_settings">Ajustes</string>
     <string name="menu_backup">Backup</string>

@@ -17,7 +17,7 @@
 package com.beerbong.zipinst.ui;
 
 import com.beerbong.zipinst.MainActivity;
-import com.beerbong.zipinst.util.ZipItem;
+import com.beerbong.zipinst.util.FileItem;
 
 import android.content.Intent;
 import android.view.Menu;
@@ -44,7 +44,7 @@ public abstract class UI implements OnItemClickListener {
 
     public abstract void addItem(String realPath, String sdcardPath);
 
-    public abstract void removeItem(ZipItem item);
+    public abstract void removeItem(FileItem item);
 
     public abstract void removeAllItems();
 

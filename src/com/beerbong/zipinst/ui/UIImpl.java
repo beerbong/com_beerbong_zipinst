@@ -35,15 +35,15 @@ import com.beerbong.zipinst.MainActivity;
 import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.manager.ManagerFactory;
 import com.beerbong.zipinst.util.StoredItems;
-import com.beerbong.zipinst.util.ZipItem;
+import com.beerbong.zipinst.util.FileItem;
 import com.beerbong.zipinst.widget.Item;
 import com.beerbong.zipinst.widget.TouchInterceptor;
 
 public class UIImpl extends UI {
 
-    private class ZipItemsAdapter extends ArrayAdapter<ZipItem> {
+    private class FileItemsAdapter extends ArrayAdapter<FileItem> {
 
-        public ZipItemsAdapter(List<ZipItem> items) {
+        public FileItemsAdapter(List<FileItem> items) {
             super(mActivity,
                     ManagerFactory.getPreferencesManager().isUseDragAndDrop() ? R.layout.order_item
                             : R.layout.noorder_item, items);
@@ -52,7 +52,7 @@ public class UIImpl extends UI {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             LinearLayout itemView;
-            ZipItem item = getItem(position);
+            FileItem item = getItem(position);
 
             boolean useDad = ManagerFactory.getPreferencesManager().isUseDragAndDrop();
 
@@ -137,8 +137,8 @@ public class UIImpl extends UI {
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        ZipItem item = StoredItems.getItem(position);
-        dispatchOnZipItemClicked(item);
+        FileItem item = StoredItems.getItem(position);
+        dispatchOnFileItemClicked(item);
     }
 
     @Override
@@ -176,7 +176,7 @@ public class UIImpl extends UI {
 
         StoredItems.removeItem(realPath);
 
-        ZipItem item = new ZipItem(realPath, sdcardPath.substring(sdcardPath.lastIndexOf("/") + 1),
+        FileItem item = new FileItem(realPath, sdcardPath.substring(sdcardPath.lastIndexOf("/") + 1),
                 sdcardPath);
 
         if ("first".equals(ManagerFactory.getPreferencesManager().getZipPosition())) {
@@ -206,7 +206,7 @@ public class UIImpl extends UI {
         redrawItems();
     }
 
-    public void removeItem(ZipItem item) {
+    public void removeItem(FileItem item) {
 
         StoredItems.removeItem(item.getKey());
 
@@ -242,10 +242,10 @@ public class UIImpl extends UI {
         }
     }
 
-    private void dispatchOnZipItemClicked(ZipItem item) {
+    private void dispatchOnFileItemClicked(FileItem item) {
         int size = mListeners.size(), i = 0;
         for (; i < size; i++) {
-            mListeners.get(i).onZipItemClicked(item);
+            mListeners.get(i).onFileItemClicked(item);
         }
     }
 
@@ -258,6 +258,6 @@ public class UIImpl extends UI {
 
     private void redrawItems() {
 
-        mFileList.setAdapter(new ZipItemsAdapter(StoredItems.getItems()));
+        mFileList.setAdapter(new FileItemsAdapter(StoredItems.getItems()));
     }
 }

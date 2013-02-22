@@ -22,25 +22,25 @@ import java.util.List;
 
 public class StoredItems {
 
-    private static List<ZipItem> list = new ArrayList<ZipItem>();
+    private static List<FileItem> list = new ArrayList<FileItem>();
 
     public static int size() {
         return list.size();
     }
 
-    public static List<ZipItem> getItems() {
+    public static List<FileItem> getItems() {
         return list;
     }
 
-    public static ZipItem getItem(int i) {
+    public static FileItem getItem(int i) {
         return list.get(i);
     }
 
-    public static void addItem(ZipItem item) {
+    public static void addItem(FileItem item) {
         list.add(item);
     }
 
-    public static void addItem(ZipItem item, int position) {
+    public static void addItem(FileItem item, int position) {
         list.add(position, item);
     }
 
@@ -61,7 +61,7 @@ public class StoredItems {
     public static void move(int from, int to) {
         if (from == to)
             return;
-        ZipItem toMove = list.get(from);
+        FileItem toMove = list.get(from);
         while (list.indexOf(toMove) != to) {
             int i = list.indexOf(toMove);
             Collections.swap(list, i, to < from ? i - 1 : i + 1);

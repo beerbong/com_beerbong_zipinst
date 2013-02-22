@@ -35,7 +35,7 @@ import com.beerbong.zipinst.ui.UI;
 import com.beerbong.zipinst.ui.UIListener;
 import com.beerbong.zipinst.util.Constants;
 import com.beerbong.zipinst.util.StoredItems;
-import com.beerbong.zipinst.util.ZipItem;
+import com.beerbong.zipinst.util.FileItem;
 
 public class RebootManager extends Manager implements UIListener {
 
@@ -57,7 +57,7 @@ public class RebootManager extends Manager implements UIListener {
     }
 
     @Override
-    public void onZipItemClicked(ZipItem item) {
+    public void onFileItemClicked(FileItem item) {
     }
 
     @Override

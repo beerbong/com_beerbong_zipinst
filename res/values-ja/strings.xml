@@ -22,7 +22,7 @@
     <string name="install_file_manager_error">Zipを選択するアプリがありません。ファイルマネージャをインストールしてください。</string>
     <string name="install_file_manager_intsdcard">SDカードからファイルを選択してください。</string>
     <string name="install_file_manager_zip">Zipを選択してください。</string>
-    <string name="install_file_manager_invalid_zip">無効なZipです。</string>
+    <string name="install_file_manager_invalid_zip">無効なZip/SHです。</string>
 
     <string name="alert_sdcard_title">警告</string>
     <string name="alert_sdcard_message">SDカードからzipをせんたくしてください</string>

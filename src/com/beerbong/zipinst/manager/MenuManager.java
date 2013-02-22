@@ -28,7 +28,7 @@ import com.beerbong.zipinst.activities.Recovery;
 import com.beerbong.zipinst.activities.Settings;
 import com.beerbong.zipinst.ui.UI;
 import com.beerbong.zipinst.ui.UIListener;
-import com.beerbong.zipinst.util.ZipItem;
+import com.beerbong.zipinst.util.FileItem;
 
 public class MenuManager extends Manager implements UIListener {
 
@@ -85,7 +85,7 @@ public class MenuManager extends Manager implements UIListener {
     }
 
     @Override
-    public void onZipItemClicked(ZipItem item) {
+    public void onFileItemClicked(FileItem item) {
     }
 
     @Override

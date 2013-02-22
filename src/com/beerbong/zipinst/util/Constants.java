@@ -66,7 +66,7 @@ public class Constants {
     public static final String PRO_URL = "https://play.google.com/store/apps/details?id=com.beerbong.zipinst";
     public static final String ABOUT_URL = "http://forum.xda-developers.com/showthread.php?t=1920057";
 
-    public static final int REQUEST_PICK_ZIP = 203;
+    public static final int REQUEST_PICK_FILE = 203;
 
     public static final int NOTIFICATION_ID = 122303221;
 

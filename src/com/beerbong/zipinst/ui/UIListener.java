@@ -16,7 +16,7 @@
 
 package com.beerbong.zipinst.ui;
 
-import com.beerbong.zipinst.util.ZipItem;
+import com.beerbong.zipinst.util.FileItem;
 
 import android.content.Intent;
 import android.view.Menu;
@@ -26,7 +26,7 @@ public interface UIListener {
 
     public void onButtonClicked(int id);
 
-    public void onZipItemClicked(ZipItem item);
+    public void onFileItemClicked(FileItem item);
 
     public void onActivityResult(int requestCode, int resultCode, Intent data);
 

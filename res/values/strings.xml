@@ -21,8 +21,8 @@
 
     <string name="install_file_manager_error">No application found to pick the zip file. Please install a file manager.</string>
     <string name="install_file_manager_intsdcard">Please select a file from internal sdcard.</string>
-    <string name="install_file_manager_zip">Please select a ZIP file.</string>
-    <string name="install_file_manager_invalid_zip">Invalid ZIP file.</string>
+    <string name="install_file_manager_zip">Please select a ZIP or SH file.</string>
+    <string name="install_file_manager_invalid_zip">Invalid ZIP/SH file.</string>
 
     <string name="alert_sdcard_title">Alert</string>
     <string name="alert_sdcard_message">Select a zip from internal sdcard.</string>
@@ -55,13 +55,13 @@
     <string name="alert_file_incorrect_md5_file">Malformed MD5 file: %1$s</string>
     <string name="alert_file_incorrect_md5">Mismatch MD5 for file %1$s</string>
 
-    <string name="main_choose_zip">Add a zip to list</string>
-    <string name="main_choose_zip_summary">Opens a file manager to select a zip</string>
+    <string name="main_choose_zip">Add a zip/sh to list</string>
+    <string name="main_choose_zip_summary">Opens a file manager to select a zip/sh</string>
 
     <string name="install_now">Install now</string>
     <string name="install_now_summary">Reboots the device into recovery and perform the requested actions</string>
 
-    <string name="zip_list">Selected zips list</string>
+    <string name="zip_list">Selected zip/sh list</string>
 
     <string name="menu_settings">Settings</string>
     <string name="menu_backup">Backup</string>
