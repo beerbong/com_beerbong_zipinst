@@ -216,12 +216,15 @@ public class RebootManager extends Manager implements UIListener {
         if (pManager.isShowOption("WIPEDATA")) {
             wipeOpts.add(mContext.getResources().getString(R.string.wipe_data));
         } else {
+            mWipeCachesIndex--;
+            mFixPermissionsIndex--;
             mWipeDataIndex = -1;
         }
         if (pManager.isShowOption("WIPECACHES")) {
             wipeOpts.add(mContext.getResources()
                     .getString(R.string.wipe_caches));
         } else {
+            mFixPermissionsIndex--;
             mWipeCachesIndex = -1;
         }
         if (pManager.isShowOption("FIXPERM")) {
