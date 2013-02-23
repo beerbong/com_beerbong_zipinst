@@ -132,25 +132,8 @@ public class RebootManager extends Manager implements UIListener {
     }
 
     public void fixPermissions() {
-
         StoredItems.removeItems();
-
-        FileManager fManager = ManagerFactory.getFileManager();
-
-        String data = fManager.readAssets(mContext, "fix_permissions.sh");
-
-        if (data != null
-                && fManager.writeToFile(data,
-                        "/data/data/com.beerbong.zipinst/files/",
-                        "fix_permissions.sh")) {
-
-            ManagerFactory
-                    .getSUManager()
-                    .runWaitFor(
-                            "cp /data/data/com.beerbong.zipinst/files/fix_permissions.sh /cache/fix_permissions.sh");
-
-            reboot(false, false, true, null, null, false);
-        }
+        reboot(false, false, true, null, null, false);
     }
 
     private void showBackupDialog(Context context, boolean removePreferences,
@@ -254,14 +237,20 @@ public class RebootManager extends Manager implements UIListener {
 
                         if (pManager.isShowOption("BACKUP") && wipeOptions[0]) {
                             showBackupDialog(mContext, false,
-                                    mWipeDataIndex == -1 ? false : wipeOptions[mWipeDataIndex],
-                                    mWipeCachesIndex == -1 ? false : wipeOptions[mWipeCachesIndex],
-                                    mFixPermissionsIndex == -1 ? false : wipeOptions[mFixPermissionsIndex]);
+                                    mWipeDataIndex == -1 ? false
+                                            : wipeOptions[mWipeDataIndex],
+                                    mWipeCachesIndex == -1 ? false
+                                            : wipeOptions[mWipeCachesIndex],
+                                    mFixPermissionsIndex == -1 ? false
+                                            : wipeOptions[mFixPermissionsIndex]);
                         } else {
-                            reboot(mWipeDataIndex == -1 ? false : wipeOptions[mWipeDataIndex],
-                                    mWipeCachesIndex == -1 ? false : wipeOptions[mWipeCachesIndex],
-                                    mFixPermissionsIndex == -1 ? false : wipeOptions[mFixPermissionsIndex], null,
-                                    null);
+                            reboot(mWipeDataIndex == -1 ? false
+                                    : wipeOptions[mWipeDataIndex],
+                                    mWipeCachesIndex == -1 ? false
+                                            : wipeOptions[mWipeCachesIndex],
+                                    mFixPermissionsIndex == -1 ? false
+                                            : wipeOptions[mFixPermissionsIndex],
+                                    null, null);
                         }
 
                     }
@@ -287,6 +276,10 @@ public class RebootManager extends Manager implements UIListener {
             boolean fixPermissions, String backupFolder, String restore,
             boolean skipCommands) {
         try {
+
+            if (fixPermissions) {
+                fixPermissions = prepareFixPermissions();
+            }
 
             RecoveryManager manager = ManagerFactory.getRecoveryManager();
 
@@ -329,5 +322,26 @@ public class RebootManager extends Manager implements UIListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private boolean prepareFixPermissions() {
+
+        FileManager fManager = ManagerFactory.getFileManager();
+
+        String data = fManager.readAssets(mContext, "fix_permissions.sh");
+
+        if (data != null
+                && fManager.writeToFile(data,
+                        "/data/data/com.beerbong.zipinst/files/",
+                        "fix_permissions.sh")) {
+
+            ManagerFactory
+                    .getSUManager()
+                    .runWaitFor(
+                            "cp /data/data/com.beerbong.zipinst/files/fix_permissions.sh /cache/fix_permissions.sh");
+
+            return true;
+        }
+        return false;
     }
 }
