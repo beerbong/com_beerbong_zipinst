@@ -215,14 +215,20 @@ public class RebootManager extends Manager implements UIListener {
         }
         if (pManager.isShowOption("WIPEDATA")) {
             wipeOpts.add(mContext.getResources().getString(R.string.wipe_data));
+        } else {
+            mWipeDataIndex = -1;
         }
         if (pManager.isShowOption("WIPECACHES")) {
             wipeOpts.add(mContext.getResources()
                     .getString(R.string.wipe_caches));
+        } else {
+            mWipeCachesIndex = -1;
         }
         if (pManager.isShowOption("FIXPERM")) {
             wipeOpts.add(mContext.getResources().getString(
                     R.string.fix_permissions));
+        } else {
+            mFixPermissionsIndex = -1;
         }
 
         final boolean[] wipeOptions = new boolean[wipeOpts.size()];
@@ -245,13 +251,13 @@ public class RebootManager extends Manager implements UIListener {
 
                         if (pManager.isShowOption("BACKUP") && wipeOptions[0]) {
                             showBackupDialog(mContext, false,
-                                    wipeOptions[mWipeDataIndex],
-                                    wipeOptions[mWipeCachesIndex],
-                                    wipeOptions[mFixPermissionsIndex]);
+                                    mWipeDataIndex == -1 ? false : wipeOptions[mWipeDataIndex],
+                                    mWipeCachesIndex == -1 ? false : wipeOptions[mWipeCachesIndex],
+                                    mFixPermissionsIndex == -1 ? false : wipeOptions[mFixPermissionsIndex]);
                         } else {
-                            reboot(wipeOptions[mWipeDataIndex],
-                                    wipeOptions[mWipeCachesIndex],
-                                    wipeOptions[mFixPermissionsIndex], null,
+                            reboot(mWipeDataIndex == -1 ? false : wipeOptions[mWipeDataIndex],
+                                    mWipeCachesIndex == -1 ? false : wipeOptions[mWipeCachesIndex],
+                                    mFixPermissionsIndex == -1 ? false : wipeOptions[mFixPermissionsIndex], null,
                                     null);
                         }
 
