@@ -211,4 +211,7 @@
     <string name="goo_category_title">Browsing %1$s</string>
     <string name="goo_download_title">Download</string>
     <string name="goo_download_summary">Do you want to download this file now?\n\n%1$s\n%2$s\n</string>
+
+    <string name="checktime_title">Update check frequency</string>
+    <string name="checktime_summary">Specify the time between each update check</string>
 </resources>

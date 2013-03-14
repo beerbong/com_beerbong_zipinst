@@ -211,4 +211,7 @@
     <string name="goo_category_title">Navegando %1$s</string>
     <string name="goo_download_title">Descargar</string>
     <string name="goo_download_summary">¿Quieres descargar este archivo ahora?\n\n%1$s\n%2$s\n</string>
+
+    <string name="checktime_title">Frecuencia buscar updates</string>
+    <string name="checktime_summary">Especifica el tiempo entre cada búsqueda de nuevas versiones</string>
 </resources>
