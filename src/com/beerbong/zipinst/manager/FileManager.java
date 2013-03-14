@@ -438,8 +438,14 @@ public class FileManager extends Manager implements UIListener {
                 }
             }
         }
+        
+        File file = new File(filePath);
+        if (!file.exists()) {
+            Toast.makeText(mContext, R.string.install_file_manager_not_found_zip, Toast.LENGTH_LONG).show();
+        } else {
 
-        UI.getInstance().addItem(filePath, sdcardPath);
+            UI.getInstance().addItem(filePath, sdcardPath);
+        }
     }
 
     public void showDeleteDialog(final Context context) {

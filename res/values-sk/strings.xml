@@ -23,6 +23,7 @@
     <string name="install_file_manager_intsdcard">Prosím vyberte ZIP súbor z vnútornej SD karty.</string>
     <string name="install_file_manager_zip">Vyberte ZIP súbor.</string>
     <string name="install_file_manager_invalid_zip">Neplatný ZIP súbor.</string>
+    <string name="install_file_manager_not_found_zip">Not found item deleted from list.</string>
 
     <string name="alert_sdcard_title">Upozornenie</string>
     <string name="alert_sdcard_message">Vyberte zip súbor z vnútornej SD karty.</string>

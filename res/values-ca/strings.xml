@@ -23,6 +23,7 @@
     <string name="install_file_manager_intsdcard">"Selecciona un arxiu de la sd interna."</string>
     <string name="install_file_manager_zip">"Per favor, selecciona un arxiu ZIP o SH."</string>
     <string name="install_file_manager_invalid_zip">Arxiu ZIP/SH no vàlid.</string>
+    <string name="install_file_manager_not_found_zip">S\'ha esborrat un item no trobat.</string>
 
     <string name="alert_sdcard_title">Alerta</string>
     <string name="alert_sdcard_message">"Selecciona un zip de la sdcard interna."</string>
