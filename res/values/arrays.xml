@@ -50,5 +50,19 @@
         <item>18000000</item>
         <item>86400000</item>
     </string-array>
+    <string-array name="spaceleft_options">
+        <item>@string/spaceleft_dontcheck</item>
+        <item>0.5GB</item>
+        <item>1GB</item>
+        <item>2GB</item>
+        <item>5GB</item>
+    </string-array>
+    <string-array name="spaceleft_values" translatable="false">
+        <item>-1.0</item>
+        <item>0.5</item>
+        <item>1.0</item>
+        <item>2.0</item>
+        <item>5.0</item>
+    </string-array>
 
 </resources>

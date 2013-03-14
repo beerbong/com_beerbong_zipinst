@@ -51,6 +51,7 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
     private Preference mDownloadPath;
     private ListPreference mZipPosition;
     private ListPreference mOptions;
+    private ListPreference mSpaceLeft;
 
     @Override
     @SuppressWarnings("deprecation")
@@ -69,6 +70,7 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         mDownloadPath = findPreference(Constants.PREFERENCE_SETTINGS_DOWNLOAD_PATH);
         mZipPosition = (ListPreference) findPreference(Constants.PREFERENCE_SETTINGS_ZIP_POSITION);
         mOptions = (ListPreference) findPreference(Constants.PREFERENCE_SETTINGS_OPTIONS);
+        mSpaceLeft = (ListPreference) findPreference(Constants.PREFERENCE_SETTINGS_SPACE_LEFT);
 
         PreferencesManager pManager = ManagerFactory.getPreferencesManager();
 
@@ -88,6 +90,9 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
 
         mOptions.setValue(pManager.getShowOptions());
         mOptions.setOnPreferenceChangeListener(this);
+
+        mSpaceLeft.setValue(String.valueOf(pManager.getSpaceLeft()));
+        mSpaceLeft.setOnPreferenceChangeListener(this);
 
         ProManager proManager = ManagerFactory.getProManager();
 
@@ -193,6 +198,8 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         String key = preference.getKey();
 
+        PreferencesManager pManager = ManagerFactory.getPreferencesManager();
+
         if (Constants.PREFERENCE_SETTINGS_OPTIONS.equals(key)) {
             List<String> values = (List<String>) newValue;
             String result = "";
@@ -201,7 +208,11 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
                 if (i < values.size() - 1)
                     result += "|";
             }
-            ManagerFactory.getPreferencesManager().setShowOptions(result);
+            pManager.setShowOptions(result);
+
+        } else if (Constants.PREFERENCE_SETTINGS_SPACE_LEFT.equals(key)) {
+
+            pManager.setSpaceLeft(Double.parseDouble(newValue.toString()));
         }
         return false;
     }

@@ -37,6 +37,7 @@ public class PreferencesManager extends Manager {
     private static final String PROPERTY_OVERRIDE_LIST = "override_list";
     private static final String PROPERTY_AUTOLOAD_LIST = "autoload_list";
     private static final String PROPERTY_ZIP_POSITION = "zip_position";
+    private static final String PROPERTY_SPACE_LEFT = "space_left";
 
     public static final String PROPERTY_ENABLE_NOTIFICATIONS = "enable_notifications";
     public static final String PROPERTY_TIME_NOTIFICATIONS = "time_notifications";
@@ -47,6 +48,7 @@ public class PreferencesManager extends Manager {
     private static final String DEFAULT_ZIP_POSITION = "last";
     private static final String DEFAULT_TIME_NOTIFICATIONS = "3600000"; // an hour
     private static final String DEFAULT_SHOW_OPTIONS = "BACKUP|WIPEDATA|WIPECACHES|FIXPERM";
+    private static final String DEFAULT_SPACE_LEFT = "-1";
     private static final boolean DEFAULT_DRAG_AND_DROP = true;
     private static final boolean DEFAULT_DARK_THEME = true;
     private static final boolean DEFAULT_CHECK_EXISTS = true;
@@ -193,6 +195,14 @@ public class PreferencesManager extends Manager {
 
     public void setZipPosition(String value) {
         savePreference(PROPERTY_ZIP_POSITION, value);
+    }
+
+    public double getSpaceLeft() {
+        return Double.parseDouble(settings.getString(PROPERTY_SPACE_LEFT, DEFAULT_SPACE_LEFT));
+    }
+
+    public void setSpaceLeft(double value) {
+        savePreference(PROPERTY_SPACE_LEFT, String.valueOf(value));
     }
 
     private void savePreference(String preference, String value) {

@@ -43,6 +43,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.Environment;
+import android.os.StatFs;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -822,5 +824,13 @@ public class FileManager extends Manager implements UIListener {
             return null;
         }
         return data.toString();
+    }
+    
+    public double getSpaceLeft() {
+        StatFs stat = new StatFs(Environment.getExternalStorageDirectory().getPath());
+        double sdAvailSize = (double)stat.getAvailableBlocks()
+                           * (double)stat.getBlockSize();
+        //One binary gigabyte equals 1,073,741,824 bytes.
+        return sdAvailSize / 1073741824;
     }
 }

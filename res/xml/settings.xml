@@ -48,6 +48,14 @@
             android:key="checkmd5"
             android:summary="@string/settings_checkmd5_summary"
             android:title="@string/settings_checkmd5_title" />
+
+        <ListPreference
+            android:dialogTitle="@string/spaceleft_title"
+            android:entries="@array/spaceleft_options"
+            android:entryValues="@array/spaceleft_values"
+            android:key="spaceleft"
+            android:summary="@string/spaceleft_summary"
+            android:title="@string/spaceleft_title" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/settings_interface" >

@@ -89,40 +89,34 @@ public class RebootManager extends Manager implements UIListener {
         AlertDialog.Builder alert = new AlertDialog.Builder(context);
         alert.setTitle(R.string.alert_restore_title);
 
-        final String backupFolder = ManagerFactory.getRecoveryManager()
-                .getBackupDir(false);
-        final String[] backups = ManagerFactory.getRecoveryManager()
-                .getBackupList();
+        final String backupFolder = ManagerFactory.getRecoveryManager().getBackupDir(false);
+        final String[] backups = ManagerFactory.getRecoveryManager().getBackupList();
         mSelectedBackup = backups.length > 0 ? 0 : -1;
 
-        alert.setSingleChoiceItems(backups, mSelectedBackup,
-                new DialogInterface.OnClickListener() {
+        alert.setSingleChoiceItems(backups, mSelectedBackup, new DialogInterface.OnClickListener() {
 
-                    public void onClick(DialogInterface dialog, int which) {
-                        mSelectedBackup = which;
-                    }
-                });
+            public void onClick(DialogInterface dialog, int which) {
+                mSelectedBackup = which;
+            }
+        });
 
-        alert.setPositiveButton(android.R.string.ok,
-                new DialogInterface.OnClickListener() {
+        alert.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        dialog.dismiss();
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.dismiss();
 
-                        if (mSelectedBackup >= 0) {
-                            reboot(false, false, false, null, backupFolder
-                                    + backups[mSelectedBackup]);
-                        }
-                    }
-                });
+                if (mSelectedBackup >= 0) {
+                    reboot(false, false, false, null, backupFolder + backups[mSelectedBackup]);
+                }
+            }
+        });
 
-        alert.setNegativeButton(android.R.string.cancel,
-                new DialogInterface.OnClickListener() {
+        alert.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
 
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
         alert.show();
 
     }
@@ -136,10 +130,43 @@ public class RebootManager extends Manager implements UIListener {
         reboot(false, false, true, null, null, false);
     }
 
-    private void showBackupDialog(Context context, boolean removePreferences,
-            final boolean wipeData, final boolean wipeCaches,
-            final boolean fixPermissions) {
+    private void showBackupDialog(final Context context, final boolean removePreferences,
+            final boolean wipeData, final boolean wipeCaches, final boolean fixPermissions) {
 
+        double checkSpace = ManagerFactory.getPreferencesManager().getSpaceLeft();
+        if (checkSpace > 0) {
+            double spaceLeft = ManagerFactory.getFileManager().getSpaceLeft();
+            if (spaceLeft < checkSpace) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                alert.setTitle(R.string.alert_backup_space_title);
+                alert.setMessage(context.getResources().getString(R.string.alert_backup_space_message, checkSpace));
+
+                alert.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.dismiss();
+
+                        reallyShowBackupDialog(context, removePreferences, wipeData, wipeCaches, fixPermissions);
+                    }
+                });
+
+                alert.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                alert.show();
+            } else {
+                reallyShowBackupDialog(context, removePreferences, wipeData, wipeCaches, fixPermissions);
+            }
+        } else {
+            reallyShowBackupDialog(context, removePreferences, wipeData, wipeCaches, fixPermissions);
+        }
+    }
+
+    private void reallyShowBackupDialog(Context context, boolean removePreferences,
+            final boolean wipeData, final boolean wipeCaches, final boolean fixPermissions) {
         if (removePreferences)
             UI.getInstance().removeAllItems();
 
@@ -152,26 +179,24 @@ public class RebootManager extends Manager implements UIListener {
         input.setText(Constants.getDateAndTime());
         input.selectAll();
 
-        alert.setPositiveButton(android.R.string.ok,
-                new DialogInterface.OnClickListener() {
+        alert.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        dialog.dismiss();
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.dismiss();
 
-                        String text = input.getText().toString();
-                        text = text.replace(" ", "");
+                String text = input.getText().toString();
+                text = text.replace(" ", "");
 
-                        reboot(wipeData, wipeCaches, false, text, null);
-                    }
-                });
+                reboot(wipeData, wipeCaches, false, text, null);
+            }
+        });
 
-        alert.setNegativeButton(android.R.string.cancel,
-                new DialogInterface.OnClickListener() {
+        alert.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
 
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
         alert.show();
     }
 
@@ -183,8 +208,7 @@ public class RebootManager extends Manager implements UIListener {
         AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
         alert.setTitle(R.string.alert_reboot_title);
 
-        final PreferencesManager pManager = ManagerFactory
-                .getPreferencesManager();
+        final PreferencesManager pManager = ManagerFactory.getPreferencesManager();
         List<String> wipeOpts = new ArrayList<String>();
 
         mWipeDataIndex = 0;
@@ -204,77 +228,63 @@ public class RebootManager extends Manager implements UIListener {
             mWipeDataIndex = -1;
         }
         if (pManager.isShowOption("WIPECACHES")) {
-            wipeOpts.add(mContext.getResources()
-                    .getString(R.string.wipe_caches));
+            wipeOpts.add(mContext.getResources().getString(R.string.wipe_caches));
         } else {
             mFixPermissionsIndex--;
             mWipeCachesIndex = -1;
         }
         if (pManager.isShowOption("FIXPERM")) {
-            wipeOpts.add(mContext.getResources().getString(
-                    R.string.fix_permissions));
+            wipeOpts.add(mContext.getResources().getString(R.string.fix_permissions));
         } else {
             mFixPermissionsIndex = -1;
         }
 
         final boolean[] wipeOptions = new boolean[wipeOpts.size()];
 
-        alert.setMultiChoiceItems(
-                wipeOpts.toArray(new String[wipeOpts.size()]), wipeOptions,
+        alert.setMultiChoiceItems(wipeOpts.toArray(new String[wipeOpts.size()]), wipeOptions,
                 new DialogInterface.OnMultiChoiceClickListener() {
 
-                    public void onClick(DialogInterface dialog, int which,
-                            boolean isChecked) {
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
                         wipeOptions[which] = isChecked;
                     }
                 });
 
-        alert.setPositiveButton(R.string.alert_reboot_now,
-                new DialogInterface.OnClickListener() {
+        alert.setPositiveButton(R.string.alert_reboot_now, new DialogInterface.OnClickListener() {
 
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        dialog.dismiss();
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.dismiss();
 
-                        if (pManager.isShowOption("BACKUP") && wipeOptions[0]) {
-                            showBackupDialog(mContext, false,
-                                    mWipeDataIndex == -1 ? false
-                                            : wipeOptions[mWipeDataIndex],
-                                    mWipeCachesIndex == -1 ? false
-                                            : wipeOptions[mWipeCachesIndex],
-                                    mFixPermissionsIndex == -1 ? false
-                                            : wipeOptions[mFixPermissionsIndex]);
-                        } else {
-                            reboot(mWipeDataIndex == -1 ? false
-                                    : wipeOptions[mWipeDataIndex],
-                                    mWipeCachesIndex == -1 ? false
-                                            : wipeOptions[mWipeCachesIndex],
-                                    mFixPermissionsIndex == -1 ? false
-                                            : wipeOptions[mFixPermissionsIndex],
-                                    null, null);
-                        }
+                if (pManager.isShowOption("BACKUP") && wipeOptions[0]) {
+                    showBackupDialog(mContext, false, mWipeDataIndex == -1 ? false
+                            : wipeOptions[mWipeDataIndex], mWipeCachesIndex == -1 ? false
+                            : wipeOptions[mWipeCachesIndex], mFixPermissionsIndex == -1 ? false
+                            : wipeOptions[mFixPermissionsIndex]);
+                } else {
+                    reboot(mWipeDataIndex == -1 ? false : wipeOptions[mWipeDataIndex],
+                            mWipeCachesIndex == -1 ? false : wipeOptions[mWipeCachesIndex],
+                            mFixPermissionsIndex == -1 ? false : wipeOptions[mFixPermissionsIndex],
+                            null, null);
+                }
 
-                    }
-                });
+            }
+        });
 
-        alert.setNegativeButton(android.R.string.cancel,
-                new DialogInterface.OnClickListener() {
+        alert.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
 
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
         alert.show();
     }
 
-    private void reboot(boolean wipeData, boolean wipeCaches,
-            boolean fixPermissions, String backupFolder, String restore) {
-        reboot(wipeData, wipeCaches, fixPermissions, backupFolder, restore,
-                false);
+    private void reboot(boolean wipeData, boolean wipeCaches, boolean fixPermissions,
+            String backupFolder, String restore) {
+        reboot(wipeData, wipeCaches, fixPermissions, backupFolder, restore, false);
     }
 
-    private void reboot(boolean wipeData, boolean wipeCaches,
-            boolean fixPermissions, String backupFolder, String restore,
-            boolean skipCommands) {
+    private void reboot(boolean wipeData, boolean wipeCaches, boolean fixPermissions,
+            String backupFolder, String restore, boolean skipCommands) {
         try {
 
             if (fixPermissions) {
@@ -293,13 +303,13 @@ public class RebootManager extends Manager implements UIListener {
             if (!skipCommands) {
                 String file = manager.getCommandsFile();
 
-                String[] commands = manager.getCommands(wipeData, wipeCaches,
-                        fixPermissions, backupFolder, restore);
+                String[] commands = manager.getCommands(wipeData, wipeCaches, fixPermissions,
+                        backupFolder, restore);
                 if (commands != null) {
                     int size = commands.length, i = 0;
                     for (; i < size; i++) {
-                        os.writeBytes("echo '" + commands[i]
-                                + "' >> /cache/recovery/" + file + "\n");
+                        os.writeBytes("echo '" + commands[i] + "' >> /cache/recovery/" + file
+                                + "\n");
                     }
                 }
             }
@@ -312,8 +322,7 @@ public class RebootManager extends Manager implements UIListener {
             p.waitFor();
 
             if (Constants.isSystemApp(mContext)) {
-                ((PowerManager) mContext
-                        .getSystemService(Activity.POWER_SERVICE))
+                ((PowerManager) mContext.getSystemService(Activity.POWER_SERVICE))
                         .reboot("recovery");
             } else {
                 Runtime.getRuntime().exec("/system/bin/reboot recovery");
@@ -331,8 +340,7 @@ public class RebootManager extends Manager implements UIListener {
         String data = fManager.readAssets(mContext, "fix_permissions.sh");
 
         if (data != null
-                && fManager.writeToFile(data,
-                        "/data/data/com.beerbong.zipinst/files/",
+                && fManager.writeToFile(data, "/data/data/com.beerbong.zipinst/files/",
                         "fix_permissions.sh")) {
 
             ManagerFactory

@@ -52,6 +52,7 @@ public class Constants {
     public static final String PREFERENCE_SETTINGS_DOWNLOAD_PATH = "downloadpath";
     public static final String PREFERENCE_SETTINGS_ZIP_POSITION = "zipposition";
     public static final String PREFERENCE_SETTINGS_OPTIONS = "showoptions";
+    public static final String PREFERENCE_SETTINGS_SPACE_LEFT = "spaceleft";
 
     // recovery preferences
     public static final String PREFERENCE_RECOVERY_BACKUP = "recovery_activity_backup";

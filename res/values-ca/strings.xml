@@ -187,6 +187,13 @@
     <string name="zip_position_first">Primer</string>
     <string name="zip_position_last">Darrer</string>
 
+    <string name="spaceleft_title">Comprovar espai abans de backup</string>
+    <string name="spaceleft_summary">Mostrar alerta quan se fa un backup i hi ha menos espai que...</string>
+    <string name="spaceleft_dontcheck">No comprovar</string>
+
+    <string name="alert_backup_space_title">Espai disponible</string>
+    <string name="alert_backup_space_message">Hi ha menos de %1$sGB disponible a la sdcard interna. Vols continuar amb el backup?</string>
+
     <!-- PRO -->
     <string name="enable_notifications">Habilitar notifications</string>
     <string name="time_notifications_title">Temps notificacions</string>

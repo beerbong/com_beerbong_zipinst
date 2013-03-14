@@ -187,6 +187,13 @@
     <string name="zip_position_first">First</string>
     <string name="zip_position_last">Last</string>
 
+    <string name="spaceleft_title">Check space before backup</string>
+    <string name="spaceleft_summary">Display alert when doing a backup and there\'s less space than...</string>
+    <string name="spaceleft_dontcheck">Don\'t check</string>
+
+    <string name="alert_backup_space_title">Space left</string>
+    <string name="alert_backup_space_message">There\'s less than %1$sGB in the internal sdcard. Do you want to continue with the backup?</string>
+
     <!-- PRO -->
     <string name="enable_notifications">Enable notifications</string>
     <string name="time_notifications_title">Notifications time</string>
