@@ -206,8 +206,8 @@ public class RebootManager extends Manager implements UIListener {
 
     protected void showRebootDialog() {
 
-        // if (StoredItems.size() == 0)
-        // return;
+        if (StoredItems.size() == 0)
+            return;
 
         AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
         alert.setTitle(R.string.alert_reboot_title);
