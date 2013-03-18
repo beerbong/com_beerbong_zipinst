@@ -34,6 +34,7 @@ import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.ui.UI;
 import com.beerbong.zipinst.ui.UIListener;
 import com.beerbong.zipinst.util.Constants;
+import com.beerbong.zipinst.util.FileItem;
 import com.beerbong.zipinst.util.StoredItems;
 
 public class RebootManager extends Manager implements UIListener {
