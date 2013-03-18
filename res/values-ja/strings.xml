@@ -123,11 +123,11 @@
     <string name="overridelist_title">リストを上書きして読み込む</string>
     <string name="overridelist_summary">選択したリストを保存されているリストで上書きして読み込む</string>
 
-    <string name="autoloadlist_title">Load list on startup</string>
-    <string name="autoloadlist_summary">Automatically load saved list on sstart application</string>
+    <string name="autoloadlist_title">起動時にリストを読み込む</string>
+    <string name="autoloadlist_summary">アプリ起動時に自動で保存されたリストを読み込む</string>
 
-    <string name="settings_showoptions_title">Options</string>
-    <string name="settings_showoptions_summary">Chose options to show when pressing the Install Now button</string>
+    <string name="settings_showoptions_title">オプション</string>
+    <string name="settings_showoptions_summary">\"今すぐインストール\"を押したときに表示されるオプションを選択</string>
 
     <string name="settings_title">設定</string>
     <string name="settings_recovery">リカバリ</string>
@@ -174,25 +174,25 @@
     <string name="recovery_activity_delete_title">削除</string>
     <string name="recovery_activity_delete_summary">以前のバックアップを削除</string>
     <string name="recovery_activity_fixperm_title">Fix permissions</string>
-    <string name="recovery_activity_fixperm_summary">Reboot into recovery and execute fix permissions</string>
+    <string name="recovery_activity_fixperm_summary">リカバリに再起動してfix permissionsを実行</string>
     <string name="recovery_activity_reboot_title">リカバリへ再起動</string>
 
     <string name="alert_deleting_folder">削除中 %1$s&#8230;</string>
 
-    <string name="consider_becoming_a_pro">Please consider purchasing the application</string>
-    <string name="become_a_pro">Purchase the application</string>
+    <string name="consider_becoming_a_pro">アプリケーション購入を検討してみてください</string>
+    <string name="become_a_pro">アプリケーションを購入</string>
 
-    <string name="zipposition_title">Zip position</string>
-    <string name="zipposition_summary">Position to add the new zip files added to the list</string>
-    <string name="zip_position_first">First</string>
-    <string name="zip_position_last">Last</string>
+    <string name="zipposition_title">Zip追加時の位置</string>
+    <string name="zipposition_summary">新しくzipをリストに追加した時の位置を設定</string>
+    <string name="zip_position_first">先頭</string>
+    <string name="zip_position_last">最後</string>
 
-    <string name="spaceleft_title">Check space before backup</string>
-    <string name="spaceleft_summary">Display alert when doing a backup and there\'s less space than...</string>
-    <string name="spaceleft_dontcheck">Don\'t check</string>
+    <string name="spaceleft_title">バックアップの前に空き容量を確認</string>
+    <string name="spaceleft_summary">バックアップ時、空き容量不足の際はアラートを表示</string>
+    <string name="spaceleft_dontcheck">確認しない</string>
 
-    <string name="alert_backup_space_title">Space left</string>
-    <string name="alert_backup_space_message">There\'s less than %1$sGB in the internal sdcard. Do you want to continue with the backup?</string>
+    <string name="alert_backup_space_title">空き容量</string>
+    <string name="alert_backup_space_message">SDの空き容量が %1$sGB より少ないです。それでもバックアップを続けますか？</string>
 
     <!-- PRO -->
     <string name="enable_notifications">Enable notifications</string>

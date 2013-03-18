@@ -35,7 +35,6 @@ import com.beerbong.zipinst.ui.UI;
 import com.beerbong.zipinst.ui.UIListener;
 import com.beerbong.zipinst.util.Constants;
 import com.beerbong.zipinst.util.StoredItems;
-import com.beerbong.zipinst.util.FileItem;
 
 public class RebootManager extends Manager implements UIListener {
 
@@ -314,6 +313,7 @@ public class RebootManager extends Manager implements UIListener {
                 }
             }
 
+            os.writeBytes("/system/bin/touch /cache/recovery/boot\n");
             os.writeBytes("reboot recovery\n");
 
             os.writeBytes("sync\n");
