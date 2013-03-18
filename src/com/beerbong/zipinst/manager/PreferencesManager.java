@@ -16,6 +16,8 @@
 
 package com.beerbong.zipinst.manager;
 
+import com.beerbong.zipinst.util.Constants;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -47,7 +49,7 @@ public class PreferencesManager extends Manager {
     private static final String DEFAULT_DOWNLOAD_PATH = "/" + SDCARD + "/download/";
     private static final String DEFAULT_ZIP_POSITION = "last";
     private static final String DEFAULT_TIME_NOTIFICATIONS = "3600000"; // an hour
-    private static final String DEFAULT_SHOW_OPTIONS = "BACKUP|WIPEDATA|WIPECACHES|FIXPERM";
+    private static final String DEFAULT_SHOW_OPTIONS = Constants.INSTALL_OPTIONS_DEFAULT;
     private static final String DEFAULT_SPACE_LEFT = "-1";
     private static final boolean DEFAULT_DRAG_AND_DROP = true;
     private static final boolean DEFAULT_DARK_THEME = true;

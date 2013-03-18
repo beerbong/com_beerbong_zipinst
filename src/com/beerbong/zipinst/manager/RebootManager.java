@@ -17,8 +17,6 @@
 package com.beerbong.zipinst.manager;
 
 import java.io.DataOutputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -35,15 +33,13 @@ import com.beerbong.zipinst.ui.UI;
 import com.beerbong.zipinst.ui.UIListener;
 import com.beerbong.zipinst.util.Constants;
 import com.beerbong.zipinst.util.FileItem;
+import com.beerbong.zipinst.util.InstallOptionsCursor;
 import com.beerbong.zipinst.util.StoredItems;
 
 public class RebootManager extends Manager implements UIListener {
 
     private Context mContext;
     private int mSelectedBackup;
-    private int mWipeDataIndex;
-    private int mWipeCachesIndex;
-    private int mFixPermissionsIndex;
 
     protected RebootManager(Context context) {
         super(context);
@@ -139,26 +135,30 @@ public class RebootManager extends Manager implements UIListener {
             if (spaceLeft < checkSpace) {
                 AlertDialog.Builder alert = new AlertDialog.Builder(context);
                 alert.setTitle(R.string.alert_backup_space_title);
-                alert.setMessage(context.getResources().getString(R.string.alert_backup_space_message, checkSpace));
+                alert.setMessage(context.getResources().getString(
+                        R.string.alert_backup_space_message, checkSpace));
 
                 alert.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
                         dialog.dismiss();
 
-                        reallyShowBackupDialog(context, removePreferences, wipeData, wipeCaches, fixPermissions);
+                        reallyShowBackupDialog(context, removePreferences, wipeData, wipeCaches,
+                                fixPermissions);
                     }
                 });
 
-                alert.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                alert.setNegativeButton(android.R.string.cancel,
+                        new DialogInterface.OnClickListener() {
 
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
                 alert.show();
             } else {
-                reallyShowBackupDialog(context, removePreferences, wipeData, wipeCaches, fixPermissions);
+                reallyShowBackupDialog(context, removePreferences, wipeData, wipeCaches,
+                        fixPermissions);
             }
         } else {
             reallyShowBackupDialog(context, removePreferences, wipeData, wipeCaches, fixPermissions);
@@ -208,45 +208,16 @@ public class RebootManager extends Manager implements UIListener {
         AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
         alert.setTitle(R.string.alert_reboot_title);
 
-        final PreferencesManager pManager = ManagerFactory.getPreferencesManager();
-        List<String> wipeOpts = new ArrayList<String>();
+        final InstallOptionsCursor cursor = new InstallOptionsCursor(mContext);
 
-        mWipeDataIndex = 0;
-        mWipeCachesIndex = 1;
-        mFixPermissionsIndex = 2;
-        if (pManager.isShowOption("BACKUP")) {
-            mWipeDataIndex++;
-            mWipeCachesIndex++;
-            mFixPermissionsIndex++;
-            wipeOpts.add(mContext.getResources().getString(R.string.backup));
-        }
-        if (pManager.isShowOption("WIPEDATA")) {
-            wipeOpts.add(mContext.getResources().getString(R.string.wipe_data));
-        } else {
-            mWipeCachesIndex--;
-            mFixPermissionsIndex--;
-            mWipeDataIndex = -1;
-        }
-        if (pManager.isShowOption("WIPECACHES")) {
-            wipeOpts.add(mContext.getResources().getString(R.string.wipe_caches));
-        } else {
-            mFixPermissionsIndex--;
-            mWipeCachesIndex = -1;
-        }
-        if (pManager.isShowOption("FIXPERM")) {
-            wipeOpts.add(mContext.getResources().getString(R.string.fix_permissions));
-        } else {
-            mFixPermissionsIndex = -1;
-        }
-
-        final boolean[] wipeOptions = new boolean[wipeOpts.size()];
-
-        alert.setMultiChoiceItems(wipeOpts.toArray(new String[wipeOpts.size()]), wipeOptions,
+        alert.setMultiChoiceItems(cursor, cursor.getIsCheckedColumn(), cursor.getLabelColumn(),
                 new DialogInterface.OnMultiChoiceClickListener() {
 
+                    @Override
                     public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                        wipeOptions[which] = isChecked;
+                        cursor.setOption(which, isChecked);
                     }
+
                 });
 
         alert.setPositiveButton(R.string.alert_reboot_now, new DialogInterface.OnClickListener() {
@@ -254,15 +225,11 @@ public class RebootManager extends Manager implements UIListener {
             public void onClick(DialogInterface dialog, int whichButton) {
                 dialog.dismiss();
 
-                if (pManager.isShowOption("BACKUP") && wipeOptions[0]) {
-                    showBackupDialog(mContext, false, mWipeDataIndex == -1 ? false
-                            : wipeOptions[mWipeDataIndex], mWipeCachesIndex == -1 ? false
-                            : wipeOptions[mWipeCachesIndex], mFixPermissionsIndex == -1 ? false
-                            : wipeOptions[mFixPermissionsIndex]);
+                if (cursor.isBackup()) {
+                    showBackupDialog(mContext, false, cursor.isWipeData(), cursor.isWipeCaches(),
+                            cursor.isFixPermissions());
                 } else {
-                    reboot(mWipeDataIndex == -1 ? false : wipeOptions[mWipeDataIndex],
-                            mWipeCachesIndex == -1 ? false : wipeOptions[mWipeCachesIndex],
-                            mFixPermissionsIndex == -1 ? false : wipeOptions[mFixPermissionsIndex],
+                    reboot(cursor.isWipeData(), cursor.isWipeCaches(), cursor.isFixPermissions(),
                             null, null);
                 }
 
