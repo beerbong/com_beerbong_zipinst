@@ -48,6 +48,7 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
     private CheckBoxPreference mCheckMd5;
     private CheckBoxPreference mOverrideList;
     private CheckBoxPreference mAutoloadList;
+    private CheckBoxPreference mSystemWipeAlert;
     private Preference mDownloadPath;
     private ListPreference mZipPosition;
     private ListPreference mOptions;
@@ -71,6 +72,7 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         mZipPosition = (ListPreference) findPreference(Constants.PREFERENCE_SETTINGS_ZIP_POSITION);
         mOptions = (ListPreference) findPreference(Constants.PREFERENCE_SETTINGS_OPTIONS);
         mSpaceLeft = (ListPreference) findPreference(Constants.PREFERENCE_SETTINGS_SPACE_LEFT);
+        mSystemWipeAlert = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_SYSTEMWIPE_ALERT);
 
         PreferencesManager pManager = ManagerFactory.getPreferencesManager();
 
@@ -93,6 +95,8 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
 
         mSpaceLeft.setValue(String.valueOf(pManager.getSpaceLeft()));
         mSpaceLeft.setOnPreferenceChangeListener(this);
+
+        mSystemWipeAlert.setChecked(pManager.isShowSystemWipeAlert());
 
         ProManager proManager = ManagerFactory.getProManager();
 
@@ -177,6 +181,11 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
 
             String zipPosition = ((ListPreference) preference).getValue();
             pManager.setZipPosition(zipPosition);
+
+        } else if (Constants.PREFERENCE_SETTINGS_SYSTEMWIPE_ALERT.equals(key)) {
+
+            boolean showAlert = ((CheckBoxPreference) preference).isChecked();
+            pManager.setShowSystemWipeAlert(showAlert);
 
         } else if ("about".equals(key)) {
 

@@ -30,7 +30,7 @@ public class PreferencesManager extends Manager {
     private static final String PROPERTY_RECOVERY = "recovery";
     private static final String PROPERTY_LIST = "list";
     private static final String PROPERTY_DRAG_AND_DROP = "drag-and-drop";
-    private static final String PROPERTY_SHOW_OPTIONS = "show-options";
+    private static final String PROPERTY_SHOW_OPTIONS = "show-option";
     private static final String PROPERTY_DARK_THEME = "dark-theme";
     private static final String PROPERTY_CHECK_EXISTS = "check_exists";
     private static final String PROPERTY_CHECK_UPDATES_STARTUP = "check_updates_startup";
@@ -40,6 +40,7 @@ public class PreferencesManager extends Manager {
     private static final String PROPERTY_AUTOLOAD_LIST = "autoload_list";
     private static final String PROPERTY_ZIP_POSITION = "zip_position";
     private static final String PROPERTY_SPACE_LEFT = "space_left";
+    private static final String PROPERTY_SHOW_WIPESYSTEM_ALERT = "wipesystem_alert";
 
     public static final String PROPERTY_ENABLE_NOTIFICATIONS = "enable_notifications";
     public static final String PROPERTY_TIME_NOTIFICATIONS = "time_notifications";
@@ -59,6 +60,7 @@ public class PreferencesManager extends Manager {
     private static final boolean DEFAULT_OVERRIDE_LIST = true;
     private static final boolean DEFAULT_AUTOLOAD_LIST = false;
     private static final boolean DEFAULT_ENABLE_NOTIFICATIONS = true;
+    private static final boolean DEFAULT_SHOW_WIPESYSTEM_ALERT = true;
 
     private SharedPreferences settings;
 
@@ -205,6 +207,14 @@ public class PreferencesManager extends Manager {
 
     public void setSpaceLeft(double value) {
         savePreference(PROPERTY_SPACE_LEFT, String.valueOf(value));
+    }
+
+    public boolean isShowSystemWipeAlert() {
+        return settings.getBoolean(PROPERTY_SHOW_WIPESYSTEM_ALERT, DEFAULT_SHOW_WIPESYSTEM_ALERT);
+    }
+
+    public void setShowSystemWipeAlert(boolean value) {
+        savePreference(PROPERTY_SHOW_WIPESYSTEM_ALERT, value);
     }
 
     private void savePreference(String preference, String value) {

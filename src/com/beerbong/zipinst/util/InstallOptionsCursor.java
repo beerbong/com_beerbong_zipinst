@@ -122,6 +122,15 @@ public class InstallOptionsCursor extends AbstractCursor {
         return false;
     }
 
+    public boolean isWipeSystem() {
+        for (int i = 0; i < mCount; i++) {
+            if (Constants.INSTALL_WIPESYSTEM.equals(mOption[i])) {
+                return mChecked[i] == 1;
+            }
+        }
+        return false;
+    }
+
     public boolean isWipeData() {
         for (int i = 0; i < mCount; i++) {
             if (Constants.INSTALL_WIPEDATA.equals(mOption[i])) {
@@ -160,6 +169,8 @@ public class InstallOptionsCursor extends AbstractCursor {
     private int getText(String option) {
         if (Constants.INSTALL_BACKUP.equals(option)) {
             return R.string.backup;
+        } else if (Constants.INSTALL_WIPESYSTEM.equals(option)) {
+            return R.string.wipe_system;
         } else if (Constants.INSTALL_WIPEDATA.equals(option)) {
             return R.string.wipe_data;
         } else if (Constants.INSTALL_WIPECACHES.equals(option)) {

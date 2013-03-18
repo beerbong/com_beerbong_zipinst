@@ -19,6 +19,9 @@
     <string name="alert_reboot_title">Vyberte akcie a spustite inštaláciu</string>
     <string name="alert_reboot_now">Inštalovať teraz</string>
 
+    <string name="alert_wipe_system_title">System wipe</string>
+    <string name="alert_wipe_system_message">You are about to perform a system wipe. Are you sure you want to do that?</string>
+
     <string name="install_file_manager_error">Nebola nájdená žiadna aplikácia pre vybratie ZIP súboru. Prosím nainštaluje správcu súborov.</string>
     <string name="install_file_manager_intsdcard">Prosím vyberte ZIP súbor z vnútornej SD karty.</string>
     <string name="install_file_manager_zip">Vyberte ZIP súbor.</string>
@@ -106,6 +109,7 @@
     <string name="paths_error">Vyskytla sa chyb pri načítaní súboru s cestami</string>
 
     <string name="backup">Zálohovať</string>
+    <string name="wipe_system">Wipe System</string>
     <string name="wipe_data">Wipe Data</string>
     <string name="wipe_caches">Wipe Cache &amp; Dalvik</string>
     <string name="fix_permissions">Fix permissions</string>
@@ -193,6 +197,9 @@
 
     <string name="alert_backup_space_title">Space left</string>
     <string name="alert_backup_space_message">There\'s less than %1$sGB in the internal sdcard. Do you want to continue with the backup?</string>
+
+    <string name="settings_wipesystem_alert_title">Wipe system alert</string>
+    <string name="settings_wipesystem_alert_summary">Show a confirmation dialog if trying to do a system wipe</string>
 
     <!-- PRO -->
     <string name="enable_notifications">Enable notifications</string>

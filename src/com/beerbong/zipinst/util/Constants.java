@@ -35,16 +35,18 @@ public class Constants {
 
     // install options
     public static final String INSTALL_BACKUP = "BACKUP";
+    public static final String INSTALL_WIPESYSTEM = "WIPESYSTEM";
     public static final String INSTALL_WIPEDATA = "WIPEDATA";
     public static final String INSTALL_WIPECACHES = "WIPECACHES";
     public static final String INSTALL_FIXPERM = "FIXPERM";
     public static final String[] INSTALL_OPTIONS = {
             INSTALL_BACKUP,
+            INSTALL_WIPESYSTEM,
             INSTALL_WIPEDATA,
             INSTALL_WIPECACHES,
             INSTALL_FIXPERM };
-    public static final String INSTALL_OPTIONS_DEFAULT = INSTALL_BACKUP + "|" + INSTALL_WIPEDATA
-            + "|" + INSTALL_WIPECACHES + "|" + INSTALL_FIXPERM;
+    public static final String INSTALL_OPTIONS_DEFAULT = INSTALL_BACKUP + "|" + INSTALL_WIPESYSTEM
+            + "|" + INSTALL_WIPEDATA + "|" + INSTALL_WIPECACHES + "|" + INSTALL_FIXPERM;
 
     // about preferences
     public static final String PREFERENCE_ABOUT_VERSION = "about_version";
@@ -66,6 +68,7 @@ public class Constants {
     public static final String PREFERENCE_SETTINGS_ZIP_POSITION = "zipposition";
     public static final String PREFERENCE_SETTINGS_OPTIONS = "showoptions";
     public static final String PREFERENCE_SETTINGS_SPACE_LEFT = "spaceleft";
+    public static final String PREFERENCE_SETTINGS_SYSTEMWIPE_ALERT = "wipesystemalert";
 
     // recovery preferences
     public static final String PREFERENCE_RECOVERY_BACKUP = "recovery_activity_backup";

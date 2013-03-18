@@ -56,6 +56,11 @@
             android:key="spaceleft"
             android:summary="@string/spaceleft_summary"
             android:title="@string/spaceleft_title" />
+
+        <CheckBoxPreference
+            android:key="wipesystemalert"
+            android:summary="@string/settings_wipesystem_alert_summary"
+            android:title="@string/settings_wipesystem_alert_title" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/settings_interface" >

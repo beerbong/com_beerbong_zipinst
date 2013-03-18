@@ -19,6 +19,9 @@
     <string name="alert_reboot_title">"Seleccionar accions i instal·lar"</string>
     <string name="alert_reboot_now">"Instal·lar ara"</string>
 
+    <string name="alert_wipe_system_title">System wipe</string>
+    <string name="alert_wipe_system_message">Estàs a punt de fer un system wipe. Estàs segur que ho vols fer?</string>
+
     <string name="install_file_manager_error">"No s'ha trobat cap aplicació per seleccionar l'arxiu zip. Per favor, instal·la un administrador d'arxius."</string>
     <string name="install_file_manager_intsdcard">"Selecciona un arxiu de la sd interna."</string>
     <string name="install_file_manager_zip">"Per favor, selecciona un arxiu ZIP o SH."</string>
@@ -106,6 +109,7 @@
     <string name="paths_error">"Error carregant l'arxiu de paths"</string>
 
     <string name="backup">Backup</string>
+    <string name="wipe_system">Wipe System</string>
     <string name="wipe_data">Wipe Data</string>
     <string name="wipe_caches">Wipe Cache &amp; Dalvik</string>
     <string name="fix_permissions">Fix permissions</string>
@@ -193,6 +197,9 @@
 
     <string name="alert_backup_space_title">Espai disponible</string>
     <string name="alert_backup_space_message">Hi ha menos de %1$sGB disponible a la sdcard interna. Vols continuar amb el backup?</string>
+
+    <string name="settings_wipesystem_alert_title">Alerta wipe system</string>
+    <string name="settings_wipesystem_alert_summary">Mostrar un diàleg de confirmació quan s\'intenta fer un system wipe</string>
 
     <!-- PRO -->
     <string name="enable_notifications">Habilitar notifications</string>

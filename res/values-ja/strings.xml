@@ -19,6 +19,9 @@
     <string name="alert_reboot_title">アクションを選択してインストール</string>
     <string name="alert_reboot_now">今すぐインストール</string>
 
+    <string name="alert_wipe_system_title">System wipe</string>
+    <string name="alert_wipe_system_message">You are about to perform a system wipe. Are you sure you want to do that?</string>
+
     <string name="install_file_manager_error">Zipを選択するアプリがありません。ファイルマネージャをインストールしてください。</string>
     <string name="install_file_manager_intsdcard">SDカードからファイルを選択してください。</string>
     <string name="install_file_manager_zip">Zipを選択してください。</string>
@@ -106,6 +109,7 @@
     <string name="paths_error">ファイルの読み込みエラー</string>
 
     <string name="backup">バックアップ</string>
+    <string name="wipe_system">Wipe System</string>
     <string name="wipe_data">Wipe Data</string>
     <string name="wipe_caches">Wipe Cache &amp; Dalvik</string>
     <string name="fix_permissions">Fix permissions</string>
@@ -193,6 +197,9 @@
 
     <string name="alert_backup_space_title">空き容量</string>
     <string name="alert_backup_space_message">SDの空き容量が %1$sGB より少ないです。それでもバックアップを続けますか？</string>
+
+    <string name="settings_wipesystem_alert_title">Wipe system alert</string>
+    <string name="settings_wipesystem_alert_summary">Show a confirmation dialog if trying to do a system wipe</string>
 
     <!-- PRO -->
     <string name="enable_notifications">Enable notifications</string>
