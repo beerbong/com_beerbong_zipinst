@@ -29,7 +29,7 @@
             android:title="@string/sdcard_title" />
 
         <com.beerbong.zipinst.widget.ListPreferenceMultiSelect
-            android:defaultValue="BACKUP|WIPEDATA|WIPECACHES|FIXPERM"
+            android:defaultValue="BACKUP|WIPESYSTEM|WIPEDATA|WIPECACHES|FIXPERM"
             android:entries="@array/wipe_options"
             android:entryValues="@array/wipe_options_values"
             android:key="showoptions"

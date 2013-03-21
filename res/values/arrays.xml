@@ -18,12 +18,14 @@
 
     <string-array name="wipe_options">
         <item>@string/backup</item>
+        <item>@string/wipe_system</item>
         <item>@string/wipe_data</item>
         <item>@string/wipe_caches</item>
         <item>@string/fix_permissions</item>
     </string-array>
     <string-array name="wipe_options_values" translatable="false">
         <item>BACKUP</item>
+        <item>WIPESYSTEM</item>
         <item>WIPEDATA</item>
         <item>WIPECACHES</item>
         <item>FIXPERM</item>
