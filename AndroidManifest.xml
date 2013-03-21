@@ -16,8 +16,8 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.beerbong.zipinst"
-    android:versionCode="321"
-    android:versionName="3.2.1" >
+    android:versionCode="322"
+    android:versionName="3.2.2" >
 
     <uses-sdk
         android:minSdkVersion="11"
