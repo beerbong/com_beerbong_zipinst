@@ -122,6 +122,11 @@ public class RebootManager extends Manager implements UIListener {
         reboot(false, false, false, false, null, null, true);
     }
 
+    public void simpleReboot(boolean wipeData, boolean wipeCaches, boolean fixPermissions) {
+        StoredItems.removeItems();
+        reboot(false, wipeData, wipeCaches, fixPermissions, null, null, false);
+    }
+
     public void fixPermissions() {
         StoredItems.removeItems();
         reboot(false, false, false, true, null, null, false);

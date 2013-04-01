@@ -180,6 +180,8 @@
     <string name="recovery_activity_fixperm_title">Fix permissions</string>
     <string name="recovery_activity_fixperm_summary">Reinicia al recovery i executa fix permissions</string>
     <string name="recovery_activity_reboot_title">Reiniciar al recovery</string>
+    <string name="recovery_activity_actions">Accions del recovery</string>
+    <string name="recovery_activity_actions_summary">Wipe data, caches i/o fix permissions</string>
 
     <string name="alert_deleting_folder">Esborrant %1$s&#8230;</string>
 

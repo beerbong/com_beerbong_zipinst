@@ -16,6 +16,9 @@
 
 package com.beerbong.zipinst.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnMultiChoiceClickListener;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceScreen;
@@ -42,11 +45,47 @@ public class Recovery extends PreferenceActivity {
             ManagerFactory.getRebootManager().showRestoreDialog(this);
         } else if (Constants.PREFERENCE_RECOVERY_DELETE.equals(key)) {
             ManagerFactory.getFileManager().showDeleteDialog(this);
-        } else if (Constants.PREFERENCE_RECOVERY_FIXPERM.equals(key)) {
-            ManagerFactory.getRebootManager().fixPermissions();
+        } else if (Constants.PREFERENCE_RECOVERY_ACTIONS.equals(key)) {
+            showAlert();
         } else if (Constants.PREFERENCE_RECOVERY_REBOOT.equals(key)) {
             ManagerFactory.getRebootManager().simpleReboot();
         }
         return true;
+    }
+
+    private void showAlert() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(R.string.recovery_activity_actions);
+        
+        String[] items = {
+                getResources().getString(R.string.wipe_data),
+                getResources().getString(R.string.wipe_caches),
+                getResources().getString(R.string.fix_permissions)
+        };
+        final boolean[] checkedItems = new boolean[3];
+        alert.setMultiChoiceItems(items, checkedItems, new OnMultiChoiceClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                checkedItems[which] = isChecked;
+            }
+            
+        });
+        alert.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int whichButton) {
+
+                dialog.dismiss();
+                
+                ManagerFactory.getRebootManager().simpleReboot(checkedItems[0], checkedItems[1], checkedItems[2]);
+            }
+        });
+        alert.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.dismiss();
+            }
+        });
+        alert.show();
     }
 }
