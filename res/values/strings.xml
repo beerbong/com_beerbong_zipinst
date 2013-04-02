@@ -87,11 +87,13 @@
     <string name="recovery_alert_title">Select recovery</string>
     <string name="recovery_alert_summary">Specify the recovery you are using</string>
 
-    <string name="sdcard_title">Internal storage path</string>
-    <string name="sdcard_summary">Specify the internal storage path used by the recovery</string>
-    <string name="sdcard_alert_title">Internal storage path</string>
-    <string name="sdcard_alert_summary">Specify the internal storage name</string>
-    <string name="sdcard_alert_error">Please specify the internal storage name</string>
+    <string name="internalsdcard_title">Internal storage path</string>
+    <string name="internalsdcard_summary">Specify the internal storage path used by the recovery</string>
+    <string name="externalsdcard_title">External storage path</string>
+    <string name="externalsdcard_summary">Specify the external storage path used by the recovery</string>
+    <string name="sdcard_alert_title">Storage path</string>
+    <string name="sdcard_alert_summary">Specify the storage name</string>
+    <string name="sdcard_alert_error">Please specify the storage name</string>
 
     <string name="about_title">About</string>
     <string name="about_zip_title">ZipInstaller</string>

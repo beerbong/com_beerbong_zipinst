@@ -87,11 +87,13 @@
     <string name="recovery_alert_title">Vyberte recovery</string>
     <string name="recovery_alert_summary">Vyberte recovery, ktorú používate</string>
 
-    <string name="sdcard_title">Cesta k internému úložisku</string>
-    <string name="sdcard_summary">Upresnenie cesty k internému úložisku, ktoré používana recovery</string>
-    <string name="sdcard_alert_title">Cesta k internému úložisku</string>
-    <string name="sdcard_alert_summary">Vyberte názov vnútornej pamäte</string>
-    <string name="sdcard_alert_error">Prosím vyberte názov vnútornej pamäte</string>
+    <string name="internalsdcard_title">Cesta k internému úložisku</string>
+    <string name="internalsdcard_summary">Upresnenie cesty k internému úložisku, ktoré používana recovery</string>
+    <string name="externalsdcard_title">External storage path</string>
+    <string name="externalsdcard_summary">Specify the external storage path used by the recovery</string>
+    <string name="sdcard_alert_title">Storage path</string>
+    <string name="sdcard_alert_summary">Specify the storage name</string>
+    <string name="sdcard_alert_error">Please specify the storage name</string>
 
     <string name="about_title">O programe</string>
     <string name="about_zip_title">ZipInstaller</string>

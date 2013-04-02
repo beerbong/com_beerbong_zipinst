@@ -41,7 +41,8 @@ import com.beerbong.zipinst.widget.PreferenceActivity;
 public class Settings extends PreferenceActivity implements OnPreferenceChangeListener {
 
     private Preference mRecovery;
-    private Preference mSdcard;
+    private Preference mInternalSdcard;
+    private Preference mExternalSdcard;
     private CheckBoxPreference mDad;
     private CheckBoxPreference mDarkTheme;
     private CheckBoxPreference mCheckExists;
@@ -61,7 +62,8 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         super.onCreate(savedInstanceState, R.xml.settings);
 
         mRecovery = findPreference(Constants.PREFERENCE_SETTINGS_RECOVERY);
-        mSdcard = findPreference(Constants.PREFERENCE_SETTINGS_SDCARD);
+        mInternalSdcard = findPreference(Constants.PREFERENCE_SETTINGS_INTERNAL_SDCARD);
+        mExternalSdcard = findPreference(Constants.PREFERENCE_SETTINGS_EXTERNAL_SDCARD);
         mDad = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_DAD);
         mDarkTheme = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_DARK_THEME);
         mCheckExists = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_CHECK_EXISTS);
@@ -97,6 +99,10 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         mSpaceLeft.setOnPreferenceChangeListener(this);
 
         mSystemWipeAlert.setChecked(pManager.isShowSystemWipeAlert());
+        
+        if (!ManagerFactory.getFileManager().hasExternalStorage()) {
+            getPreferenceScreen().removePreference(mExternalSdcard);
+        }
 
         ProManager proManager = ManagerFactory.getProManager();
 
@@ -124,9 +130,14 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
             ManagerFactory.getRecoveryManager().selectRecovery(this);
             updateSummaries();
 
-        } else if (Constants.PREFERENCE_SETTINGS_SDCARD.equals(key)) {
+        } else if (Constants.PREFERENCE_SETTINGS_INTERNAL_SDCARD.equals(key)) {
 
-            ManagerFactory.getRecoveryManager().selectSdcard(this);
+            ManagerFactory.getRecoveryManager().selectSdcard(this, true);
+            updateSummaries();
+
+        } else if (Constants.PREFERENCE_SETTINGS_EXTERNAL_SDCARD.equals(key)) {
+
+            ManagerFactory.getRecoveryManager().selectSdcard(this, false);
             updateSummaries();
 
         } else if (Constants.PREFERENCE_SETTINGS_DAD.equals(key)) {
@@ -228,10 +239,13 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
 
     private void updateSummaries() {
         RecoveryInfo info = ManagerFactory.getRecoveryManager().getRecovery();
+        PreferencesManager pManager = ManagerFactory.getPreferencesManager();
         mRecovery.setSummary(getResources().getText(R.string.recovery_summary) + " ("
                 + info.getName() + ")");
-        mSdcard.setSummary(getResources().getText(R.string.sdcard_summary) + " ("
-                + info.getSdcard() + ")");
-        mDownloadPath.setSummary(ManagerFactory.getPreferencesManager().getDownloadPath());
+        mInternalSdcard.setSummary(getResources().getText(R.string.internalsdcard_summary) + " ("
+                + pManager.getInternalStorage() + ")");
+        mExternalSdcard.setSummary(getResources().getText(R.string.externalsdcard_summary) + " ("
+                + pManager.getExternalStorage() + ")");
+        mDownloadPath.setSummary(pManager.getDownloadPath());
     }
 }

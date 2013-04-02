@@ -24,9 +24,14 @@
             android:title="@string/recovery_title" />
 
         <Preference
-            android:key="sdcard"
-            android:summary="@string/sdcard_summary"
-            android:title="@string/sdcard_title" />
+            android:key="internalsdcard"
+            android:summary="@string/internalsdcard_summary"
+            android:title="@string/internalsdcard_title" />
+
+        <Preference
+            android:key="externalsdcard"
+            android:summary="@string/externalsdcard_summary"
+            android:title="@string/externalsdcard_title" />
 
         <com.beerbong.zipinst.widget.ListPreferenceMultiSelect
             android:defaultValue="BACKUP|WIPESYSTEM|WIPEDATA|WIPECACHES|FIXPERM"

@@ -47,9 +47,15 @@ public class RecoveryManager extends Manager {
     protected RecoveryManager(Context context) {
         super(context);
 
-        recoveries.put(R.id.cwmbased, new RecoveryInfo(R.id.cwmbased, "cwmbased", "emmc"));
-        recoveries.put(R.id.twrp, new RecoveryInfo(R.id.twrp, "twrp", "sdcard"));
-        recoveries.put(R.id.fourext, new RecoveryInfo(R.id.fourext, "fourext", "sdcard"));
+        if (ManagerFactory.getFileManager().hasExternalStorage()) {
+            recoveries.put(R.id.cwmbased, new RecoveryInfo(R.id.cwmbased, "cwmbased", "emmc", "sdcard"));
+            recoveries.put(R.id.twrp, new RecoveryInfo(R.id.twrp, "twrp", "emmc", "sdcard"));
+            recoveries.put(R.id.fourext, new RecoveryInfo(R.id.fourext, "fourext", "emmc", "sdcard"));
+        } else {
+            recoveries.put(R.id.cwmbased, new RecoveryInfo(R.id.cwmbased, "cwmbased", "sdcard", "sdcard"));
+            recoveries.put(R.id.twrp, new RecoveryInfo(R.id.twrp, "twrp", "sdcard", "sdcard"));
+            recoveries.put(R.id.fourext, new RecoveryInfo(R.id.fourext, "fourext", "sdcard", "sdcard"));
+        }
 
         if (!ManagerFactory.getPreferencesManager().existsRecovery()) {
             test(R.id.fourext);
@@ -100,9 +106,11 @@ public class RecoveryManager extends Manager {
                 }).show();
     }
 
-    public void selectSdcard(final Activity activity) {
+    public void selectSdcard(final Activity activity, final boolean internal) {
+        final PreferencesManager pManager = ManagerFactory.getPreferencesManager();
+        
         final EditText input = new EditText(activity);
-        input.setText(ManagerFactory.getPreferencesManager().getInternalStorage());
+        input.setText(internal ? pManager.getInternalStorage() : pManager.getExternalStorage());
 
         new AlertDialog.Builder(activity)
                 .setTitle(R.string.sdcard_alert_title)
@@ -124,7 +132,11 @@ public class RecoveryManager extends Manager {
                             value = value.substring(1);
                         }
 
-                        ManagerFactory.getPreferencesManager().setInternalStorage(value);
+                        if (internal) {
+                            pManager.setInternalStorage(value);
+                        } else {
+                            pManager.setExternalStorage(value);
+                        }
                         dialog.dismiss();
                     }
                 })
@@ -151,7 +163,8 @@ public class RecoveryManager extends Manager {
     public void setRecovery(int id) {
         RecoveryInfo info = recoveries.get(id);
         ManagerFactory.getPreferencesManager().setRecovery(info.getName());
-        ManagerFactory.getPreferencesManager().setInternalStorage(info.getSdcard());
+        ManagerFactory.getPreferencesManager().setInternalStorage(info.getInternalSdcard());
+        ManagerFactory.getPreferencesManager().setExternalStorage(info.getExternalSdcard());
     }
 
     public String getBackupDir(boolean force) {

@@ -87,11 +87,13 @@
     <string name="recovery_alert_title">Seleccionar recovery</string>
     <string name="recovery_alert_summary">Especifica el recovery que utilitzes</string>
 
-    <string name="sdcard_title">"Path al internal storage"</string>
-    <string name="sdcard_summary">Especifica la ruta al internal storage utilitzat pel recovery</string>
-    <string name="sdcard_alert_title">"Path al internal storage"</string>
-    <string name="sdcard_alert_summary">"Especifica el nom del internal storage"</string>
-    <string name="sdcard_alert_error">"Per favor especifica el nom del internal storage"</string>
+    <string name="internalsdcard_title">"Path al internal storage"</string>
+    <string name="internalsdcard_summary">Especifica la ruta al internal storage utilitzat pel recovery</string>
+    <string name="externalsdcard_title">"Path al external storage"</string>
+    <string name="externalsdcard_summary">Especifica la ruta al external storage utilitzat pel recovery</string>
+    <string name="sdcard_alert_title">"Path al storage"</string>
+    <string name="sdcard_alert_summary">"Especifica el nom del storage"</string>
+    <string name="sdcard_alert_error">"Per favor especifica el nom del storage"</string>
 
     <string name="about_title">Quant a</string>
     <string name="about_zip_title">ZipInstaller</string>

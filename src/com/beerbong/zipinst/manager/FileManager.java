@@ -369,33 +369,43 @@ public class FileManager extends Manager implements UIListener {
             return;
         }
 
-        if (isExternalStorage(filePath)) {
-            // external sdcard not allowed
-            Toast.makeText(mContext, R.string.install_file_manager_intsdcard, Toast.LENGTH_SHORT)
-                    .show();
+        if (!filePath.endsWith(".zip") && !filePath.endsWith(".sh")) {
+            Toast.makeText(mContext, R.string.install_file_manager_zip, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (!filePath.endsWith(".zip") && !filePath.endsWith(".sh")) {
-            Toast.makeText(mContext, R.string.install_file_manager_zip, Toast.LENGTH_SHORT).show();
+        if (filePath.endsWith(".sh") && isExternalStorage(filePath)) {
+            // sh from external sdcard not allowed
+            Toast.makeText(mContext, R.string.install_file_manager_intsdcard, Toast.LENGTH_SHORT)
+                    .show();
             return;
         }
 
         String sdcardPath = new String(filePath);
 
         String internalStorage = ManagerFactory.getPreferencesManager().getInternalStorage();
+        String externalStorage = "sdcard";
 
-        String[] names = new String[] { mInternalStoragePath, "/mnt/sdcard", "/sdcard" };
-        for (int i = 0; i < names.length; i++) {
-            String name = names[i];
-            if (!isExternalStorage(filePath)) {
-                if (filePath.endsWith(".sh")) {
-                    if (filePath.startsWith(name)) {
-                        filePath = filePath.replace(name, "/" + "sdcard");
+        String[] internalNames = new String[] { mInternalStoragePath, "/mnt/sdcard", "/sdcard" };
+        String[] externalNames = new String[] { mExternalStoragePath, "/mnt/extSdCard", "/extSdCard" };
+        for (int i = 0; i < internalNames.length; i++) {
+            String internalName = internalNames[i];
+            String externalName = externalNames[i];
+            boolean external = isExternalStorage(filePath);
+            if (filePath.endsWith(".sh")) {
+                if (!external) {
+                    if (filePath.startsWith(internalName)) {
+                        filePath = filePath.replace(internalName, "/" + "sdcard");
+                    }
+                }
+            } else {
+                if (external) {
+                    if (filePath.startsWith(externalName)) {
+                        filePath = filePath.replace(externalName, "/" + externalStorage);
                     }
                 } else {
-                    if (filePath.startsWith(name)) {
-                        filePath = filePath.replace(name, "/" + internalStorage);
+                    if (filePath.startsWith(internalName)) {
+                        filePath = filePath.replace(internalName, "/" + internalStorage);
                     }
                 }
             }

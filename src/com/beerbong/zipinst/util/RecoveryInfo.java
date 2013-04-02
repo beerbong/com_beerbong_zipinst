@@ -20,12 +20,14 @@ public class RecoveryInfo {
 
     private int id;
     private String name = null;
-    private String sdcard = null;
+    private String internalSdcard = null;
+    private String externalSdcard = null;
 
-    public RecoveryInfo(int id, String name, String sdcard) {
+    public RecoveryInfo(int id, String name, String internalSdcard, String externalSdcard) {
         this.id = id;
         this.name = name;
-        this.sdcard = sdcard;
+        this.internalSdcard = internalSdcard;
+        this.externalSdcard = externalSdcard;
     }
 
     public int getId() {
@@ -44,11 +46,19 @@ public class RecoveryInfo {
         this.name = name;
     }
 
-    public String getSdcard() {
-        return sdcard;
+    public String getInternalSdcard() {
+        return internalSdcard;
     }
 
-    public void setSdcard(String sdcard) {
-        this.sdcard = sdcard;
+    public void setInternalSdcard(String sdcard) {
+        this.internalSdcard = sdcard;
+    }
+
+    public String getExternalSdcard() {
+        return externalSdcard;
+    }
+
+    public void setExternalSdcard(String sdcard) {
+        this.externalSdcard = sdcard;
     }
 }

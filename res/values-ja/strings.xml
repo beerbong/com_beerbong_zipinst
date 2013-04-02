@@ -87,11 +87,13 @@
     <string name="recovery_alert_title">リカバリ選択</string>
     <string name="recovery_alert_summary">使用中のリカバリを入力してください</string>
 
-    <string name="sdcard_title">SDカードのパス</string>
-    <string name="sdcard_summary">リカバリーが使うSDカードのパスを入力してください</string>
-    <string name="sdcard_alert_title">SDカードのパス</string>
-    <string name="sdcard_alert_summary">SDカードの名前を入力してください。</string>
-    <string name="sdcard_alert_error">SDカードを入力してください。</string>
+    <string name="internalsdcard_title">SDカードのパス</string>
+    <string name="internalsdcard_summary">リカバリーが使うSDカードのパスを入力してください</string>
+    <string name="externalsdcard_title">External storage path</string>
+    <string name="externalsdcard_summary">Specify the external storage path used by the recovery</string>
+    <string name="sdcard_alert_title">Storage path</string>
+    <string name="sdcard_alert_summary">Specify the storage name</string>
+    <string name="sdcard_alert_error">Please specify the storage name</string>
 
     <string name="about_title">このアプリについて</string>
     <string name="about_zip_title">ZipInstaller</string>

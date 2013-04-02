@@ -24,9 +24,9 @@ import android.preference.PreferenceManager;
 
 public class PreferencesManager extends Manager {
 
-    private static final String SDCARD = "sdcard";
 
     private static final String PROPERTY_INTERNAL_STORAGE = "internal-storage";
+    private static final String PROPERTY_EXTERNAL_STORAGE = "external-storage";
     private static final String PROPERTY_RECOVERY = "recovery";
     private static final String PROPERTY_LIST = "list";
     private static final String PROPERTY_DRAG_AND_DROP = "drag-and-drop";
@@ -47,7 +47,8 @@ public class PreferencesManager extends Manager {
 
     private static final String DEFAULT_RECOVERY = "cwmbased";
     private static final String DEFAULT_INTERNAL_STORAGE = "emmc";
-    private static final String DEFAULT_DOWNLOAD_PATH = "/" + SDCARD + "/download/";
+    private static final String DEFAULT_EXTERNAL_STORAGE = "sdcard";
+    private static final String DEFAULT_DOWNLOAD_PATH = "/sdcard/download/";
     private static final String DEFAULT_ZIP_POSITION = "last";
     private static final String DEFAULT_TIME_NOTIFICATIONS = "3600000"; // an hour
     private static final String DEFAULT_SHOW_OPTIONS = Constants.INSTALL_OPTIONS_DEFAULT;
@@ -75,6 +76,14 @@ public class PreferencesManager extends Manager {
 
     public void setInternalStorage(String value) {
         savePreference(PROPERTY_INTERNAL_STORAGE, value);
+    }
+
+    public String getExternalStorage() {
+        return settings.getString(PROPERTY_EXTERNAL_STORAGE, DEFAULT_EXTERNAL_STORAGE);
+    }
+
+    public void setExternalStorage(String value) {
+        savePreference(PROPERTY_EXTERNAL_STORAGE, value);
     }
 
     public boolean existsRecovery() {
