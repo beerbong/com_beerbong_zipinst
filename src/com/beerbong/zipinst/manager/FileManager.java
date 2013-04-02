@@ -516,7 +516,7 @@ public class FileManager extends Manager implements UIListener {
     private void handleSendZip(Intent intent) {
         Uri zipUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
         if (zipUri != null) {
-            addFile(zipUri.getEncodedPath());
+            addFile(zipUri.getPath());
         }
     }
 
@@ -524,7 +524,7 @@ public class FileManager extends Manager implements UIListener {
         ArrayList<Uri> zipUris = intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
         if (zipUris != null) {
             for (int i = 0; i < zipUris.size(); i++) {
-                addFile(zipUris.get(i).getEncodedPath());
+                addFile(zipUris.get(i).getPath());
             }
         }
     }
