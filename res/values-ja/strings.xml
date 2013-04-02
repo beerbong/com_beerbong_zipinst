@@ -106,8 +106,6 @@
     <string name="changelog_apache_title">ZipInstaller Changelog</string>
     <string name="changelog_error">チェンジログの読み込みエラー</string>
 
-    <string name="paths_error">ファイルの読み込みエラー</string>
-
     <string name="backup">バックアップ</string>
     <string name="wipe_system">Wipe System</string>
     <string name="wipe_data">Wipe Data</string>

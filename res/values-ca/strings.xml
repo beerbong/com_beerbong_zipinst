@@ -106,8 +106,6 @@
     <string name="changelog_apache_title">Canvis a ZipInstaller</string>
     <string name="changelog_error">"Error carregant l'arxiu de canvis"</string>
 
-    <string name="paths_error">"Error carregant l'arxiu de paths"</string>
-
     <string name="backup">Backup</string>
     <string name="wipe_system">Wipe System</string>
     <string name="wipe_data">Wipe Data</string>

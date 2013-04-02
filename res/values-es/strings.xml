@@ -106,8 +106,6 @@
     <string name="changelog_apache_title">Cambios en ZipInstaller</string>
     <string name="changelog_error">"Error cargando el archivo de cambios"</string>
 
-    <string name="paths_error">"Error cargando el archivo de paths"</string>
-
     <string name="backup">Backup</string>
     <string name="wipe_system">Wipe System</string>
     <string name="wipe_data">Wipe Data</string>

@@ -107,8 +107,6 @@
     <string name="changelog_apache_title">ZipInstaller Changelog</string>
     <string name="changelog_error">Error loading changelog file</string>
 
-    <string name="paths_error">Error loading paths file</string>
-
     <string name="backup">Backup</string>
     <string name="wipe_system">Wipe System</string>
     <string name="wipe_data">Wipe Data</string>

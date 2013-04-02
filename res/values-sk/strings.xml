@@ -106,8 +106,6 @@
     <string name="changelog_apache_title">ZipInstaller - Zoznam zmien</string>
     <string name="changelog_error">Vyskytla sa chyba pri načítavaní súboru so zoznamom zmien</string>
 
-    <string name="paths_error">Vyskytla sa chyb pri načítaní súboru s cestami</string>
-
     <string name="backup">Zálohovať</string>
     <string name="wipe_system">Wipe System</string>
     <string name="wipe_data">Wipe Data</string>
