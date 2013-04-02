@@ -796,8 +796,9 @@ public class FileManager extends Manager implements UIListener {
                     String[] lineElements = line.split(" ");
                     String element = lineElements[2];
 
-                    if (element.contains(":"))
+                    if (element.contains(":")) {
                         element = element.substring(0, element.indexOf(":"));
+                    }
 
                     if (element.toLowerCase().indexOf("usb") < 0) {
                         vold.add(element);
@@ -813,15 +814,10 @@ public class FileManager extends Manager implements UIListener {
 
         for (int i = 0; i < mounts.size(); i++) {
             String mount = mounts.get(i);
-            if (!vold.contains(mount))
-                mounts.remove(i--);
-        }
-
-        for (int i = 0; i < mounts.size(); i++) {
-            String mount = mounts.get(i);
             File root = new File(mount);
-            if (!root.exists() || !root.isDirectory() || !root.canWrite())
+            if (!vold.contains(mount) || (!root.exists() || !root.isDirectory() || !root.canWrite())) {
                 mounts.remove(i--);
+            }
         }
 
         for (int i = 0; i < mounts.size(); i++) {
