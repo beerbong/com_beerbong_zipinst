@@ -794,7 +794,7 @@ public class FileManager extends Manager implements UIListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (mounts.size() == 0) {
+        if (mounts.size() == 0 || (mounts.size() == 1 && hasExternalStorage())) {
             mounts.add("/mnt/sdcard");
         }
 
@@ -818,7 +818,7 @@ public class FileManager extends Manager implements UIListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (vold.size() == 0) {
+        if (vold.size() == 0 || (vold.size() == 1 && hasExternalStorage())) {
             vold.add("/mnt/sdcard");
         }
 
