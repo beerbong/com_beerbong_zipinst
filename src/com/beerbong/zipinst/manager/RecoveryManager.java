@@ -63,7 +63,7 @@ public class RecoveryManager extends Manager {
     }
 
     public void selectRecovery(Activity activity) {
-        View view = LayoutInflater.from(activity).inflate(R.xml.recovery,
+        View view = LayoutInflater.from(activity).inflate(R.layout.recovery,
                 (ViewGroup) activity.findViewById(R.id.recovery_layout));
 
         RadioButton cbCwmbased = (RadioButton) view.findViewById(R.id.cwmbased);
