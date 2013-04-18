@@ -387,7 +387,9 @@ public class FileManager extends Manager implements UIListener {
         String externalStorage = "sdcard";
 
         String[] internalNames = new String[] { mInternalStoragePath, "/mnt/sdcard", "/sdcard" };
-        String[] externalNames = new String[] { mExternalStoragePath, "/mnt/extSdCard", "/extSdCard" };
+        String[] externalNames = new String[] {
+                mExternalStoragePath == null ? " " : mExternalStoragePath, "/mnt/extSdCard",
+                "/extSdCard" };
         for (int i = 0; i < internalNames.length; i++) {
             String internalName = internalNames[i];
             String externalName = externalNames[i];
