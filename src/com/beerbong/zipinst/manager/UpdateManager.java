@@ -36,6 +36,7 @@ import com.beerbong.zipinst.util.URLStringReader.URLStringReaderListener;
 
 public class UpdateManager extends Manager implements URLStringReaderListener {
 
+    private Context mCheckContext;
     private int mVersion = -1;
 
     public UpdateManager(Context context) {
@@ -57,6 +58,7 @@ public class UpdateManager extends Manager implements URLStringReaderListener {
         if (mVersion == -1) {
             return;
         }
+        mCheckContext = context;
         new URLStringReader(this).execute(Constants.SEARCH_URL);
     }
 
@@ -75,40 +77,40 @@ public class UpdateManager extends Manager implements URLStringReaderListener {
                 newVersion = Math.max(newVersion, parseVersion(fileName));
             }
             if (mVersion >= newVersion) {
-                showToastOnUiThread(R.string.no_new_version);
+                showToastOnUiThread(mCheckContext, R.string.no_new_version);
             } else {
                 final int nVersion = newVersion;
-                ((Activity) mContext).runOnUiThread(new Runnable() {
+                ((Activity) mCheckContext).runOnUiThread(new Runnable() {
 
                     public void run() {
-                        requestForDownload(mContext, nVersion);
+                        requestForDownload(mCheckContext, nVersion);
                     }
                 });
             }
         } catch (Exception ex) {
             ex.printStackTrace();
-            showToastOnUiThread(R.string.check_for_updates_error);
+            showToastOnUiThread(mCheckContext, R.string.check_for_updates_error);
         }
     }
 
     @Override
     public void onReadError(Exception ex) {
-        showToastOnUiThread(R.string.check_for_updates_error);
+        showToastOnUiThread(mCheckContext, R.string.check_for_updates_error);
     }
 
-    private void requestForDownload(Context context, int version) {
+    private void requestForDownload(final Context context, int version) {
         final String fileName = formatVersion(version);
 
         AlertDialog.Builder alert = new AlertDialog.Builder(context);
         alert.setTitle(R.string.new_version_title);
-        alert.setMessage(mContext.getResources().getString(R.string.new_version_summary,
+        alert.setMessage(context.getResources().getString(R.string.new_version_summary,
                 new Object[] { fileName }));
         alert.setPositiveButton(R.string.new_version_download,
                 new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
                         dialog.dismiss();
-                        download(fileName);
+                        download(context, fileName);
                     }
                 });
         alert.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -120,14 +122,14 @@ public class UpdateManager extends Manager implements URLStringReaderListener {
         alert.show();
     }
 
-    private void download(String fileName) {
+    private void download(Context context, String fileName) {
 
-        final ProgressDialog progressDialog = new ProgressDialog(mContext);
+        final ProgressDialog progressDialog = new ProgressDialog(context);
 
         final DownloadTask downloadFile = new DownloadTask(progressDialog, Constants.DOWNLOAD_URL
                 + fileName, fileName, null);
 
-        progressDialog.setMessage(mContext.getResources()
+        progressDialog.setMessage(context.getResources()
                 .getString(
                         R.string.downloading,
                         new Object[] {
@@ -137,7 +139,7 @@ public class UpdateManager extends Manager implements URLStringReaderListener {
         progressDialog.setCancelable(false);
         progressDialog.setProgress(0);
         progressDialog.setButton(Dialog.BUTTON_NEGATIVE,
-                mContext.getResources().getString(android.R.string.cancel),
+                context.getResources().getString(android.R.string.cancel),
                 new DialogInterface.OnClickListener() {
 
                     @Override
@@ -152,11 +154,11 @@ public class UpdateManager extends Manager implements URLStringReaderListener {
         downloadFile.execute();
     }
 
-    private void showToastOnUiThread(final int resourceId) {
-        ((Activity) mContext).runOnUiThread(new Runnable() {
+    private void showToastOnUiThread(final Context context, final int resourceId) {
+        ((Activity) context).runOnUiThread(new Runnable() {
 
             public void run() {
-                Toast.makeText(mContext, resourceId, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, resourceId, Toast.LENGTH_LONG).show();
             }
         });
     }
