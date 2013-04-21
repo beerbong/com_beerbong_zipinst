@@ -841,5 +841,9 @@ public class FileManager extends Manager implements UIListener {
                 mExternalStoragePath = mount;
             }
         }
+
+        if (mInternalStoragePath == null) {
+            mInternalStoragePath = "/sdcard";
+        }
     }
 }
