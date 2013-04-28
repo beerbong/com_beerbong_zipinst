@@ -205,6 +205,7 @@
     <string name="enable_notifications">Enable notifications</string>
     <string name="time_notifications_title">Notifications time</string>
     <string name="time_notifications_summary">Time between each search for ROM updates</string>
+    <string name="time_notifications_never">Don\'t check</string>
     <string name="time_notifications_half_an_hour">Half an hour</string>
     <string name="time_notifications_an_hour">An hour</string>
     <string name="time_notifications_two_hours">Two hours</string>

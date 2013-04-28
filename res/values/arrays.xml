@@ -39,6 +39,7 @@
         <item>last</item>
     </string-array>
     <string-array name="time_notifications_options">
+        <item>@string/time_notifications_never</item>
         <item>@string/time_notifications_half_an_hour</item>
         <item>@string/time_notifications_an_hour</item>
         <item>@string/time_notifications_two_hours</item>
@@ -46,6 +47,7 @@
         <item>@string/time_notifications_twentyfour_hours</item>
     </string-array>
     <string-array name="time_notifications_values" translatable="false">
+        <item>-1</item>
         <item>1800000</item>
         <item>3600000</item>
         <item>7200000</item>

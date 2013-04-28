@@ -59,19 +59,6 @@
 
                 <data android:mimeType="application/zip" />
             </intent-filter>
-            <!--intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:mimeType="application/zip"
-                    android:scheme="http" />
-                <data
-                    android:mimeType="application/zip"
-                    android:scheme="https" />
-            </intent-filter-->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -112,16 +99,16 @@
         <!-- PRO -->
         <activity android:name="com.beerbong.zipinst.pro.activities.GooActivity" />
 
-        <service android:name="com.beerbong.zipinst.pro.Service" >
-        </service>
+        <receiver android:name="com.beerbong.zipinst.pro.NotificationAlarm" />
 
         <receiver
-            android:name="com.beerbong.zipinst.Receiver"
+            android:name="com.beerbong.zipinst.pro.Receiver"
             android:enabled="true"
             android:exported="false"
             android:label="Receiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
             </intent-filter>
         </receiver>
     </application>

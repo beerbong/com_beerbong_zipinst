@@ -205,6 +205,7 @@
     <string name="enable_notifications">Habilitar notifications</string>
     <string name="time_notifications_title">Temps notificacions</string>
     <string name="time_notifications_summary">Temps d\'espera per buscar actualitzacions de la ROM</string>
+    <string name="time_notifications_never">No buscar</string>
     <string name="time_notifications_half_an_hour">Mitja hora</string>
     <string name="time_notifications_an_hour">Una hora</string>
     <string name="time_notifications_two_hours">Dues hores</string>
