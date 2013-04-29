@@ -102,7 +102,7 @@
         <receiver android:name="com.beerbong.zipinst.pro.NotificationAlarm" />
 
         <receiver
-            android:name="com.beerbong.zipinst.pro.Receiver"
+            android:name="com.beerbong.zipinst.Receiver"
             android:enabled="true"
             android:exported="false"
             android:label="Receiver" >
