@@ -384,7 +384,7 @@ public class FileManager extends Manager implements UIListener {
         String sdcardPath = new String(filePath);
 
         String internalStorage = ManagerFactory.getPreferencesManager().getInternalStorage();
-        String externalStorage = "sdcard";
+        String externalStorage = ManagerFactory.getPreferencesManager().getExternalStorage();
 
         String[] internalNames = new String[] { mInternalStoragePath, "/mnt/sdcard", "/sdcard" };
         String[] externalNames = new String[] {
@@ -398,16 +398,19 @@ public class FileManager extends Manager implements UIListener {
                 if (!external) {
                     if (filePath.startsWith(internalName)) {
                         filePath = filePath.replace(internalName, "/" + "sdcard");
+                        break;
                     }
                 }
             } else {
                 if (external) {
                     if (filePath.startsWith(externalName)) {
                         filePath = filePath.replace(externalName, "/" + externalStorage);
+                        break;
                     }
                 } else {
                     if (filePath.startsWith(internalName)) {
                         filePath = filePath.replace(internalName, "/" + internalStorage);
+                        break;
                     }
                 }
             }
