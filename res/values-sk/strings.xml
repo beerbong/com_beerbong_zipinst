@@ -195,7 +195,7 @@
     <string name="spaceleft_summary">Zobraziť upozornenie, ak sa vykonáva záloha a je menej miesta ako...</string>
     <string name="spaceleft_dontcheck">Nekontrolovať</string>
 
-    <string name="alert_backup_space_title">Nedostatok miesta/string>
+    <string name="alert_backup_space_title">Nedostatok miesta</string>
     <string name="alert_backup_space_message">Na internej SD karte je menej než %1$sGB miesta. Chcete pokračovať so zálohou?</string>
 
     <string name="settings_wipesystem_alert_title">Upozornenie na Wipe System</string>
