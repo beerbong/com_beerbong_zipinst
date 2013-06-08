@@ -19,14 +19,14 @@
     <string name="alert_reboot_title">Vyberte akcie a spustite inštaláciu</string>
     <string name="alert_reboot_now">Inštalovať teraz</string>
 
-    <string name="alert_wipe_system_title">System wipe</string>
-    <string name="alert_wipe_system_message">You are about to perform a system wipe. Are you sure you want to do that?</string>
+    <string name="alert_wipe_system_title">Wipe System</string>
+    <string name="alert_wipe_system_message">Chystáte sa vykonať Wipe System. Ste si istý, že to chcete urobiť?</string>
 
     <string name="install_file_manager_error">Nebola nájdená žiadna aplikácia pre vybratie ZIP súboru. Prosím nainštaluje správcu súborov.</string>
-    <string name="install_file_manager_intsdcard">Prosím vyberte ZIP súbor z vnútornej SD karty.</string>
-    <string name="install_file_manager_zip">Vyberte ZIP súbor.</string>
-    <string name="install_file_manager_invalid_zip">Neplatný ZIP súbor.</string>
-    <string name="install_file_manager_not_found_zip">Not found item deleted from list.</string>
+    <string name="install_file_manager_intsdcard">Prosím vyberte súbor z vnútornej SD karty.</string>
+    <string name="install_file_manager_zip">Vyberte ZIP alebo SH súbor.</string>
+    <string name="install_file_manager_invalid_zip">Neplatný ZIP/SH súbor.</string>
+    <string name="install_file_manager_not_found_zip">Nenájdená položka bola odstránená zo zoznamu.</string>
 
     <string name="alert_sdcard_title">Upozornenie</string>
     <string name="alert_sdcard_message">Vyberte zip súbor z vnútornej SD karty.</string>
@@ -57,10 +57,10 @@
     <string name="alert_file_not_exists">Súbor nenájdený: %1$s</string>
     <string name="alert_file_md5_checking">Kontrolujem MD5 pre súbor %1$s&#8230;</string>
     <string name="alert_file_incorrect_md5_file">Poškodený MD5 pre súbor: %1$s</string>
-    <string name="alert_file_incorrect_md5">Mismatch MD5 for file %1$s</string>
+    <string name="alert_file_incorrect_md5">Nezhoda MD5 pre súbor %1$s</string>
 
-    <string name="main_choose_zip">Pridať ZIP súbor do zoznamu</string>
-    <string name="main_choose_zip_summary">Otvorí správcu súborov pre vybratie ZIP súboru</string>
+    <string name="main_choose_zip">Pridať ZIP/SH súbor do zoznamu</string>
+    <string name="main_choose_zip_summary">Otvorí správcu súborov pre vybratie ZIP/SH súboru</string>
 
     <string name="install_now">Inštalovať teraz</string>
     <string name="install_now_summary">Zariadenie sa reštartuje do recovery a vykonajú sa požadované akcie</string>
@@ -88,12 +88,12 @@
     <string name="recovery_alert_summary">Vyberte recovery, ktorú používate</string>
 
     <string name="internalsdcard_title">Cesta k internému úložisku</string>
-    <string name="internalsdcard_summary">Upresnenie cesty k internému úložisku, ktoré používana recovery</string>
-    <string name="externalsdcard_title">External storage path</string>
-    <string name="externalsdcard_summary">Specify the external storage path used by the recovery</string>
-    <string name="sdcard_alert_title">Storage path</string>
-    <string name="sdcard_alert_summary">Specify the storage name</string>
-    <string name="sdcard_alert_error">Please specify the storage name</string>
+    <string name="internalsdcard_summary">Upresnenie cesty k internému úložisku, ktorú používa recovery</string>
+    <string name="externalsdcard_title">Cesta k externému úložisku</string>
+    <string name="externalsdcard_summary">Upresnenie cesty k externému úložisku, ktorú používa recovery</string>
+    <string name="sdcard_alert_title">Cesta k úložisku</string>
+    <string name="sdcard_alert_summary">Upresnenie názvu úložiska</string>
+    <string name="sdcard_alert_error">Prosím upresnite názov úložiska</string>
 
     <string name="about_title">O programe</string>
     <string name="about_zip_title">ZipInstaller</string>
@@ -112,7 +112,7 @@
     <string name="wipe_system">Wipe System</string>
     <string name="wipe_data">Wipe Data</string>
     <string name="wipe_caches">Wipe Cache &amp; Dalvik</string>
-    <string name="fix_permissions">Fix permissions</string>
+    <string name="fix_permissions">Opraviť oprávnenia</string>
 
     <string name="savelist_title">Uloženie zoznamu</string>
     <string name="loadlist_title">Načítanie zoznamu</string>
@@ -127,11 +127,11 @@
     <string name="overridelist_title">Prepísanie načítaného zoznamu</string>
     <string name="overridelist_summary">Načítaním uloženého zoznamu budú prepísaný zoznam vybraných ZIP súborov</string>
 
-    <string name="autoloadlist_title">Load list on startup</string>
-    <string name="autoloadlist_summary">Automatically load saved list on sstart application</string>
+    <string name="autoloadlist_title">Načítať zoznam po spustení</string>
+    <string name="autoloadlist_summary">Automaticky načítať zoznam po štarte aplikácie</string>
 
-    <string name="settings_showoptions_title">Options</string>
-    <string name="settings_showoptions_summary">Chose options to show when pressing the Install Now button</string>
+    <string name="settings_showoptions_title">Možnosti</string>
+    <string name="settings_showoptions_summary">Vyberte možnosti, ktoré budú zobrazené po stlačení tlačidla Inštalovať teraz</string>
 
     <string name="settings_title">Nastavenia</string>
     <string name="settings_recovery">Recovery</string>
@@ -181,53 +181,53 @@
     <string name="recovery_activity_actions">Recovery actions</string>
     <string name="recovery_activity_actions_summary">Wipe data, caches and/or fix permissions</string>
 
-    <string name="alert_deleting_folder">Vymazávam %1$s&#8230;</string>
+    <string name="alert_deleting_folder">Mazanie %1$s&#8230;</string>
 
-    <string name="consider_becoming_a_pro">Please consider purchasing the application</string>
-    <string name="become_a_pro">Purchase the application</string>
+    <string name="consider_becoming_a_pro">Prosím zvážte kúpu aplikácie</string>
+    <string name="become_a_pro">Zakúpiť aplikáciu</string>
 
-    <string name="zipposition_title">Zip position</string>
-    <string name="zipposition_summary">Position to add the new zip files added to the list</string>
-    <string name="zip_position_first">First</string>
-    <string name="zip_position_last">Last</string>
+    <string name="zipposition_title">Pozícia ZIPu</string>
+    <string name="zipposition_summary">Pozícia ZIPu, ktorý bol pridaný, v zozname</string>
+    <string name="zip_position_first">Prvé miesto</string>
+    <string name="zip_position_last">Posledné miesto</string>
 
-    <string name="spaceleft_title">Check space before backup</string>
-    <string name="spaceleft_summary">Display alert when doing a backup and there\'s less space than...</string>
-    <string name="spaceleft_dontcheck">Don\'t check</string>
+    <string name="spaceleft_title">Kontrola miesta pred zálohou</string>
+    <string name="spaceleft_summary">Zobraziť upozornenie, ak sa vykonáva záloha a je menej miesta ako...</string>
+    <string name="spaceleft_dontcheck">Nekontrolovať</string>
 
-    <string name="alert_backup_space_title">Space left</string>
-    <string name="alert_backup_space_message">There\'s less than %1$sGB in the internal sdcard. Do you want to continue with the backup?</string>
+    <string name="alert_backup_space_title">Nedostatok miesta/string>
+    <string name="alert_backup_space_message">Na internej SD karte je menej než %1$sGB miesta. Chcete pokračovať so zálohou?</string>
 
-    <string name="settings_wipesystem_alert_title">Wipe system alert</string>
-    <string name="settings_wipesystem_alert_summary">Show a confirmation dialog if trying to do a system wipe</string>
+    <string name="settings_wipesystem_alert_title">Upozornenie na Wipe System</string>
+    <string name="settings_wipesystem_alert_summary">Zobraziť potvrdzovacie okno, ak sa pokúšate urobiť Wipe System</string>
 
     <!-- PRO -->
-    <string name="enable_notifications">Enable notifications</string>
-    <string name="time_notifications_title">Notifications time</string>
-    <string name="time_notifications_summary">Time between each search for ROM updates</string>
-    <string name="time_notifications_never">Don\'t check</string>
-    <string name="time_notifications_half_an_hour">Half an hour</string>
-    <string name="time_notifications_an_hour">An hour</string>
-    <string name="time_notifications_two_hours">Two hours</string>
-    <string name="time_notifications_five_hours">Five hours</string>
-    <string name="time_notifications_twentyfour_hours">Twenty four hours</string>
-    <string name="check_rom_updates">Check for ROM updates</string>
-    <string name="check_rom_updates_error">Error checking for ROM updates</string>
-    <string name="check_rom_updates_no_new">No new ROM updates found</string>
+    <string name="enable_notifications">Povoliť oznámenia</string>
+    <string name="time_notifications_title">Čas oznámení</string>
+    <string name="time_notifications_summary">Čas medzi každým hľadaním aktualizácií pre Vašu ROM</string>
+    <string name="time_notifications_never">Nekontrolovať</string>
+    <string name="time_notifications_half_an_hour">Pol hodiny</string>
+    <string name="time_notifications_an_hour">Hodina</string>
+    <string name="time_notifications_two_hours">2 hodiny</string>
+    <string name="time_notifications_five_hours">5 hodín</string>
+    <string name="time_notifications_twentyfour_hours">24 hodín</string>
+    <string name="check_rom_updates">Kontrola aktualizácií pre Vašu ROM</string>
+    <string name="check_rom_updates_error">Vyskytla sa chyba pri kontrolovaní aktualizácií pre Vašu ROM</string>
+    <string name="check_rom_updates_no_new">Nenájdené žiadne nové aktualizácie Vašej ROM</string>
 
-    <string name="new_rom_found_title">New ROM version found</string>
-    <string name="new_rom_found_summary">A new version of your ROM has been found. Do you want to download it now?\n\n%1$s\n%2$s\n</string>
+    <string name="new_rom_found_title">Nájdená nová verzia ROM</string>
+    <string name="new_rom_found_summary">Nová verzia pre Vašu ROM bola nájdená. Chcete ju stiahnuť teraz?\n\n%1$s\n%2$s\n</string>
     <string name="new_rom_name">%1$s</string>
 
     <string name="menu_gooim">Goo.im</string>
-    <string name="goo_browse_all_compatible">Browse compatible ROMs</string>
-    <string name="goo_browse_all">Browse all files</string>
-    <string name="goo_browse_error">Error browsing files</string>
-    <string name="goo_browse_searching">Searching&#8230;</string>
-    <string name="goo_category_title">Browsing %1$s</string>
-    <string name="goo_download_title">Download</string>
-    <string name="goo_download_summary">Do you want to download this file now?\n\n%1$s\n%2$s\n</string>
-
-    <string name="checktime_title">Update check frequency</string>
-    <string name="checktime_summary">Specify the time between each update check</string>
+    <string name="goo_browse_all_compatible">Prehliadať kompatibilné ROM</string>
+    <string name="goo_browse_all">Prehliadať všetky súbory</string>
+    <string name="goo_browse_error">Vyskytla sa chyba pri prehliadaní súborov</string>
+    <string name="goo_browse_searching">Hľadanie&#8230;</string>
+    <string name="goo_category_title">Prehliadavanie %1$s</string>
+    <string name="goo_download_title">Stiahnuť</string>
+    <string name="goo_download_summary">Chcete stiahnuť teraz tento súbor?\n\n%1$s\n%2$s\n</string>
+ 
+    <string name="checktime_title">Frekvencia kontroly aktualizácií</string>
+    <string name="checktime_summary">Upresnenie času medzi každou kontrolou aktualizácií</string>
 </resources>
