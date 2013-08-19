@@ -18,6 +18,8 @@ package com.beerbong.zipinst.activities;
 
 import java.util.List;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,6 +29,13 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.manager.ManagerFactory;
@@ -127,18 +136,15 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
 
         if (Constants.PREFERENCE_SETTINGS_RECOVERY.equals(key)) {
 
-            ManagerFactory.getRecoveryManager().selectRecovery(this);
-            updateSummaries();
+            selectRecovery();
 
         } else if (Constants.PREFERENCE_SETTINGS_INTERNAL_SDCARD.equals(key)) {
 
-            ManagerFactory.getRecoveryManager().selectSdcard(this, true);
-            updateSummaries();
+            selectSdcard(true);
 
         } else if (Constants.PREFERENCE_SETTINGS_EXTERNAL_SDCARD.equals(key)) {
 
-            ManagerFactory.getRecoveryManager().selectSdcard(this, false);
-            updateSummaries();
+            selectSdcard(false);
 
         } else if (Constants.PREFERENCE_SETTINGS_DAD.equals(key)) {
 
@@ -185,8 +191,7 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
 
         } else if (Constants.PREFERENCE_SETTINGS_DOWNLOAD_PATH.equals(key)) {
 
-            ManagerFactory.getFileManager().selectDownloadPath(this);
-            updateSummaries();
+            selectDownloadPath();
 
         } else if (Constants.PREFERENCE_SETTINGS_ZIP_POSITION.equals(key)) {
 
@@ -247,5 +252,127 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         mExternalSdcard.setSummary(getResources().getText(R.string.externalsdcard_summary) + " ("
                 + pManager.getExternalStorage() + ")");
         mDownloadPath.setSummary(pManager.getDownloadPath());
+    }
+
+    private void selectDownloadPath() {
+        final EditText input = new EditText(this);
+        input.setText(ManagerFactory.getPreferencesManager().getDownloadPath());
+
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.download_alert_title)
+                .setMessage(R.string.download_alert_summary)
+                .setView(input)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        String value = input.getText().toString();
+
+                        if (value == null || "".equals(value.trim()) || !value.startsWith("/")) {
+                            Toast.makeText(Settings.this, R.string.download_alert_error,
+                                    Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                            return;
+                        }
+
+                        ManagerFactory.getPreferencesManager().setDownloadPath(value);
+                        updateSummaries();
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.dismiss();
+                    }
+                }).show();
+    }
+
+    private void selectSdcard(final boolean internal) {
+        final PreferencesManager pManager = ManagerFactory.getPreferencesManager();
+        
+        final EditText input = new EditText(this);
+        input.setText(internal ? pManager.getInternalStorage() : pManager.getExternalStorage());
+
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.sdcard_alert_title)
+                .setMessage(R.string.sdcard_alert_summary)
+                .setView(input)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        String value = input.getText().toString();
+
+                        if (value == null || "".equals(value.trim())) {
+                            Toast.makeText(Settings.this, R.string.sdcard_alert_error,
+                                    Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                            return;
+                        }
+
+                        if (value.startsWith("/")) {
+                            value = value.substring(1);
+                        }
+
+                        if (internal) {
+                            pManager.setInternalStorage(value);
+                        } else {
+                            pManager.setExternalStorage(value);
+                        }
+                        updateSummaries();
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.dismiss();
+                    }
+                }).show();
+    }
+
+    private void selectRecovery() {
+        View view = LayoutInflater.from(this).inflate(R.layout.recovery,
+                (ViewGroup) findViewById(R.id.recovery_layout));
+
+        RadioButton cbCwmbased = (RadioButton) view.findViewById(R.id.cwmbased);
+        RadioButton cbTwrp = (RadioButton) view.findViewById(R.id.twrp);
+        RadioButton cb4ext = (RadioButton) view.findViewById(R.id.fourext);
+
+        final RadioGroup mGroup = (RadioGroup) view.findViewById(R.id.recovery_radio_group);
+
+        RecoveryInfo info = ManagerFactory.getRecoveryManager().getRecovery();
+        switch (info.getId()) {
+            case R.id.cwmbased:
+                cbCwmbased.setChecked(true);
+                break;
+            case R.id.twrp:
+                cbTwrp.setChecked(true);
+                break;
+            case R.id.fourext:
+                cb4ext.setChecked(true);
+                break;
+        }
+
+        new AlertDialog.Builder(this).setTitle(R.string.recovery_alert_title)
+                .setMessage(R.string.recovery_alert_summary).setView(view)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+
+                        int id = mGroup.getCheckedRadioButtonId();
+
+                        ManagerFactory.getRecoveryManager().setRecovery(id);
+
+                        updateSummaries();
+
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.dismiss();
+                    }
+                }).show();
     }
 }

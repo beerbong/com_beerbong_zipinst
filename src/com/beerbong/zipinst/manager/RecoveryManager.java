@@ -22,17 +22,10 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.util.SparseArray;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.beerbong.zipinst.R;
@@ -60,92 +53,6 @@ public class RecoveryManager extends Manager {
         if (!ManagerFactory.getPreferencesManager().existsRecovery()) {
             test(R.id.fourext);
         }
-    }
-
-    public void selectRecovery(Activity activity) {
-        View view = LayoutInflater.from(activity).inflate(R.layout.recovery,
-                (ViewGroup) activity.findViewById(R.id.recovery_layout));
-
-        RadioButton cbCwmbased = (RadioButton) view.findViewById(R.id.cwmbased);
-        RadioButton cbTwrp = (RadioButton) view.findViewById(R.id.twrp);
-        RadioButton cb4ext = (RadioButton) view.findViewById(R.id.fourext);
-
-        final RadioGroup mGroup = (RadioGroup) view.findViewById(R.id.recovery_radio_group);
-
-        RecoveryInfo info = getRecovery();
-        switch (info.getId()) {
-            case R.id.cwmbased:
-                cbCwmbased.setChecked(true);
-                break;
-            case R.id.twrp:
-                cbTwrp.setChecked(true);
-                break;
-            case R.id.fourext:
-                cb4ext.setChecked(true);
-                break;
-        }
-
-        new AlertDialog.Builder(activity).setTitle(R.string.recovery_alert_title)
-                .setMessage(R.string.recovery_alert_summary).setView(view)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int whichButton) {
-
-                        int id = mGroup.getCheckedRadioButtonId();
-
-                        setRecovery(id);
-
-                        dialog.dismiss();
-                    }
-                })
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        dialog.dismiss();
-                    }
-                }).show();
-    }
-
-    public void selectSdcard(final Activity activity, final boolean internal) {
-        final PreferencesManager pManager = ManagerFactory.getPreferencesManager();
-        
-        final EditText input = new EditText(activity);
-        input.setText(internal ? pManager.getInternalStorage() : pManager.getExternalStorage());
-
-        new AlertDialog.Builder(activity)
-                .setTitle(R.string.sdcard_alert_title)
-                .setMessage(R.string.sdcard_alert_summary)
-                .setView(input)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        String value = input.getText().toString();
-
-                        if (value == null || "".equals(value.trim())) {
-                            Toast.makeText(activity, R.string.sdcard_alert_error,
-                                    Toast.LENGTH_SHORT).show();
-                            dialog.dismiss();
-                            return;
-                        }
-
-                        if (value.startsWith("/")) {
-                            value = value.substring(1);
-                        }
-
-                        if (internal) {
-                            pManager.setInternalStorage(value);
-                        } else {
-                            pManager.setExternalStorage(value);
-                        }
-                        dialog.dismiss();
-                    }
-                })
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        dialog.dismiss();
-                    }
-                }).show();
     }
 
     public RecoveryInfo getRecovery() {

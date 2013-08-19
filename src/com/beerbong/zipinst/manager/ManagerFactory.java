@@ -78,6 +78,12 @@ public class ManagerFactory {
         return mSUManager;
     }
 
+    public static SUManager getSUManager(Context context) {
+        if (mSUManager == null)
+            mSUManager = new SUManager(context);
+        return mSUManager;
+    }
+
     public static ProManager getProManager() {
         return mProManager;
     }

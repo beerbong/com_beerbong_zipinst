@@ -329,38 +329,6 @@ public class FileManager extends Manager implements UIListener {
                 }).show();
     }
 
-    public void selectDownloadPath(final Activity activity) {
-        final EditText input = new EditText(activity);
-        input.setText(ManagerFactory.getPreferencesManager().getDownloadPath());
-
-        new AlertDialog.Builder(activity)
-                .setTitle(R.string.download_alert_title)
-                .setMessage(R.string.download_alert_summary)
-                .setView(input)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        String value = input.getText().toString();
-
-                        if (value == null || "".equals(value.trim()) || !value.startsWith("/")) {
-                            Toast.makeText(activity, R.string.download_alert_error,
-                                    Toast.LENGTH_SHORT).show();
-                            dialog.dismiss();
-                            return;
-                        }
-
-                        ManagerFactory.getPreferencesManager().setDownloadPath(value);
-                        dialog.dismiss();
-                    }
-                })
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        dialog.dismiss();
-                    }
-                }).show();
-    }
-
     public void addFile(String filePath) {
 
         if (filePath == null || (!filePath.endsWith(".zip") && !filePath.endsWith(".sh"))) {
@@ -386,10 +354,18 @@ public class FileManager extends Manager implements UIListener {
         String internalStorage = ManagerFactory.getPreferencesManager().getInternalStorage();
         String externalStorage = ManagerFactory.getPreferencesManager().getExternalStorage();
 
-        String[] internalNames = new String[] { mInternalStoragePath, "/mnt/sdcard", "/sdcard" };
+        String[] internalNames = new String[] {
+                mInternalStoragePath,
+                "/mnt/sdcard",
+                "/sdcard",
+                "/storage/sdcard0",
+                "/storage/emulated/0" };
         String[] externalNames = new String[] {
-                mExternalStoragePath == null ? " " : mExternalStoragePath, "/mnt/extSdCard",
-                "/extSdCard" };
+                mExternalStoragePath == null ? " " : mExternalStoragePath,
+                "/mnt/extSdCard",
+                "/extSdCard",
+                "/storage/sdcard1",
+                "/storage/emulated/1" };
         for (int i = 0; i < internalNames.length; i++) {
             String internalName = internalNames[i];
             String externalName = externalNames[i];
@@ -402,16 +378,12 @@ public class FileManager extends Manager implements UIListener {
                     }
                 }
             } else {
-                if (external) {
-                    if (filePath.startsWith(externalName)) {
-                        filePath = filePath.replace(externalName, "/" + externalStorage);
-                        break;
-                    }
-                } else {
-                    if (filePath.startsWith(internalName)) {
-                        filePath = filePath.replace(internalName, "/" + internalStorage);
-                        break;
-                    }
+                if (filePath.startsWith(externalName)) {
+                    filePath = filePath.replace(externalName, "/" + externalStorage);
+                    break;
+                } else if (filePath.startsWith(internalName)) {
+                    filePath = filePath.replace(internalName, "/" + internalStorage);
+                    break;
                 }
             }
         }
@@ -803,25 +775,43 @@ public class FileManager extends Manager implements UIListener {
             mounts.add("/mnt/sdcard");
         }
 
-        try {
-            Scanner scanner = new Scanner(new File("/system/etc/vold.fstab"));
-            while (scanner.hasNext()) {
-                String line = scanner.nextLine();
-                if (line.startsWith("dev_mount")) {
-                    String[] lineElements = line.split(" ");
-                    String element = lineElements[2];
+        File fstab = findFstab();
+        if (fstab != null) {
+            try {
+                copyOrRemoveCache(fstab, true);
 
-                    if (element.contains(":")) {
-                        element = element.substring(0, element.indexOf(":"));
-                    }
-
-                    if (element.toLowerCase().indexOf("usb") < 0) {
-                        vold.add(element);
+                Scanner scanner = new Scanner(new File("/cache/" + fstab.getName()));
+                while (scanner.hasNext()) {
+                    String line = scanner.nextLine();
+                    if (line.startsWith("dev_mount")) {
+                        String[] lineElements = line.split(" ");
+                        String element = lineElements[2];
+    
+                        if (element.contains(":")) {
+                            element = element.substring(0, element.indexOf(":"));
+                        }
+    
+                        if (element.toLowerCase().indexOf("usb") < 0) {
+                            vold.add(element);
+                        }
+                    } else if (line.startsWith("/devices/platform")) {
+                        String[] lineElements = line.split(" ");
+                        String element = lineElements[1];
+    
+                        if (element.contains(":")) {
+                            element = element.substring(0, element.indexOf(":"));
+                        }
+    
+                        if (element.toLowerCase().indexOf("usb") < 0) {
+                            vold.add(element);
+                        }
                     }
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                copyOrRemoveCache(fstab, false);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         if (vold.size() == 0 || (vold.size() == 1 && hasExternalStorage())) {
             vold.add("/mnt/sdcard");
@@ -847,6 +837,40 @@ public class FileManager extends Manager implements UIListener {
 
         if (mInternalStoragePath == null) {
             mInternalStoragePath = "/sdcard";
+        }
+    }
+
+    private File findFstab() {
+        File file = null;
+
+        file = new File("/system/etc/vold.fstab");
+        if (file.exists()) {
+            return file;
+        }
+
+        file = new File("/fstab." + Constants.getProperty("ro.product.device"));
+        if (file.exists()) {
+            return file;
+        }
+
+        File[] files = (new File("/")).listFiles();
+        for (int i = 0; files != null && i < files.length; i++) {
+            file = files[i];
+            if (file.getName().startsWith("fstab.") && !file.getName().equals("fstab.goldfish")) {
+                return file;
+            }
+        }
+
+        return null;
+    }
+
+    private void copyOrRemoveCache(File file, boolean copy) {
+        SUManager suManager = ManagerFactory.getSUManager(mContext);
+        if (copy) {
+            suManager.runWaitFor("cp " + file.getAbsolutePath() + " /cache/" + file.getName());
+            suManager.runWaitFor("chmod 644 /cache/" + file.getName());
+        } else {
+            suManager.runWaitFor("rm -f /cache/" + file.getName());
         }
     }
 }
