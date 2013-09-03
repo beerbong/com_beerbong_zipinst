@@ -357,12 +357,14 @@ public class FileManager extends Manager implements UIListener {
         String[] internalNames = new String[] {
                 mInternalStoragePath,
                 "/mnt/sdcard",
+                "/storage/sdcard/",
                 "/sdcard",
                 "/storage/sdcard0",
                 "/storage/emulated/0" };
         String[] externalNames = new String[] {
                 mExternalStoragePath == null ? " " : mExternalStoragePath,
                 "/mnt/extSdCard",
+                "/storage/extSdCard/",
                 "/extSdCard",
                 "/storage/sdcard1",
                 "/storage/emulated/1" };
@@ -373,16 +375,28 @@ public class FileManager extends Manager implements UIListener {
             if (filePath.endsWith(".sh")) {
                 if (!external) {
                     if (filePath.startsWith(internalName)) {
-                        filePath = filePath.replace(internalName, "/" + "sdcard");
+                        if (internalName.endsWith("/")) {
+                            filePath = filePath.replace(internalName, "/" + "sdcard" + "/");
+                        } else {
+                            filePath = filePath.replace(internalName, "/" + "sdcard");
+                        }
                         break;
                     }
                 }
             } else {
                 if (filePath.startsWith(externalName)) {
-                    filePath = filePath.replace(externalName, "/" + externalStorage);
+                    if (externalName.endsWith("/")) {
+                        filePath = filePath.replace(externalName, "/" + externalStorage + "/");
+                    } else {
+                        filePath = filePath.replace(externalName, "/" + externalStorage);
+                    }
                     break;
                 } else if (filePath.startsWith(internalName)) {
-                    filePath = filePath.replace(internalName, "/" + internalStorage);
+                    if (internalName.endsWith("/")) {
+                        filePath = filePath.replace(internalName, "/" + internalStorage + "/");
+                    } else {
+                        filePath = filePath.replace(internalName, "/" + internalStorage);
+                    }
                     break;
                 }
             }
@@ -841,6 +855,7 @@ public class FileManager extends Manager implements UIListener {
     }
 
     private File findFstab() {
+
         File file = null;
 
         file = new File("/system/etc/vold.fstab");
@@ -848,16 +863,15 @@ public class FileManager extends Manager implements UIListener {
             return file;
         }
 
-        file = new File("/fstab." + Constants.getProperty("ro.product.device"));
-        if (file.exists()) {
-            return file;
-        }
-
-        File[] files = (new File("/")).listFiles();
-        for (int i = 0; files != null && i < files.length; i++) {
-            file = files[i];
-            if (file.getName().startsWith("fstab.") && !file.getName().equals("fstab.goldfish")) {
-                return file;
+        SUManager suManager = ManagerFactory.getSUManager(mContext);
+        SUManager.CommandResult cm = suManager.runWaitFor("grep -ls \"/dev/block/\" * --include=fstab.* --exclude=fstab.goldfish");
+        if (cm.stdout != null) {
+            String[] files = cm.stdout.split("\n");
+            for (int i = 0; i < files.length; i++) {
+                file = new File(files[i]);
+                if (file.exists()) {
+                    return file;
+                }
             }
         }
 
