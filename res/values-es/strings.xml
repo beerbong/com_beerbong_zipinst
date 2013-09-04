@@ -199,6 +199,14 @@
     <string name="restart_needed">Se necesita reiniciar</string>
     <string name="restart_needed_theme_message">Se necesita reiniciar para aplicar los cambios en el tema. ¿Quieres reiniciar la aplicación ahora?</string>
 
+    <string name="system">System</string>
+    <string name="data">Data</string>
+    <string name="cache">Cache</string>
+    <string name="recovery">Recovery</string>
+    <string name="boot">Boot</string>
+    <string name="androidsecure">Android secure</string>
+    <string name="sdext">SD-Ext</string>
+
     <!-- PRO -->
     <string name="enable_notifications">Habilitar notificationes</string>
     <string name="time_notifications_title">Tiempo notificaciones</string>

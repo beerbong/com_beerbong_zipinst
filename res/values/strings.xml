@@ -200,6 +200,14 @@
     <string name="restart_needed">Restart needed</string>
     <string name="restart_needed_theme_message">A restart is needed to apply changes in theme. Do you want to restart the application now?</string>
 
+    <string name="system">System</string>
+    <string name="data">Data</string>
+    <string name="cache">Cache</string>
+    <string name="recovery">Recovery</string>
+    <string name="boot">Boot</string>
+    <string name="androidsecure">Android secure</string>
+    <string name="sdext">SD-Ext</string>
+
     <!-- PRO -->
     <string name="enable_notifications">Enable notifications</string>
     <string name="time_notifications_title">Notifications time</string>

@@ -158,7 +158,8 @@ public class RecoveryManager extends Manager {
     }
 
     public String[] getCommands(boolean wipeSystem, boolean wipeData, boolean wipeCaches,
-            boolean fixPermissions, String backupFolder, String restore) throws Exception {
+            boolean fixPermissions, String backupFolder, String backupOptions, String restore)
+            throws Exception {
         List<String> commands = new ArrayList<String>();
 
         int size = StoredItems.size(), i = 0;
@@ -245,15 +246,16 @@ public class RecoveryManager extends Manager {
 
             case R.id.twrp:
 
-                String sdcard = "sdcard";
+                boolean hasAndroidSecure = hasAndroidSecure();
+                boolean hasSdExt = hasSdExt();
 
                 if (restore != null) {
                     String str = "restore /" + internalStorage + "/TWRP/BACKUPS/" + restore
                             + " SDCR123B";
-                    if (folderExists("/" + sdcard + "/.android-secure")) {
+                    if (hasAndroidSecure) {
                         str += "A";
                     }
-                    if (folderExists("/sd-ext")) {
+                    if (hasSdExt) {
                         str += "E";
                     }
                     commands.add(str);
@@ -261,10 +263,27 @@ public class RecoveryManager extends Manager {
 
                 if (backupFolder != null) {
                     String str = "backup SDCR123B";
-                    if (folderExists("/" + sdcard + "/.android-secure")) {
+                    if (backupOptions != null && backupOptions.indexOf("S") >= 0) {
+                        str += "S";
+                    }
+                    if (backupOptions != null && backupOptions.indexOf("D") >= 0) {
+                        str += "D";
+                    }
+                    if (backupOptions != null && backupOptions.indexOf("C") >= 0) {
+                        str += "C";
+                    }
+                    if (backupOptions != null && backupOptions.indexOf("R") >= 0) {
+                        str += "R";
+                    }
+                    str += "123";
+                    if (backupOptions != null && backupOptions.indexOf("B") >= 0) {
+                        str += "B";
+                    }
+                    if (backupOptions != null && backupOptions.indexOf("A") >= 0
+                            && hasAndroidSecure) {
                         str += "A";
                     }
-                    if (folderExists("/sd-ext")) {
+                    if (backupOptions != null && backupOptions.indexOf("E") >= 0 && hasSdExt) {
                         str += "E";
                     }
                     commands.add(str + "O " + backupFolder);
@@ -376,6 +395,15 @@ public class RecoveryManager extends Manager {
                     break;
             }
         }
+    }
+
+    public boolean hasAndroidSecure() {
+        String sdcard = "sdcard";
+        return folderExists("/" + sdcard + "/.android-secure");
+    }
+
+    public boolean hasSdExt() {
+        return folderExists("/sd-ext");
     }
 
     private String getSBINFolder() {
