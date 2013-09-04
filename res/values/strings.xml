@@ -59,13 +59,9 @@
     <string name="alert_file_incorrect_md5_file">Malformed MD5 file: %1$s</string>
     <string name="alert_file_incorrect_md5">Mismatch MD5 for file %1$s</string>
 
-    <string name="main_choose_zip">Add a zip/sh to list</string>
-    <string name="main_choose_zip_summary">Opens a file manager to select a zip/sh</string>
+    <string name="main_choose_zip">Add file</string>
 
-    <string name="install_now">Install now</string>
-    <string name="install_now_summary">Reboots the device into recovery and perform the requested actions</string>
-
-    <string name="zip_list">Selected zip/sh list</string>
+    <string name="install_now">Flash now</string>
 
     <string name="menu_settings">Settings</string>
     <string name="menu_backup">Backup</string>
@@ -201,6 +197,8 @@
 
     <string name="settings_wipesystem_alert_title">Wipe system alert</string>
     <string name="settings_wipesystem_alert_summary">Show a confirmation dialog if trying to do a system wipe</string>
+    <string name="restart_needed">Restart needed</string>
+    <string name="restart_needed_theme_message">A restart is needed to apply changes in theme. Do you want to restart the application now?</string>
 
     <!-- PRO -->
     <string name="enable_notifications">Enable notifications</string>

@@ -54,7 +54,7 @@ public class PreferencesManager extends Manager {
     private static final String DEFAULT_SHOW_OPTIONS = Constants.INSTALL_OPTIONS_DEFAULT;
     private static final String DEFAULT_SPACE_LEFT = "-1";
     private static final boolean DEFAULT_DRAG_AND_DROP = true;
-    private static final boolean DEFAULT_DARK_THEME = true;
+    private static final boolean DEFAULT_DARK_THEME = false;
     private static final boolean DEFAULT_CHECK_EXISTS = true;
     private static final boolean DEFAULT_CHECK_UPDATES_STARTUP = false;
     private static final boolean DEFAULT_CHECK_MD5 = true;

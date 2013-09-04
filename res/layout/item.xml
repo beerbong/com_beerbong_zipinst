@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2013 ZipInstaller
+<!--
+     Copyright (C) 2013 ZipInstaller
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -13,54 +14,28 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:gravity="center"
     android:minHeight="?android:attr/listPreferredItemHeight"
-    android:gravity="center_vertical"
-    android:paddingRight="?android:attr/scrollbarSize"
-    android:background="?android:attr/selectableItemBackground" >
+    android:paddingRight="?android:attr/scrollbarSize" >
 
     <ImageView
         android:id="@+id/icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        />
+        android:layout_gravity="center" />
 
-    <RelativeLayout
+    <TextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dip"
-        android:layout_marginRight="6dip"
-        android:layout_marginTop="6dip"
-        android:layout_marginBottom="6dip"
-        android:layout_weight="1">
-
-        <TextView android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:ellipsize="marquee"
-            android:fadingEdge="horizontal" />
-
-        <TextView android:id="@+id/summary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/title"
-            android:layout_alignLeft="@id/title"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="?android:attr/textColorSecondary"
-            android:maxLines="4" />
-
-    </RelativeLayout>
-
-    <!-- Preference should place its actual preference widget here. -->
-    <LinearLayout android:id="@+id/widget_frame"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:orientation="vertical" />
+        android:layout_marginLeft="10dp"
+        android:ellipsize="marquee"
+        android:fadingEdge="horizontal"
+        android:singleLine="true"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </LinearLayout>

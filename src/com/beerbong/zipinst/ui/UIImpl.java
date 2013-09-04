@@ -68,7 +68,7 @@ public class UIImpl extends UI {
             TextView summary = (TextView) itemView.findViewById(R.id.summary);
 
             title.setText(item.getName());
-            summary.setText(item.getPath());
+            summary.setText(item.getShortPath());
 
             return itemView;
         }
@@ -90,14 +90,6 @@ public class UIImpl extends UI {
     protected UIImpl(MainActivity activity) {
 
         redraw(activity);
-    }
-
-    @Override
-    public void requestRestart() {
-        Intent mainIntent = new Intent(mActivity, MainActivity.class);
-        mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        mActivity.startActivity(mainIntent);
-        mActivity.finish();
     }
 
     @Override

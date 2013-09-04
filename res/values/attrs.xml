@@ -16,8 +16,15 @@
 <resources>
     <declare-styleable name="Item">
         <attr name="title" format="string" />
-        <attr name="summary" format="string" />
         <attr name="icon" format="integer" />
     </declare-styleable>
+
+   <attr name="itemBackgroundColor" format="reference|color" />
+   <attr name="itemBorderColor" format="reference|color" />
+   <attr name="overflowIcon" format="reference" />
+   <attr name="backupIcon" format="reference" />
+   <attr name="restoreIcon" format="reference" />
+   <attr name="addIcon" format="reference" />
+   <attr name="flashIcon" format="reference" />
 
 </resources>

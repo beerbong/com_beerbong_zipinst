@@ -59,13 +59,9 @@
     <string name="alert_file_incorrect_md5_file">Archivo MD5 incorrecto: %1$s</string>
     <string name="alert_file_incorrect_md5">MD5 no coincide para el archivo %1$s</string>
 
-    <string name="main_choose_zip">"Añadir un zip/sh a la lista"</string>
-    <string name="main_choose_zip_summary">Abre un administrador de archivos para seleccionar un zip/sh</string>
+    <string name="main_choose_zip">"Añadir archivo"</string>
 
-    <string name="install_now">"Instalar ahora"</string>
-    <string name="install_now_summary">Reinicia el dispositivo en recovery y ejecuta las acciones</string>
-
-    <string name="zip_list">"Lista de zip/sh seleccionados"</string>
+    <string name="install_now">"Flashear ahora"</string>
 
     <string name="menu_settings">Ajustes</string>
     <string name="menu_backup">Backup</string>
@@ -200,6 +196,8 @@
 
     <string name="settings_wipesystem_alert_title">Alerta wipe system</string>
     <string name="settings_wipesystem_alert_summary">Mostrar un diálogo de confirmación cuando se intenta hacer un system wipe</string>
+    <string name="restart_needed">Se necesita reiniciar</string>
+    <string name="restart_needed_theme_message">Se necesita reiniciar para aplicar los cambios en el tema. ¿Quieres reiniciar la aplicación ahora?</string>
 
     <!-- PRO -->
     <string name="enable_notifications">Habilitar notificationes</string>

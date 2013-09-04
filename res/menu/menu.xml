@@ -20,11 +20,13 @@
 
     <item android:id="@+id/backup"
         android:title="@string/menu_backup"
-        android:showAsAction="always" />
+        android:showAsAction="ifRoom|withText"
+        android:icon="?backupIcon" />
 
     <item android:id="@+id/restore"
         android:title="@string/menu_restore"
-        android:showAsAction="always" />
+        android:showAsAction="ifRoom|withText"
+        android:icon="?restoreIcon" />
 
     <item android:id="@+id/advanced_recovery"
         android:title="@string/menu_advanced_recovery"/>

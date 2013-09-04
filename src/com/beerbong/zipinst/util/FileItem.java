@@ -40,6 +40,10 @@ public class FileItem {
         return this.path;
     }
 
+    public String getShortPath() {
+        return this.path.substring(0, this.path.lastIndexOf("/") + 1);
+    }
+
     public boolean isZip() {
         return key.endsWith(".zip") || path.endsWith(".zip");
     }

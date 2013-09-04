@@ -59,13 +59,9 @@
     <string name="alert_file_incorrect_md5_file">Arxiu MD5 incorrecte: %1$s</string>
     <string name="alert_file_incorrect_md5">MD5 no coincideix per a l\'arxiu %1$s</string>
 
-    <string name="main_choose_zip">"Afegir un zip/sh a la llista"</string>
-    <string name="main_choose_zip_summary">Obre un administrador d\'arxius per a seleccionar un zip/sh</string>
+    <string name="main_choose_zip">"Afegir arxiu"</string>
 
-    <string name="install_now">"Instal·lar ara"</string>
-    <string name="install_now_summary">Reinicia el dispositiu en recovery i executa les accions</string>
-
-    <string name="zip_list">"Llista de zip/sh seleccionats"</string>
+    <string name="install_now">"Flashear ara"</string>
 
     <string name="menu_settings">Ajustaments</string>
     <string name="menu_backup">Backup</string>
@@ -200,6 +196,8 @@
 
     <string name="settings_wipesystem_alert_title">Alerta wipe system</string>
     <string name="settings_wipesystem_alert_summary">Mostrar un diàleg de confirmació quan s\'intenta fer un system wipe</string>
+    <string name="restart_needed">Es necessita reiniciar</string>
+    <string name="restart_needed_theme_message">Es necessita reiniciar per aplicar els canvis al tema. Vols reiniciar l\'aplicació ara?</string>
 
     <!-- PRO -->
     <string name="enable_notifications">Habilitar notifications</string>

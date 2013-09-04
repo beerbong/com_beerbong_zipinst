@@ -25,7 +25,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.beerbong.zipinst.R;
@@ -44,7 +43,6 @@ public class Item extends LinearLayout {
         super(context, attrs);
 
         String title = null;
-        String summary = null;
         Drawable icon = null;
 
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.Item);
@@ -52,10 +50,6 @@ public class Item extends LinearLayout {
         CharSequence s = a.getString(R.styleable.Item_title);
         if (s != null) {
             title = s.toString();
-        }
-        s = a.getString(R.styleable.Item_summary);
-        if (s != null) {
-            summary = s.toString();
         }
         Drawable d = a.getDrawable(R.styleable.Item_icon);
         if (d != null) {
@@ -66,19 +60,13 @@ public class Item extends LinearLayout {
 
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.item, this, true);
+        View view = inflater.inflate(R.layout.item, this, true);
 
-        LinearLayout lLayout = (LinearLayout) this.getChildAt(0);
-        RelativeLayout rLayout = (RelativeLayout) lLayout.getChildAt(1);
-
-        TextView tView = (TextView) rLayout.getChildAt(0);
+        TextView tView = (TextView) view.findViewById(R.id.title);
         tView.setText(title);
 
-        ImageView iView = (ImageView) lLayout.getChildAt(0);
+        ImageView iView = (ImageView) view.findViewById(R.id.icon);
         iView.setImageDrawable(icon);
-
-        TextView sView = (TextView) rLayout.getChildAt(1);
-        sView.setText(summary);
 
         setOnTouchListener(new OnTouchListener() {
 

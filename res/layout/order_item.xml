@@ -16,24 +16,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="64dip"
-    android:gravity="bottom"
-    android:orientation="vertical"
-    android:baselineAligned="false">
+    android:background="?itemBorderColor"
+    android:baselineAligned="false"
+    android:gravity="top"
+    android:orientation="vertical" >
 
-    <ImageView
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:drawable/divider_horizontal_dark" />
-
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="64dip"
-        android:gravity="center_vertical"
-        android:ignoreGravity="@+id/icon">
+        android:layout_height="63dip"
+        android:background="?itemBackgroundColor"
+        android:gravity="top"
+        android:ignoreGravity="@+id/icon" >
 
         <!-- left icon, used for the grabber -->
         <ImageView android:id="@+id/grabber"
-            android:src="@drawable/ic_grabber"
+            android:src="?overflowIcon"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"

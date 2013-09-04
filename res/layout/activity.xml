@@ -18,61 +18,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="10dp"
-    android:paddingLeft="30dp"
-    android:paddingRight="30dp"
-    android:paddingTop="10dp"
     android:gravity="top"
     android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="10dp"
     tools:context=".Activity" >
+
+    <com.beerbong.zipinst.widget.TouchInterceptor
+        android:id="@+id/file_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray" />
 
     <LinearLayout
         android:id="@+id/buttons_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="horizontal"
+        android:paddingTop="10dp" >
 
         <com.beerbong.zipinst.widget.Item
             android:id="@+id/choose_zip"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:icon="@drawable/ic_menu_archive"
-            app:title="@string/main_choose_zip"
-            app:summary="@string/main_choose_zip_summary" />
-        
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray" />
+            android:layout_weight="1"
+            app:icon="?addIcon"
+            app:title="@string/main_choose_zip" />
 
         <com.beerbong.zipinst.widget.Item
             android:id="@+id/install_now"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:icon="@drawable/ic_menu_play_clip"
-            app:title="@string/install_now"
-            app:summary="@string/install_now_summary" />
-        
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray" />
+            android:layout_weight="1"
+            app:icon="?flashIcon"
+            app:title="@string/install_now" />
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:text="@string/zip_list"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <com.beerbong.zipinst.widget.TouchInterceptor
-        android:id="@+id/file_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </com.beerbong.zipinst.widget.TouchInterceptor>
 
 </LinearLayout>

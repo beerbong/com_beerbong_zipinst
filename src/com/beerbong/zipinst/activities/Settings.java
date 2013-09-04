@@ -37,6 +37,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.beerbong.zipinst.MainActivity;
 import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.manager.ManagerFactory;
 import com.beerbong.zipinst.manager.PreferencesManager;
@@ -158,7 +159,7 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
             boolean darkTheme = ((CheckBoxPreference) preference).isChecked();
             pManager.setDarkTheme(darkTheme);
 
-            UI.getInstance().requestRestart();
+            showRestartDialog();
 
         } else if (Constants.PREFERENCE_SETTINGS_CHECK_EXISTS.equals(key)) {
 
@@ -374,5 +375,31 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
                         dialog.dismiss();
                     }
                 }).show();
+    }
+
+    private void showRestartDialog() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(R.string.restart_needed);
+        alert.setMessage(R.string.restart_needed_theme_message);
+        alert.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int whichButton) {
+
+                dialog.dismiss();
+
+                Intent intent = new Intent(Settings.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                Settings.this.startActivity(intent);
+
+                Settings.this.finish();
+            }
+        });
+        alert.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.dismiss();
+            }
+        });
+        alert.show();
     }
 }
