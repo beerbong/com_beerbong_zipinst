@@ -42,7 +42,6 @@
     <string name="alert_file_summary">Ruta: %1$s\nTamaño: %2$s\nModificado: %3$s</string>
     <string name="alert_file_close">"Cerrar"</string>
     <string name="alert_file_md5">MD5</string>
-    <string name="alert_file_delete">"Borrar de la lista"</string>
 
     <string name="alert_md5_title">Comprobar MD5</string>
     <string name="alert_md5_summary">Introduce la suma MD5 para comparar o dejar en blanco para mostrar el MD5</string>

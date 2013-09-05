@@ -28,7 +28,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.beerbong.zipinst.R;
-import com.beerbong.zipinst.manager.ManagerFactory;
 
 public class Item extends LinearLayout {
 
@@ -37,6 +36,7 @@ public class Item extends LinearLayout {
         public void onClick(int id);
     };
 
+    private int mDownColor;
     private OnItemClickListener mItemClickListener = null;
 
     public Item(final Context context, AttributeSet attrs) {
@@ -56,6 +56,8 @@ public class Item extends LinearLayout {
             icon = d;
         }
 
+        mDownColor = a.getColor(R.styleable.Item_downColor, android.R.color.holo_blue_dark);
+
         a.recycle();
 
         LayoutInflater inflater = (LayoutInflater) context
@@ -74,11 +76,7 @@ public class Item extends LinearLayout {
             public boolean onTouch(View view, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        setBackgroundColor(context
-                                .getResources()
-                                .getColor(
-                                        ManagerFactory.getPreferencesManager().isDarkTheme() ? android.R.color.holo_blue_dark
-                                                : android.R.color.holo_blue_light));
+                        setBackgroundColor(mDownColor);
                         break;
                     case MotionEvent.ACTION_UP:
                         setBackgroundColor(context.getResources().getColor(

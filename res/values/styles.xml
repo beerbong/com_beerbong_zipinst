@@ -19,22 +19,26 @@
     <style name="AppTheme" parent="@android:style/Theme.Holo.Light">
         <item name="itemBackgroundColor">@android:color/white</item>
         <item name="itemBorderColor">@color/gray</item>
+        <item name="holoBlue">@android:color/holo_blue_light</item>
         <item name="overflowIcon">@drawable/ic_overflow_light</item>
         <item name="backupIcon">@drawable/ic_backup_light</item>
         <item name="restoreIcon">@drawable/ic_restore_light</item>
         <item name="addIcon">@drawable/ic_add_light</item>
         <item name="flashIcon">@drawable/ic_flash_light</item>
+        <item name="removeIcon">@drawable/ic_delete_light</item>
     </style>
 
     <!-- dark theme -->
     <style name="AppTheme.Dark" parent="@android:style/Theme.Holo">
-        <item name="itemBackgroundColor">?android:attr/windowBackground</item>
+        <item name="itemBackgroundColor">@android:color/black</item>
         <item name="itemBorderColor">@color/gray</item>
+        <item name="holoBlue">@android:color/holo_blue_light</item>
         <item name="overflowIcon">@drawable/ic_overflow_dark</item>
         <item name="backupIcon">@drawable/ic_backup_dark</item>
         <item name="restoreIcon">@drawable/ic_restore_dark</item>
         <item name="addIcon">@drawable/ic_add_dark</item>
         <item name="flashIcon">@drawable/ic_flash_dark</item>
+        <item name="removeIcon">@drawable/ic_delete_dark</item>
     </style>
 
 </resources>

@@ -37,16 +37,14 @@ import com.beerbong.zipinst.manager.ManagerFactory;
 import com.beerbong.zipinst.util.StoredItems;
 import com.beerbong.zipinst.util.FileItem;
 import com.beerbong.zipinst.widget.Item;
-import com.beerbong.zipinst.widget.TouchInterceptor;
+import com.mobeta.android.dslv.DragSortListView;
 
 public class UIImpl extends UI {
 
     private class FileItemsAdapter extends ArrayAdapter<FileItem> {
 
         public FileItemsAdapter(List<FileItem> items) {
-            super(mActivity,
-                    ManagerFactory.getPreferencesManager().isUseDragAndDrop() ? R.layout.order_item
-                            : R.layout.noorder_item, items);
+            super(mActivity, R.layout.order_item, items);
         }
 
         @Override
@@ -60,7 +58,7 @@ public class UIImpl extends UI {
                 itemView = new LinearLayout(getContext());
                 LayoutInflater vi = (LayoutInflater) getContext().getSystemService(
                         Context.LAYOUT_INFLATER_SERVICE);
-                vi.inflate(useDad ? R.layout.order_item : R.layout.noorder_item, itemView, true);
+                vi.inflate(R.layout.order_item, itemView, true);
             } else {
                 itemView = (LinearLayout) convertView;
             }
@@ -70,6 +68,10 @@ public class UIImpl extends UI {
             title.setText(item.getName());
             summary.setText(item.getShortPath());
 
+            if (!useDad) {
+                itemView.findViewById(R.id.grabber).setVisibility(View.GONE);
+            }
+
             return itemView;
         }
 
@@ -77,9 +79,9 @@ public class UIImpl extends UI {
 
     private List<UIListener> mListeners = new ArrayList<UIListener>();
     private MainActivity mActivity = null;
-    private TouchInterceptor mFileList;
+    private DragSortListView mFileList;
 
-    private TouchInterceptor.DropListener mDropListener = new TouchInterceptor.DropListener() {
+    private DragSortListView.DropListener mDropListener = new DragSortListView.DropListener() {
 
         public void drop(int from, int to) {
             StoredItems.move(from, to);
@@ -107,9 +109,17 @@ public class UIImpl extends UI {
     }
 
     private void init() {
-        mFileList = (TouchInterceptor) mActivity.findViewById(R.id.file_list);
+        mFileList = (DragSortListView) mActivity.findViewById(R.id.file_list);
         mFileList.setOnItemClickListener(this);
         mFileList.setDropListener(mDropListener);
+        mFileList.setRemoveListener(new DragSortListView.RemoveListener() {
+            
+            @Override
+            public void remove(int which) {
+                FileItem item = StoredItems.getItem(which);
+                removeItem(item);
+            }
+        });
 
         Item.OnItemClickListener cListener = new Item.OnItemClickListener() {
 

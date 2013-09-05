@@ -42,7 +42,6 @@
     <string name="alert_file_summary">Ruta: %1$s\nTamany: %2$s\nModificat: %3$s</string>
     <string name="alert_file_close">"Tancar"</string>
     <string name="alert_file_md5">MD5</string>
-    <string name="alert_file_delete">"Esborrar de la llista"</string>
 
     <string name="alert_md5_title">Comprovar MD5</string>
     <string name="alert_md5_summary">Introdueix la suma MD5 per comparar o deixar en blanc per mostrar el MD5</string>

@@ -42,7 +42,6 @@
     <string name="alert_file_summary">Path: %1$s\nSize: %2$s\nModified: %3$s</string>
     <string name="alert_file_close">Close</string>
     <string name="alert_file_md5">MD5</string>
-    <string name="alert_file_delete">Delete from list</string>
 
     <string name="alert_md5_title">Check MD5</string>
     <string name="alert_md5_summary">Enter the MD5 sum to compare or leave blank to show the MD5</string>

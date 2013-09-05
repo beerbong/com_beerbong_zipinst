@@ -549,14 +549,6 @@ public class FileManager extends Manager implements UIListener {
                 showMd5Dialog(item);
             }
         });
-        alert.setNegativeButton(R.string.alert_file_delete, new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int whichButton) {
-                dialog.dismiss();
-                UI.getInstance().removeItem(item);
-            }
-        });
 
         alert.show();
     }

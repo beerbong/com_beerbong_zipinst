@@ -26,13 +26,18 @@
     android:paddingTop="10dp"
     tools:context=".Activity" >
 
-    <com.beerbong.zipinst.widget.TouchInterceptor
+    <com.mobeta.android.dslv.DragSortListView
         android:id="@+id/file_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:divider="@android:color/transparent"
-        android:dividerHeight="10dp" />
+        android:dividerHeight="10dp"
+        app:remove_enabled="true"
+        app:remove_mode="clickRemove"
+        app:drag_handle_id="@+id/grabber"
+        app:click_remove_id="@+id/trash"
+        app:float_background_color="?holoBlue" />
 
     <View
         android:layout_width="match_parent"
@@ -52,7 +57,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:icon="?addIcon"
-            app:title="@string/main_choose_zip" />
+            app:title="@string/main_choose_zip"
+            app:downColor="?holoBlue" />
 
         <com.beerbong.zipinst.widget.Item
             android:id="@+id/install_now"
@@ -60,7 +66,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             app:icon="?flashIcon"
-            app:title="@string/install_now" />
+            app:title="@string/install_now"
+            app:downColor="?holoBlue" />
 
     </LinearLayout>
 
