@@ -135,6 +135,8 @@ public class UIImpl extends UI {
         installNow.setOnItemClickListener(cListener);
 
         redrawItems();
+
+        onNewIntent(mActivity.getIntent());
     }
 
     @Override

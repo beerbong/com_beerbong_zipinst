@@ -32,14 +32,17 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.StatFs;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -77,21 +80,6 @@ public class FileManager extends Manager implements UIListener {
         }
 
         Intent intent = getActivity().getIntent();
-        String action = intent.getAction();
-        String type = intent.getType();
-
-        if ("application/zip".equals(type) || "*/*".equals(type)) {
-            if (Intent.ACTION_SEND.equals(action)) {
-                handleSendZip(intent);
-            } else if (Intent.ACTION_SEND_MULTIPLE.equals(action)) {
-                handleSendMultipleZips(intent);
-            }
-        }
-        if (Intent.ACTION_VIEW.equals(action)) {
-            Uri zipUri = (Uri) intent.getData();
-            download(mContext, zipUri.toString(), null, null);
-        }
-
         onNewIntent(intent);
     }
 
@@ -138,6 +126,19 @@ public class FileManager extends Manager implements UIListener {
             download(mContext, url, name, md5);
         }
 
+        String action = intent.getAction();
+        String type = intent.getType();
+        if ("application/zip".equals(type) || "*/*".equals(type)) {
+            if (Intent.ACTION_SEND.equals(action)) {
+                handleSendZip(intent);
+            } else if (Intent.ACTION_SEND_MULTIPLE.equals(action)) {
+                handleSendMultipleZips(intent);
+            }
+        }
+        if (Intent.ACTION_VIEW.equals(action)) {
+            Uri zipUri = (Uri) intent.getData();
+            download(mContext, zipUri.toString(), null, null);
+        }
     }
 
     public boolean hasExternalStorage() {
@@ -507,7 +508,17 @@ public class FileManager extends Manager implements UIListener {
     private void handleSendZip(Intent intent) {
         Uri zipUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
         if (zipUri != null) {
-            addFile(zipUri.getPath());
+            String scheme = zipUri.getScheme();
+            if (ContentResolver.SCHEME_CONTENT.endsWith(scheme)) {
+                String[] projection = { MediaStore.Images.Media.DATA };
+                Cursor cursor = mContext.getContentResolver().query(zipUri, projection, null, null, null);
+                int column_index = cursor.getColumnIndexOrThrow(
+                        MediaStore.Images.Media.DATA);
+                cursor.moveToFirst();
+                addFile(cursor.getString(column_index));
+            } else if (ContentResolver.SCHEME_FILE.endsWith(scheme)) {
+                addFile(zipUri.getPath());
+            }
         }
     }
 

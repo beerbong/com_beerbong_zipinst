@@ -73,6 +73,10 @@
                     android:host="*"
                     android:pathPattern=".*\\.zip"
                     android:scheme="https" />
+                <data
+                    android:host="*"
+                    android:pathPattern=".*\\.zip"
+                    android:scheme="file" />
             </intent-filter>
         </activity>
         <activity
