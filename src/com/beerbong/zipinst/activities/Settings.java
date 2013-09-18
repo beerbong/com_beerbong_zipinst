@@ -101,6 +101,7 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         mAutoloadList.setChecked(pManager.isAutoloadList());
 
         mZipPosition.setValue(pManager.getZipPosition());
+        mZipPosition.setOnPreferenceChangeListener(this);
 
         mOptions.setValue(pManager.getShowOptions());
         mOptions.setOnPreferenceChangeListener(this);
@@ -194,11 +195,6 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
 
             selectDownloadPath();
 
-        } else if (Constants.PREFERENCE_SETTINGS_ZIP_POSITION.equals(key)) {
-
-            String zipPosition = ((ListPreference) preference).getValue();
-            pManager.setZipPosition(zipPosition);
-
         } else if (Constants.PREFERENCE_SETTINGS_SYSTEMWIPE_ALERT.equals(key)) {
 
             boolean showAlert = ((CheckBoxPreference) preference).isChecked();
@@ -239,6 +235,11 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         } else if (Constants.PREFERENCE_SETTINGS_SPACE_LEFT.equals(key)) {
 
             pManager.setSpaceLeft(Double.parseDouble(newValue.toString()));
+
+        } else if (Constants.PREFERENCE_SETTINGS_ZIP_POSITION.equals(key)) {
+
+            pManager.setZipPosition((String)newValue);
+
         }
         return false;
     }
