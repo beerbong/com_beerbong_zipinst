@@ -23,9 +23,9 @@ import android.widget.Toast;
 
 import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.manager.ManagerFactory;
-import com.beerbong.zipinst.widget.Activity;
+import com.beerbong.zipinst.widget.BackActivity;
 
-public class License extends Activity {
+public class License extends BackActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

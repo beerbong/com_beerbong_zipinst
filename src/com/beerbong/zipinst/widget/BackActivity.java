@@ -20,22 +20,14 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 
-import com.beerbong.zipinst.R;
-import com.beerbong.zipinst.manager.ManagerFactory;
+public class BackActivity extends Activity {
 
-public class PreferenceActivity extends android.preference.PreferenceActivity {
-
-    @SuppressWarnings("deprecation")
-    protected void onCreate(Bundle savedInstanceState, int resourceId) {
-
-        boolean darkTheme = ManagerFactory.getPreferencesManager().isDarkTheme();
-        setTheme(darkTheme ? R.style.AppTheme_Dark : R.style.AppTheme);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
 
         getActionBar().setDisplayHomeAsUpEnabled(true);
-
-        addPreferencesFromResource(resourceId);
     }
 
     @Override
@@ -48,4 +40,5 @@ public class PreferenceActivity extends android.preference.PreferenceActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 }
