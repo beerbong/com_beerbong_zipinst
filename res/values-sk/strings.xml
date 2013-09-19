@@ -20,7 +20,7 @@
     <string name="alert_reboot_now">Inštalovať teraz</string>
 
     <string name="alert_wipe_system_title">Vymazať všetky dáta</string>
-    <string name="alert_wipe_system_message">Chystáte sa vymazať všetky dáta v zariadení. Ste si istý, že to chcete urobiť?</string>
+    <string name="alert_wipe_system_message">Chystáte sa vymazať všetky dáta v zariadení. Ste si istí, že to chcete urobiť?</string>
 
     <string name="install_file_manager_error">Nebola nájdená žiadna aplikácia pre vybratie ZIP súboru. Prosím nainštaluje správcu súborov.</string>
     <string name="install_file_manager_intsdcard">Prosím vyberte súbor z vnútornej SD karty.</string>
@@ -116,6 +116,18 @@
 
     <string name="donate_title">Prispieť</string>
 
+    <string name="usefolder_title">Inštalačné tlačidlo otvorí priečinok</string>
+    <string name="usefolder_summary">Ak je povolené, aplikácia otvorí priečinok namiesto správcu súborov.</string>
+
+    <string name="folder_title">Predvolený priečinok</string>
+    <string name="folder_error">Priečinok neexistuje alebo nie je platným priečinkom</string>
+
+    <string name="folder_activity_title">Vyberte súbor</string>
+    <string name="alert_remove_file_title">Vymazať súbor</string>
+    <string name="alert_remove_file_summary">Ste si istí, že chcete vymazať %1$s?</string>
+    <string name="alert_remove_file_done">Súbor bol vymazaný</string>
+    <string name="alert_remove_file_not_done">Súbor nebol vymazaný</string>
+
     <string name="dad_title">Chytiť &amp; pustiť</string>
     <string name="dad_summary">Pomocou "chytiť &amp; pustiť" môžete zmeniť poradie súborov v zozname</string>
 
@@ -149,7 +161,7 @@
     <string name="check_for_updates_error">Chyba pri kontrole aktualizácií</string>
     <string name="no_new_version">Nová aktualizácia nenájdená</string>
     <string name="new_version_title">Nová aktualizácia nájdená</string>
-    <string name="new_version_summary">%1$s nájdená. Chcete stiahnuť a nainštalovať aktualizáciu teraz?</string>
+    <string name="new_version_summary">Nájdená aktualizácia: %1$s. Chcete stiahnuť a nainštalovať aktualizáciu teraz?</string>
     <string name="new_version_download">Stiahnuť &amp; nainštalovať</string>
     <string name="download_path">Cesta sťahovania</string>
     <string name="downloading">Sťahujem %1$s do %2$s</string>
