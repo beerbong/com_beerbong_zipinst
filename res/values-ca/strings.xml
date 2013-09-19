@@ -157,10 +157,6 @@
     <string name="downloading_interrupted">Baixada interrompuda</string>
     <string name="downloading_nospace">Error baixant arxiu: no hi ha espai</string>
 
-    <string name="download_alert_title">Ruta de les descàrregues</string>
-    <string name="download_alert_summary">Especifica la ruta on guardar les descàrregues</string>
-    <string name="download_alert_error">Per favor especifica la ruta on guardar les descàrregues</string>
-
     <string name="downloadzip_alert_title">Descarregar zip</string>
     <string name="downloadzip_alert_summary">Especifica la url del zip</string>
     <string name="downloadzip_alert_error">Per favor especifica la url del zip</string>

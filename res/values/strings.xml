@@ -158,10 +158,6 @@
     <string name="downloading_interrupted">Download interrupted</string>
     <string name="downloading_nospace">Error downloading file: no space available</string>
 
-    <string name="download_alert_title">Downloads path</string>
-    <string name="download_alert_summary">Specify the path to save the downloads</string>
-    <string name="download_alert_error">Please specify the path to save the downloads</string>
-
     <string name="downloadzip_alert_title">Download zip</string>
     <string name="downloadzip_alert_summary">Specify the url of the zip</string>
     <string name="downloadzip_alert_error">Please specify the url of the zip</string>

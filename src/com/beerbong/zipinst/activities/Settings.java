@@ -46,6 +46,7 @@ import com.beerbong.zipinst.manager.ProManager.ManageMode;
 import com.beerbong.zipinst.ui.UI;
 import com.beerbong.zipinst.util.Constants;
 import com.beerbong.zipinst.util.RecoveryInfo;
+import com.beerbong.zipinst.widget.DirectoryChooserDialog;
 import com.beerbong.zipinst.widget.PreferenceActivity;
 
 public class Settings extends PreferenceActivity implements OnPreferenceChangeListener {
@@ -257,36 +258,14 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
     }
 
     private void selectDownloadPath() {
-        final EditText input = new EditText(this);
-        input.setText(ManagerFactory.getPreferencesManager().getDownloadPath());
+        new DirectoryChooserDialog(this, new DirectoryChooserDialog.DirectoryChooserListener() {
 
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.download_alert_title)
-                .setMessage(R.string.download_alert_summary)
-                .setView(input)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        String value = input.getText().toString();
-
-                        if (value == null || "".equals(value.trim()) || !value.startsWith("/")) {
-                            Toast.makeText(Settings.this, R.string.download_alert_error,
-                                    Toast.LENGTH_SHORT).show();
-                            dialog.dismiss();
-                            return;
-                        }
-
-                        ManagerFactory.getPreferencesManager().setDownloadPath(value);
-                        updateSummaries();
-                        dialog.dismiss();
-                    }
-                })
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        dialog.dismiss();
-                    }
-                }).show();
+            @Override
+            public void onDirectoryChosen(String chosenDir) {
+                ManagerFactory.getPreferencesManager().setDownloadPath(chosenDir);
+                updateSummaries();
+            }
+        }).chooseDirectory(ManagerFactory.getPreferencesManager().getDownloadPath());
     }
 
     private void selectSdcard(final boolean internal) {

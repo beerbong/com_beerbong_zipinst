@@ -157,10 +157,6 @@
     <string name="downloading_interrupted">Bajada interrumpida</string>
     <string name="downloading_nospace">Error bajando archivo: no hay espacio</string>
 
-    <string name="download_alert_title">Ruta de las descargas</string>
-    <string name="download_alert_summary">Especifica la ruta donde guardar las descargas</string>
-    <string name="download_alert_error">Por favor especifica la ruta donde guardar las descargas</string>
-
     <string name="downloadzip_alert_title">Descargar zip</string>
     <string name="downloadzip_alert_summary">Especifica la url del zip</string>
     <string name="downloadzip_alert_error">Por favor especifica la url del zip</string>

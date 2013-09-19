@@ -157,10 +157,6 @@
     <string name="downloading_interrupted">Sťahovanie prerušené</string>
     <string name="downloading_nospace">Chyba pri sťahovaní súboru: žiadny priestor k dispozícii</string>
 
-    <string name="download_alert_title">Cesta sťahovania</string>
-    <string name="download_alert_summary">Vyberte cestu na uloženie sťahovaní</string>
-    <string name="download_alert_error">Prosím vyberte cestu na uloženie sťahovaní</string>
-
     <string name="downloadzip_alert_title">Stiahnuť ZIP</string>
     <string name="downloadzip_alert_summary">Zadajte adresu URL zip súboru</string>
     <string name="downloadzip_alert_error">Prosím zadajte adresu URL zip súboru</string>
