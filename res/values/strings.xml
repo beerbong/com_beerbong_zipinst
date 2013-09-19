@@ -117,6 +117,18 @@
 
     <string name="donate_title">Donate</string>
 
+    <string name="usefolder_title">Install button opens folder</string>
+    <string name="usefolder_summary">If checked, the application will open a folder\'s content instead of a file manager.</string>
+
+    <string name="folder_title">Default folder</string>
+    <string name="folder_error">The folder doesn\'t exist or is not a directory</string>
+
+    <string name="folder_activity_title">Select a file</string>
+    <string name="alert_remove_file_title">Delete file</string>
+    <string name="alert_remove_file_summary">Are you sure you want to delete %1$s?</string>
+    <string name="alert_remove_file_done">File deleted</string>
+    <string name="alert_remove_file_not_done">File not deleted</string>
+
     <string name="dad_title">Drag &amp; drop</string>
     <string name="dad_summary">Use drag &amp; drop to reorder the list</string>
 

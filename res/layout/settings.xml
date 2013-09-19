@@ -70,6 +70,16 @@
     <PreferenceCategory android:title="@string/settings_interface" >
 
         <CheckBoxPreference
+            android:key="usefolder"
+            android:summary="@string/usefolder_summary"
+            android:title="@string/usefolder_title" />
+
+        <Preference
+            android:key="folder"
+            android:dependency="usefolder"
+            android:title="@string/folder_title" />
+
+        <CheckBoxPreference
             android:key="draganddrop"
             android:summary="@string/dad_summary"
             android:title="@string/dad_title" />

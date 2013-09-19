@@ -44,6 +44,8 @@ public class PreferencesManager extends Manager {
     private static final String PROPERTY_ZIP_POSITION = "zip_position";
     private static final String PROPERTY_SPACE_LEFT = "space_left";
     private static final String PROPERTY_SHOW_WIPESYSTEM_ALERT = "wipesystem_alert";
+    private static final String PROPERTY_USE_FOLDER = "usefolder";
+    private static final String PROPERTY_FOLDER = "folder";
 
     public static final String PROPERTY_ENABLE_NOTIFICATIONS = "enable_notifications";
     public static final String PROPERTY_TIME_NOTIFICATIONS = "time_notifications";
@@ -65,6 +67,8 @@ public class PreferencesManager extends Manager {
     private static final boolean DEFAULT_AUTOLOAD_LIST = false;
     private static final boolean DEFAULT_ENABLE_NOTIFICATIONS = true;
     private static final boolean DEFAULT_SHOW_WIPESYSTEM_ALERT = true;
+    private static final boolean DEFAULT_USE_FOLDER = false;
+    private static final String DEFAULT_FOLDER = "/sdcard/download/";
 
     private SharedPreferences settings;
 
@@ -233,6 +237,22 @@ public class PreferencesManager extends Manager {
 
     public void setShowSystemWipeAlert(boolean value) {
         savePreference(PROPERTY_SHOW_WIPESYSTEM_ALERT, value);
+    }
+
+    public boolean isUseFolder() {
+        return settings.getBoolean(PROPERTY_USE_FOLDER, DEFAULT_USE_FOLDER);
+    }
+
+    public void setUseFolder(boolean value) {
+        savePreference(PROPERTY_USE_FOLDER, value);
+    }
+
+    public String getFolder() {
+        return settings.getString(PROPERTY_FOLDER, DEFAULT_FOLDER);
+    }
+
+    public void setFolder(String value) {
+        savePreference(PROPERTY_FOLDER, value);
     }
 
     private void savePreference(String preference, String value) {

@@ -116,6 +116,18 @@
 
     <string name="donate_title">Donar</string>
 
+    <string name="usefolder_title">Botón de instalar abre carpeta</string>
+    <string name="usefolder_summary">Si está activo, la aplicación abrirá el contenido de una carpeta en lugar de un explorador de archivos.</string>
+
+    <string name="folder_title">Carpeta por defecto</string>
+    <string name="folder_error">La carpeta no existe o no es un directorio</string>
+
+    <string name="folder_activity_title">Selecciona un archivo</string>
+    <string name="alert_remove_file_title">Borrar archivo</string>
+    <string name="alert_remove_file_summary">¿Estás seguro de que quieres borrar %1$s?</string>
+    <string name="alert_remove_file_done">Archivo borrado</string>
+    <string name="alert_remove_file_not_done">Archivo no borrado</string>
+
     <string name="dad_title">Drag &amp; drop</string>
     <string name="dad_summary">Utilizar drag &amp; drop para reordenar la lista</string>
 

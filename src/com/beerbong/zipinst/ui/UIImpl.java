@@ -19,63 +19,22 @@ package com.beerbong.zipinst.ui;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.content.Context;
 import android.content.Intent;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.beerbong.zipinst.MainActivity;
 import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.manager.ManagerFactory;
-import com.beerbong.zipinst.util.StoredItems;
 import com.beerbong.zipinst.util.FileItem;
+import com.beerbong.zipinst.util.StoredItems;
+import com.beerbong.zipinst.widget.FileItemsAdapter;
 import com.beerbong.zipinst.widget.Item;
 import com.mobeta.android.dslv.DragSortListView;
 
-public class UIImpl extends UI {
-
-    private class FileItemsAdapter extends ArrayAdapter<FileItem> {
-
-        public FileItemsAdapter(List<FileItem> items) {
-            super(mActivity, R.layout.order_item, items);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            LinearLayout itemView;
-            FileItem item = getItem(position);
-
-            boolean useDad = ManagerFactory.getPreferencesManager().isUseDragAndDrop();
-
-            if (convertView == null) {
-                itemView = new LinearLayout(getContext());
-                LayoutInflater vi = (LayoutInflater) getContext().getSystemService(
-                        Context.LAYOUT_INFLATER_SERVICE);
-                vi.inflate(R.layout.order_item, itemView, true);
-            } else {
-                itemView = (LinearLayout) convertView;
-            }
-            TextView title = (TextView) itemView.findViewById(R.id.title);
-            TextView summary = (TextView) itemView.findViewById(R.id.summary);
-
-            title.setText(item.getName());
-            summary.setText(item.getShortPath());
-
-            if (!useDad) {
-                itemView.findViewById(R.id.grabber).setVisibility(View.GONE);
-            }
-
-            return itemView;
-        }
-
-    }
+public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolder {
 
     private List<UIListener> mListeners = new ArrayList<UIListener>();
     private MainActivity mActivity = null;
@@ -218,6 +177,31 @@ public class UIImpl extends UI {
 
     }
 
+    @Override
+    public boolean useDragAndDrop() {
+        return ManagerFactory.getPreferencesManager().isUseDragAndDrop();
+    }
+
+    @Override
+    public boolean canRemove() {
+        return true;
+    }
+
+    @Override
+    public boolean showPath() {
+        return true;
+    }
+
+    @Override
+    public boolean showSize() {
+        return false;
+    }
+
+    @Override
+    public boolean showDate() {
+        return false;
+    }
+
     private void dispatchOnActivityResult(int requestCode, int resultCode, Intent data) {
         int size = mListeners.size(), i = 0;
         for (; i < size; i++) {
@@ -262,6 +246,6 @@ public class UIImpl extends UI {
 
     private void redrawItems() {
 
-        mFileList.setAdapter(new FileItemsAdapter(StoredItems.getItems()));
+        mFileList.setAdapter(new FileItemsAdapter(mActivity, this, StoredItems.getItems()));
     }
 }

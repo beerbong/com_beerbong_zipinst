@@ -64,12 +64,14 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
     private ListPreference mZipPosition;
     private MultiSelectListPreference mOptions;
     private ListPreference mSpaceLeft;
+    private CheckBoxPreference mUseFolder;
+    private Preference mFolder;
 
     @Override
     @SuppressWarnings("deprecation")
     protected void onCreate(Bundle savedInstanceState) {
 
-        super.onCreate(savedInstanceState, R.xml.settings);
+        super.onCreate(savedInstanceState, R.layout.settings);
 
         mRecovery = findPreference(Constants.PREFERENCE_SETTINGS_RECOVERY);
         mInternalSdcard = findPreference(Constants.PREFERENCE_SETTINGS_INTERNAL_SDCARD);
@@ -85,6 +87,8 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         mOptions = (MultiSelectListPreference) findPreference(Constants.PREFERENCE_SETTINGS_OPTIONS);
         mSpaceLeft = (ListPreference) findPreference(Constants.PREFERENCE_SETTINGS_SPACE_LEFT);
         mSystemWipeAlert = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_SYSTEMWIPE_ALERT);
+        mUseFolder = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_USE_FOLDER);
+        mFolder = findPreference(Constants.PREFERENCE_SETTINGS_FOLDER);
 
         PreferencesManager pManager = ManagerFactory.getPreferencesManager();
 
@@ -109,6 +113,8 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         mSpaceLeft.setOnPreferenceChangeListener(this);
 
         mSystemWipeAlert.setChecked(pManager.isShowSystemWipeAlert());
+
+        mUseFolder.setChecked(pManager.isUseFolder());
         
         if (!ManagerFactory.getFileManager().hasExternalStorage()) {
             getPreferenceScreen().removePreference(mExternalSdcard);
@@ -192,7 +198,25 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
 
         } else if (Constants.PREFERENCE_SETTINGS_DOWNLOAD_PATH.equals(key)) {
 
-            selectDownloadPath();
+            selectFolder(pManager.getDownloadPath(), new DirectoryChooserDialog.DirectoryChooserListener() {
+
+                @Override
+                public void onDirectoryChosen(String chosenDir) {
+                    ManagerFactory.getPreferencesManager().setDownloadPath(chosenDir);
+                    updateSummaries();
+                }
+            });
+
+        } else if (Constants.PREFERENCE_SETTINGS_FOLDER.equals(key)) {
+
+            selectFolder(pManager.getFolder(), new DirectoryChooserDialog.DirectoryChooserListener() {
+
+                @Override
+                public void onDirectoryChosen(String chosenDir) {
+                    ManagerFactory.getPreferencesManager().setFolder(chosenDir);
+                    updateSummaries();
+                }
+            });
 
         } else if (Constants.PREFERENCE_SETTINGS_SYSTEMWIPE_ALERT.equals(key)) {
 
@@ -243,17 +267,12 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         mExternalSdcard.setSummary(getResources().getText(R.string.externalsdcard_summary) + " ("
                 + pManager.getExternalStorage() + ")");
         mDownloadPath.setSummary(pManager.getDownloadPath());
+        mFolder.setSummary(pManager.getFolder());
     }
 
-    private void selectDownloadPath() {
-        new DirectoryChooserDialog(this, new DirectoryChooserDialog.DirectoryChooserListener() {
-
-            @Override
-            public void onDirectoryChosen(String chosenDir) {
-                ManagerFactory.getPreferencesManager().setDownloadPath(chosenDir);
-                updateSummaries();
-            }
-        }).chooseDirectory(ManagerFactory.getPreferencesManager().getDownloadPath());
+    private void selectFolder(String defaultValue,
+            DirectoryChooserDialog.DirectoryChooserListener listener) {
+        new DirectoryChooserDialog(this, listener).chooseDirectory(defaultValue);
     }
 
     private void selectSdcard(final boolean internal) {

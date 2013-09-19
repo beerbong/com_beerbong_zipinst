@@ -39,6 +39,7 @@
             android:layout_height="wrap_content"/>
 
 	    <View
+            android:id="@+id/trash_separator"
 	        android:layout_width="1dp"
 	        android:layout_height="match_parent"
 	        android:layout_margin="10dp"

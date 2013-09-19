@@ -116,6 +116,18 @@
 
     <string name="donate_title">Donar</string>
 
+    <string name="usefolder_title">"Botó d'instal·lar obre carpeta"</string>
+    <string name="usefolder_summary">Si està actiu, l\'aplicació obrirà el contingut d\'una carpeta en lloc d\'un explorador d\'arxius.</string>
+
+    <string name="folder_title">Carpeta per defecte</string>
+    <string name="folder_error">La carpeta no existeix o no és un directori</string>
+
+    <string name="folder_activity_title">Selecciona un arxiu</string>
+    <string name="alert_remove_file_title">Esborrar arxiu</string>
+    <string name="alert_remove_file_summary">Estàs segur que vols esborrar %1$s?</string>
+    <string name="alert_remove_file_done">Arxiu esborrat</string>
+    <string name="alert_remove_file_not_done">Arxiu no esborrat</string>
+
     <string name="dad_title">Drag &amp; drop</string>
     <string name="dad_summary">Utilitzar drag &amp; drop per a reordenar la llista</string>
 
