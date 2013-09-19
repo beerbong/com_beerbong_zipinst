@@ -16,8 +16,6 @@
 
 package com.beerbong.zipinst.activities;
 
-import java.util.List;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,6 +23,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
+import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceCategory;
@@ -63,7 +62,7 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
     private CheckBoxPreference mSystemWipeAlert;
     private Preference mDownloadPath;
     private ListPreference mZipPosition;
-    private ListPreference mOptions;
+    private MultiSelectListPreference mOptions;
     private ListPreference mSpaceLeft;
 
     @Override
@@ -83,7 +82,7 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         mAutoloadList = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_AUTOLOAD_LIST);
         mDownloadPath = findPreference(Constants.PREFERENCE_SETTINGS_DOWNLOAD_PATH);
         mZipPosition = (ListPreference) findPreference(Constants.PREFERENCE_SETTINGS_ZIP_POSITION);
-        mOptions = (ListPreference) findPreference(Constants.PREFERENCE_SETTINGS_OPTIONS);
+        mOptions = (MultiSelectListPreference) findPreference(Constants.PREFERENCE_SETTINGS_OPTIONS);
         mSpaceLeft = (ListPreference) findPreference(Constants.PREFERENCE_SETTINGS_SPACE_LEFT);
         mSystemWipeAlert = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_SYSTEMWIPE_ALERT);
 
@@ -104,8 +103,7 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         mZipPosition.setValue(pManager.getZipPosition());
         mZipPosition.setOnPreferenceChangeListener(this);
 
-        mOptions.setValue(pManager.getShowOptions());
-        mOptions.setOnPreferenceChangeListener(this);
+        mOptions.setValues(pManager.getShowOptions());
 
         mSpaceLeft.setValue(String.valueOf(pManager.getSpaceLeft()));
         mSpaceLeft.setOnPreferenceChangeListener(this);
@@ -223,17 +221,7 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
 
         PreferencesManager pManager = ManagerFactory.getPreferencesManager();
 
-        if (Constants.PREFERENCE_SETTINGS_OPTIONS.equals(key)) {
-            List<String> values = (List<String>) newValue;
-            String result = "";
-            for (int i = 0; i < values.size(); i++) {
-                result += values.get(i);
-                if (i < values.size() - 1)
-                    result += "|";
-            }
-            pManager.setShowOptions(result);
-
-        } else if (Constants.PREFERENCE_SETTINGS_SPACE_LEFT.equals(key)) {
+        if (Constants.PREFERENCE_SETTINGS_SPACE_LEFT.equals(key)) {
 
             pManager.setSpaceLeft(Double.parseDouble(newValue.toString()));
 

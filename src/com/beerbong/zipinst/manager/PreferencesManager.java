@@ -16,6 +16,9 @@
 
 package com.beerbong.zipinst.manager;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import com.beerbong.zipinst.util.Constants;
 
 import android.content.Context;
@@ -30,7 +33,7 @@ public class PreferencesManager extends Manager {
     private static final String PROPERTY_RECOVERY = "recovery";
     private static final String PROPERTY_LIST = "list";
     private static final String PROPERTY_DRAG_AND_DROP = "drag-and-drop";
-    private static final String PROPERTY_SHOW_OPTIONS = "show-option";
+    private static final String PROPERTY_SHOW_OPTIONS = "show-options";
     private static final String PROPERTY_DARK_THEME = "dark-theme";
     private static final String PROPERTY_CHECK_EXISTS = "check_exists";
     private static final String PROPERTY_CHECK_UPDATES_STARTUP = "check_updates_startup";
@@ -51,7 +54,7 @@ public class PreferencesManager extends Manager {
     private static final String DEFAULT_DOWNLOAD_PATH = "/sdcard/download/";
     private static final String DEFAULT_ZIP_POSITION = "last";
     private static final String DEFAULT_TIME_NOTIFICATIONS = "3600000"; // an hour
-    private static final String DEFAULT_SHOW_OPTIONS = Constants.INSTALL_OPTIONS_DEFAULT;
+    private static final Set<String> DEFAULT_SHOW_OPTIONS = new HashSet<String>();
     private static final String DEFAULT_SPACE_LEFT = "-1";
     private static final boolean DEFAULT_DRAG_AND_DROP = true;
     private static final boolean DEFAULT_DARK_THEME = false;
@@ -68,6 +71,12 @@ public class PreferencesManager extends Manager {
     protected PreferencesManager(Context context) {
         super(context);
         settings = PreferenceManager.getDefaultSharedPreferences(context);
+
+        DEFAULT_SHOW_OPTIONS.add(Constants.INSTALL_BACKUP);
+        DEFAULT_SHOW_OPTIONS.add(Constants.INSTALL_WIPESYSTEM);
+        DEFAULT_SHOW_OPTIONS.add(Constants.INSTALL_WIPEDATA);
+        DEFAULT_SHOW_OPTIONS.add(Constants.INSTALL_WIPECACHES);
+        DEFAULT_SHOW_OPTIONS.add(Constants.INSTALL_FIXPERM);
     }
 
     public String getInternalStorage() {
@@ -107,12 +116,12 @@ public class PreferencesManager extends Manager {
     }
 
     public boolean isShowOption(String option) {
-        String opts = settings.getString(PROPERTY_SHOW_OPTIONS, DEFAULT_SHOW_OPTIONS);
-        return opts.indexOf(option) >= 0;
+        Set<String> options = getShowOptions();
+        return options.contains(option);
     }
 
-    public String getShowOptions() {
-        return settings.getString(PROPERTY_SHOW_OPTIONS, DEFAULT_SHOW_OPTIONS);
+    public Set<String> getShowOptions() {
+        return settings.getStringSet(PROPERTY_SHOW_OPTIONS, DEFAULT_SHOW_OPTIONS);
     }
 
     public void setShowOptions(String options) {
