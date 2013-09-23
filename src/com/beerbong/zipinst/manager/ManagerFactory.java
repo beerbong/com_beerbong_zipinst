@@ -17,6 +17,7 @@
 package com.beerbong.zipinst.manager;
 
 import com.beerbong.zipinst.manager.pro.ProManagerImpl;
+import com.beerbong.zipinst.util.NoSuException;
 
 import android.app.Activity;
 import android.content.Context;
@@ -32,7 +33,7 @@ public class ManagerFactory {
     private static UpdateManager mUpdateManager;
     private static SUManager mSUManager;
 
-    public static void start(Activity mActivity) {
+    public static void start(Activity mActivity) throws NoSuException {
         mProManager = new ProManagerImpl(mActivity);
         mFileManager = new FileManager(mActivity);
         mRebootManager = new RebootManager(mActivity);

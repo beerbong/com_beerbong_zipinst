@@ -50,11 +50,13 @@ import android.widget.Toast;
 
 import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.activities.Folder;
+import com.beerbong.zipinst.manager.SUManager.CommandResult;
 import com.beerbong.zipinst.ui.UI;
 import com.beerbong.zipinst.ui.UIListener;
 import com.beerbong.zipinst.util.Constants;
 import com.beerbong.zipinst.util.DownloadTask;
 import com.beerbong.zipinst.util.FileItem;
+import com.beerbong.zipinst.util.NoSuException;
 import com.beerbong.zipinst.util.StoredItems;
 
 public class FileManager extends Manager implements UIListener {
@@ -63,7 +65,7 @@ public class FileManager extends Manager implements UIListener {
     private String mExternalStoragePath;
     private int mSelectedBackup = -1;
 
-    protected FileManager(Context context) {
+    protected FileManager(Context context) throws NoSuException {
         super(context);
 
         UI.getInstance().addUIListener(this);
@@ -71,7 +73,7 @@ public class FileManager extends Manager implements UIListener {
         init();
     }
 
-    private void init() {
+    private void init() throws NoSuException {
 
         readMounts();
 
@@ -785,7 +787,7 @@ public class FileManager extends Manager implements UIListener {
         return sdAvailSize / 1073741824;
     }
 
-    private void readMounts() {
+    private void readMounts() throws NoSuException {
 
         ArrayList<String> mounts = new ArrayList<String>();
         ArrayList<String> vold = new ArrayList<String>();
@@ -897,13 +899,17 @@ public class FileManager extends Manager implements UIListener {
         return null;
     }
 
-    private void copyOrRemoveCache(File file, boolean copy) {
+    private void copyOrRemoveCache(File file, boolean copy) throws NoSuException {
         SUManager suManager = ManagerFactory.getSUManager(mContext);
+        CommandResult cm = null;
         if (copy) {
-            suManager.runWaitFor("cp " + file.getAbsolutePath() + " /cache/" + file.getName());
+            cm = suManager.runWaitFor("cp " + file.getAbsolutePath() + " /cache/" + file.getName());
             suManager.runWaitFor("chmod 644 /cache/" + file.getName());
         } else {
-            suManager.runWaitFor("rm -f /cache/" + file.getName());
+            cm = suManager.runWaitFor("rm -f /cache/" + file.getName());
+        }
+        if (!cm.success()) {
+            throw new NoSuException();
         }
     }
 }

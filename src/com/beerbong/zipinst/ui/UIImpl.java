@@ -19,6 +19,8 @@ package com.beerbong.zipinst.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -51,6 +53,22 @@ public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolde
     protected UIImpl(MainActivity activity) {
 
         redraw(activity);
+    }
+
+    @Override
+    public void showNoSuAlertAndExit() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(mActivity);
+        alert.setTitle(R.string.root_needed_title);
+        alert.setMessage(R.string.root_needed_summary);
+        alert.setCancelable(false);
+        alert.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int whichButton) {
+                mActivity.finish();
+                dialog.dismiss();
+            }
+        });
+        alert.show();
     }
 
     @Override

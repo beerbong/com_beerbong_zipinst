@@ -18,6 +18,7 @@ package com.beerbong.zipinst;
 
 import com.beerbong.zipinst.manager.ManagerFactory;
 import com.beerbong.zipinst.ui.UI;
+import com.beerbong.zipinst.util.NoSuException;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,7 +35,12 @@ public class MainActivity extends FragmentActivity {
 
         super.onCreate(savedInstanceState);
 
-        ManagerFactory.start(this);
+        try {
+            ManagerFactory.start(this);
+        } catch (NoSuException ex) {
+            // device not rooted or user clicked no
+            UI.getInstance().showNoSuAlertAndExit();
+        }
     }
 
     @Override

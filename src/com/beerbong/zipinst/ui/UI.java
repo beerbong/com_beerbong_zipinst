@@ -40,6 +40,8 @@ public abstract class UI implements OnItemClickListener {
         return instance;
     }
 
+    public abstract void showNoSuAlertAndExit();
+
     public abstract void addItem(String realPath, String sdcardPath);
 
     public abstract void removeItem(FileItem item);
