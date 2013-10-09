@@ -50,6 +50,12 @@ public class RecoveryManager extends Manager {
             if (path != null && dirPath != null && dirPath.startsWith(path)) {
                 sdcard = sdcard + dirPath.replace(path, "");
             }
+            if (ManagerFactory.getFileManager().hasExternalStorage()) {
+                path = System.getenv("SECONDARY_STORAGE");
+                if (path != null) {
+                    externalsd = path;
+                }
+            }
         } else if (dirPath.startsWith("/mnt/emmc")) {
             sdcard = "emmc";
             externalsd = "sdcard";
@@ -188,6 +194,14 @@ public class RecoveryManager extends Manager {
                         + mContext.getPackageManager().getPackageInfo(mContext.getPackageName(), 0).versionName
                         + "\");");
                 commands.add("ui_print(\"-------------------------------------\");");
+
+                // TODO test this later
+//                if (info.getId() == R.id.cwmbased
+//                        && ManagerFactory.getFileManager().hasExternalStorage()) {
+//                    commands.add("ui_print(\" Mounting external sd\");");
+//                    commands.add("mount(\""
+//                            + ManagerFactory.getPreferencesManager().getExternalStorage() + "\")");
+//                }
 
                 if (restore != null) {
                     commands.add("ui_print(\" Restore ROM\");");
