@@ -43,15 +43,19 @@ public class RecoveryManager extends Manager {
         super(context);
 
         String sdcard = "sdcard";
+        String externalsd = "external_sd";
+        String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath();
         if(VERSION.SDK_INT > 16) {
-            String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath();
             String path = System.getenv("EMULATED_STORAGE_TARGET");
             if (path != null && dirPath != null && dirPath.startsWith(path)) {
                 sdcard = sdcard + dirPath.replace(path, "");
             }
+        } else if (dirPath.startsWith("/mnt/emmc")) {
+            sdcard = "emmc";
+            externalsd = "sdcard";
         }
 
-        recoveries.put(R.id.cwmbased, new RecoveryInfo(R.id.cwmbased, "cwmbased", sdcard, "external_sd"));
+        recoveries.put(R.id.cwmbased, new RecoveryInfo(R.id.cwmbased, "cwmbased", sdcard, externalsd));
         recoveries.put(R.id.twrp, new RecoveryInfo(R.id.twrp, "twrp", "sdcard", "external_sd"));
         recoveries.put(R.id.fourext, new RecoveryInfo(R.id.fourext, "fourext", "sdcard", "external_sd"));
 
