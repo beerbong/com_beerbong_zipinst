@@ -25,6 +25,8 @@ import java.util.List;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.os.Build.VERSION;
+import android.os.Environment;
 import android.util.SparseArray;
 import android.widget.Toast;
 
@@ -40,15 +42,18 @@ public class RecoveryManager extends Manager {
     protected RecoveryManager(Context context) {
         super(context);
 
-        if (ManagerFactory.getFileManager().hasExternalStorage()) {
-            recoveries.put(R.id.cwmbased, new RecoveryInfo(R.id.cwmbased, "cwmbased", "emmc", "sdcard"));
-            recoveries.put(R.id.twrp, new RecoveryInfo(R.id.twrp, "twrp", "emmc", "sdcard"));
-            recoveries.put(R.id.fourext, new RecoveryInfo(R.id.fourext, "fourext", "emmc", "sdcard"));
-        } else {
-            recoveries.put(R.id.cwmbased, new RecoveryInfo(R.id.cwmbased, "cwmbased", "sdcard", "sdcard"));
-            recoveries.put(R.id.twrp, new RecoveryInfo(R.id.twrp, "twrp", "sdcard", "sdcard"));
-            recoveries.put(R.id.fourext, new RecoveryInfo(R.id.fourext, "fourext", "sdcard", "sdcard"));
+        String sdcard = "sdcard";
+        if(VERSION.SDK_INT > 16) {
+            String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+            String path = System.getenv("EMULATED_STORAGE_TARGET");
+            if (path != null && dirPath != null && dirPath.startsWith(path)) {
+                sdcard = sdcard + dirPath.replace(path, "");
+            }
         }
+
+        recoveries.put(R.id.cwmbased, new RecoveryInfo(R.id.cwmbased, "cwmbased", sdcard, "external_sd"));
+        recoveries.put(R.id.twrp, new RecoveryInfo(R.id.twrp, "twrp", "sdcard", "external_sd"));
+        recoveries.put(R.id.fourext, new RecoveryInfo(R.id.fourext, "fourext", "sdcard", "external_sd"));
 
         if (!ManagerFactory.getPreferencesManager().existsRecovery()) {
             test(R.id.fourext);
