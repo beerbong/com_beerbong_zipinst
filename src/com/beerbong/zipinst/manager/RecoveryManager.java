@@ -49,6 +49,8 @@ public class RecoveryManager extends Manager {
             String path = System.getenv("EMULATED_STORAGE_TARGET");
             if (path != null && dirPath != null && dirPath.startsWith(path)) {
                 sdcard = sdcard + dirPath.replace(path, "");
+            } else if (path != null) {
+                sdcard = path;
             }
             if (ManagerFactory.getFileManager().hasExternalStorage()) {
                 path = System.getenv("SECONDARY_STORAGE");
