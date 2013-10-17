@@ -387,14 +387,9 @@ public class RebootManager extends Manager implements UIListener {
                         os.writeBytes("echo '" + commands[i] + "' >> /cache/recovery/" + file
                                 + "\n");
                     }
-                    ManagerFactory.getPreferencesManager().setToDelete("");
+                    ManagerFactory.getPreferencesManager().setToDelete(new String[0]);
                     if (delete) {
-                        String toDelete = "";
-                        for (i = 0; i < StoredItems.size(); i++) {
-                            FileItem item = StoredItems.getItem(i);
-                            toDelete += item.getPath() + "\n";
-                        }
-                        ManagerFactory.getPreferencesManager().setToDelete(toDelete);
+                        ManagerFactory.getPreferencesManager().setToDelete(StoredItems.getPaths());
                     }
                 }
             }

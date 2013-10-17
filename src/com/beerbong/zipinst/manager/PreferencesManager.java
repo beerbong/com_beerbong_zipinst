@@ -19,11 +19,11 @@ package com.beerbong.zipinst.manager;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.beerbong.zipinst.util.Constants;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
+import com.beerbong.zipinst.util.Constants;
 
 public class PreferencesManager extends Manager {
 
@@ -255,12 +255,17 @@ public class PreferencesManager extends Manager {
         savePreference(PROPERTY_FOLDER, value);
     }
 
-    public String getToDelete() {
-        return settings.getString(PROPERTY_TO_DELETE, "");
+    public String[] getToDelete() {
+        String toDelete = settings.getString(PROPERTY_TO_DELETE, "");
+        return toDelete.split("\n");
     }
 
-    public void setToDelete(String value) {
-        savePreference(PROPERTY_TO_DELETE, value);
+    public void setToDelete(String[] value) {
+        String toDelete = "";
+        for (int i = 0; i < value.length; i++) {
+            toDelete += value[i] + "\n";
+        }
+        savePreference(PROPERTY_TO_DELETE, toDelete);
     }
 
     private void savePreference(String preference, String value) {

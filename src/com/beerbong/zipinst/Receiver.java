@@ -28,8 +28,7 @@ public class Receiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        String toDelete = ManagerFactory.getPreferencesManager(context).getToDelete();
-        String[] files = toDelete.split("\n");
+        String[] files = ManagerFactory.getPreferencesManager(context).getToDelete();
         for (int i = 0; i < files.length; i++) {
             if (!"".equals(files[i].trim())) {
                 File file = new File(files[i]);

@@ -32,6 +32,16 @@ public class StoredItems {
         return list;
     }
 
+    public static String[] getPaths() {
+        String[] paths = new String[list.size()];
+        int i = 0;
+        for (FileItem item : list) {
+            paths[i] = item.getPath();
+            i++;
+        }
+        return paths;
+    }
+
     public static FileItem getItem(int i) {
         return list.get(i);
     }
