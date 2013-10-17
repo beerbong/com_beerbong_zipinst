@@ -178,12 +178,10 @@ public class FileManager extends Manager implements UIListener {
 
     public void saveList() {
         int size = StoredItems.size();
-        if (size == 0)
-            return;
 
         StringBuffer list = new StringBuffer();
 
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; size > 0 && i < size; i++) {
             String path = StoredItems.getItem(i).getPath();
             list.append(path);
             if (i < size - 1)
