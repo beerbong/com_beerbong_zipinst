@@ -81,7 +81,7 @@ public class RebootManager extends Manager implements UIListener {
     }
 
     public void showBackupDialog(Context context) {
-        showBackupDialog(context, true, false, false, false, false);
+        showBackupDialog(context, true, false, false, false, false, false);
     }
 
     public void showRestoreDialog(Context context) {
@@ -106,7 +106,7 @@ public class RebootManager extends Manager implements UIListener {
                 dialog.dismiss();
 
                 if (mSelectedBackup >= 0) {
-                    reboot(false, false, false, false, null, null, backupFolder
+                    reboot(false, false, false, false, false, null, null, backupFolder
                             + backups[mSelectedBackup]);
                 }
             }
@@ -123,22 +123,22 @@ public class RebootManager extends Manager implements UIListener {
     }
 
     public void simpleReboot() {
-        reboot(false, false, false, false, null, null, null, true);
+        reboot(false, false, false, false, false, null, null, null, true);
     }
 
     public void simpleReboot(boolean wipeData, boolean wipeCaches, boolean fixPermissions) {
         StoredItems.removeItems();
-        reboot(false, wipeData, wipeCaches, fixPermissions, null, null, null, false);
+        reboot(false, wipeData, wipeCaches, fixPermissions, false, null, null, null, false);
     }
 
     public void fixPermissions() {
         StoredItems.removeItems();
-        reboot(false, false, false, true, null, null, null, false);
+        reboot(false, false, false, true, false, null, null, null, false);
     }
 
     private void showBackupDialog(final Context context, final boolean removePreferences,
             final boolean wipeSystem, final boolean wipeData, final boolean wipeCaches,
-            final boolean fixPermissions) {
+            final boolean fixPermissions, final boolean delete) {
 
         double checkSpace = ManagerFactory.getPreferencesManager().getSpaceLeft();
         if (checkSpace > 0) {
@@ -155,7 +155,7 @@ public class RebootManager extends Manager implements UIListener {
                         dialog.dismiss();
 
                         reallyShowBackupDialog(context, removePreferences, wipeSystem, wipeData,
-                                wipeCaches, fixPermissions);
+                                wipeCaches, fixPermissions, delete);
                     }
                 });
 
@@ -169,17 +169,17 @@ public class RebootManager extends Manager implements UIListener {
                 alert.show();
             } else {
                 reallyShowBackupDialog(context, removePreferences, wipeSystem, wipeData,
-                        wipeCaches, fixPermissions);
+                        wipeCaches, fixPermissions, delete);
             }
         } else {
             reallyShowBackupDialog(context, removePreferences, wipeSystem, wipeData, wipeCaches,
-                    fixPermissions);
+                    fixPermissions, delete);
         }
     }
 
     private void reallyShowBackupDialog(Context context, boolean removePreferences,
             final boolean wipeSystem, final boolean wipeData, final boolean wipeCaches,
-            final boolean fixPermissions) {
+            final boolean fixPermissions, final boolean delete) {
         if (removePreferences)
             UI.getInstance().removeAllItems();
 
@@ -257,7 +257,8 @@ public class RebootManager extends Manager implements UIListener {
                     }
                 }
 
-                reboot(wipeSystem, wipeData, wipeCaches, false, text, backupOptions, null);
+                reboot(wipeSystem, wipeData, wipeCaches, fixPermissions, delete, text,
+                        backupOptions, null);
             }
         });
 
@@ -297,10 +298,10 @@ public class RebootManager extends Manager implements UIListener {
 
                 if (cursor.isBackup()) {
                     showBackupDialog(mContext, false, cursor.isWipeSystem(), cursor.isWipeData(),
-                            cursor.isWipeCaches(), cursor.isFixPermissions());
+                            cursor.isWipeCaches(), cursor.isFixPermissions(), cursor.isDelete());
                 } else {
                     reboot(cursor.isWipeSystem(), cursor.isWipeData(), cursor.isWipeCaches(),
-                            cursor.isFixPermissions(), null, null, null);
+                            cursor.isFixPermissions(), cursor.isDelete(), null, null, null);
                 }
 
             }
@@ -316,14 +317,15 @@ public class RebootManager extends Manager implements UIListener {
     }
 
     private void reboot(boolean wipeSystem, boolean wipeData, boolean wipeCaches,
-            boolean fixPermissions, String backupFolder, String backupOptions, String restore) {
-        reboot(wipeSystem, wipeData, wipeCaches, fixPermissions, backupFolder, backupOptions,
-                restore, false);
+            boolean fixPermissions, final boolean delete, String backupFolder,
+            String backupOptions, String restore) {
+        reboot(wipeSystem, wipeData, wipeCaches, fixPermissions, delete, backupFolder,
+                backupOptions, restore, false);
     }
 
     private void reboot(final boolean wipeSystem, final boolean wipeData, final boolean wipeCaches,
-            final boolean fixPermissions, final String backupFolder, final String backupOptions,
-            final String restore, final boolean skipCommands) {
+            final boolean fixPermissions, final boolean delete, final String backupFolder,
+            final String backupOptions, final String restore, final boolean skipCommands) {
 
         if (wipeSystem && ManagerFactory.getPreferencesManager().isShowSystemWipeAlert()) {
             AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
@@ -336,8 +338,8 @@ public class RebootManager extends Manager implements UIListener {
                         public void onClick(DialogInterface dialog, int whichButton) {
                             dialog.dismiss();
 
-                            _reboot(wipeSystem, wipeData, wipeCaches, fixPermissions, backupFolder,
-                                    backupOptions, restore, skipCommands);
+                            _reboot(wipeSystem, wipeData, wipeCaches, fixPermissions, delete,
+                                    backupFolder, backupOptions, restore, skipCommands);
 
                         }
                     });
@@ -350,15 +352,15 @@ public class RebootManager extends Manager implements UIListener {
             });
             alert.show();
         } else {
-            _reboot(wipeSystem, wipeData, wipeCaches, fixPermissions, backupFolder, backupOptions,
-                    restore, skipCommands);
+            _reboot(wipeSystem, wipeData, wipeCaches, fixPermissions, delete, backupFolder,
+                    backupOptions, restore, skipCommands);
         }
 
     }
 
     private void _reboot(boolean wipeSystem, boolean wipeData, boolean wipeCaches,
-            boolean fixPermissions, String backupFolder, String backupOptions, String restore,
-            boolean skipCommands) {
+            boolean fixPermissions, boolean delete, String backupFolder, String backupOptions,
+            String restore, boolean skipCommands) {
         try {
 
             if (fixPermissions) {
@@ -384,6 +386,15 @@ public class RebootManager extends Manager implements UIListener {
                     for (; i < size; i++) {
                         os.writeBytes("echo '" + commands[i] + "' >> /cache/recovery/" + file
                                 + "\n");
+                    }
+                    ManagerFactory.getPreferencesManager().setToDelete("");
+                    if (delete) {
+                        String toDelete = "";
+                        for (i = 0; i < StoredItems.size(); i++) {
+                            FileItem item = StoredItems.getItem(i);
+                            toDelete += item.getPath() + "\n";
+                        }
+                        ManagerFactory.getPreferencesManager().setToDelete(toDelete);
                     }
                 }
             }

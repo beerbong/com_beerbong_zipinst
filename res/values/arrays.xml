@@ -22,6 +22,7 @@
         <item>@string/wipe_data</item>
         <item>@string/wipe_caches</item>
         <item>@string/fix_permissions</item>
+        <item>@string/delete_old</item>
     </string-array>
     <string-array name="wipe_options_values" translatable="false">
         <item>BACKUP</item>
@@ -29,6 +30,7 @@
         <item>WIPEDATA</item>
         <item>WIPECACHES</item>
         <item>FIXPERM</item>
+        <item>DELETEOLD</item>
     </string-array>
     <string-array name="zip_position_options">
         <item>@string/zip_position_first</item>

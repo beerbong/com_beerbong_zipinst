@@ -16,6 +16,10 @@
 
 package com.beerbong.zipinst;
 
+import java.io.File;
+
+import com.beerbong.zipinst.manager.ManagerFactory;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -24,6 +28,16 @@ public class Receiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        String toDelete = ManagerFactory.getPreferencesManager(context).getToDelete();
+        String[] files = toDelete.split("\n");
+        for (int i = 0; i < files.length; i++) {
+            if (!"".equals(files[i].trim())) {
+                File file = new File(files[i]);
+                if (file.exists()) {
+                    file.delete();
+                }
+            }
+        }
         // call the pro receiver if available
         try {
             Class<?> pClass = Class.forName("com.beerbong.zipinst.pro.Receiver");

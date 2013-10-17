@@ -41,12 +41,14 @@ public class Constants {
     public static final String INSTALL_WIPEDATA = "WIPEDATA";
     public static final String INSTALL_WIPECACHES = "WIPECACHES";
     public static final String INSTALL_FIXPERM = "FIXPERM";
+    public static final String INSTALL_DELETEOLD = "DELETEOLD";
     public static final String[] INSTALL_OPTIONS = {
             INSTALL_BACKUP,
             INSTALL_WIPESYSTEM,
             INSTALL_WIPEDATA,
             INSTALL_WIPECACHES,
-            INSTALL_FIXPERM };
+            INSTALL_FIXPERM,
+            INSTALL_DELETEOLD };
 
     // about preferences
     public static final String PREFERENCE_ABOUT_VERSION = "about_version";

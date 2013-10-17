@@ -112,6 +112,7 @@
     <string name="wipe_data">Wipe Data</string>
     <string name="wipe_caches">Wipe Cache &amp; Dalvik</string>
     <string name="fix_permissions">Fix permissions</string>
+    <string name="delete_old">Delete flashed zips</string>
 
     <string name="savelist_title">Save list</string>
     <string name="loadlist_title">Load list</string>

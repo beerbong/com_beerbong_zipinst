@@ -27,7 +27,6 @@ import android.preference.PreferenceManager;
 
 public class PreferencesManager extends Manager {
 
-
     private static final String PROPERTY_INTERNAL_STORAGE = "internal-storage";
     private static final String PROPERTY_EXTERNAL_STORAGE = "external-storage";
     private static final String PROPERTY_RECOVERY = "recovery";
@@ -46,6 +45,7 @@ public class PreferencesManager extends Manager {
     private static final String PROPERTY_SHOW_WIPESYSTEM_ALERT = "wipesystem_alert";
     private static final String PROPERTY_USE_FOLDER = "usefolder";
     private static final String PROPERTY_FOLDER = "folder";
+    private static final String PROPERTY_TO_DELETE = "to_delete";
 
     public static final String PROPERTY_ENABLE_NOTIFICATIONS = "enable_notifications";
     public static final String PROPERTY_TIME_NOTIFICATIONS = "time_notifications";
@@ -253,6 +253,14 @@ public class PreferencesManager extends Manager {
 
     public void setFolder(String value) {
         savePreference(PROPERTY_FOLDER, value);
+    }
+
+    public String getToDelete() {
+        return settings.getString(PROPERTY_TO_DELETE, "");
+    }
+
+    public void setToDelete(String value) {
+        savePreference(PROPERTY_TO_DELETE, value);
     }
 
     private void savePreference(String preference, String value) {
