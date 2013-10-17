@@ -19,6 +19,9 @@
     <string name="alert_reboot_title">Vyberte akcie a spustite inštaláciu</string>
     <string name="alert_reboot_now">Inštalovať teraz</string>
 
+    <string name="root_needed_title">Potrebný root</string>
+    <string name="root_needed_summary">Nemožno získať root prístup. Aplikácia bude ukončená.</string>
+    
     <string name="alert_wipe_system_title">Vymazať všetky dáta</string>
     <string name="alert_wipe_system_message">Chystáte sa vymazať všetky dáta v zariadení. Ste si istí, že to chcete urobiť?</string>
 
