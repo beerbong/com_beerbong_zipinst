@@ -62,6 +62,7 @@
     <string name="alert_file_incorrect_md5">MD5 no coincideix per a l\'arxiu %1$s</string>
 
     <string name="main_choose_zip">"Afegir arxiu"</string>
+    <string name="main_apply_rules">Aplicar regles</string>
 
     <string name="install_now">"Flashear ara"</string>
 
@@ -125,6 +126,15 @@
 
     <string name="folder_title">Carpeta per defecte</string>
     <string name="folder_error">La carpeta no existeix o no és un directori</string>
+
+    <string name="rules">Regles de carpeta</string>
+    <string name="rules_summary">Afegir arxius de la carpeta automàticamente siguint aquestes regles</string>
+
+    <string name="alert_rules_title">Regles</string>
+    <string name="rules_text">Afegir zips a la carpeta que comencin amb:\n</string>
+    <string name="alert_rules_add">Afegir regla</string>
+    <string name="alert_rules_done">Fet</string>
+    <string name="alert_rules_delete">Esborrar totes</string>
 
     <string name="folder_activity_title">Selecciona un arxiu</string>
     <string name="alert_remove_file_title">Esborrar arxiu</string>

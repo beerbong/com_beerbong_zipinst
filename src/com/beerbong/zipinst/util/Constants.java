@@ -74,6 +74,7 @@ public class Constants {
     public static final String PREFERENCE_SETTINGS_SYSTEMWIPE_ALERT = "wipesystemalert";
     public static final String PREFERENCE_SETTINGS_USE_FOLDER = "usefolder";
     public static final String PREFERENCE_SETTINGS_FOLDER = "folder";
+    public static final String PREFERENCE_SETTINGS_RULES = "rules";
 
     // recovery preferences
     public static final String PREFERENCE_RECOVERY_BACKUP = "recovery_activity_backup";

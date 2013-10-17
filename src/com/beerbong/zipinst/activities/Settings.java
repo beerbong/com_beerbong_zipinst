@@ -30,10 +30,13 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.beerbong.zipinst.MainActivity;
@@ -218,6 +221,10 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
                 }
             });
 
+        } else if (Constants.PREFERENCE_SETTINGS_RULES.equals(key)) {
+
+            showRulesDialog();
+
         } else if (Constants.PREFERENCE_SETTINGS_SYSTEMWIPE_ALERT.equals(key)) {
 
             boolean showAlert = ((CheckBoxPreference) preference).isChecked();
@@ -388,5 +395,71 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
             }
         });
         alert.show();
+    }
+
+    private void showRulesDialog() {
+        final PreferencesManager pManager = ManagerFactory.getPreferencesManager();
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(R.string.alert_rules_title);
+
+        final View view = LayoutInflater.from(this).inflate(R.layout.rules_dialog,
+                (ViewGroup) findViewById(R.id.rules_dialog_layout));
+        alert.setView(view);
+
+        final TextView textView = (TextView) view.findViewById(R.id.rules_text);
+        redrawRules(textView);
+
+        final EditText editText = (EditText) view.findViewById(R.id.rule_input);
+
+        Button addButton = (Button) view.findViewById(R.id.rule_add);
+        addButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                String text = editText.getText().toString();
+                if (text != null && !"".equals(text)) {
+                    pManager.addRule(text);
+                    redrawRules(textView);
+                    view.invalidate();
+                }
+            }
+            
+        });
+
+        Button delButton = (Button) view.findViewById(R.id.rule_delete);
+        delButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                pManager.setRules(new String[0]);
+                redrawRules(textView);
+                view.invalidate();
+            }
+            
+        });
+
+        alert.setPositiveButton(R.string.alert_rules_done, new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.dismiss();
+            }
+        });
+
+        alert.show();
+    }
+
+    private void redrawRules(TextView textView) {
+        String text = getResources().getString(R.string.rules_text);
+        PreferencesManager pManager = ManagerFactory.getPreferencesManager();
+        String[] rules = pManager.getRules();
+        if (pManager.hasRules()) {
+            for (int i = 0; i < rules.length; i++) {
+                if (!"".equals(rules[i])) {
+                    text += rules[i] + "\n";
+                }
+            }
+        }
+        textView.setText(text);
     }
 }

@@ -61,4 +61,6 @@ public abstract class UI implements OnItemClickListener {
     public abstract boolean onOptionsItemSelected(MenuItem item);
 
     public abstract void onNewIntent(Intent intent);
+
+    public abstract void settingsChanged();
 }

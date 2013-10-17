@@ -62,6 +62,7 @@
     <string name="alert_file_incorrect_md5">MD5 no coincide para el archivo %1$s</string>
 
     <string name="main_choose_zip">"Añadir archivo"</string>
+    <string name="main_apply_rules">Aplicar reglas</string>
 
     <string name="install_now">"Flashear ahora"</string>
 
@@ -125,6 +126,15 @@
 
     <string name="folder_title">Carpeta por defecto</string>
     <string name="folder_error">La carpeta no existe o no es un directorio</string>
+
+    <string name="rules_title">Reglas de carpeta</string>
+    <string name="rules_summary">Añadir archivos de la carpeta automáticamente siguiendo estas reglas</string>
+
+    <string name="alert_rules_title">Reglas</string>
+    <string name="rules_text">Añadir zips en la carpeta que empiecen con:\n</string>
+    <string name="alert_rules_add">Añadir regla</string>
+    <string name="alert_rules_done">Hecho</string>
+    <string name="alert_rules_delete">Borrar todas</string>
 
     <string name="folder_activity_title">Selecciona un archivo</string>
     <string name="alert_remove_file_title">Borrar archivo</string>

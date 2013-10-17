@@ -62,6 +62,7 @@
     <string name="alert_file_incorrect_md5">Mismatch MD5 for file %1$s</string>
 
     <string name="main_choose_zip">Add file</string>
+    <string name="main_apply_rules">Apply rules</string>
 
     <string name="install_now">Flash now</string>
 
@@ -126,6 +127,15 @@
 
     <string name="folder_title">Default folder</string>
     <string name="folder_error">The folder doesn\'t exist or is not a directory</string>
+
+    <string name="rules_title">Folder rules</string>
+    <string name="rules_summary">Automatically add files from the folder following these rules</string>
+
+    <string name="alert_rules_title">Rules</string>
+    <string name="rules_text">Add zips in the folder starting with:\n</string>
+    <string name="alert_rules_add">Add rule</string>
+    <string name="alert_rules_done">Done</string>
+    <string name="alert_rules_delete">Delete all</string>
 
     <string name="folder_activity_title">Select a file</string>
     <string name="alert_remove_file_title">Delete file</string>

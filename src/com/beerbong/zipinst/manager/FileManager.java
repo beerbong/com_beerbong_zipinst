@@ -23,6 +23,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
@@ -87,12 +89,46 @@ public class FileManager extends Manager implements UIListener {
 
     public void onButtonClicked(int id) {
         if (id == R.id.choose_zip) {
-            if (ManagerFactory.getPreferencesManager().isUseFolder()) {
+            PreferencesManager pManager = ManagerFactory.getPreferencesManager();
+            if (pManager.isUseFolder()) {
                 File folder = new File(ManagerFactory.getPreferencesManager().getFolder());
                 if (!folder.exists() || !folder.isDirectory()) {
                     Toast.makeText(mContext, R.string.folder_error, Toast.LENGTH_SHORT).show();
                 } else {
-                    mContext.startActivity(new Intent(mContext, Folder.class));
+                    String[] rules = pManager.getRules();
+                    if (pManager.hasRules()) {
+                        File[] files = folder.listFiles();
+
+                        Arrays.sort(files, new Comparator<File>() {
+
+                            @Override
+                            public int compare(File lhs, File rhs) {
+                                String name1 = lhs.getName().toLowerCase();
+                                String name2 = rhs.getName().toLowerCase();
+                                return name1.compareTo(name2);
+                            }
+
+                        });
+
+                        for (File file : files) {
+                            for (int i = 0; i < rules.length; i++) {
+                                String fileName = file.getName().toLowerCase();
+                                if (!"".equals(rules[i])
+                                        && fileName.endsWith(".zip")
+                                        && !file.isDirectory()
+                                        && fileName.startsWith(rules[i]
+                                                .toLowerCase())) {
+
+                                    String sdcardPath = getPath(file
+                                            .getAbsolutePath());
+                                    UI.getInstance().addItem(
+                                            file.getAbsolutePath(), sdcardPath);
+                                }
+                            }
+                        }
+                    } else {
+                        mContext.startActivity(new Intent(mContext, Folder.class));
+                    }
                 }
             } else {
                 PackageManager packageManager = mContext.getPackageManager();

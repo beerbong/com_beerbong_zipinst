@@ -112,6 +112,7 @@ public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolde
         installNow.setOnItemClickListener(cListener);
 
         redrawItems();
+        settingsChanged();
 
         onNewIntent(mActivity.getIntent());
     }
@@ -218,6 +219,18 @@ public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolde
     @Override
     public boolean showDate() {
         return false;
+    }
+
+    
+
+    @Override
+    public void settingsChanged() {
+        Item chooseZip = (Item) mActivity.findViewById(R.id.choose_zip);
+        if (ManagerFactory.getPreferencesManager().hasRules()) {
+            chooseZip.setTitle(R.string.main_apply_rules);
+        } else {
+            chooseZip.setTitle(R.string.main_choose_zip);
+        }
     }
 
     private void dispatchOnActivityResult(int requestCode, int resultCode, Intent data) {

@@ -36,6 +36,7 @@ public class Item extends LinearLayout {
         public void onClick(int id);
     };
 
+    private TextView mTitleView;
     private int mDownColor;
     private OnItemClickListener mItemClickListener = null;
 
@@ -64,8 +65,8 @@ public class Item extends LinearLayout {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.item, this, true);
 
-        TextView tView = (TextView) view.findViewById(R.id.title);
-        tView.setText(title);
+        mTitleView = (TextView) view.findViewById(R.id.title);
+        mTitleView.setText(title);
 
         ImageView iView = (ImageView) view.findViewById(R.id.icon);
         iView.setImageDrawable(icon);
@@ -93,5 +94,9 @@ public class Item extends LinearLayout {
 
     public void setOnItemClickListener(OnItemClickListener itemClickListener) {
         mItemClickListener = itemClickListener;
+    }
+
+    public void setTitle(int resourceId) {
+        mTitleView.setText(resourceId);
     }
 }

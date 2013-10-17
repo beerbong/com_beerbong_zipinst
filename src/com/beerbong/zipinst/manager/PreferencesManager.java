@@ -23,6 +23,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.beerbong.zipinst.ui.UI;
 import com.beerbong.zipinst.util.Constants;
 
 public class PreferencesManager extends Manager {
@@ -46,6 +47,7 @@ public class PreferencesManager extends Manager {
     private static final String PROPERTY_USE_FOLDER = "usefolder";
     private static final String PROPERTY_FOLDER = "folder";
     private static final String PROPERTY_TO_DELETE = "to_delete";
+    private static final String PROPERTY_RULES = "rules";
 
     public static final String PROPERTY_ENABLE_NOTIFICATIONS = "enable_notifications";
     public static final String PROPERTY_TIME_NOTIFICATIONS = "time_notifications";
@@ -256,27 +258,64 @@ public class PreferencesManager extends Manager {
     }
 
     public String[] getToDelete() {
-        String toDelete = settings.getString(PROPERTY_TO_DELETE, "");
-        return toDelete.split("\n");
+        return getArrayProperty(PROPERTY_TO_DELETE);
     }
 
     public void setToDelete(String[] value) {
-        String toDelete = "";
-        for (int i = 0; i < value.length; i++) {
-            toDelete += value[i] + "\n";
+        setArrayProperty(PROPERTY_TO_DELETE, value);
+    }
+
+    public String[] getRules() {
+        return getArrayProperty(PROPERTY_RULES);
+    }
+
+    public boolean hasRules() {
+        String[] rules = getArrayProperty(PROPERTY_RULES);
+        return rules.length > 0 && !"".equals(rules[0]);
+    }
+
+    public void setRules(String[] value) {
+        setArrayProperty(PROPERTY_RULES, value);
+    }
+
+    public void addRule(String value) {
+        String[] rules = getRules();
+        String[] newRules = new String[rules.length + 1];
+        for (int i = 0; i < rules.length;i++) {
+            newRules[i] = rules[i];
         }
-        savePreference(PROPERTY_TO_DELETE, toDelete);
+        newRules[newRules.length - 1] = value;
+        setArrayProperty(PROPERTY_RULES, newRules);
+    }
+
+    private String[] getArrayProperty(String property) {
+        String value = settings.getString(property, "");
+        String[] array = value.split("\n");
+        if (array.length == 1 && "".equals(array[0])) {
+            return new String[0];
+        }
+        return array;
+    }
+
+    public void setArrayProperty(String property, String[] value) {
+        String array = "";
+        for (int i = 0; i < value.length; i++) {
+            array += value[i] + "\n";
+        }
+        savePreference(property, array);
     }
 
     private void savePreference(String preference, String value) {
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(preference, value);
         editor.commit();
+        UI.getInstance().settingsChanged();
     }
 
     private void savePreference(String preference, boolean value) {
         SharedPreferences.Editor editor = settings.edit();
         editor.putBoolean(preference, value);
         editor.commit();
+        UI.getInstance().settingsChanged();
     }
 }
