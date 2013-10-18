@@ -118,6 +118,11 @@ public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolde
     }
 
     @Override
+    public void refreshActionBar() {
+        mActivity.invalidateOptionsMenu();
+    }
+
+    @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         FileItem item = StoredItems.getItem(position);
         dispatchOnFileItemClicked(item);
@@ -128,6 +133,14 @@ public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolde
 
         dispatchOnActivityResult(requestCode, resultCode, data);
 
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        dispatchOnPrepareOptionsMenu(menu);
+
+        return true;
     }
 
     @Override
@@ -235,6 +248,13 @@ public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolde
         int size = mListeners.size(), i = 0;
         for (; i < size; i++) {
             mListeners.get(i).onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    private void dispatchOnPrepareOptionsMenu(Menu menu) {
+        int size = mListeners.size(), i = 0;
+        for (; i < size; i++) {
+            mListeners.get(i).onPrepareOptionsMenu(menu);
         }
     }
 

@@ -51,6 +51,13 @@ public class MainActivity extends FragmentActivity {
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        return UI.getInstance().onPrepareOptionsMenu(menu);
+
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
         return UI.getInstance().onCreateOptionsMenu(menu);

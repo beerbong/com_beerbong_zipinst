@@ -473,5 +473,6 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
             }
         }
         textView.setText(text);
+        UI.getInstance().refreshActionBar();
     }
 }

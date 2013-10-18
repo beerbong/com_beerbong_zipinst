@@ -52,11 +52,15 @@ public abstract class UI implements OnItemClickListener {
 
     public abstract void redrawItems();
 
+    public abstract void refreshActionBar();
+
     public abstract void addUIListener(UIListener listener);
 
     public abstract void removeUIListener(UIListener listener);
 
     public abstract void onActivityResult(int requestCode, int resultCode, Intent data);
+
+    public abstract boolean onPrepareOptionsMenu(Menu menu);
 
     public abstract boolean onCreateOptionsMenu(Menu menu);
 
