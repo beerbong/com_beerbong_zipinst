@@ -24,12 +24,14 @@ import android.content.Context;
 
 public class SUManager extends Manager {
 
-    private SH su;
+    private static SH su;
 
     protected SUManager(Context context) {
         super(context);
-        
-        su = new SH("su");
+
+        if (su == null) {
+            su = new SH("su");
+        }
     }
     
     public CommandResult runWaitFor(final String s) {
