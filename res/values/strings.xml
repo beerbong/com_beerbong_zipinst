@@ -20,7 +20,9 @@
     <string name="alert_reboot_now">Install now</string>
 
     <string name="root_needed_title">Root needed</string>
-    <string name="root_needed_summary">Unable to reach root access. The app will close.</string>
+    <string name="root_needed_summary">Unable to reach root access.</string>
+    <string name="root_needed_continue">Continue anyway</string>
+    <string name="root_needed_close">Close the app</string>
 
     <string name="alert_wipe_system_title">System wipe</string>
     <string name="alert_wipe_system_message">You are about to perform a system wipe. Are you sure you want to do that?</string>

@@ -61,10 +61,16 @@ public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolde
         alert.setTitle(R.string.root_needed_title);
         alert.setMessage(R.string.root_needed_summary);
         alert.setCancelable(false);
-        alert.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+        alert.setPositiveButton(R.string.root_needed_close, new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int whichButton) {
                 mActivity.finish();
+                dialog.dismiss();
+            }
+        });
+        alert.setNegativeButton(R.string.root_needed_continue, new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int whichButton) {
                 dialog.dismiss();
             }
         });

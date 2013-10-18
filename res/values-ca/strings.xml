@@ -20,7 +20,9 @@
     <string name="alert_reboot_now">"Instal·lar ara"</string>
 
     <string name="root_needed_title">Root necessari</string>
-    <string name="root_needed_summary">Impossible aconseguir accés root. L\'aplicació es tancarà.</string>
+    <string name="root_needed_summary">Impossible aconseguir accés root.</string>
+    <string name="root_needed_continue">Continuar de totes formes</string>
+    <string name="root_needed_close">Tancar l\'aplicació</string>
 
     <string name="alert_wipe_system_title">System wipe</string>
     <string name="alert_wipe_system_message">Estàs a punt de fer un system wipe. Estàs segur que ho vols fer?</string>
