@@ -45,6 +45,9 @@
     <string name="alert_file_summary">Ruta: %1$s\nTamany: %2$s\nModificat: %3$s</string>
     <string name="alert_file_close">"Tancar"</string>
     <string name="alert_file_md5">MD5</string>
+    <string name="alert_file_delete">Esborrar després de flashear</string>
+
+    <string name="to_be_deleted">(Serà esborrat)</string>
 
     <string name="alert_md5_title">Comprovar MD5</string>
     <string name="alert_md5_summary">Introdueix la suma MD5 per comparar o deixar en blanc per mostrar el MD5</string>
@@ -62,13 +65,13 @@
     <string name="alert_file_incorrect_md5">MD5 no coincideix per a l\'arxiu %1$s</string>
 
     <string name="main_choose_zip">"Afegir arxiu"</string>
-    <string name="main_apply_rules">Aplicar regles</string>
 
     <string name="install_now">"Flashear ara"</string>
 
     <string name="menu_settings">Ajustaments</string>
     <string name="menu_backup">Backup</string>
     <string name="menu_restore">Restore</string>
+    <string name="menu_apply_rules">Aplicar regles</string>
     <string name="menu_advanced_recovery">Recovery</string>
     <string name="menu_loadlist">Carregar llista</string>
     <string name="menu_savelist">Guardar llista</string>
@@ -112,7 +115,6 @@
     <string name="wipe_data">Wipe Data</string>
     <string name="wipe_caches">Wipe Cache &amp; Dalvik</string>
     <string name="fix_permissions">Fix permissions</string>
-    <string name="delete_old">Esborrar zips flasheats</string>
 
     <string name="savelist_title">Guardar llista</string>
     <string name="loadlist_title">Carregar llista</string>
@@ -129,9 +131,12 @@
 
     <string name="rules">Regles de carpeta</string>
     <string name="rules_summary">Afegir arxius de la carpeta automàticamente siguint aquestes regles</string>
+    <string name="rule_starts_with">Comença per</string>
+    <string name="rule_ends_with">Acaba per</string>
+    <string name="rule_equals">Igual a</string>
 
     <string name="alert_rules_title">Regles</string>
-    <string name="rules_text">Afegir zips a la carpeta que comencin amb:\n</string>
+    <string name="rules_text">Afegir els zips de la carpeta que:\n</string>
     <string name="alert_rules_add">Afegir regla</string>
     <string name="alert_rules_done">Fet</string>
     <string name="alert_rules_delete">Esborrar totes</string>

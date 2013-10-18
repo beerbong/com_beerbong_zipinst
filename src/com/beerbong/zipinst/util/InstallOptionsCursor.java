@@ -158,15 +158,6 @@ public class InstallOptionsCursor extends AbstractCursor {
         return false;
     }
 
-    public boolean isDelete() {
-        for (int i = 0; i < mCount; i++) {
-            if (Constants.INSTALL_DELETEOLD.equals(mOption[i])) {
-                return mChecked[i] == 1;
-            }
-        }
-        return false;
-    }
-
     public String getIsCheckedColumn() {
         return "CHECKED";
     }
@@ -186,8 +177,6 @@ public class InstallOptionsCursor extends AbstractCursor {
             return R.string.wipe_caches;
         } else if (Constants.INSTALL_FIXPERM.equals(option)) {
             return R.string.fix_permissions;
-        } else if (Constants.INSTALL_DELETEOLD.equals(option)) {
-            return R.string.delete_old;
         }
         return -1;
     }

@@ -45,6 +45,9 @@
     <string name="alert_file_summary">Ruta: %1$s\nTamaño: %2$s\nModificado: %3$s</string>
     <string name="alert_file_close">"Cerrar"</string>
     <string name="alert_file_md5">MD5</string>
+    <string name="alert_file_delete">Borrar después de flashear</string>
+
+    <string name="to_be_deleted">(Será borrado)</string>
 
     <string name="alert_md5_title">Comprobar MD5</string>
     <string name="alert_md5_summary">Introduce la suma MD5 para comparar o dejar en blanco para mostrar el MD5</string>
@@ -62,13 +65,13 @@
     <string name="alert_file_incorrect_md5">MD5 no coincide para el archivo %1$s</string>
 
     <string name="main_choose_zip">"Añadir archivo"</string>
-    <string name="main_apply_rules">Aplicar reglas</string>
 
     <string name="install_now">"Flashear ahora"</string>
 
     <string name="menu_settings">Ajustes</string>
     <string name="menu_backup">Backup</string>
     <string name="menu_restore">Restore</string>
+    <string name="menu_apply_rules">Aplicar reglas</string>
     <string name="menu_advanced_recovery">Recovery</string>
     <string name="menu_loadlist">Cargar lista</string>
     <string name="menu_savelist">Guardar lista</string>
@@ -112,7 +115,6 @@
     <string name="wipe_data">Wipe Data</string>
     <string name="wipe_caches">Wipe Cache &amp; Dalvik</string>
     <string name="fix_permissions">Fix permissions</string>
-    <string name="delete_old">Borrar zips flasheados</string>
 
     <string name="savelist_title">Guardar lista</string>
     <string name="loadlist_title">Cargar lista</string>
@@ -129,9 +131,12 @@
 
     <string name="rules_title">Reglas de carpeta</string>
     <string name="rules_summary">Añadir archivos de la carpeta automáticamente siguiendo estas reglas</string>
+    <string name="rule_starts_with">Empieza con</string>
+    <string name="rule_ends_with">Acaba con</string>
+    <string name="rule_equals">Igual a</string>
 
     <string name="alert_rules_title">Reglas</string>
-    <string name="rules_text">Añadir zips en la carpeta que empiecen con:\n</string>
+    <string name="rules_text">Añadir los zips de la carpeta que:\n</string>
     <string name="alert_rules_add">Añadir regla</string>
     <string name="alert_rules_done">Hecho</string>
     <string name="alert_rules_delete">Borrar todas</string>

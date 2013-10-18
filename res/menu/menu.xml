@@ -18,6 +18,11 @@
     <item android:id="@+id/settings"
         android:title="@string/menu_settings" />
 
+    <item android:id="@+id/rules"
+        android:title="@string/menu_apply_rules"
+        android:showAsAction="ifRoom|withText"
+        android:icon="?applyIcon" />
+
     <item android:id="@+id/backup"
         android:title="@string/menu_backup"
         android:showAsAction="ifRoom|withText"

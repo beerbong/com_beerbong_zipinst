@@ -45,9 +45,16 @@ import android.os.Environment;
 import android.os.StatFs;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.beerbong.zipinst.R;
@@ -59,6 +66,7 @@ import com.beerbong.zipinst.util.Constants;
 import com.beerbong.zipinst.util.DownloadTask;
 import com.beerbong.zipinst.util.FileItem;
 import com.beerbong.zipinst.util.NoSuException;
+import com.beerbong.zipinst.util.Rule;
 import com.beerbong.zipinst.util.StoredItems;
 
 public class FileManager extends Manager implements UIListener {
@@ -91,44 +99,11 @@ public class FileManager extends Manager implements UIListener {
         if (id == R.id.choose_zip) {
             PreferencesManager pManager = ManagerFactory.getPreferencesManager();
             if (pManager.isUseFolder()) {
-                File folder = new File(ManagerFactory.getPreferencesManager().getFolder());
+                File folder = new File(pManager.getFolder());
                 if (!folder.exists() || !folder.isDirectory()) {
                     Toast.makeText(mContext, R.string.folder_error, Toast.LENGTH_SHORT).show();
                 } else {
-                    String[] rules = pManager.getRules();
-                    if (pManager.hasRules()) {
-                        File[] files = folder.listFiles();
-
-                        Arrays.sort(files, new Comparator<File>() {
-
-                            @Override
-                            public int compare(File lhs, File rhs) {
-                                String name1 = lhs.getName().toLowerCase();
-                                String name2 = rhs.getName().toLowerCase();
-                                return name1.compareTo(name2);
-                            }
-
-                        });
-
-                        for (File file : files) {
-                            for (int i = 0; i < rules.length; i++) {
-                                String fileName = file.getName().toLowerCase();
-                                if (!"".equals(rules[i])
-                                        && fileName.endsWith(".zip")
-                                        && !file.isDirectory()
-                                        && fileName.startsWith(rules[i]
-                                                .toLowerCase())) {
-
-                                    String sdcardPath = getPath(file
-                                            .getAbsolutePath());
-                                    UI.getInstance().addItem(
-                                            file.getAbsolutePath(), sdcardPath);
-                                }
-                            }
-                        }
-                    } else {
-                        mContext.startActivity(new Intent(mContext, Folder.class));
-                    }
+                    mContext.startActivity(new Intent(mContext, Folder.class));
                 }
             } else {
                 PackageManager packageManager = mContext.getPackageManager();
@@ -150,8 +125,47 @@ public class FileManager extends Manager implements UIListener {
         }
     }
 
+    public void applyRules() {
+        PreferencesManager pManager = ManagerFactory.getPreferencesManager();
+        if (pManager.hasRules()) {
+            File folder = new File(pManager.getFolder());
+            Rule[] rules = pManager.getRules();
+            File[] files = folder.listFiles();
+
+            Arrays.sort(files, new Comparator<File>() {
+
+                @Override
+                public int compare(File lhs, File rhs) {
+                    String name1 = lhs.getName().toLowerCase();
+                    String name2 = rhs.getName().toLowerCase();
+                    return name1.compareTo(name2);
+                }
+
+            });
+
+            for (File file : files) {
+                for (int i = 0; i < rules.length; i++) {
+                    String fileName = file.getName();
+                    if (fileName.toLowerCase().endsWith(".zip")
+                            && !file.isDirectory()
+                            && rules[i].apply(fileName)) {
+
+                        String sdcardPath = getPath(file
+                                .getAbsolutePath());
+                        UI.getInstance().addItem(
+                                sdcardPath, file.getAbsolutePath(), false);
+                    }
+                }
+            }
+        }
+    }
+
     public void onFileItemClicked(FileItem item) {
         showInfoDialog(item);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
     }
 
     @Override
@@ -405,7 +419,7 @@ public class FileManager extends Manager implements UIListener {
                     .show();
         } else {
 
-            UI.getInstance().addItem(filePath, sdcardPath);
+            UI.getInstance().addItem(filePath, sdcardPath, false);
         }
     }
 
@@ -587,15 +601,31 @@ public class FileManager extends Manager implements UIListener {
         AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
         alert.setTitle(mContext.getResources().getString(R.string.alert_file_title,
                 new Object[] { item.getName() }));
+        View view = LayoutInflater.from(mContext).inflate(R.layout.fileinfo_dialog,
+                (ViewGroup) ((Activity) mContext).findViewById(R.id.fileinfo_dialog_layout));
+        alert.setView(view);
 
         String path = item.getPath();
         File file = new File(path);
 
-        alert.setMessage(mContext.getResources().getString(
+        String message = mContext.getResources().getString(
                 R.string.alert_file_summary,
                 new Object[] { (file.getParent() == null ? "" : file.getParent()) + "/",
                         Constants.formatSize(file.length()),
-                        Constants.formatDate(file.lastModified()) }));
+                        Constants.formatDate(file.lastModified()) });
+        ((TextView)view.findViewById(R.id.fileinfo_text)).setText(message);
+
+        CheckBox cbDelete = (CheckBox) view.findViewById(R.id.delete);
+        cbDelete.setChecked(item.isDelete());
+        cbDelete.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                item.setDelete(isChecked);
+                UI.getInstance().redrawItems();
+            }
+            
+        });
 
         alert.setPositiveButton(R.string.alert_file_close, new DialogInterface.OnClickListener() {
 

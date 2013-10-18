@@ -21,11 +21,13 @@ public class FileItem {
     private String key;
     private String name;
     private String path;
+    private boolean delete;
 
-    public FileItem(String key, String name, String path) {
+    public FileItem(String key, String name, String path, boolean delete) {
         this.key = key;
         this.name = name;
         this.path = path;
+        this.delete = delete;
     }
 
     public String getKey() {
@@ -37,11 +39,19 @@ public class FileItem {
     }
 
     public String getPath() {
-        return this.path;
+        return path;
     }
 
     public String getShortPath() {
         return this.path.substring(0, this.path.lastIndexOf("/") + 1);
+    }
+
+    public void setDelete(boolean delete) {
+        this.delete = delete;
+    }
+
+    public boolean isDelete() {
+        return delete;
     }
 
     public boolean isZip() {

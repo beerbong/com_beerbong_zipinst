@@ -16,6 +16,8 @@
 
 package com.beerbong.zipinst.activities;
 
+import java.io.File;
+
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -32,10 +34,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +52,7 @@ import com.beerbong.zipinst.manager.ProManager.ManageMode;
 import com.beerbong.zipinst.ui.UI;
 import com.beerbong.zipinst.util.Constants;
 import com.beerbong.zipinst.util.RecoveryInfo;
+import com.beerbong.zipinst.util.Rule;
 import com.beerbong.zipinst.widget.DirectoryChooserDialog;
 import com.beerbong.zipinst.widget.PreferenceActivity;
 
@@ -411,6 +416,11 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         redrawRules(textView);
 
         final EditText editText = (EditText) view.findViewById(R.id.rule_input);
+        final Spinner spinner = (Spinner) view.findViewById(R.id.rule_rule);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.rule_options, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
 
         Button addButton = (Button) view.findViewById(R.id.rule_add);
         addButton.setOnClickListener(new OnClickListener() {
@@ -419,7 +429,7 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
             public void onClick(View v) {
                 String text = editText.getText().toString();
                 if (text != null && !"".equals(text)) {
-                    pManager.addRule(text);
+                    pManager.addRule(text, spinner.getSelectedItemPosition());
                     redrawRules(textView);
                     view.invalidate();
                 }
@@ -432,7 +442,7 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
 
             @Override
             public void onClick(View v) {
-                pManager.setRules(new String[0]);
+                pManager.setRules(null);
                 redrawRules(textView);
                 view.invalidate();
             }
@@ -452,11 +462,13 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
     private void redrawRules(TextView textView) {
         String text = getResources().getString(R.string.rules_text);
         PreferencesManager pManager = ManagerFactory.getPreferencesManager();
-        String[] rules = pManager.getRules();
         if (pManager.hasRules()) {
+            String folder = pManager.getFolder();
+            Rule[] rules = pManager.getRules();
             for (int i = 0; i < rules.length; i++) {
                 if (!"".equals(rules[i])) {
-                    text += rules[i] + "\n";
+                    String type = getResources().getString(rules[i].getTypeString());
+                    text += type + " " + folder + File.separator + rules[i].getName() + "\n";
                 }
             }
         }

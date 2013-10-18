@@ -42,13 +42,15 @@ public abstract class UI implements OnItemClickListener {
 
     public abstract void showNoSuAlertAndExit();
 
-    public abstract void addItem(String realPath, String sdcardPath);
+    public abstract void addItem(String realPath, String sdcardPath, boolean delete);
 
     public abstract void removeItem(FileItem item);
 
     public abstract void removeAllItems();
 
     public abstract void redraw(MainActivity activity);
+
+    public abstract void redrawItems();
 
     public abstract void addUIListener(UIListener listener);
 

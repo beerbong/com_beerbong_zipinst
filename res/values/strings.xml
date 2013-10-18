@@ -45,6 +45,9 @@
     <string name="alert_file_summary">Path: %1$s\nSize: %2$s\nModified: %3$s</string>
     <string name="alert_file_close">Close</string>
     <string name="alert_file_md5">MD5</string>
+    <string name="alert_file_delete">Delete after flashing</string>
+
+    <string name="to_be_deleted">(To be deleted)</string>
 
     <string name="alert_md5_title">Check MD5</string>
     <string name="alert_md5_summary">Enter the MD5 sum to compare or leave blank to show the MD5</string>
@@ -62,12 +65,12 @@
     <string name="alert_file_incorrect_md5">Mismatch MD5 for file %1$s</string>
 
     <string name="main_choose_zip">Add file</string>
-    <string name="main_apply_rules">Apply rules</string>
 
     <string name="install_now">Flash now</string>
 
     <string name="menu_settings">Settings</string>
     <string name="menu_backup">Backup</string>
+    <string name="menu_apply_rules">Apply rules</string>
     <string name="menu_restore">Restore</string>
     <string name="menu_advanced_recovery">Recovery</string>
     <string name="menu_loadlist">Load list</string>
@@ -113,7 +116,6 @@
     <string name="wipe_data">Wipe Data</string>
     <string name="wipe_caches">Wipe Cache &amp; Dalvik</string>
     <string name="fix_permissions">Fix permissions</string>
-    <string name="delete_old">Delete flashed zips</string>
 
     <string name="savelist_title">Save list</string>
     <string name="loadlist_title">Load list</string>
@@ -130,9 +132,12 @@
 
     <string name="rules_title">Folder rules</string>
     <string name="rules_summary">Automatically add files from the folder following these rules</string>
+    <string name="rule_starts_with">Starts with</string>
+    <string name="rule_ends_with">Ends with</string>
+    <string name="rule_equals">Equal to</string>
 
     <string name="alert_rules_title">Rules</string>
-    <string name="rules_text">Add zips in the folder starting with:\n</string>
+    <string name="rules_text">Add the zips in the folder that:\n</string>
     <string name="alert_rules_add">Add rule</string>
     <string name="alert_rules_done">Done</string>
     <string name="alert_rules_delete">Delete all</string>

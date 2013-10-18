@@ -44,6 +44,12 @@ public class MenuManager extends Manager implements UIListener {
         return mMenu;
     }
 
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.rules).setVisible(ManagerFactory.getPreferencesManager().hasRules());
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu) {
 
         mMenu = menu;
@@ -54,10 +60,14 @@ public class MenuManager extends Manager implements UIListener {
         ManagerFactory.getProManager().manage(this, ProManager.ManageMode.Menu);
     }
 
+    @Override
     public void onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.settings:
                 mContext.startActivity(new Intent(mContext, Settings.class));
+                break;
+            case R.id.rules:
+                ManagerFactory.getFileManager().applyRules();
                 break;
             case R.id.backup:
                 ManagerFactory.getRebootManager().showBackupDialog(mContext);

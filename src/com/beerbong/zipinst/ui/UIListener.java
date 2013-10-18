@@ -30,6 +30,8 @@ public interface UIListener {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data);
 
+    public void onPrepareOptionsMenu(Menu menu);
+
     public void onCreateOptionsMenu(Menu menu);
 
     public void onOptionsItemSelected(MenuItem item);

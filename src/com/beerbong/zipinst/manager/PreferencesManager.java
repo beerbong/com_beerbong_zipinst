@@ -25,6 +25,7 @@ import android.preference.PreferenceManager;
 
 import com.beerbong.zipinst.ui.UI;
 import com.beerbong.zipinst.util.Constants;
+import com.beerbong.zipinst.util.Rule;
 
 public class PreferencesManager extends Manager {
 
@@ -265,27 +266,27 @@ public class PreferencesManager extends Manager {
         setArrayProperty(PROPERTY_TO_DELETE, value);
     }
 
-    public String[] getRules() {
-        return getArrayProperty(PROPERTY_RULES);
+    public Rule[] getRules() {
+        return Rule.createRules(settings.getString(PROPERTY_RULES, ""));
     }
 
     public boolean hasRules() {
-        String[] rules = getArrayProperty(PROPERTY_RULES);
-        return rules.length > 0 && !"".equals(rules[0]);
+        Rule[] rules = getRules();
+        return rules.length > 0;
     }
 
-    public void setRules(String[] value) {
-        setArrayProperty(PROPERTY_RULES, value);
+    public void setRules(Rule[] rules) {
+        savePreference(PROPERTY_RULES, Rule.storeRules(rules));
     }
 
-    public void addRule(String value) {
-        String[] rules = getRules();
-        String[] newRules = new String[rules.length + 1];
+    public void addRule(String name, int type) {
+        Rule[] rules = getRules();
+        Rule[] newRules = new Rule[rules.length + 1];
         for (int i = 0; i < rules.length;i++) {
             newRules[i] = rules[i];
         }
-        newRules[newRules.length - 1] = value;
-        setArrayProperty(PROPERTY_RULES, newRules);
+        newRules[newRules.length - 1] = new Rule(name, type);
+        savePreference(PROPERTY_RULES, Rule.storeRules(newRules));
     }
 
     private String[] getArrayProperty(String property) {

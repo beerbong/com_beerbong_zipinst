@@ -41,6 +41,10 @@ public class UIAdapter implements UIListener {
     }
 
     @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+    }
+
+    @Override
     public void onOptionsItemSelected(MenuItem item) {
     }
 

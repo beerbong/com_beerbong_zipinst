@@ -154,7 +154,7 @@ public class Folder extends BackActivity implements FileItemsAdapter.FileItemsAd
                     || file.getName().toLowerCase().endsWith(".sh") && !file.isDirectory()) {
 
                 String sdcardPath = fManager.getPath(file.getAbsolutePath());
-                mItems.add(new FileItem(file.getAbsolutePath(), file.getName(), sdcardPath));
+                mItems.add(new FileItem(file.getAbsolutePath(), file.getName(), sdcardPath, false));
             }
         }
 

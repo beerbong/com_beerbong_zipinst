@@ -76,12 +76,10 @@
 
         <Preference
             android:key="folder"
-            android:dependency="usefolder"
             android:title="@string/folder_title" />
 
         <Preference
             android:key="rules"
-            android:dependency="folder"
             android:title="@string/rules_title"
             android:summary="@string/rules_summary" />
 

@@ -29,6 +29,7 @@
    <attr name="addIcon" format="reference" />
    <attr name="flashIcon" format="reference" />
    <attr name="removeIcon" format="reference" />
+   <attr name="applyIcon" format="reference" />
 
   <declare-styleable name="DragSortListView">
     <attr name="collapsed_height" format="dimension" />

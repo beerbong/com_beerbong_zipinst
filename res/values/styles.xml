@@ -26,6 +26,7 @@
         <item name="addIcon">@drawable/ic_add_light</item>
         <item name="flashIcon">@drawable/ic_flash_light</item>
         <item name="removeIcon">@drawable/ic_delete_light</item>
+        <item name="applyIcon">@drawable/ic_apply_light</item>
     </style>
 
     <!-- dark theme -->
@@ -39,6 +40,7 @@
         <item name="addIcon">@drawable/ic_add_dark</item>
         <item name="flashIcon">@drawable/ic_flash_dark</item>
         <item name="removeIcon">@drawable/ic_delete_dark</item>
+        <item name="applyIcon">@drawable/ic_apply_dark</item>
     </style>
 
 </resources>

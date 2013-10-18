@@ -90,6 +90,9 @@ public class FileItemsAdapter extends ArrayAdapter<FileItem> {
         if (mHolder.showDate()) {
             summaryStr += Constants.formatDate(new File(item.getKey()).lastModified());
         }
+        if (item.isDelete()) {
+            summaryStr += " " + getContext().getResources().getString(R.string.to_be_deleted);
+        }
         summary.setText(summaryStr);
 
         if (!mHolder.useDragAndDrop()) {

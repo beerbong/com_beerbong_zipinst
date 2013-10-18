@@ -154,12 +154,12 @@ public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolde
     }
 
     @Override
-    public void addItem(String realPath, String sdcardPath) {
+    public void addItem(String realPath, String sdcardPath, boolean delete) {
 
         StoredItems.removeItem(realPath);
 
         FileItem item = new FileItem(realPath, sdcardPath.substring(sdcardPath.lastIndexOf("/") + 1),
-                sdcardPath);
+                sdcardPath, delete);
 
         if ("first".equals(ManagerFactory.getPreferencesManager().getZipPosition())) {
             StoredItems.addItem(item, 0);
@@ -168,6 +168,12 @@ public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolde
         }
 
         redrawItems();
+    }
+
+    @Override
+    public void redrawItems() {
+
+        mFileList.setAdapter(new FileItemsAdapter(mActivity, this, StoredItems.getItems()));
     }
 
     @Override
@@ -221,16 +227,8 @@ public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolde
         return false;
     }
 
-    
-
     @Override
     public void settingsChanged() {
-        Item chooseZip = (Item) mActivity.findViewById(R.id.choose_zip);
-        if (ManagerFactory.getPreferencesManager().hasRules()) {
-            chooseZip.setTitle(R.string.main_apply_rules);
-        } else {
-            chooseZip.setTitle(R.string.main_choose_zip);
-        }
     }
 
     private void dispatchOnActivityResult(int requestCode, int resultCode, Intent data) {
@@ -273,10 +271,5 @@ public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolde
         for (; i < size; i++) {
             mListeners.get(i).onNewIntent(intent);
         }
-    }
-
-    private void redrawItems() {
-
-        mFileList.setAdapter(new FileItemsAdapter(mActivity, this, StoredItems.getItems()));
     }
 }
