@@ -214,8 +214,8 @@ public class RecoveryManager extends Manager {
 
                 if (backupFolder != null) {
                     commands.add("ui_print(\" Backup ROM\");");
-                    commands.add("backup_rom(\"/" + internalStorage + "/clockworkmod/backup/"
-                            + backupFolder + "\");");
+                    commands.add("assert(backup_rom(\"/" + internalStorage + "/clockworkmod/backup/"
+                            + backupFolder + "\"));");
                 }
 
                 if (wipeSystem) {
