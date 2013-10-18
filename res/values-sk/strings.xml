@@ -20,8 +20,10 @@
     <string name="alert_reboot_now">Inštalovať teraz</string>
 
     <string name="root_needed_title">Potrebný root</string>
-    <string name="root_needed_summary">Nemožno získať root prístup. Aplikácia bude ukončená.</string>
-    
+    <string name="root_needed_summary">Nemožno získať root prístup.</string>
+    <string name="root_needed_continue">Pokračovať</string>
+    <string name="root_needed_close">Zavrieť</string>
+
     <string name="alert_wipe_system_title">Vymazať všetky dáta</string>
     <string name="alert_wipe_system_message">Chystáte sa vymazať všetky dáta v zariadení. Ste si istí, že to chcete urobiť?</string>
 
@@ -45,6 +47,9 @@
     <string name="alert_file_summary">Cesta: %1$s\nVeľkosť: %2$s\nNaposledy upravené: %3$s</string>
     <string name="alert_file_close">Zavrieť</string>
     <string name="alert_file_md5">MD5</string>
+    <string name="alert_file_delete">Vymazať po flashovaní</string>
+
+    <string name="to_be_deleted">(Bude odstránené)</string>
 
     <string name="alert_md5_title">Kontrola MD5</string>
     <string name="alert_md5_summary">Zadajte MD5 súčet pre porovnanie, alebo nechajte prázdne pre zobrazenie MD5 súčtu</string>
@@ -67,6 +72,7 @@
 
     <string name="menu_settings">Nastavenia</string>
     <string name="menu_backup">Zálohovať</string>
+    <string name="menu_apply_rules">Použiť pravidlá</string>
     <string name="menu_restore">Obnoviť</string>
     <string name="menu_advanced_recovery">Recovery</string>
     <string name="menu_loadlist">Načítať zoznam</string>
@@ -124,6 +130,18 @@
 
     <string name="folder_title">Predvolený priečinok</string>
     <string name="folder_error">Priečinok neexistuje alebo nie je platným priečinkom</string>
+    
+    <string name="rules_title">Pravidlá priečinkov</string>
+    <string name="rules_summary">Automaticky pridať súbory z priečinka spĺňajúceho tieto pravidlá</string>
+    <string name="rule_starts_with">Začínajú na</string>
+    <string name="rule_ends_with">Končia na</string>
+    <string name="rule_equals">Rovnajú sa s</string>
+
+    <string name="alert_rules_title">Pravidlá</string>
+    <string name="rules_text">Pridať ZIP súbory z priečinka, ktoré:\n</string>
+    <string name="alert_rules_add">Pridať pravidlo</string>
+    <string name="alert_rules_done">Hotovo</string>
+    <string name="alert_rules_delete">Vymazať všetky</string>
 
     <string name="folder_activity_title">Vyberte súbor</string>
     <string name="alert_remove_file_title">Vymazať súbor</string>
