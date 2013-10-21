@@ -94,13 +94,6 @@
                 android:value="com.beerbong.zipinst.MainActivity" />
         </activity>
         <activity
-            android:name="com.beerbong.zipinst.activities.Folder"
-            android:label="@string/folder_activity_title" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.beerbong.zipinst.MainActivity" />
-        </activity>
-        <activity
             android:name="com.beerbong.zipinst.activities.About"
             android:label="@string/about_title" >
             <meta-data

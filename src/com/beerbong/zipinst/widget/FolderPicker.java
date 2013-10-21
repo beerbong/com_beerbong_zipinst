@@ -57,16 +57,18 @@ public class FolderPicker extends Dialog implements OnItemClickListener, OnClick
     private OnClickListener mListener;
     private boolean mAcceptFiles;
     private View mOkButton;
+    private String[] mFileExtensions;
 
     public FolderPicker(Context context, OnClickListener listener, String defaultFolder) {
-        this(context, listener, defaultFolder, false);
+        this(context, listener, defaultFolder, null, false);
     }
 
     public FolderPicker(Context context, OnClickListener listener, String defaultFolder,
-            boolean acceptFiles) {
+            String[] fileExtensions, boolean acceptFiles) {
         super(context);
         mListener = listener;
         mAcceptFiles = acceptFiles;
+        mFileExtensions = fileExtensions;
         setTitle(acceptFiles ? R.string.pick_file : R.string.pick_folder);
         setContentView(R.layout.picker_folders);
 
@@ -128,7 +130,15 @@ public class FolderPicker extends Dialog implements OnItemClickListener, OnClick
             File[] files = mPath.listFiles(mFileFilter);
             Arrays.sort(files);
             for (int i = 0; i < files.length; i++) {
-                mAdapter.add(new Folder(files[i]));
+                if (mFileExtensions == null) {
+                    mAdapter.add(new Folder(files[i]));
+                } else {
+                    for (int j=0;j<mFileExtensions.length;j++) {
+                        if (files[i].getName().endsWith(mFileExtensions[j])) {
+                            mAdapter.add(new Folder(files[i]));
+                        }
+                    }
+                }
             }
         }
         mAdapter.notifyDataSetChanged();
@@ -146,6 +156,8 @@ public class FolderPicker extends Dialog implements OnItemClickListener, OnClick
             } else {
                 mCurrentFolder.setText(item.getAbsolutePath());
                 mFilePath = item;
+                mListener.onClick(this, DialogInterface.BUTTON_POSITIVE);
+                dismiss();
             }
         } else {
             mPath = (Folder) mAdapter.getItem(position);

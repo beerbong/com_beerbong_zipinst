@@ -58,7 +58,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.beerbong.zipinst.R;
-import com.beerbong.zipinst.activities.Folder;
 import com.beerbong.zipinst.manager.SUManager.CommandResult;
 import com.beerbong.zipinst.ui.UI;
 import com.beerbong.zipinst.ui.UIListener;
@@ -68,6 +67,7 @@ import com.beerbong.zipinst.util.FileItem;
 import com.beerbong.zipinst.util.NoSuException;
 import com.beerbong.zipinst.util.Rule;
 import com.beerbong.zipinst.util.StoredItems;
+import com.beerbong.zipinst.widget.FolderPicker;
 
 public class FileManager extends Manager implements UIListener {
 
@@ -103,7 +103,14 @@ public class FileManager extends Manager implements UIListener {
                 if (!folder.exists() || !folder.isDirectory()) {
                     Toast.makeText(mContext, R.string.folder_error, Toast.LENGTH_SHORT).show();
                 } else {
-                    mContext.startActivity(new Intent(mContext, Folder.class));
+                    new FolderPicker(mContext, new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            FolderPicker picker = (FolderPicker) dialog;
+                            addFile(picker.getPath());
+                        }
+                    }, pManager.getFolder(), new String[] {"zip"}, true).show();
                 }
             } else {
                 PackageManager packageManager = mContext.getPackageManager();
