@@ -53,7 +53,7 @@ import com.beerbong.zipinst.ui.UI;
 import com.beerbong.zipinst.util.Constants;
 import com.beerbong.zipinst.util.RecoveryInfo;
 import com.beerbong.zipinst.util.Rule;
-import com.beerbong.zipinst.widget.DirectoryChooserDialog;
+import com.beerbong.zipinst.widget.FolderPicker;
 import com.beerbong.zipinst.widget.PreferenceActivity;
 
 public class Settings extends PreferenceActivity implements OnPreferenceChangeListener {
@@ -206,24 +206,28 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
 
         } else if (Constants.PREFERENCE_SETTINGS_DOWNLOAD_PATH.equals(key)) {
 
-            selectFolder(pManager.getDownloadPath(), new DirectoryChooserDialog.DirectoryChooserListener() {
+            pickFolder(pManager.getDownloadPath(), new DialogInterface.OnClickListener() {
 
                 @Override
-                public void onDirectoryChosen(String chosenDir) {
-                    ManagerFactory.getPreferencesManager().setDownloadPath(chosenDir);
+                public void onClick(DialogInterface dialog, int which) {
+                    FolderPicker picker = (FolderPicker) dialog;
+                    ManagerFactory.getPreferencesManager().setDownloadPath(picker.getPath());
                     updateSummaries();
                 }
+
             });
 
         } else if (Constants.PREFERENCE_SETTINGS_FOLDER.equals(key)) {
 
-            selectFolder(pManager.getFolder(), new DirectoryChooserDialog.DirectoryChooserListener() {
+            pickFolder(pManager.getFolder(), new DialogInterface.OnClickListener() {
 
                 @Override
-                public void onDirectoryChosen(String chosenDir) {
-                    ManagerFactory.getPreferencesManager().setFolder(chosenDir);
+                public void onClick(DialogInterface dialog, int which) {
+                    FolderPicker picker = (FolderPicker) dialog;
+                    ManagerFactory.getPreferencesManager().setFolder(picker.getPath());
                     updateSummaries();
                 }
+
             });
 
         } else if (Constants.PREFERENCE_SETTINGS_RULES.equals(key)) {
@@ -282,9 +286,8 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         mFolder.setSummary(pManager.getFolder());
     }
 
-    private void selectFolder(String defaultValue,
-            DirectoryChooserDialog.DirectoryChooserListener listener) {
-        new DirectoryChooserDialog(this, listener).chooseDirectory(defaultValue);
+    private void pickFolder(String defaultValue, DialogInterface.OnClickListener listener) {
+        new FolderPicker(this, listener, defaultValue).show();
     }
 
     private void selectSdcard(final boolean internal) {
