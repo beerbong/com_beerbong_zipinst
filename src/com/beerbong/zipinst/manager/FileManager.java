@@ -219,7 +219,24 @@ public class FileManager extends Manager implements UIListener {
                 return;
             }
 
-            String filePath = data.getData().getPath();
+            Uri uri = data.getData();
+
+            String filePath = uri.getPath();
+
+            if (!(new File(filePath)).exists()) {
+                ContentResolver cr = mContext.getContentResolver();
+                Cursor cursor = cr.query(uri, null, null, null, null);
+                try {
+                    if (cursor.moveToNext()) {
+                        int index = cursor.getColumnIndex(MediaStore.MediaColumns.DATA);
+                        if (index >= 0) {
+                            filePath = cursor.getString(index);
+                        }
+                    }
+                } finally {
+                    cursor.close();
+                }
+            }
 
             addFile(filePath);
 
