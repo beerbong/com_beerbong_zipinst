@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -37,25 +38,28 @@ import com.beerbong.zipinst.util.StoredItems;
 
 public class RecoveryManager extends Manager {
 
-    private SparseArray<RecoveryInfo> recoveries = new SparseArray<RecoveryInfo>();
+    private SparseArray<RecoveryInfo> mRecoveries = new SparseArray<RecoveryInfo>();
+    private Map<Integer, List<String>> mProCommands;
 
     protected RecoveryManager(Context context) {
         super(context);
 
-        recoveries.put(R.id.cwmbased, new CwmRecovery(context));
-        recoveries.put(R.id.twrp, new TwrpRecovery());
-        recoveries.put(R.id.fourext, new FourExtRecovery());
+        mRecoveries.put(R.id.cwmbased, new CwmRecovery(context));
+        mRecoveries.put(R.id.twrp, new TwrpRecovery());
+        mRecoveries.put(R.id.fourext, new FourExtRecovery());
 
         if (!ManagerFactory.getPreferencesManager().existsRecovery()) {
-            test(recoveries.get(R.id.fourext));
+            test(mRecoveries.get(R.id.fourext));
         }
+
+        ManagerFactory.getProManager().manage(this, ProManager.ManageMode.Recovery);
     }
 
     public RecoveryInfo getRecovery() {
         String recovery = ManagerFactory.getPreferencesManager().getRecovery();
-        for (int i = 0; i < recoveries.size(); i++) {
-            int key = recoveries.keyAt(i);
-            RecoveryInfo info = recoveries.get(key);
+        for (int i = 0; i < mRecoveries.size(); i++) {
+            int key = mRecoveries.keyAt(i);
+            RecoveryInfo info = mRecoveries.get(key);
             if (info.getName().equals(recovery)) {
                 return info;
             }
@@ -64,7 +68,7 @@ public class RecoveryManager extends Manager {
     }
 
     public void setRecovery(int id) {
-        RecoveryInfo info = recoveries.get(id);
+        RecoveryInfo info = mRecoveries.get(id);
         ManagerFactory.getPreferencesManager().setRecovery(info.getName());
         ManagerFactory.getPreferencesManager().setInternalStorage(info.getInternalSdcard());
         ManagerFactory.getPreferencesManager().setExternalStorage(info.getExternalSdcard());
@@ -153,6 +157,10 @@ public class RecoveryManager extends Manager {
         }
     }
 
+    public void setProCommands(Map<Integer, List<String>> proCommands) {
+        mProCommands = proCommands;
+    }
+
     public String[] getCommands(boolean wipeSystem, boolean wipeData, boolean wipeCaches,
             boolean fixPermissions, String backupFolder, String backupOptions, String restore)
             throws Exception {
@@ -165,6 +173,11 @@ public class RecoveryManager extends Manager {
         String internalStorage = ManagerFactory.getPreferencesManager().getInternalStorage();
 
         String sbin = getSBINFolder();
+
+        List<String> proCommands = mProCommands.get(info.getId());
+        if (proCommands != null) {
+            commands.addAll(proCommands);
+        }
 
         switch (info.getId()) {
             case R.id.cwmbased:
@@ -367,10 +380,10 @@ public class RecoveryManager extends Manager {
                     dialog.dismiss();
                     switch (info.getId()) {
                         case R.id.fourext:
-                            test(recoveries.get(R.id.twrp));
+                            test(mRecoveries.get(R.id.twrp));
                             break;
                         case R.id.twrp:
-                            test(recoveries.get(R.id.cwmbased));
+                            test(mRecoveries.get(R.id.cwmbased));
                             break;
                     }
                 }
@@ -379,10 +392,10 @@ public class RecoveryManager extends Manager {
         } else {
             switch (info.getId()) {
                 case R.id.fourext:
-                    test(recoveries.get(R.id.twrp));
+                    test(mRecoveries.get(R.id.twrp));
                     break;
                 case R.id.twrp:
-                    test(recoveries.get(R.id.cwmbased));
+                    test(mRecoveries.get(R.id.cwmbased));
                     break;
             }
         }

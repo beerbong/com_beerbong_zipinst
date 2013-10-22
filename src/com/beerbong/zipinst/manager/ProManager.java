@@ -22,7 +22,8 @@ public interface ProManager {
 
     public static enum ManageMode {
         Settings,
-        Menu
+        Menu,
+        Recovery
     }
 
     public void setContext(Context context);
