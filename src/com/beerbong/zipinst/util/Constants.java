@@ -215,4 +215,9 @@ public class Constants {
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
+
+    public static String replace(String original, String starts, String replace) {
+        return !original.startsWith(starts) ? original : replace
+                + original.substring(starts.length());
+    }
 }

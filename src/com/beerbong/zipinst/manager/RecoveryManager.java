@@ -25,14 +25,14 @@ import java.util.List;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.os.Build.VERSION;
-import android.os.Environment;
 import android.util.SparseArray;
 import android.widget.Toast;
 
 import com.beerbong.zipinst.R;
+import com.beerbong.zipinst.manager.recovery.CwmRecovery;
+import com.beerbong.zipinst.manager.recovery.FourExtRecovery;
+import com.beerbong.zipinst.manager.recovery.TwrpRecovery;
 import com.beerbong.zipinst.util.FileItem;
-import com.beerbong.zipinst.util.RecoveryInfo;
 import com.beerbong.zipinst.util.StoredItems;
 
 public class RecoveryManager extends Manager {
@@ -42,30 +42,9 @@ public class RecoveryManager extends Manager {
     protected RecoveryManager(Context context) {
         super(context);
 
-        String sdcard = "sdcard";
-        String externalsd = "external_sd";
-        String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath();
-        if(VERSION.SDK_INT > 16) {
-            String path = System.getenv("EMULATED_STORAGE_TARGET");
-            if (path != null && dirPath != null && dirPath.startsWith(path)) {
-                sdcard = sdcard + dirPath.replace(path, "");
-            } else if (path != null) {
-                sdcard = path;
-            }
-            if (ManagerFactory.getFileManager().hasExternalStorage()) {
-                path = System.getenv("SECONDARY_STORAGE");
-                if (path != null) {
-                    externalsd = path;
-                }
-            }
-        } else if (dirPath.startsWith("/mnt/emmc")) {
-            sdcard = "emmc";
-            externalsd = "sdcard";
-        }
-
-        recoveries.put(R.id.cwmbased, new RecoveryInfo(R.id.cwmbased, "cwmbased", sdcard, externalsd));
-        recoveries.put(R.id.twrp, new RecoveryInfo(R.id.twrp, "twrp", "sdcard", "external_sd"));
-        recoveries.put(R.id.fourext, new RecoveryInfo(R.id.fourext, "fourext", "sdcard", "external_sd"));
+        recoveries.put(R.id.cwmbased, new CwmRecovery(context));
+        recoveries.put(R.id.twrp, new TwrpRecovery());
+        recoveries.put(R.id.fourext, new FourExtRecovery());
 
         if (!ManagerFactory.getPreferencesManager().existsRecovery()) {
             test(R.id.fourext);
