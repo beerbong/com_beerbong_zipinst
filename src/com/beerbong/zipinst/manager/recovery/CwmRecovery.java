@@ -63,8 +63,11 @@ public class CwmRecovery extends RecoveryInfo {
                 String number = path.replace(emulatedStorage, "");
                 dirPath = Constants.replace(dirPath, "/sdcard", "/sdcard" + number);
             }
-            dirPath = Constants.replace(dirPath, System.getenv("EMULATED_STORAGE_SOURCE"),
-                    "/data/media");
+            emulatedStorage = System.getenv("EMULATED_STORAGE_SOURCE");
+            if (emulatedStorage != null) {
+                dirPath = Constants.replace(dirPath, emulatedStorage,
+                        "/data/media");
+            }
         } else if (dirPath.startsWith("/mnt/emmc")) {
             dirPath = "emmc";
         }
