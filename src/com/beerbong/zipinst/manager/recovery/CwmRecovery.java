@@ -38,6 +38,16 @@ public class CwmRecovery extends RecoveryInfo {
         setExternalSdcard(externalStorage(context));
     }
 
+    @Override
+    public String getFullName(Context context) {
+        return context.getString(R.string.recovery_cwm);
+    }
+
+    @Override
+    public String getFolderPath() {
+        return "/sdcard/clockworkmod/";
+    }
+
     private String internalStorage() {
         if (Environment.getExternalStorageDirectory() == null) {
             return "sdcard";

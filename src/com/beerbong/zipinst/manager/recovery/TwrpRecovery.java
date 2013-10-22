@@ -16,6 +16,8 @@
 
 package com.beerbong.zipinst.manager.recovery;
 
+import android.content.Context;
+
 import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.manager.RecoveryInfo;
 
@@ -29,5 +31,15 @@ public class TwrpRecovery extends RecoveryInfo {
         setName("twrp");
         setInternalSdcard("sdcard");
         setExternalSdcard("external_sd");
+    }
+
+    @Override
+    public String getFullName(Context context) {
+        return context.getString(R.string.recovery_twrp);
+    }
+
+    @Override
+    public String getFolderPath() {
+        return "/sdcard/TWRP/";
     }
 }

@@ -16,6 +16,8 @@
 
 package com.beerbong.zipinst.manager;
 
+import android.content.Context;
+
 public abstract class RecoveryInfo {
 
     private int id;
@@ -57,4 +59,8 @@ public abstract class RecoveryInfo {
     public void setExternalSdcard(String sdcard) {
         this.externalSdcard = sdcard;
     }
+
+    public abstract String getFullName(Context context);
+
+    public abstract String getFolderPath();
 }

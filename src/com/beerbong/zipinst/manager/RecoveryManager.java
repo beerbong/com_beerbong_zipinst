@@ -47,7 +47,7 @@ public class RecoveryManager extends Manager {
         recoveries.put(R.id.fourext, new FourExtRecovery());
 
         if (!ManagerFactory.getPreferencesManager().existsRecovery()) {
-            test(R.id.fourext);
+            test(recoveries.get(R.id.fourext));
         }
     }
 
@@ -332,33 +332,20 @@ public class RecoveryManager extends Manager {
         return commands.toArray(new String[commands.size()]);
     }
 
-    private void test(final int id) {
+    private void test(final RecoveryInfo info) {
 
-        String name = null, path = null;
-
-        switch (id) {
-            case R.id.fourext:
-                name = mContext.getString(R.string.recovery_4ext);
-                path = "/cache/4ext/";
-                break;
-            case R.id.twrp:
-                name = mContext.getString(R.string.recovery_twrp);
-                String sdcard = "sdcard";
-                path = "/" + sdcard + "/TWRP/";
-                break;
-            case R.id.cwmbased:
-                setRecovery(R.id.cwmbased);
-                Toast.makeText(
-                        mContext,
-                        mContext.getString(R.string.recovery_changed,
-                                mContext.getString(R.string.recovery_cwm)), Toast.LENGTH_LONG)
-                        .show();
-                return;
+        if (info.getId() == R.id.cwmbased) {
+            setRecovery(R.id.cwmbased);
+            Toast.makeText(
+                    mContext,
+                    mContext.getString(R.string.recovery_changed,
+                            mContext.getString(R.string.recovery_cwm)), Toast.LENGTH_LONG).show();
+            return;
         }
 
-        final String recoveryName = name;
+        final String recoveryName = info.getFullName(mContext);
 
-        File folder = new File(path);
+        File folder = new File(info.getFolderPath());
         if (folder.exists()) {
             AlertDialog.Builder alert = new AlertDialog.Builder(mContext);
             alert.setTitle(R.string.recovery_change_alert_title);
@@ -368,7 +355,7 @@ public class RecoveryManager extends Manager {
 
                 public void onClick(DialogInterface dialog, int whichButton) {
                     dialog.dismiss();
-                    setRecovery(id);
+                    setRecovery(info.getId());
                     Toast.makeText(mContext,
                             mContext.getString(R.string.recovery_changed, recoveryName),
                             Toast.LENGTH_LONG).show();
@@ -378,24 +365,24 @@ public class RecoveryManager extends Manager {
 
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.dismiss();
-                    switch (id) {
+                    switch (info.getId()) {
                         case R.id.fourext:
-                            test(R.id.twrp);
+                            test(recoveries.get(R.id.twrp));
                             break;
                         case R.id.twrp:
-                            test(R.id.cwmbased);
+                            test(recoveries.get(R.id.cwmbased));
                             break;
                     }
                 }
             });
             alert.show();
         } else {
-            switch (id) {
+            switch (info.getId()) {
                 case R.id.fourext:
-                    test(R.id.twrp);
+                    test(recoveries.get(R.id.twrp));
                     break;
                 case R.id.twrp:
-                    test(R.id.cwmbased);
+                    test(recoveries.get(R.id.cwmbased));
                     break;
             }
         }
