@@ -174,7 +174,7 @@ public class RecoveryManager extends Manager {
 
         String sbin = getSBINFolder();
 
-        List<String> proCommands = mProCommands.get(info.getId());
+        List<String> proCommands = mProCommands == null ? null : mProCommands.get(info.getId());
         if (proCommands != null) {
             commands.addAll(proCommands);
         }
