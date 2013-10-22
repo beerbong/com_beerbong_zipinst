@@ -58,6 +58,7 @@ public class Constants {
     public static final String PREFERENCE_SETTINGS_RECOVERY = "recovery";
     public static final String PREFERENCE_SETTINGS_INTERNAL_SDCARD = "internalsdcard";
     public static final String PREFERENCE_SETTINGS_EXTERNAL_SDCARD = "externalsdcard";
+    public static final String PREFERENCE_SETTINGS_FORCE_EXTERNAL_SDCARD = "mountextsdcard";
     public static final String PREFERENCE_SETTINGS_DAD = "draganddrop";
     public static final String PREFERENCE_SETTINGS_DARK_THEME = "darktheme";
     public static final String PREFERENCE_SETTINGS_CHECK_EXISTS = "checkexists";

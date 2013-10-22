@@ -503,6 +503,9 @@ public class FileManager extends Manager implements UIListener {
                 }
             }
         }
+        if (filePath.startsWith("//")) {
+            filePath = filePath.substring(1);
+        }
         return filePath;
     }
 

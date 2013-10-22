@@ -61,6 +61,7 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
     private Preference mRecovery;
     private Preference mInternalSdcard;
     private Preference mExternalSdcard;
+    private CheckBoxPreference mForceExternalSdcard;
     private CheckBoxPreference mDad;
     private CheckBoxPreference mDarkTheme;
     private CheckBoxPreference mCheckExists;
@@ -84,6 +85,7 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         mRecovery = findPreference(Constants.PREFERENCE_SETTINGS_RECOVERY);
         mInternalSdcard = findPreference(Constants.PREFERENCE_SETTINGS_INTERNAL_SDCARD);
         mExternalSdcard = findPreference(Constants.PREFERENCE_SETTINGS_EXTERNAL_SDCARD);
+        mForceExternalSdcard = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_FORCE_EXTERNAL_SDCARD);
         mDad = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_DAD);
         mDarkTheme = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_DARK_THEME);
         mCheckExists = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_CHECK_EXISTS);
@@ -99,6 +101,8 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         mFolder = findPreference(Constants.PREFERENCE_SETTINGS_FOLDER);
 
         PreferencesManager pManager = ManagerFactory.getPreferencesManager();
+
+        mForceExternalSdcard.setChecked(pManager.isForceExternalStorage());
 
         mDad.setChecked(pManager.isUseDragAndDrop());
 
@@ -126,6 +130,7 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         
         if (!ManagerFactory.getFileManager().hasExternalStorage()) {
             getPreferenceScreen().removePreference(mExternalSdcard);
+            getPreferenceScreen().removePreference(mForceExternalSdcard);
         }
 
         ProManager proManager = ManagerFactory.getProManager();

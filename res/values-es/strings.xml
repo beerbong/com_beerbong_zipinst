@@ -99,6 +99,9 @@
     <string name="sdcard_alert_summary">"Especifica el nombre del storage"</string>
     <string name="sdcard_alert_error">"Por favor especifica el nombre del storage"</string>
 
+    <string name="force_extsdcard_mount_title">Forzar montaje sdcard externa</string>
+    <string name="force_extsdcard_mount_summary">Seleccionar esta opción si tu CWM recovery no monta la sdcard externa por defecto</string>
+
     <string name="about_title">Sobre</string>
     <string name="about_zip_title">ZipInstaller</string>
     <string name="about_version_title">"Versión"</string>

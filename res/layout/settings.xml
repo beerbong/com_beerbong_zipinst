@@ -33,6 +33,11 @@
             android:summary="@string/externalsdcard_summary"
             android:title="@string/externalsdcard_title" />
 
+        <CheckBoxPreference
+            android:key="mountextsdcard"
+            android:summary="@string/force_extsdcard_mount_summary"
+            android:title="@string/force_extsdcard_mount_title" />
+
         <MultiSelectListPreference
             android:entries="@array/wipe_options"
             android:entryValues="@array/wipe_options_values"

@@ -176,13 +176,13 @@ public class RecoveryManager extends Manager {
                         + "\");");
                 commands.add("ui_print(\"-------------------------------------\");");
 
-                // TODO test this later
-//                if (info.getId() == R.id.cwmbased
-//                        && ManagerFactory.getFileManager().hasExternalStorage()) {
-//                    commands.add("ui_print(\" Mounting external sd\");");
-//                    commands.add("mount(\""
-//                            + ManagerFactory.getPreferencesManager().getExternalStorage() + "\")");
-//                }
+                if (info.getId() == R.id.cwmbased
+                        && ManagerFactory.getFileManager().hasExternalStorage()
+                        && ManagerFactory.getPreferencesManager().isForceExternalStorage()) {
+                    commands.add("ui_print(\" Mounting external sd\");");
+                    commands.add("run_program(\"/sbin/mount\", \""
+                            + ManagerFactory.getPreferencesManager().getExternalStorage() + "\");");
+                }
 
                 if (restore != null) {
                     commands.add("ui_print(\" Restore ROM\");");
