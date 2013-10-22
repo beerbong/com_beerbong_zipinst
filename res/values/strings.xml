@@ -133,7 +133,7 @@
     <string name="folder_error">The folder doesn\'t exist or is not a directory</string>
 
     <string name="pick_file">Pick file</string>
-    <string name="pick_folder">Pick fodler</string>
+    <string name="pick_folder">Pick folder</string>
 
     <string name="rules_title">Folder rules</string>
     <string name="rules_summary">Automatically add files from the folder following these rules</string>

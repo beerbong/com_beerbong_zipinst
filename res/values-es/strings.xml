@@ -131,6 +131,9 @@
     <string name="folder_title">Carpeta por defecto</string>
     <string name="folder_error">La carpeta no existe o no es un directorio</string>
 
+    <string name="pick_file">Seleccionar archivo</string>
+    <string name="pick_folder">Seleccionar carpeta</string>
+
     <string name="rules_title">Reglas de carpeta</string>
     <string name="rules_summary">Añadir archivos de la carpeta automáticamente siguiendo estas reglas</string>
     <string name="rule_starts_with">Empieza con</string>

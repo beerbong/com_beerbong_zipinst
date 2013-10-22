@@ -131,7 +131,10 @@
     <string name="folder_title">Carpeta per defecte</string>
     <string name="folder_error">La carpeta no existeix o no és un directori</string>
 
-    <string name="rules">Regles de carpeta</string>
+    <string name="pick_file">Seleccionar arxiu</string>
+    <string name="pick_folder">Seleccionar carpeta</string>
+
+    <string name="rules_title">Regles de carpeta</string>
     <string name="rules_summary">Afegir arxius de la carpeta automàticamente siguint aquestes regles</string>
     <string name="rule_starts_with">Comença per</string>
     <string name="rule_ends_with">Acaba per</string>
