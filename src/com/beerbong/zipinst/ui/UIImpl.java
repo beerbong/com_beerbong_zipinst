@@ -173,6 +173,13 @@ public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolde
     }
 
     @Override
+    public void onPause() {
+
+        dispatchOnPause();
+
+    }
+
+    @Override
     public void addItem(String realPath, String sdcardPath, boolean delete) {
 
         StoredItems.removeItem(realPath);
@@ -296,6 +303,13 @@ public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolde
         int size = mListeners.size(), i = 0;
         for (; i < size; i++) {
             mListeners.get(i).onNewIntent(intent);
+        }
+    }
+
+    private void dispatchOnPause() {
+        int size = mListeners.size(), i = 0;
+        for (; i < size; i++) {
+            mListeners.get(i).onPause();
         }
     }
 }

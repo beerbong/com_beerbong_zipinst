@@ -32,6 +32,7 @@ public class ManagerFactory {
     private static PreferencesManager mPreferencesManager;
     private static UpdateManager mUpdateManager;
     private static SUManager mSUManager;
+    private static DownloadManager mDownloadManager;
 
     public static void start(Activity mActivity) throws NoSuException {
         mProManager = new ProManagerImpl(mActivity);
@@ -43,6 +44,7 @@ public class ManagerFactory {
             mPreferencesManager = new PreferencesManager(mActivity);
         mUpdateManager = new UpdateManager(mActivity);
         mSUManager = new SUManager(mActivity);
+        mDownloadManager = new DownloadManager(mActivity);
     }
 
     public static FileManager getFileManager() {
@@ -87,5 +89,9 @@ public class ManagerFactory {
 
     public static ProManager getProManager() {
         return mProManager;
+    }
+
+    public static DownloadManager getDownloadManager() {
+        return mDownloadManager;
     }
 }

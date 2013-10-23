@@ -65,6 +65,8 @@ public class DownloadTask extends AsyncTask<Void, Integer, Integer> {
 
         PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
         mWakeLock = pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, MainActivity.class.getName());
+
+        ManagerFactory.getDownloadManager().addDownloadTask(this);
     }
 
     public void attach(ProgressDialog dialog) {
@@ -73,10 +75,11 @@ public class DownloadTask extends AsyncTask<Void, Integer, Integer> {
     }
 
     public void detach() {
-        if (mDialog != null)
+        if (mDialog != null) {
             mDialog.dismiss();
+        }
         mDialog = null;
-        mContext = null;
+        ManagerFactory.getDownloadManager().removeDownloadTask(this);
     }
 
     public boolean isDone() {
@@ -198,7 +201,9 @@ public class DownloadTask extends AsyncTask<Void, Integer, Integer> {
     @Override
     protected void onCancelled(Integer result) {
         mDone = true;
-        mDialog.dismiss();
+        if (mDialog != null) {
+            mDialog.dismiss();
+        }
         mWakeLock.release();
         mWakeLock.acquire(30000);
         if (result == null) {
@@ -218,12 +223,15 @@ public class DownloadTask extends AsyncTask<Void, Integer, Integer> {
             default:
                 Toast.makeText(mContext, R.string.downloading_error, Toast.LENGTH_SHORT).show();
         }
+        ManagerFactory.getDownloadManager().removeDownloadTask(this);
     }
 
     @Override
     protected void onPostExecute(Integer result) {
         mDone = true;
-        mDialog.dismiss();
+        if (mDialog != null) {
+            mDialog.dismiss();
+        }
         mWakeLock.release();
         mWakeLock.acquire(30000);
 
@@ -249,6 +257,7 @@ public class DownloadTask extends AsyncTask<Void, Integer, Integer> {
             default:
                 Toast.makeText(mContext, R.string.downloading_error, Toast.LENGTH_SHORT).show();
         }
+        ManagerFactory.getDownloadManager().removeDownloadTask(this);
     }
 
     @Override

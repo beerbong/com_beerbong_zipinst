@@ -105,4 +105,8 @@ public class MenuManager extends Manager implements UIListener {
     @Override
     public void onNewIntent(Intent intent) {
     }
+
+    @Override
+    public void onPause() {
+    }
 }

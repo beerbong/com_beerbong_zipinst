@@ -77,4 +77,12 @@ public class MainActivity extends FragmentActivity {
         UI.getInstance().onNewIntent(intent);
 
     }
+
+    @Override
+    public void onPause() {
+
+        UI.getInstance().onPause();
+        super.onPause();
+
+    }
 }

@@ -69,4 +69,6 @@ public abstract class UI implements OnItemClickListener {
     public abstract void onNewIntent(Intent intent);
 
     public abstract void settingsChanged();
+
+    public abstract void onPause();
 }

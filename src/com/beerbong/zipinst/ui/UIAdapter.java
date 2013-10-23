@@ -51,4 +51,8 @@ public class UIAdapter implements UIListener {
     @Override
     public void onNewIntent(Intent intent) {
     }
+
+    @Override
+    public void onPause() {
+    }
 }

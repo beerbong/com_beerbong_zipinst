@@ -37,4 +37,6 @@ public interface UIListener {
     public void onOptionsItemSelected(MenuItem item);
 
     public void onNewIntent(Intent intent);
+
+    public void onPause();
 }

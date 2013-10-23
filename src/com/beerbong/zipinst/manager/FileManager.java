@@ -209,6 +209,10 @@ public class FileManager extends Manager implements UIListener {
         }
     }
 
+    @Override
+    public void onPause() {
+    }
+
     public boolean hasExternalStorage() {
         return Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
     }
@@ -591,7 +595,7 @@ public class FileManager extends Manager implements UIListener {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        progressDialog.dismiss();
+                        downloadFile.detach();
                         downloadFile.cancel(true);
                     }
                 });

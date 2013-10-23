@@ -86,6 +86,10 @@ public class RebootManager extends Manager implements UIListener {
     public void onNewIntent(Intent intent) {
     }
 
+    @Override
+    public void onPause() {
+    }
+
     public void showBackupDialog(Context context) {
         showBackupDialog(context, true, false, false, false, false);
     }
