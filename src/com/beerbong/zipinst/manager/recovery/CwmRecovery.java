@@ -58,15 +58,20 @@ public class CwmRecovery extends RecoveryInfo {
                 Constants.replace(dirPath, "/mnt/sdcard", "/sdcard"), "/mnt/emmc", "/emmc"), path,
                 "/sdcard");
         if (Build.VERSION.SDK_INT > 16) {
-            String emulatedStorage = System.getenv("EMULATED_STORAGE_TARGET");
-            if ((emulatedStorage != null) && (path.startsWith(emulatedStorage))) {
-                String number = path.replace(emulatedStorage, "");
+            String emulatedStorageTarget = System.getenv("EMULATED_STORAGE_TARGET");
+            if ((emulatedStorageTarget != null) && (path.startsWith(emulatedStorageTarget))) {
+                String number = path.replace(emulatedStorageTarget, "");
                 dirPath = Constants.replace(dirPath, "/sdcard", "/sdcard" + number);
             }
-            emulatedStorage = System.getenv("EMULATED_STORAGE_SOURCE");
-            if (emulatedStorage != null) {
-                dirPath = Constants.replace(dirPath, emulatedStorage,
+            String emulatedStorageSource = System.getenv("EMULATED_STORAGE_SOURCE");
+            if (emulatedStorageSource != null) {
+                dirPath = Constants.replace(dirPath, emulatedStorageSource,
                         "/data/media");
+            }
+            if (emulatedStorageTarget == null && emulatedStorageSource == null
+                    && "/storage/sdcard0".equals(path)
+                    && "/sdcard".equals(dirPath)) {
+                dirPath = path;
             }
         } else if (dirPath.startsWith("/mnt/emmc")) {
             dirPath = "emmc";
