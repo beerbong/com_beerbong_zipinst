@@ -18,5 +18,8 @@
 		android:layout_marginLeft="4dip"
 		android:textAppearance="?android:attr/textAppearanceLarge"
 		android:gravity="left|center_vertical"
+		singleLine="false"
+		android:ellipsize="end"
+		android:lines="1"
 	/> 
 </LinearLayout>
