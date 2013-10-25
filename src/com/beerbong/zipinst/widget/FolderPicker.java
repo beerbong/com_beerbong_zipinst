@@ -342,7 +342,7 @@ public class FolderPicker extends Dialog implements OnItemClickListener, OnClick
         }
 
         public Folder(File file, boolean unused) {
-            super(file.getParent());
+            super(file.getParent() == null ? "/" : file.getParent());
             isParent = true;
         }
 
