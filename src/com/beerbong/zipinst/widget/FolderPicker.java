@@ -30,7 +30,6 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
-import android.os.Environment;
 import android.os.SystemClock;
 import android.util.StateSet;
 import android.view.LayoutInflater;
@@ -58,17 +57,19 @@ public class FolderPicker extends Dialog implements OnItemClickListener, OnClick
     private boolean mAcceptFiles;
     private View mOkButton;
     private String[] mFileExtensions;
+    private int[] mFileDrawables;
 
     public FolderPicker(Context context, OnClickListener listener, String defaultFolder) {
-        this(context, listener, defaultFolder, null, false);
+        this(context, listener, defaultFolder, null, null, false);
     }
 
     public FolderPicker(Context context, OnClickListener listener, String defaultFolder,
-            String[] fileExtensions, boolean acceptFiles) {
+            String[] fileExtensions, int[] fileDrawables, boolean acceptFiles) {
         super(context);
         mListener = listener;
         mAcceptFiles = acceptFiles;
         mFileExtensions = fileExtensions;
+        mFileDrawables = fileDrawables;
         setTitle(acceptFiles ? R.string.pick_file : R.string.pick_folder);
         setContentView(R.layout.picker_folders);
 
@@ -135,7 +136,7 @@ public class FolderPicker extends Dialog implements OnItemClickListener, OnClick
                 } else {
                     for (int j=0;j<mFileExtensions.length;j++) {
                         if (files[i].getName().endsWith(mFileExtensions[j])) {
-                            mAdapter.add(new Folder(files[i]));
+                            mAdapter.add(new Folder(files[i], mFileDrawables[j]));
                         }
                     }
                 }
@@ -190,11 +191,11 @@ public class FolderPicker extends Dialog implements OnItemClickListener, OnClick
         public FolderAdapter() {
             Resources res = getContext().getResources();
             mFolderUpLayers = new Drawable[] {
-                    res.getDrawable(R.drawable.ic_launcher_folder_up_closed),
-                    res.getDrawable(R.drawable.ic_launcher_folder_up_open), };
+                    res.getDrawable(R.drawable.folder),
+                    res.getDrawable(R.drawable.folder), };
             mFolderLayers = new Drawable[] {
-                    res.getDrawable(R.drawable.ic_launcher_folder_closed),
-                    res.getDrawable(R.drawable.ic_launcher_folder_open), };
+                    res.getDrawable(R.drawable.folder),
+                    res.getDrawable(R.drawable.folder), };
             mFileDrawable = res.getDrawable(R.drawable.file);
         }
 
@@ -231,6 +232,8 @@ public class FolderPicker extends Dialog implements OnItemClickListener, OnClick
                 name.setText(folder.getName());
                 if (folder.isDirectory()) {
                     drawable = new FolderTransitionDrawable(mFolderLayers);
+                } else if (folder.drawable > -1) {
+                    drawable = getContext().getResources().getDrawable(folder.drawable);
                 } else {
                     drawable = mFileDrawable;
                 }
@@ -335,10 +338,16 @@ public class FolderPicker extends Dialog implements OnItemClickListener, OnClick
     @SuppressWarnings("serial")
     class Folder extends File {
 
-        private boolean isParent;
+        protected int drawable = -1;
+        protected boolean isParent;
 
         public Folder(File file) {
             super(file.getAbsolutePath());
+        }
+
+        public Folder(File file, int drawable) {
+            super(file.getAbsolutePath());
+            this.drawable = drawable;
         }
 
         public Folder(File file, boolean unused) {

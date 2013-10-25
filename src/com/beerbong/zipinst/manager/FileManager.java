@@ -110,7 +110,9 @@ public class FileManager extends Manager implements UIListener {
                             FolderPicker picker = (FolderPicker) dialog;
                             addFile(picker.getPath());
                         }
-                    }, pManager.getFolder(), new String[] {"zip"}, true).show();
+                    }, pManager.getFolder(), new String[] { "zip", "sh" }, new int[] {
+                            R.drawable.zip,
+                            R.drawable.script }, true).show();
                 }
             } else {
                 PackageManager packageManager = mContext.getPackageManager();
