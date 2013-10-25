@@ -21,29 +21,25 @@ import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import com.beerbong.zipinst.R;
-
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.res.Resources;
-import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
-import android.os.SystemClock;
-import android.util.StateSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.LayoutAnimationController;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.beerbong.zipinst.R;
 
 public class FolderPicker extends Dialog implements OnItemClickListener, OnClickListener {
 
@@ -84,7 +80,7 @@ public class FolderPicker extends Dialog implements OnItemClickListener, OnClick
         mFolders.setOnItemClickListener(this);
 
         Animation animation = new AlphaAnimation(0, 1);
-        animation.setDuration(250);
+        animation.setDuration(150);
         LayoutAnimationController controller = new LayoutAnimationController(animation);
         mFolders.setLayoutAnimation(controller);
 
@@ -184,18 +180,10 @@ public class FolderPicker extends Dialog implements OnItemClickListener, OnClick
 
         ArrayList<Folder> mFolders = new ArrayList<Folder>();
         LayoutInflater mInflater = LayoutInflater.from(getContext());
-        private Drawable[] mFolderUpLayers;
-        private Drawable[] mFolderLayers;
         private Drawable mFileDrawable;
 
         public FolderAdapter() {
             Resources res = getContext().getResources();
-            mFolderUpLayers = new Drawable[] {
-                    res.getDrawable(R.drawable.folder),
-                    res.getDrawable(R.drawable.folder), };
-            mFolderLayers = new Drawable[] {
-                    res.getDrawable(R.drawable.folder),
-                    res.getDrawable(R.drawable.folder), };
             mFileDrawable = res.getDrawable(R.drawable.file);
         }
 
@@ -225,113 +213,22 @@ public class FolderPicker extends Dialog implements OnItemClickListener, OnClick
             TextView name = (TextView) v.findViewById(R.id.folder_name);
 
             Drawable drawable = null;
+            Resources res = getContext().getResources();
             if (folder.isParent) {
                 name.setText("[..]");
-                drawable = new FolderTransitionDrawable(mFolderUpLayers);
+                drawable = res.getDrawable(R.drawable.folder);
             } else {
                 name.setText(folder.getName());
                 if (folder.isDirectory()) {
-                    drawable = new FolderTransitionDrawable(mFolderLayers);
+                    drawable = res.getDrawable(R.drawable.folder);
                 } else if (folder.drawable > -1) {
                     drawable = getContext().getResources().getDrawable(folder.drawable);
                 } else {
                     drawable = mFileDrawable;
                 }
             }
-            v.findViewById(R.id.folder_icon).setBackgroundDrawable(drawable);
+            v.findViewById(R.id.folder_icon).setBackground(drawable);
             return v;
-        }
-    }
-
-    static class FolderTransitionDrawable extends LayerDrawable implements Runnable {
-
-        private static final int TRANSITION_DURATION = 400;
-        private static final int[] STATE_SELECTED = { android.R.attr.state_selected };
-        private static final int[] STATE_PRESSED = { android.R.attr.state_pressed };
-
-        private boolean mActive;
-        private int mAlpha;
-        private int mFrom;
-        private int mTo;
-        private long mStartTime;
-        private long mEndTime;
-
-        public FolderTransitionDrawable(Drawable[] layers) {
-            super(layers);
-            mAlpha = 255;
-        }
-
-        @Override
-        public boolean isStateful() {
-            return true;
-        }
-
-        @Override
-        protected boolean onStateChange(int[] state) {
-            boolean active = StateSet.stateSetMatches(STATE_SELECTED, state)
-                    | StateSet.stateSetMatches(STATE_PRESSED, state);
-            if (active != mActive) {
-                mActive = active;
-                // Log.d("FolderTransitionDrawable", "onStateChange " + StateSet.dump(state) + " " + active);
-                if (!active) {
-                    unscheduleSelf(this);
-                    if (mAlpha != 255) {
-                        startTransition(false);
-                    }
-                } else {
-                    scheduleSelf(this, SystemClock.uptimeMillis() + 500);
-                }
-                return true;
-            }
-            return false;
-        }
-
-        public void run() {
-            startTransition(true);
-        }
-
-        private void startTransition(boolean showLayer1) {
-            mStartTime = SystemClock.uptimeMillis();
-            mFrom = mAlpha;
-            mEndTime = mStartTime;
-            if (showLayer1) {
-                mTo = 0;
-                mEndTime += mAlpha * TRANSITION_DURATION / 255;
-            } else {
-                mTo = 255;
-                mEndTime += (255 - mAlpha) * TRANSITION_DURATION / 255;
-            }
-            invalidateSelf();
-        }
-
-        @Override
-        public void draw(Canvas canvas) {
-            boolean done = true;
-
-            if (mStartTime != 0) {
-                long time = SystemClock.uptimeMillis();
-                done = time > mEndTime;
-                if (done) {
-                    mStartTime = 0;
-                    mAlpha = mTo;
-                } else {
-                    float normalized = (time - mStartTime) / (float) (mEndTime - mStartTime);
-                    mAlpha = (int) (mFrom + (mTo - mFrom) * normalized);
-                }
-            }
-
-            Drawable d = getDrawable(0);
-            d.setAlpha(mAlpha);
-            d.draw(canvas);
-
-            d = getDrawable(1);
-            d.setAlpha(255 - mAlpha);
-            d.draw(canvas);
-
-            if (!done) {
-                invalidateSelf();
-                // Log.d("TAG", "draw invalidate");
-            }
         }
     }
 
