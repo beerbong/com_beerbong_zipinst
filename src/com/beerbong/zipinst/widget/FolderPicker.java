@@ -52,7 +52,7 @@ public class FolderPicker extends Dialog implements OnItemClickListener, OnClick
     private TextView mCurrentFolder;
     private Folder mPath;
     private Folder mFilePath;
-    private File mRootSDCard;
+    private File mRoot;
     private FolderAdapter mAdapter;
     private OnClickListener mListener;
     private boolean mAcceptFiles;
@@ -72,7 +72,7 @@ public class FolderPicker extends Dialog implements OnItemClickListener, OnClick
         setTitle(acceptFiles ? R.string.pick_file : R.string.pick_folder);
         setContentView(R.layout.picker_folders);
 
-        mRootSDCard = Environment.getExternalStorageDirectory();
+        mRoot = new File("/");
 
         mOkButton = findViewById(R.id.ok_btn);
         mOkButton.setOnClickListener(this);
@@ -93,7 +93,7 @@ public class FolderPicker extends Dialog implements OnItemClickListener, OnClick
             mPath = new Folder(defaultFolder);
         }
         if (mPath == null || !mPath.exists()) {
-            mPath = new Folder(mRootSDCard.getAbsolutePath());
+            mPath = new Folder(mRoot.getAbsolutePath());
         }
         updateAdapter();
     }
@@ -118,7 +118,7 @@ public class FolderPicker extends Dialog implements OnItemClickListener, OnClick
     private void updateAdapter() {
         mCurrentFolder.setText(mPath.getAbsolutePath());
         mAdapter.clear();
-        if (!mPath.equals(mRootSDCard)) {
+        if (!mPath.equals(mRoot)) {
             mAdapter.add(new Folder(mPath, true));
         }
         File[] dirs = mPath.listFiles(mDirFilter);
