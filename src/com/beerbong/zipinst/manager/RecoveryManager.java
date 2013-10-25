@@ -171,6 +171,9 @@ public class RecoveryManager extends Manager {
         RecoveryInfo info = getRecovery();
 
         String internalStorage = ManagerFactory.getPreferencesManager().getInternalStorage();
+        while (internalStorage.startsWith("/")) {
+            internalStorage = internalStorage.substring(1);
+        }
 
         String sbin = getSBINFolder();
 
