@@ -94,6 +94,12 @@ public class ManagerFactory {
         return mProManager;
     }
 
+    public static ProManager getProManager(Context context) {
+        if (mProManager == null)
+            mProManager = new ProManagerImpl(context);
+        return mProManager;
+    }
+
     public static DownloadManager getDownloadManager() {
         return mDownloadManager;
     }

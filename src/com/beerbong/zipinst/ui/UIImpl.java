@@ -38,6 +38,7 @@ import com.beerbong.zipinst.util.StoredItems;
 import com.beerbong.zipinst.widget.FileItemsAdapter;
 import com.beerbong.zipinst.widget.Item;
 import com.mobeta.android.dslv.DragSortListView;
+import com.mopub.mobileads.MoPubView;
 
 public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolder {
 
@@ -52,6 +53,8 @@ public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolde
             redrawItems();
         }
     };
+
+    private MoPubView mPubView;
 
     protected UIImpl(MainActivity activity) {
 
@@ -124,6 +127,15 @@ public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolde
         settingsChanged();
 
         onNewIntent(mActivity.getIntent());
+
+        mPubView = (MoPubView) mActivity.findViewById(R.id.adview);
+        if (ManagerFactory.getProManager(mActivity).iAmPro()) {
+            mPubView.setVisibility(View.GONE);
+        } else {
+            mPubView.setAdUnitId("79b58027d3b24736bc6e9d57377c0889");
+            mPubView.loadAd();
+    //        mPubView.setBannerAdListener(this)
+        }
     }
 
     @Override
@@ -179,6 +191,13 @@ public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolde
     public void onPause() {
 
         dispatchOnPause();
+
+    }
+
+    @Override
+    public void onDestroy() {
+
+        mPubView.destroy();
 
     }
 

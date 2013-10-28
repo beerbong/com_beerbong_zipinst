@@ -88,4 +88,12 @@ public class MainActivity extends FragmentActivity {
         super.onPause();
 
     }
+
+    @Override
+    public void onDestroy() {
+
+        UI.getInstance().onDestroy();
+        super.onDestroy();
+
+    }
 }

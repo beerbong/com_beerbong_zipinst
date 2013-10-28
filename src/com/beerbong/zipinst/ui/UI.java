@@ -74,4 +74,6 @@ public abstract class UI implements OnItemClickListener {
     public abstract void settingsChanged();
 
     public abstract void onPause();
+
+    public abstract void onDestroy();
 }
