@@ -106,6 +106,9 @@
     <string name="force_extsdcard_mount_title">Forçar muntatge sdcard externa</string>
     <string name="force_extsdcard_mount_summary">Seleccionar aquesta opció si el teu CWM recovery no monta la sdcard externa per defecte</string>
 
+    <string name="backup_external_title">Backup i restore a la sdcard externa a CWM</string>
+    <string name="backup_external_summary">Selecciona aquesta opció si vols fer els backup a la sdcard externa</string>
+
     <string name="about_title">Quant a</string>
     <string name="about_zip_title">ZipInstaller</string>
     <string name="about_version_title">"Versió"</string>

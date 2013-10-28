@@ -35,6 +35,7 @@ public class PreferencesManager extends Manager {
     private static final String PROPERTY_INTERNAL_STORAGE = "internal-storage";
     private static final String PROPERTY_EXTERNAL_STORAGE = "external-storage";
     private static final String PROPERTY_FORCE_EXTERNAL_STORAGE = "mountextsdcard";
+    private static final String PROPERTY_BACKUP_EXTERNAL_STORAGE = "backupextsdcard";
     private static final String PROPERTY_RECOVERY = "recovery";
     private static final String PROPERTY_LIST = "list";
     private static final String PROPERTY_DRAG_AND_DROP = "drag-and-drop";
@@ -66,6 +67,7 @@ public class PreferencesManager extends Manager {
     private static final Set<String> DEFAULT_SHOW_OPTIONS = new HashSet<String>();
     private static final String DEFAULT_SPACE_LEFT = "-1";
     private static final boolean DEFAULT_FORCE_EXTERNAL_STORAGE = true;
+    private static final boolean DEFAULT_BACKUP_EXTERNAL_STORAGE = false;
     private static final boolean DEFAULT_DRAG_AND_DROP = true;
     private static final boolean DEFAULT_DARK_THEME = false;
     private static final boolean DEFAULT_CHECK_EXISTS = true;
@@ -113,6 +115,14 @@ public class PreferencesManager extends Manager {
 
     public void setForceExternalStorage(boolean value) {
         savePreference(PROPERTY_FORCE_EXTERNAL_STORAGE, value);
+    }
+
+    public boolean isBackupExternalStorage() {
+        return settings.getBoolean(PROPERTY_BACKUP_EXTERNAL_STORAGE, DEFAULT_BACKUP_EXTERNAL_STORAGE);
+    }
+
+    public void setBackupExternalStorage(boolean value) {
+        savePreference(PROPERTY_BACKUP_EXTERNAL_STORAGE, value);
     }
 
     public boolean existsRecovery() {

@@ -65,6 +65,7 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
     private Preference mInternalSdcard;
     private Preference mExternalSdcard;
     private CheckBoxPreference mForceExternalSdcard;
+    private CheckBoxPreference mBackupExternalSdcard;
     private CheckBoxPreference mDad;
     private CheckBoxPreference mDarkTheme;
     private CheckBoxPreference mCheckExists;
@@ -89,6 +90,7 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         mInternalSdcard = findPreference(Constants.PREFERENCE_SETTINGS_INTERNAL_SDCARD);
         mExternalSdcard = findPreference(Constants.PREFERENCE_SETTINGS_EXTERNAL_SDCARD);
         mForceExternalSdcard = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_FORCE_EXTERNAL_SDCARD);
+        mBackupExternalSdcard = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_BACKUP_EXTERNAL_SDCARD);
         mDad = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_DAD);
         mDarkTheme = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_DARK_THEME);
         mCheckExists = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_CHECK_EXISTS);
@@ -106,6 +108,8 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         PreferencesManager pManager = ManagerFactory.getPreferencesManager();
 
         mForceExternalSdcard.setChecked(pManager.isForceExternalStorage());
+
+        mBackupExternalSdcard.setChecked(pManager.isBackupExternalStorage());
 
         mDad.setChecked(pManager.isUseDragAndDrop());
 
@@ -134,6 +138,7 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         if (!ManagerFactory.getFileManager().hasExternalStorage()) {
             getPreferenceScreen().removePreference(mExternalSdcard);
             getPreferenceScreen().removePreference(mForceExternalSdcard);
+            getPreferenceScreen().removePreference(mBackupExternalSdcard);
         }
 
         ProManager proManager = ManagerFactory.getProManager();

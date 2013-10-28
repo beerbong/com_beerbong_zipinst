@@ -72,16 +72,21 @@ public class RecoveryManager extends Manager {
 
     public void setRecovery(int id) {
         RecoveryInfo info = mRecoveries.get(id);
-        ManagerFactory.getPreferencesManager().setRecovery(info.getName());
-        ManagerFactory.getPreferencesManager().setInternalStorage(info.getInternalSdcard());
-        ManagerFactory.getPreferencesManager().setExternalStorage(info.getExternalSdcard());
+        PreferencesManager pManager = ManagerFactory.getPreferencesManager();
+        pManager.setRecovery(info.getName());
+        pManager.setInternalStorage(info.getInternalSdcard());
+        pManager.setExternalStorage(info.getExternalSdcard());
     }
 
     public String getBackupDir(boolean force) {
 
         RecoveryInfo info = getRecovery();
 
-        String sdcard = "sdcard";
+        PreferencesManager pManager = ManagerFactory.getPreferencesManager();
+        String sdcard = ManagerFactory.getFileManager().hasExternalStorage()
+                && pManager.isBackupExternalStorage()
+                && info.getId() == R.id.cwmbased ? ManagerFactory
+                .getFileManager().getExternalStoragePath() : "sdcard";
         String str = "";
 
         switch (info.getId()) {
@@ -105,7 +110,11 @@ public class RecoveryManager extends Manager {
 
         RecoveryInfo info = getRecovery();
 
-        String sdcard = "sdcard";
+        PreferencesManager pManager = ManagerFactory.getPreferencesManager();
+        String sdcard = ManagerFactory.getFileManager().hasExternalStorage()
+                && pManager.isBackupExternalStorage()
+                && info.getId() == R.id.cwmbased ? ManagerFactory
+                .getFileManager().getExternalStoragePath() : "sdcard";
         String folder = "";
 
         switch (info.getId()) {
@@ -173,9 +182,15 @@ public class RecoveryManager extends Manager {
 
         RecoveryInfo info = getRecovery();
 
-        String internalStorage = ManagerFactory.getPreferencesManager().getInternalStorage();
+        PreferencesManager pManager = ManagerFactory.getPreferencesManager();
+        String internalStorage = pManager.getInternalStorage();
         while (internalStorage.startsWith("/")) {
             internalStorage = internalStorage.substring(1);
+        }
+
+        String externalStorage = pManager.getExternalStorage();
+        while (externalStorage.startsWith("/")) {
+            externalStorage = externalStorage.substring(1);
         }
 
         String sbin = getSBINFolder();
@@ -203,16 +218,20 @@ public class RecoveryManager extends Manager {
                             + ManagerFactory.getPreferencesManager().getExternalStorage() + "\");");
                 }
 
+                String storage = ManagerFactory.getFileManager()
+                        .hasExternalStorage() && pManager.isBackupExternalStorage() ? externalStorage
+                                : internalStorage;
+
                 if (restore != null) {
                     commands.add("ui_print(\" Restore ROM\");");
-                    commands.add("restore_rom(\"/" + internalStorage + "/clockworkmod/backup/"
+                    commands.add("restore_rom(\"/" + storage + "/clockworkmod/backup/"
                             + restore
                             + "\", \"boot\", \"system\", \"data\", \"cache\", \"sd-ext\")");
                 }
 
                 if (backupFolder != null) {
                     commands.add("ui_print(\" Backup ROM\");");
-                    commands.add("assert(backup_rom(\"/" + internalStorage + "/clockworkmod/backup/"
+                    commands.add("assert(backup_rom(\"/" + storage + "/clockworkmod/backup/"
                             + backupFolder + "\"));");
                 }
 
