@@ -140,14 +140,14 @@
             android:name="com.millennialmedia.android.VideoPlayer"
             android:configChanges="keyboardHidden|orientation|keyboard" />
 
+        <receiver android:name="com.beerbong.zipinst.NotificationAlarm" />
+
         <!-- PRO -->
         <activity android:name="com.beerbong.zipinst.pro.activities.GooActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.beerbong.zipinst.MainActivity" />
         </activity>
-
-        <receiver android:name="com.beerbong.zipinst.pro.NotificationAlarm" />
 
         <receiver
             android:name="com.beerbong.zipinst.Receiver"
