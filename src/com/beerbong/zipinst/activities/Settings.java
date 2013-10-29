@@ -24,7 +24,6 @@ import java.io.File;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
@@ -147,8 +146,6 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
             PreferenceCategory category = (PreferenceCategory) findPreference("settings_update");
             category.removePreference(findPreference("updates"));
             category.removePreference(findPreference(Constants.PREFERENCE_SETTINGS_CHECK_UPDATE_STARTUP));
-        } else {
-            findPreference("donate").setTitle(R.string.become_a_pro);
         }
 
         updateSummaries();
@@ -255,12 +252,6 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         } else if ("about".equals(key)) {
 
             Intent i = new Intent(this, About.class);
-            startActivity(i);
-
-        } else if ("donate".equals(key)) {
-
-            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(ManagerFactory.getProManager()
-                    .iAmPro() ? Constants.DONATE_URL : Constants.PRO_URL));
             startActivity(i);
 
         }

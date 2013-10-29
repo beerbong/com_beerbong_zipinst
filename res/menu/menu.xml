@@ -49,4 +49,7 @@
     <item android:id="@+id/downloadzip"
         android:title="@string/menu_downloadzip" />
 
+    <item android:id="@+id/donate"
+        android:title="@string/donate_title" />
+
 </menu>
