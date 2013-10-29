@@ -222,6 +222,9 @@ public class FileManager extends Manager implements UIListener {
     }
 
     public boolean isExternalStorage(String path) {
+        if (mInternalStoragePath == null) {
+            mInternalStoragePath = "/sdcard";
+        }
         return !path.startsWith(mInternalStoragePath) && !path.startsWith("/sdcard")
                 && !path.startsWith("/mnt/sdcard");
     }
