@@ -61,7 +61,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.beerbong.zipinst.R;
-import com.beerbong.zipinst.manager.SUManager.CommandResult;
 import com.beerbong.zipinst.ui.UI;
 import com.beerbong.zipinst.ui.UIListener;
 import com.beerbong.zipinst.util.Constants;
@@ -1008,15 +1007,11 @@ public class FileManager extends Manager implements UIListener {
 
     private void copyOrRemoveCache(File file, boolean copy) throws NoSuException {
         SUManager suManager = ManagerFactory.getSUManager(mContext);
-        CommandResult cm = null;
         if (copy) {
-            cm = suManager.runWaitFor("cp " + file.getAbsolutePath() + " /cache/" + file.getName());
+            suManager.runWaitFor("cp " + file.getAbsolutePath() + " /cache/" + file.getName());
             suManager.runWaitFor("chmod 644 /cache/" + file.getName());
         } else {
-            cm = suManager.runWaitFor("rm -f /cache/" + file.getName());
-        }
-        if (!cm.success()) {
-            throw new NoSuException();
+            suManager.runWaitFor("rm -f /cache/" + file.getName());
         }
     }
 }
