@@ -274,6 +274,15 @@
     <string name="goo_category_title">Navegando %1$s</string>
     <string name="goo_download_title">Descargar</string>
     <string name="goo_download_summary">¿Quieres descargar este archivo ahora?\n\n%1$s\n%2$s\n</string>
+    <string name="goo_login">Iniciar sesión en goo.im</string>
+    <string name="goo_logout">Cerrar sesión en goo.im</string>
+    <string name="username">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="logged_in">Ahora estás conectado</string>
+    <string name="logged_invalid">Usuario/contraseña no válidos</string>
+    <string name="logged_down">No se ha podido llegar al servidor</string>
+    <string name="logged_out">Te has desconectado</string>
+    <string name="logged_error">Error desconocido conectando</string>
 
     <string name="checktime_title">Frecuencia buscar updates</string>
     <string name="checktime_summary">Especifica el tiempo entre cada búsqueda de nuevas versiones</string>

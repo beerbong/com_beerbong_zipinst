@@ -29,12 +29,14 @@ import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.widget.Toast;
 
 public class Constants {
 
@@ -86,6 +88,7 @@ public class Constants {
     public static final String PREFERENCE_RECOVERY_ACTIONS = "recovery_activity_actions";
     public static final String PREFERENCE_RECOVERY_REBOOT = "recovery_activity_reboot";
 
+    public static final String LOGIN_URL = "http://goo-inside.me/salt";
     public static final String SEARCH_URL = "http://goo.im/json2&action=search&query=ZipInstaller";
     public static final String DOWNLOAD_URL = "http://goo.im/devs/beerbong/apps/ZipInstaller/";
 
@@ -224,5 +227,14 @@ public class Constants {
     public static String replace(String original, String starts, String replace) {
         return !original.startsWith(starts) ? original : replace
                 + original.substring(starts.length());
+    }
+
+    public static void showToastOnUiThread(final Context context, final int resourceId) {
+        ((Activity) context).runOnUiThread(new Runnable() {
+
+            public void run() {
+                Toast.makeText(context, resourceId, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

@@ -54,6 +54,8 @@ public class PreferencesManager extends Manager {
     private static final String PROPERTY_FOLDER = "folder";
     private static final String PROPERTY_TO_DELETE = "to_delete";
     private static final String PROPERTY_RULES = "rules";
+    private static final String PROPERTY_LOGIN = "goologin";
+    private static final String PROPERTY_LOGIN_USERNAME = "goologinusername";
 
     public static final String PROPERTY_ENABLE_NOTIFICATIONS = "enable_notifications";
     public static final String PROPERTY_TIME_NOTIFICATIONS = "time_notifications";
@@ -310,6 +312,30 @@ public class PreferencesManager extends Manager {
         }
         newRules[newRules.length - 1] = new Rule(name, type);
         savePreference(PROPERTY_RULES, Rule.storeRules(newRules));
+    }
+
+    public void logout() {
+        savePreference(PROPERTY_LOGIN, "");
+    }
+
+    public void login(String value) {
+        savePreference(PROPERTY_LOGIN, value);
+    }
+
+    public void setLoginUserName(String value) {
+        savePreference(PROPERTY_LOGIN_USERNAME, value);
+    }
+
+    public boolean isLogged() {
+        return !"".equals(settings.getString(PROPERTY_LOGIN, ""));
+    }
+
+    public String getLogin() {
+        return settings.getString(PROPERTY_LOGIN, "");
+    }
+
+    public String getLoginUserName() {
+        return settings.getString(PROPERTY_LOGIN_USERNAME, null);
     }
 
     private String[] getArrayProperty(String property) {

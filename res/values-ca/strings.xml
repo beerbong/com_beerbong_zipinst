@@ -274,6 +274,15 @@
     <string name="goo_category_title">Navegant %1$s</string>
     <string name="goo_download_title">Descarregar</string>
     <string name="goo_download_summary">Vols descarregar aquest arxiu ara?\n\n%1$s\n%2$s\n</string>
+    <string name="goo_login">Iniciar sessió a goo.im</string>
+    <string name="goo_logout">Tancar sessió a goo.im</string>
+    <string name="username">Usuari</string>
+    <string name="password">Contrasenya</string>
+    <string name="logged_in">Ara estàs connectat</string>
+    <string name="logged_invalid">Usuari/contrasenya no vàlids</string>
+    <string name="logged_down">No s\'ha pogut arribar al servidor</string>
+    <string name="logged_out">T\'has desconnectat</string>
+    <string name="logged_error">Error desconegut connectant</string>
 
     <string name="checktime_title">Frecuència cercar updates</string>
     <string name="checktime_summary">Especifica el temps entre cada cerca de noves versions</string>

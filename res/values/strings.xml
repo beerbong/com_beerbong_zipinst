@@ -275,6 +275,15 @@
     <string name="goo_category_title">Browsing %1$s</string>
     <string name="goo_download_title">Download</string>
     <string name="goo_download_summary">Do you want to download this file now?\n\n%1$s\n%2$s\n</string>
+    <string name="goo_login">Login to goo.im</string>
+    <string name="goo_logout">Logout from goo.im</string>
+    <string name="username">User</string>
+    <string name="password">Password</string>
+    <string name="logged_in">Now you are logged in</string>
+    <string name="logged_invalid">Invalid username/password</string>
+    <string name="logged_down">Unable to reach server</string>
+    <string name="logged_out">You\'ve been logged out</string>
+    <string name="logged_error">Unknown error logging in</string>
 
     <string name="checktime_title">Update check frequency</string>
     <string name="checktime_summary">Specify the time between each update check</string>

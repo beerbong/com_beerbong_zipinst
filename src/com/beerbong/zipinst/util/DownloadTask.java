@@ -110,6 +110,13 @@ public class DownloadTask extends AsyncTask<Void, Integer, Integer> {
             destFile = new File(pManager.getDownloadPath(), mFileName);
         }
 
+        if (mUrl.contains("goo.im")) {
+            String login = pManager.getLogin();
+            if (login != null && !"".equals(login)) {
+                mUrl = mUrl + "&hash=" + login;
+            }
+        }
+
         if (mMd5 != null) {
             FileOutputStream fos = null;
             try {
@@ -131,7 +138,7 @@ public class DownloadTask extends AsyncTask<Void, Integer, Integer> {
         try {
             URL getUrl = new URL(mUrl);
             URLConnection conn = getUrl.openConnection();
-            if (getUrl.toString().contains("goo.im")) {
+            if (getUrl.toString().contains("goo.im") && !pManager.isLogged()) {
                 conn.connect();
                 publishProgress(-1);
                 is = new BufferedInputStream(conn.getInputStream());
