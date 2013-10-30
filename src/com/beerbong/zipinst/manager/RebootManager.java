@@ -216,10 +216,10 @@ public class RebootManager extends Manager implements UIListener {
 
         final RecoveryManager rManager = ManagerFactory.getRecoveryManager();
         if (rManager.getRecovery().getId() == R.id.twrp) {
-            if (!rManager.hasAndroidSecure()) {
+            if (!Constants.hasAndroidSecure()) {
                 cbSecure.setVisibility(View.GONE);
             }
-            if (!rManager.hasSdExt()) {
+            if (!Constants.hasSdExt()) {
                 cbSdext.setVisibility(View.GONE);
             }
         } else {

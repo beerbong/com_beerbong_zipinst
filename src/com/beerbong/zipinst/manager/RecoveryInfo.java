@@ -19,6 +19,8 @@
 
 package com.beerbong.zipinst.manager;
 
+import java.util.List;
+
 import android.content.Context;
 
 public abstract class RecoveryInfo {
@@ -66,4 +68,12 @@ public abstract class RecoveryInfo {
     public abstract String getFullName(Context context);
 
     public abstract String getFolderPath();
+
+    public abstract String getCommandsFile();
+
+    public abstract String getBackupFolder(String sdcard, boolean force);
+
+    public abstract List<String> getCommands(String storage, boolean external, boolean wipeSystem,
+            boolean wipeData, boolean wipeCaches, boolean fixPermissions, String backupFolder,
+            String backupOptions, String restore) throws Exception;
 }

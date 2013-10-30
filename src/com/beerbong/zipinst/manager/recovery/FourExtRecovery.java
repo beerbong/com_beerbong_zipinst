@@ -22,13 +22,11 @@ package com.beerbong.zipinst.manager.recovery;
 import android.content.Context;
 
 import com.beerbong.zipinst.R;
-import com.beerbong.zipinst.manager.RecoveryInfo;
 
+public class FourExtRecovery extends CwmRecovery {
 
-public class FourExtRecovery extends RecoveryInfo {
-
-    public FourExtRecovery() {
-        super();
+    public FourExtRecovery(Context context) {
+        super(context);
 
         setId(R.id.fourext);
         setName("fourext");

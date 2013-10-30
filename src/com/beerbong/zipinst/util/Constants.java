@@ -237,4 +237,27 @@ public class Constants {
             }
         });
     }
+
+    public static boolean hasAndroidSecure() {
+        String sdcard = "sdcard";
+        return folderExists("/" + sdcard + "/.android-secure");
+    }
+
+    public static boolean hasSdExt() {
+        return folderExists("/sd-ext");
+    }
+
+    public static String getSBINFolder() {
+        if (folderExists("/sbin")) {
+            return "/sbin/";
+        } else if (folderExists("/system/sbin")) {
+            return "/system/sbin/";
+        }
+        return null;
+    }
+
+    private static boolean folderExists(String path) {
+        File f = new File(path);
+        return f.exists() && f.isDirectory();
+    }
 }
