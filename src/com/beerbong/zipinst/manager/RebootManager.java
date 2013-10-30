@@ -381,26 +381,21 @@ public class RebootManager extends Manager implements UIListener {
             }
 
             RecoveryManager manager = ManagerFactory.getRecoveryManager();
+            boolean isCwmOfficial = manager.getRecovery().getId() == R.id.cwm;
 
-            Process p = Runtime.getRuntime().exec("su");
-            DataOutputStream os = new DataOutputStream(p.getOutputStream());
+            Process p = null;
+            DataOutputStream os = null;
 
-            os.writeBytes("rm -f /cache/recovery/command\n");
-            os.writeBytes("rm -f /cache/recovery/extendedcommand\n");
-            os.writeBytes("rm -f /cache/recovery/openrecoveryscript\n");
+            if (!isCwmOfficial) {
+                p = Runtime.getRuntime().exec("su");
+                os = new DataOutputStream(p.getOutputStream());
+
+                os.writeBytes("rm -f /cache/recovery/command\n");
+                os.writeBytes("rm -f /cache/recovery/extendedcommand\n");
+                os.writeBytes("rm -f /cache/recovery/openrecoveryscript\n");
+            }
 
             if (!skipCommands) {
-                String file = manager.getCommandsFile();
-
-                String[] commands = manager.getCommands(wipeSystem, wipeData, wipeCaches,
-                        fixPermissions, backupFolder, backupOptions, restore);
-                if (commands != null) {
-                    int size = commands.length, i = 0;
-                    for (; i < size; i++) {
-                        os.writeBytes("echo '" + commands[i] + "' >> /cache/recovery/" + file
-                                + "\n");
-                    }
-                }
 
                 ManagerFactory.getPreferencesManager().setToDelete(new String[0]);
                 int size = StoredItems.size();
@@ -413,21 +408,35 @@ public class RebootManager extends Manager implements UIListener {
                 }
                 ManagerFactory.getPreferencesManager().setToDelete(
                         list.toArray(new String[list.size()]));
+
+                String file = manager.getCommandsFile();
+
+                String[] commands = manager.getCommands(wipeSystem, wipeData, wipeCaches,
+                        fixPermissions, backupFolder, backupOptions, restore);
+                if (commands != null) {
+                    size = commands.length;
+                    for (int i = 0; i < size; i++) {
+                        os.writeBytes("echo '" + commands[i] + "' >> /cache/recovery/" + file
+                                + "\n");
+                    }
+                }
             }
 
-            os.writeBytes("/system/bin/touch /cache/recovery/boot\n");
-            os.writeBytes("reboot recovery\n");
-
-            os.writeBytes("sync\n");
-            os.writeBytes("exit\n");
-            os.flush();
-            p.waitFor();
-
-            if (Constants.isSystemApp(mContext)) {
-                ((PowerManager) mContext.getSystemService(Activity.POWER_SERVICE))
-                        .reboot("recovery");
-            } else {
-                Runtime.getRuntime().exec("/system/bin/reboot recovery");
+            if (!isCwmOfficial) {
+                os.writeBytes("/system/bin/touch /cache/recovery/boot\n");
+                os.writeBytes("reboot recovery\n");
+    
+                os.writeBytes("sync\n");
+                os.writeBytes("exit\n");
+                os.flush();
+                p.waitFor();
+    
+                if (Constants.isSystemApp(mContext)) {
+                    ((PowerManager) mContext.getSystemService(Activity.POWER_SERVICE))
+                            .reboot("recovery");
+                } else {
+                    Runtime.getRuntime().exec("/system/bin/reboot recovery");
+                }
             }
 
         } catch (Exception e) {

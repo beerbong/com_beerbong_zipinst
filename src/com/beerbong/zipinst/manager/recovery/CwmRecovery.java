@@ -22,9 +22,14 @@ package com.beerbong.zipinst.manager.recovery;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Service;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Build;
 import android.os.Environment;
+import android.os.IBinder;
 import android.os.storage.StorageManager;
 
 import com.beerbong.zipinst.R;
@@ -34,6 +39,8 @@ import com.beerbong.zipinst.manager.RecoveryInfo;
 import com.beerbong.zipinst.util.Constants;
 import com.beerbong.zipinst.util.FileItem;
 import com.beerbong.zipinst.util.StoredItems;
+import com.koushikdutta.rommanager.api.IClockworkRecoveryScriptBuilder;
+import com.koushikdutta.rommanager.api.IROMManagerAPIService;
 
 public class CwmRecovery extends RecoveryInfo {
 
@@ -44,15 +51,15 @@ public class CwmRecovery extends RecoveryInfo {
 
         mContext = context;
 
-        setId(R.id.cwmbased);
-        setName("cwmbased");
-        setInternalSdcard(internalStorage());
+        setId(R.id.cwm);
+        setName("cwm");
+        setInternalSdcard("sdcard");
         setExternalSdcard(externalStorage(context));
     }
 
     @Override
     public String getFullName(Context context) {
-        return context.getString(R.string.recovery_cwm);
+        return context.getString(R.string.recovery_cwm_official);
     }
 
     @Override
@@ -77,9 +84,54 @@ public class CwmRecovery extends RecoveryInfo {
     }
 
     @Override
-    public List<String> getCommands(String storage, boolean external, boolean wipeSystem,
-            boolean wipeData, boolean wipeCaches, boolean fixPermissions, String backupFolder,
-            String backupOptions, String restore) throws Exception {
+    public List<String> getCommands(final String storage, final boolean external,
+            final boolean wipeSystem, final boolean wipeData, final boolean wipeCaches,
+            final boolean fixPermissions, final String backupFolder, final String backupOptions,
+            final String restore) throws Exception {
+        Intent i = new Intent("com.koushikdutta.rommanager.api.BIND");
+        try {
+            mContext.bindService(i, new ServiceConnection() {
+                @Override
+                public void onServiceDisconnected(ComponentName name) {
+                }
+
+                @Override
+                public void onServiceConnected(ComponentName name, IBinder binder) {
+                    IROMManagerAPIService service = IROMManagerAPIService.Stub.asInterface(binder);
+                    if (service == null) {
+                        Constants.showError(getContext(), R.string.error_no_rommanager_connection);
+                        return;
+                    }
+                    try {
+                        if (!service.isPremium()) {
+                            Constants.showError(getContext(), R.string.error_no_rommanager_premium);
+                            return;
+                        }
+                        IClockworkRecoveryScriptBuilder builder = service.createClockworkRecoveryScriptBuilder();
+                        run(builder, storage, external, wipeSystem, wipeData, wipeCaches,
+                                fixPermissions, backupFolder, backupOptions, restore);
+                    }
+                    catch (Exception ex) {
+                        ex.printStackTrace();
+                        Constants.showError(getContext(), R.string.error_rommanager_unknown);
+                    }
+                }
+            }, Service.BIND_AUTO_CREATE);
+        }
+        catch (Exception ex) {
+            ex.printStackTrace();
+            Constants.showError(getContext(), R.string.error_no_rommanager_connection);
+        }
+        return new ArrayList<String>();
+    }
+
+    protected Context getContext() {
+        return mContext;
+    }
+
+    private void run(IClockworkRecoveryScriptBuilder builder, String storage, boolean external,
+            boolean wipeSystem, boolean wipeData, boolean wipeCaches, boolean fixPermissions,
+            String backupFolder, String backupOptions, String restore) throws Exception {
 
         String sbin = Constants.getSBINFolder();
 
@@ -88,54 +140,49 @@ public class CwmRecovery extends RecoveryInfo {
         while (internalStorage.startsWith("/")) {
             internalStorage = internalStorage.substring(1);
         }
+        
+        builder.print("-------------------------------------");
+        builder.print(" ZipInstaller "
+                + getContext().getPackageManager().getPackageInfo(getContext().getPackageName(), 0).versionName);
+        builder.print("-------------------------------------");
 
-        List<String> commands = new ArrayList<String>();
-
-        commands.add("ui_print(\"-------------------------------------\");");
-        commands.add("ui_print(\" ZipInstaller "
-                + mContext.getPackageManager().getPackageInfo(mContext.getPackageName(), 0).versionName
-                + "\");");
-        commands.add("ui_print(\"-------------------------------------\");");
-
-        if (getId() == R.id.cwmbased
-                && ManagerFactory.getFileManager().hasExternalStorage()
+        if (ManagerFactory.getFileManager().hasExternalStorage()
                 && ManagerFactory.getPreferencesManager().isForceExternalStorage()) {
-            commands.add("ui_print(\" Mounting external sd\");");
-            commands.add("run_program(\"/sbin/mount\", \""
-                    + ManagerFactory.getPreferencesManager().getExternalStorage() + "\");");
+            builder.print(" Mounting external sd");
+            List<String> params = new ArrayList<String>();
+            params.add(ManagerFactory.getPreferencesManager().getExternalStorage());
+            builder.runProgram("/sbin/mount", params);
         }
 
         if (restore != null) {
-            commands.add("ui_print(\" Restore ROM\");");
-            commands.add("restore_rom(\"/" + storage + "/clockworkmod/backup/"
-                    + restore
-                    + "\", \"boot\", \"system\", \"data\", \"cache\", \"sd-ext\")");
+            builder.print(" Restore ROM");
+            builder.restore("/" + storage + "/clockworkmod/backup/" + restore, true, true, true,
+                    true, true);
         }
 
         if (backupFolder != null) {
-            commands.add("ui_print(\" Backup ROM\");");
-            commands.add("assert(backup_rom(\"/" + storage + "/clockworkmod/backup/"
-                    + backupFolder + "\"));");
+            builder.print(" Backup ROM");
+            builder.backupWithPath("/" + storage + "/clockworkmod/backup/" + backupFolder);
         }
 
         if (wipeSystem) {
-            commands.add("ui_print(\" Wiping system\");");
-            commands.add("format(\"/system\");");
+            builder.print(" Wiping system");
+            builder.format("/system");
         }
 
         if (wipeData) {
-            commands.add("ui_print(\" Wiping data\");");
-            commands.add("format(\"/data\");");
-            commands.add("ui_print(\" Wiping android secure\");");
-            commands.add("format(\"/" + internalStorage + "/.android_secure\");");
+            builder.print(" Wiping data");
+            builder.format("/data");
+            builder.print(" Wiping android secure");
+            builder.format("/" + internalStorage + "/.android_secure");
         }
         if (wipeCaches) {
-            commands.add("ui_print(\" Wiping cache\");");
-            commands.add("format(\"/cache\");");
-            commands.add("ui_print(\" Wiping dalvik cache\");");
-            commands.add("format(\"/data/dalvik-cache\");");
-            commands.add("format(\"/cache/dalvik-cache\");");
-            commands.add("format(\"/sd-ext/dalvik-cache\");");
+            builder.print(" Wiping cache");
+            builder.format("/cache");
+            builder.print(" Wiping dalvik cache");
+            builder.format("/data/dalvik-cache");
+            builder.format("/cache/dalvik-cache");
+            builder.format("/sd-ext/dalvik-cache");
         }
 
         int size = StoredItems.size(), i = 0;
@@ -144,64 +191,52 @@ public class CwmRecovery extends RecoveryInfo {
             for (; i < size; i++) {
                 FileItem item = StoredItems.getItem(i);
                 if (item.isZip()) {
-                    commands.add("ui_print(\" Installing zip\");");
-                    commands.add("assert(install_zip(\"" + item.getKey() + "\"));");
+                    builder.print(" Installing zip");
+                    builder.installZip(item.getPath());
                 } else if (item.isScript()) {
-                    commands.add("ui_print(\" Executing script\");");
-                    commands.add("run_program(\"/sbin/busybox\", \"cp\", \""
-                            + item.getKey() + "\", \"/cache/" + item.getName() + "\");");
-                    commands.add("run_program(\"" + sbin + "chmod\", \"+x\", \"/cache/"
-                            + item.getName() + "\");");
-                    commands.add("run_program(\"" + sbin + "sh\", \"/cache/"
-                            + item.getName() + "\");");
-                    commands.add("run_program(\"/sbin/busybox\", \"rm\", \"/cache/"
-                            + item.getName() + "\");");
+                    builder.print(" Executing script");
+                    List<String> params = new ArrayList<String>();
+                    params.add("cp");
+                    params.add(item.getKey());
+                    params.add("/cache/" + item.getName());
+                    builder.runProgram("/sbin/busybox", params);
+                    params = new ArrayList<String>();
+                    params.add("chmod");
+                    params.add("+x");
+                    params.add("/cache/" + item.getName());
+                    builder.runProgram(sbin, params);
+                    params = new ArrayList<String>();
+                    params.add("sh");
+                    params.add("/cache/" + item.getName());
+                    builder.runProgram(sbin, params);
+                    params = new ArrayList<String>();
+                    params.add("rm");
+                    params.add("/cache/" + item.getName());
+                    builder.runProgram("/sbin/busybox", params);
                 }
             }
         }
 
         if (fixPermissions) {
-            commands.add("ui_print(\" Fix permissions\");");
-            commands.add("run_program(\"" + sbin
-                    + "chmod\", \"+x\", \"/cache/fix_permissions.sh\");");
-            commands.add("run_program(\"" + sbin + "sh\", \"/cache/fix_permissions.sh\");");
-            commands.add("run_program(\"/sbin/busybox\", \"rm\", \"/cache/fix_permissions.sh\");");
+            builder.print(" Fix permissions");
+            List<String> params = new ArrayList<String>();
+            params.add("chmod");
+            params.add("+x");
+            params.add("/cache/fix_permissions.sh");
+            builder.runProgram(sbin, params);
+            params = new ArrayList<String>();
+            params.add("sh");
+            params.add("/cache/fix_permissions.sh");
+            builder.runProgram(sbin, params);
+            params = new ArrayList<String>();
+            params.add("rm");
+            params.add("/cache/fix_permissions.sh");
+            builder.runProgram("/sbin/busybox", params);
         }
 
-        commands.add("ui_print(\" Rebooting\");");
+        builder.print(" Rebooting");
 
-        return commands;
-    }
-
-    private String internalStorage() {
-        if (Environment.getExternalStorageDirectory() == null) {
-            return "sdcard";
-        }
-        String path, dirPath;
-        dirPath = path = Environment.getExternalStorageDirectory().getAbsolutePath();
-        dirPath = Constants.replace(Constants.replace(
-                Constants.replace(dirPath, "/mnt/sdcard", "/sdcard"), "/mnt/emmc", "/emmc"), path,
-                "/sdcard");
-        if (Build.VERSION.SDK_INT > 16) {
-            String emulatedStorageTarget = System.getenv("EMULATED_STORAGE_TARGET");
-            if ((emulatedStorageTarget != null) && (path.startsWith(emulatedStorageTarget))) {
-                String number = path.replace(emulatedStorageTarget, "");
-                dirPath = Constants.replace(dirPath, "/sdcard", "/sdcard" + number);
-            }
-            String emulatedStorageSource = System.getenv("EMULATED_STORAGE_SOURCE");
-            if (emulatedStorageSource != null) {
-                dirPath = Constants.replace(dirPath, emulatedStorageSource,
-                        "/data/media");
-            }
-            if (emulatedStorageTarget == null && emulatedStorageSource == null
-                    && "/storage/sdcard0".equals(path)
-                    && "/sdcard".equals(dirPath)) {
-                dirPath = path;
-            }
-        } else if (dirPath.startsWith("/mnt/emmc")) {
-            dirPath = "emmc";
-        }
-        return dirPath;
+        builder.runScript();
     }
 
     private String externalStorage(Context paramContext) {

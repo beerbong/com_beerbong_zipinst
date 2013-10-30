@@ -23,7 +23,7 @@ import android.content.Context;
 
 import com.beerbong.zipinst.R;
 
-public class FourExtRecovery extends CwmRecovery {
+public class FourExtRecovery extends CwmBasedRecovery {
 
     public FourExtRecovery(Context context) {
         super(context);

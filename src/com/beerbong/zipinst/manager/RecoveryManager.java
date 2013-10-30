@@ -33,6 +33,7 @@ import android.util.SparseArray;
 import android.widget.Toast;
 
 import com.beerbong.zipinst.R;
+import com.beerbong.zipinst.manager.recovery.CwmBasedRecovery;
 import com.beerbong.zipinst.manager.recovery.CwmRecovery;
 import com.beerbong.zipinst.manager.recovery.FourExtRecovery;
 import com.beerbong.zipinst.manager.recovery.TwrpRecovery;
@@ -45,7 +46,8 @@ public class RecoveryManager extends Manager {
     protected RecoveryManager(Context context) {
         super(context);
 
-        mRecoveries.put(R.id.cwmbased, new CwmRecovery(context));
+        mRecoveries.put(R.id.cwmbased, new CwmBasedRecovery(context));
+        mRecoveries.put(R.id.cwm, new CwmRecovery(context));
         mRecoveries.put(R.id.twrp, new TwrpRecovery());
         mRecoveries.put(R.id.fourext, new FourExtRecovery(context));
 

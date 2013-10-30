@@ -342,6 +342,7 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
                 (ViewGroup) findViewById(R.id.recovery_layout));
 
         RadioButton cbCwmbased = (RadioButton) view.findViewById(R.id.cwmbased);
+        RadioButton cbCwm = (RadioButton) view.findViewById(R.id.cwm);
         RadioButton cbTwrp = (RadioButton) view.findViewById(R.id.twrp);
         RadioButton cb4ext = (RadioButton) view.findViewById(R.id.fourext);
 
@@ -351,6 +352,9 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         switch (info.getId()) {
             case R.id.cwmbased:
                 cbCwmbased.setChecked(true);
+                break;
+            case R.id.cwm:
+                cbCwm.setChecked(true);
                 break;
             case R.id.twrp:
                 cbTwrp.setChecked(true);

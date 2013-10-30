@@ -23,6 +23,12 @@
     <string name="alert_reboot_title">Select actions and install</string>
     <string name="alert_reboot_now">Install now</string>
 
+    <string name="error_title">Error</string>
+
+    <string name="error_no_rommanager_connection">No RomManager connection available. Make sure you\'ve got RomManager Premium installed and it\'s 4.5.0.0+.</string>
+    <string name="error_no_rommanager_premium">Your RomManager installation seems to not be premium.</string>
+    <string name="error_rommanager_unknown">Unknown error connecting to RomManager.</string>
+
     <string name="root_needed_title">Root needed</string>
     <string name="root_needed_summary">Unable to reach root access.</string>
     <string name="root_needed_continue">Continue anyway</string>
@@ -87,6 +93,7 @@
     <string name="recovery_change_alert_message">%1$s recovery folder found. Do you want to configure it as default?</string>
     <string name="recovery_changed">Recovery %1$s configured.</string>
     <string name="recovery_cwm">CWM-based</string>
+    <string name="recovery_cwm_official">CWM official</string>
     <string name="recovery_4ext">4EXT</string>
     <string name="recovery_twrp">TWRP</string>
 

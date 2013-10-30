@@ -34,6 +34,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"></RadioButton>
+
+        <RadioButton android:text="@string/recovery_cwm_official"
+                android:id="@+id/cwm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"></RadioButton>
     
         <RadioButton android:text="@string/recovery_twrp"
                 android:id="@+id/twrp"

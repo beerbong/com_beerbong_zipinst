@@ -23,6 +23,12 @@
     <string name="alert_reboot_title">"Seleccionar accions i instal·lar"</string>
     <string name="alert_reboot_now">"Instal·lar ara"</string>
 
+    <string name="error_title">Error</string>
+
+    <string name="error_no_rommanager_connection">"No hi ha connexió amb RomManager. Assegura't de tenir instal·lat RomManager Premium i que sigui 4.5.0.0+."</string>
+    <string name="error_no_rommanager_premium">"La teva instal·lació de RomManager no és premium."</string>
+    <string name="error_rommanager_unknown">Error desconegut connectant amb RomManager.</string>
+
     <string name="root_needed_title">Root necessari</string>
     <string name="root_needed_summary">Impossible aconseguir accés root.</string>
     <string name="root_needed_continue">Continuar de totes formes</string>
@@ -87,6 +93,7 @@
     <string name="recovery_change_alert_message">S\'ha trobat una carpeta del recovery %1$s. Vols que es configuri per defecte?</string>
     <string name="recovery_changed">Recovery %1$s configurat.</string>
     <string name="recovery_cwm">CWM-based</string>
+    <string name="recovery_cwm_official">CWM oficial</string>
     <string name="recovery_4ext">4EXT</string>
     <string name="recovery_twrp">TWRP</string>
 

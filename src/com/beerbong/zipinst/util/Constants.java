@@ -29,8 +29,12 @@ import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.beerbong.zipinst.R;
+
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -259,5 +263,19 @@ public class Constants {
     private static boolean folderExists(String path) {
         File f = new File(path);
         return f.exists() && f.isDirectory();
+    }
+
+    public static void showError(Context context, int messageId) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(context);
+        alert.setTitle(R.string.error_title);
+        alert.setMessage(messageId);
+        alert.setCancelable(false);
+        alert.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.dismiss();
+            }
+        });
+        alert.show();
     }
 }
