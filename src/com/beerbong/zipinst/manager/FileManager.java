@@ -551,7 +551,7 @@ public class FileManager extends Manager implements UIListener {
                     final ProgressDialog pDialog = new ProgressDialog(context);
                     pDialog.setIndeterminate(true);
                     pDialog.setMessage(context.getResources().getString(
-                            R.string.alert_deleting_folder));
+                            R.string.alert_deleting_folder, new Object[] {backups[mSelectedBackup]}));
                     pDialog.setCancelable(false);
                     pDialog.setCanceledOnTouchOutside(false);
                     pDialog.show();
