@@ -23,7 +23,7 @@
     <string name="alert_reboot_title">Vyberte akcie a spustite inštaláciu</string>
     <string name="alert_reboot_now">Inštalovať teraz</string>
     
-    <string name="error_title"Chyba</string>
+    <string name="error_title"></string>Chyba</string>
     
     <string name="error_no_rommanager_connection">Nie je k dispozícii pripojenie k aplikácii ROM Manager. Uistite sa, že máte nainštalovanú prémium verziu ROM Managera 4.5.0.0+.</string>
     <string name="error_no_rommanager_premium">Zdá sa, že Vaša verzia ROM Managera nie je prémium.</string>
