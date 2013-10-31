@@ -268,6 +268,8 @@
     <string name="check_rom_updates">Buscar actualizaciones de la ROM</string>
     <string name="check_rom_updates_error">Error buscando actualizaciones de la ROM</string>
     <string name="check_rom_updates_no_new">No se ha encontrado ninguna nueva actualización de la ROM</string>
+    <string name="use_onandroid_title">Utilizar ONandroid</string>
+    <string name="use_onandroid_summary">Hacer un backup de tu rom sin reiniciar al recovery</string>
 
     <string name="new_rom_found_title">Nueva versión de la ROM</string>
     <string name="new_rom_found_summary">Se ha encontrado una nueva versión de tu ROM. ¿Quieres descargarla ahora?\n\n%1$s\n%2$s\n</string>
@@ -293,4 +295,12 @@
 
     <string name="checktime_title">Frecuencia buscar updates</string>
     <string name="checktime_summary">Especifica el tiempo entre cada búsqueda de nuevas versiones</string>
+
+    <string name="nandroid_configure">Configurar</string>
+    <string name="nandroid_start">Empezar</string>
+    <string name="nandroid_configured">Tu dispositivo parece bien configurado para utilizar ONandroid.</string>
+    <string name="nandroid_not_configured">Tu dispositivo no parece cofigurado correctamente para utilizar ONandroid. Por favor, compruébalo apretando el botón \'Configurar\'.</string>
+
+    <string name="onandroid_text">Selecciona tu dispositiu de la lista y clicka \'Configurar\', se descargará un archivo y se instalará por recovery.\nSi tu dispositivo no está listado, por favor comprueba el link de más abajo para saber si está soportado.</string>
+    <string name="onandroid_link"><a href="https://github.com/ameer1234567890/OnlineNandroid/wiki/Supported-Devices">Dispositivos Soportados</a></string>
 </resources>

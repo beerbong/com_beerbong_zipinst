@@ -130,7 +130,7 @@ public class UpdateManager extends Manager implements URLStringReaderListener {
         final ProgressDialog progressDialog = new ProgressDialog(context);
 
         final DownloadTask downloadFile = new DownloadTask(progressDialog, Constants.DOWNLOAD_URL
-                + fileName, fileName, null);
+                + fileName, fileName, null, null);
 
         progressDialog.setMessage(context.getResources()
                 .getString(

@@ -268,6 +268,8 @@
     <string name="check_rom_updates">Cercar actualitzacions de la ROM</string>
     <string name="check_rom_updates_error">Error cercant actualitzacions de la ROM</string>
     <string name="check_rom_updates_no_new">No s\'ha trobat cap nova actualització de la ROM</string>
+    <string name="use_onandroid_title">Utilitzar ONandroid</string>
+    <string name="use_onandroid_summary">Fes un backup de la teva rom sense reiniciar al recovery</string>
 
     <string name="new_rom_found_title">Nova versió de la ROM</string>
     <string name="new_rom_found_summary">S\'ha trobat una nova versió de la teva ROM. Vols descarregar-la ara?\n\n%1$s\n%2$s\n</string>
@@ -291,6 +293,14 @@
     <string name="logged_out">T\'has desconnectat</string>
     <string name="logged_error">Error desconegut connectant</string>
 
-    <string name="checktime_title">Frecuència cercar updates</string>
+    <string name="checktime_title">Freqüència cercar updates</string>
     <string name="checktime_summary">Especifica el temps entre cada cerca de noves versions</string>
+
+    <string name="nandroid_configure">Configurar</string>
+    <string name="nandroid_start">Començar</string>
+    <string name="nandroid_configured">El teu dispositiu pareix ben configurat per utilitzar ONandroid.</string>
+    <string name="nandroid_not_configured">El teu dispositiu no pareix cofigurat correctament per utilitzar ONandroid. Per favor, comprovau prement el botó \'Configurar\'.</string>
+
+    <string name="onandroid_text">Selecciona el teu dispositiu de la llista i clicka \'Configurar\', se descarregarà un arxiu i s\'instal\·larà per recovery.\nSi el teu dispositiu no està llistat, per favor comprova el link de més abaix per saber si està suportat.</string>
+    <string name="onandroid_link"><a href="https://github.com/ameer1234567890/OnlineNandroid/wiki/Supported-Devices">Dispositius Suportats</a></string>
 </resources>

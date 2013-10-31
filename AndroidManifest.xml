@@ -148,6 +148,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.beerbong.zipinst.MainActivity" />
         </activity>
+        <activity android:name="com.beerbong.zipinst.pro.activities.NandroidActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.beerbong.zipinst.MainActivity" />
+        </activity>
 
         <receiver
             android:name="com.beerbong.zipinst.Receiver"

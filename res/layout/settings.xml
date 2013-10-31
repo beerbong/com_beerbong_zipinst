@@ -19,7 +19,9 @@
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <PreferenceCategory android:title="@string/settings_recovery" >
+    <PreferenceCategory 
+        android:key="settings_recovery"
+        android:title="@string/settings_recovery" >
 
         <Preference
             android:key="recovery"

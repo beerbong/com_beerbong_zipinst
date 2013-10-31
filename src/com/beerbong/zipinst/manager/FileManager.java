@@ -580,6 +580,10 @@ public class FileManager extends Manager implements UIListener {
     }
 
     public void download(Context context, String url, String fileName, String md5) {
+        download(context, url, fileName, md5, null);
+    }
+
+    public void download(Context context, String url, String fileName, String md5, DownloadTask.OnDownloadFinishListener listener) {
 
         final ProgressDialog progressDialog = new ProgressDialog(context);
 
@@ -593,7 +597,7 @@ public class FileManager extends Manager implements UIListener {
             }
         }
 
-        final DownloadTask downloadFile = new DownloadTask(progressDialog, url, fileName, md5);
+        final DownloadTask downloadFile = new DownloadTask(progressDialog, url, fileName, md5, listener);
 
         progressDialog.setMessage(context.getResources().getString(R.string.downloading,
                 new Object[] { url, ManagerFactory.getPreferencesManager().getDownloadPath() }));
@@ -887,6 +891,22 @@ public class FileManager extends Manager implements UIListener {
             return null;
         }
         return data.toString();
+    }
+
+    public String[] readAssetsSplit(Context contex, String fileName) {
+        List<String> data = new ArrayList<String>();
+        try {
+            Scanner scanner = new Scanner(new InputStreamReader(contex.getAssets().open(fileName)));
+            while (scanner.hasNext()) {
+                String line = scanner.nextLine();
+                data.add(line);
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+
+        return data.toArray(new String[data.size()]);
     }
 
     public double getSpaceLeft() {

@@ -38,6 +38,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.beerbong.zipinst.R;
+import com.beerbong.zipinst.manager.ProManager.ManageMode;
 import com.beerbong.zipinst.ui.UI;
 import com.beerbong.zipinst.ui.UIListener;
 import com.beerbong.zipinst.util.Constants;
@@ -94,7 +95,7 @@ public class RebootManager extends Manager implements UIListener {
     }
 
     public void showBackupDialog(Context context) {
-        showBackupDialog(context, true, false, false, false, false);
+        showBackupDialog(context, true, false, false, false, false, true);
     }
 
     public void showRestoreDialog(Context context) {
@@ -151,7 +152,7 @@ public class RebootManager extends Manager implements UIListener {
 
     private void showBackupDialog(final Context context, final boolean removePreferences,
             final boolean wipeSystem, final boolean wipeData, final boolean wipeCaches,
-            final boolean fixPermissions) {
+            final boolean fixPermissions, final boolean onlyBackup) {
 
         double checkSpace = ManagerFactory.getPreferencesManager().getSpaceLeft();
         if (checkSpace > 0) {
@@ -168,7 +169,7 @@ public class RebootManager extends Manager implements UIListener {
                         dialog.dismiss();
 
                         reallyShowBackupDialog(context, removePreferences, wipeSystem, wipeData,
-                                wipeCaches, fixPermissions);
+                                wipeCaches, fixPermissions, onlyBackup);
                     }
                 });
 
@@ -182,17 +183,17 @@ public class RebootManager extends Manager implements UIListener {
                 alert.show();
             } else {
                 reallyShowBackupDialog(context, removePreferences, wipeSystem, wipeData,
-                        wipeCaches, fixPermissions);
+                        wipeCaches, fixPermissions, onlyBackup);
             }
         } else {
             reallyShowBackupDialog(context, removePreferences, wipeSystem, wipeData, wipeCaches,
-                    fixPermissions);
+                    fixPermissions, onlyBackup);
         }
     }
 
     private void reallyShowBackupDialog(Context context, boolean removePreferences,
             final boolean wipeSystem, final boolean wipeData, final boolean wipeCaches,
-            final boolean fixPermissions) {
+            final boolean fixPermissions, final boolean onlyBackup) {
         if (removePreferences)
             UI.getInstance().removeAllItems();
 
@@ -270,8 +271,13 @@ public class RebootManager extends Manager implements UIListener {
                     }
                 }
 
-                reboot(wipeSystem, wipeData, wipeCaches, fixPermissions, text,
-                        backupOptions, null);
+                ProManager pManager = ManagerFactory.getProManager();
+                if (onlyBackup && pManager.iAmPro() && ManagerFactory.getPreferencesManager().isUseONandroid()) {
+                    pManager.manage(new String[] {text, backupOptions}, ManageMode.Nandroid);
+                } else {
+                    reboot(wipeSystem, wipeData, wipeCaches, fixPermissions, text,
+                            backupOptions, null);
+                }
             }
         });
 
@@ -311,7 +317,7 @@ public class RebootManager extends Manager implements UIListener {
 
                 if (cursor.isBackup()) {
                     showBackupDialog(mContext, false, cursor.isWipeSystem(), cursor.isWipeData(),
-                            cursor.isWipeCaches(), cursor.isFixPermissions());
+                            cursor.isWipeCaches(), cursor.isFixPermissions(), false);
                 } else {
                     reboot(cursor.isWipeSystem(), cursor.isWipeData(), cursor.isWipeCaches(),
                             cursor.isFixPermissions(), null, null, null);

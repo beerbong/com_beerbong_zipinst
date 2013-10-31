@@ -19,9 +19,12 @@
 
 package com.beerbong.zipinst.manager;
 
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import android.content.Context;
 
@@ -38,7 +41,20 @@ public class SUManager extends Manager {
     }
     
     public CommandResult runWaitFor(final String s) {
-        return su.runWaitFor(s);
+        return su.runWaitFor(s, null);
+    }
+
+    public void run(String s, ReadOutCallback callback) {
+        su.runWaitFor(s, callback);
+    }
+
+    public interface ReadOutCallback {
+
+        public void lineRead(String line);
+
+        public void error(String error);
+
+        public void end();
     }
 
     class CommandResult {
@@ -78,9 +94,11 @@ public class SUManager extends Manager {
 
             try {
                 if (dis.available() > 0) {
-                    buffer = new StringBuffer(dis.readLine());
+                    String line = dis.readLine();
+                    buffer = new StringBuffer(line);
                     while (dis.available() > 0) {
-                        buffer.append("\n").append(dis.readLine());
+                        line = "\n" + dis.readLine();
+                        buffer.append(line);
                     }
                 }
                 dis.close();
@@ -108,17 +126,33 @@ public class SUManager extends Manager {
             return process;
         }
 
-        public CommandResult runWaitFor(final String s) {
+        public CommandResult runWaitFor(final String s, final ReadOutCallback callback) {
             final Process process = run(s);
             Integer exit_value = null;
             String stdout = null;
             String stderr = null;
             if (process != null) {
                 try {
-                    exit_value = process.waitFor();
 
-                    stdout = getStreamLines(process.getInputStream());
-                    stderr = getStreamLines(process.getErrorStream());
+                    if (callback != null) {
+                        new StreamGobbler(process.getInputStream(), callback).start();
+                        new Thread() {
+                            public void run() {
+                                try {
+                                    process.waitFor();
+                                    callback.end();
+                                } catch (final InterruptedException e) {
+                                    e.printStackTrace();
+                                } catch (final NullPointerException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }.start();
+                    } else {
+                        exit_value = process.waitFor();
+                        stdout = getStreamLines(process.getInputStream());
+                        stderr = getStreamLines(process.getErrorStream());
+                    }
 
                 } catch (final InterruptedException e) {
                     e.printStackTrace();
@@ -127,6 +161,34 @@ public class SUManager extends Manager {
                 }
             }
             return new CommandResult(exit_value, stdout, stderr);
+        }
+    }
+
+    class StreamGobbler extends Thread {
+
+        private ReadOutCallback mCallback;
+        private InputStream mInputStream;
+        
+        protected StreamGobbler(InputStream is, ReadOutCallback callback) {
+            mInputStream = is;
+            mCallback = callback;
+        }
+
+        /**
+         * creates readers to handle the text created by the external program
+         */
+        public void run() {
+            try {
+                InputStreamReader isr = new InputStreamReader(mInputStream);
+                BufferedReader br = new BufferedReader(isr);
+                String line = null;
+                while ((line = br.readLine()) != null) {
+                    mCallback.lineRead(line);
+                }
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+                mCallback.error(ioe.getMessage());
+            }
         }
     }
 }

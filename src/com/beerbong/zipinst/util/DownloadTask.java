@@ -44,8 +44,14 @@ import com.beerbong.zipinst.manager.PreferencesManager;
 
 public class DownloadTask extends AsyncTask<Void, Integer, Integer> {
 
+    public interface OnDownloadFinishListener {
+
+        public void onDownloadFinish();
+    }
+
     private int mScale = 1048576;
 
+    private OnDownloadFinishListener mListener;
     private ProgressDialog mDialog = null;
     private Context mContext;
     private String mUrl;
@@ -56,8 +62,10 @@ public class DownloadTask extends AsyncTask<Void, Integer, Integer> {
     private boolean mDone = false;
 
     @SuppressWarnings("deprecation")
-    public DownloadTask(ProgressDialog dialog, String url, String fileName, String md5) {
+    public DownloadTask(ProgressDialog dialog, String url, String fileName, String md5, OnDownloadFinishListener listener) {
         this.attach(dialog);
+
+        mListener = listener;
 
         File dPath = new File(ManagerFactory.getPreferencesManager().getDownloadPath());
         dPath.mkdirs();
@@ -247,6 +255,9 @@ public class DownloadTask extends AsyncTask<Void, Integer, Integer> {
 
         switch (result) {
             case 0:
+                if (mListener != null) {
+                    mListener.onDownloadFinish();
+                }
                 String path = ManagerFactory.getPreferencesManager().getDownloadPath() + mFileName;
                 if (mFileName.endsWith(".apk")) {
                     Intent intent = new Intent(Intent.ACTION_VIEW);

@@ -59,6 +59,7 @@ public class PreferencesManager extends Manager {
 
     public static final String PROPERTY_ENABLE_NOTIFICATIONS = "enable_notifications";
     public static final String PROPERTY_TIME_NOTIFICATIONS = "time_notifications";
+    public static final String PROPERTY_USE_ONANDROID = "use_onandroid";
 
     private static final String DEFAULT_RECOVERY = "cwmbased";
     private static final String DEFAULT_INTERNAL_STORAGE = "emmc";
@@ -79,6 +80,7 @@ public class PreferencesManager extends Manager {
     private static final boolean DEFAULT_AUTOLOAD_LIST = false;
     private static final boolean DEFAULT_ENABLE_NOTIFICATIONS = true;
     private static final boolean DEFAULT_SHOW_WIPESYSTEM_ALERT = true;
+    private static final boolean DEFAULT_USE_ONANDROID = false;
     private static final boolean DEFAULT_USE_FOLDER = false;
     private static final String DEFAULT_FOLDER = "/sdcard/download/";
 
@@ -241,6 +243,14 @@ public class PreferencesManager extends Manager {
 
     public void setTimeNotifications(long value) {
         savePreference(PROPERTY_TIME_NOTIFICATIONS, String.valueOf(value));
+    }
+
+    public boolean isUseONandroid() {
+        return settings.getBoolean(PROPERTY_USE_ONANDROID, DEFAULT_USE_ONANDROID);
+    }
+
+    public void setUseONandroid(boolean value) {
+        savePreference(PROPERTY_USE_ONANDROID, value);
     }
 
     public String getZipPosition() {

@@ -18,6 +18,8 @@
   along with ZipInstaller.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
+    <color name="white">#FFFFFFFF</color>
     <color name="gray">#FFCCCCCC</color>
     <color name="lightgray">#FFEEEEEE</color>
+    <color name="darkgray">#FF333333</color>
 </resources>

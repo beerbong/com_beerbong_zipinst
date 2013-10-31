@@ -26,7 +26,8 @@ public interface ProManager {
     public static enum ManageMode {
         Settings,
         Menu,
-        Recovery
+        Recovery,
+        Nandroid
     }
 
     public void setContext(Context context);
