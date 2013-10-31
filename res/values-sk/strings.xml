@@ -22,6 +22,12 @@
 
     <string name="alert_reboot_title">Vyberte akcie a spustite inštaláciu</string>
     <string name="alert_reboot_now">Inštalovať teraz</string>
+    
+    <string name="error_title"Chyba</string>
+    
+    <string name="error_no_rommanager_connection">Nie je k dispozícii pripojenie k aplikácii ROM Manager. Uistite sa, že máte nainštalovanú prémium verziu ROM Managera 4.5.0.0+.</string>
+    <string name="error_no_rommanager_premium">Zdá sa, že Vaša verzia ROM Managera nie je prémium.</string>
+    <string name="error_rommanager_unknown">Neznáma chyba pri pripájaní sa k aplikácii ROM Manager.</string>
 
     <string name="root_needed_title">Potrebný root</string>
     <string name="root_needed_summary">Nemožno získať root prístup.</string>
@@ -102,7 +108,13 @@
     <string name="sdcard_alert_title">Cesta k úložisku</string>
     <string name="sdcard_alert_summary">Upresnenie názvu úložiska</string>
     <string name="sdcard_alert_error">Prosím upresnite názov úložiska</string>
+    
+    <string name="force_extsdcard_mount_title">Vynútiť si pripojenie externej karty SD</string>
+    <string name="force_extsdcard_mount_summary">Povoľte túto možnosť, ak Vaša CWM recovery predvolene nepripája externú kartu SD</string>
 
+    <string name="backup_external_title">Záloha a obnova na externú kartu SD</string>
+    <string name="backup_external_summary">Povoľte túto možnosť, ak chcete zálohovať Vašu ROM na externú kartu SD</string>
+    
     <string name="about_title">O programe</string>
     <string name="about_zip_title">ZipInstaller</string>
     <string name="about_version_title">Verzia</string>
@@ -134,6 +146,9 @@
 
     <string name="folder_title">Predvolený priečinok</string>
     <string name="folder_error">Priečinok neexistuje alebo nie je platným priečinkom</string>
+    
+    <string name="pick_file">Vyberte súbor</string>
+    <string name="pick_folder">Vyberte priečinok</string>
     
     <string name="rules_title">Pravidlá priečinkov</string>
     <string name="rules_summary">Automaticky pridať súbory z priečinka spĺňajúceho tieto pravidlá</string>
@@ -265,6 +280,15 @@
     <string name="goo_category_title">Prehliadávanie %1$s</string>
     <string name="goo_download_title">Stiahnuť</string>
     <string name="goo_download_summary">Chcete stiahnuť teraz tento súbor?\n\n%1$s\n%2$s\n</string>
+    <string name="goo_login">Prihlásiť sa do goo.im</string>
+    <string name="goo_logout">Odhlásiť sa z goo.im</string>
+    <string name="username">Užívateľské meno</string>
+    <string name="password">Heslo</string>
+    <string name="logged_in">Teraz ste prihlásení</string>
+    <string name="logged_invalid">Neplatné užívateľské meno/heslo</string>
+    <string name="logged_down">Nemožno sa pripojiť k serveru</string>
+    <string name="logged_out">Odhlásili ste sa</string>
+    <string name="logged_error">Neznáma chyba pri prihlasovaní</string>
  
     <string name="checktime_title">Frekvencia kontroly aktualizácií</string>
     <string name="checktime_summary">Upresnenie času medzi každou kontrolou aktualizácií</string>
