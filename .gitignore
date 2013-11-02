@@ -8,3 +8,4 @@ bin
 /.gitignore
 /lint.xml
 /src_pro
+/project.properties
