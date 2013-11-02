@@ -21,6 +21,7 @@ package com.beerbong.zipinst.manager;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -895,8 +896,9 @@ public class FileManager extends Manager implements UIListener {
 
     public String[] readAssetsSplit(Context contex, String fileName) {
         List<String> data = new ArrayList<String>();
+        Scanner scanner = null;
         try {
-            Scanner scanner = new Scanner(new InputStreamReader(contex.getAssets().open(fileName)));
+            scanner = new Scanner(new InputStreamReader(contex.getAssets().open(fileName)));
             while (scanner.hasNext()) {
                 String line = scanner.nextLine();
                 data.add(line);
@@ -904,9 +906,34 @@ public class FileManager extends Manager implements UIListener {
         } catch (IOException ex) {
             ex.printStackTrace();
             return null;
+        } finally {
+            if (scanner != null) {
+                scanner.close();
+            }
         }
 
         return data.toArray(new String[data.size()]);
+    }
+
+    public String findLineInFile(Context contex, File file, String regExp) {
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(new InputStreamReader(new FileInputStream(file)));
+            while (scanner.hasNext()) {
+                String line = scanner.nextLine();
+                if (line.matches(regExp)) {
+                    return line;
+                }
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (scanner != null) {
+                scanner.close();
+            }
+        }
+
+        return null;
     }
 
     public double getSpaceLeft() {

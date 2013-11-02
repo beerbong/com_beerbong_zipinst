@@ -46,7 +46,7 @@ public class DownloadTask extends AsyncTask<Void, Integer, Integer> {
 
     public interface OnDownloadFinishListener {
 
-        public void onDownloadFinish();
+        public void onDownloadFinish(File file);
     }
 
     private int mScale = 1048576;
@@ -255,10 +255,10 @@ public class DownloadTask extends AsyncTask<Void, Integer, Integer> {
 
         switch (result) {
             case 0:
-                if (mListener != null) {
-                    mListener.onDownloadFinish();
-                }
                 String path = ManagerFactory.getPreferencesManager().getDownloadPath() + mFileName;
+                if (mListener != null) {
+                    mListener.onDownloadFinish(new File(path));
+                }
                 if (mFileName.endsWith(".apk")) {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setDataAndType(Uri.fromFile(new File(path)),
