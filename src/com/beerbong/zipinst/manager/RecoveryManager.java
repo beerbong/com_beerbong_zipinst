@@ -30,6 +30,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.util.SparseArray;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.beerbong.zipinst.R;
@@ -52,7 +55,7 @@ public class RecoveryManager extends Manager {
         mRecoveries.put(R.id.fourext, new FourExtRecovery(context));
 
         if (!ManagerFactory.getPreferencesManager().existsRecovery()) {
-            test(mRecoveries.get(R.id.fourext));
+            test(mRecoveries.get(R.id.fourext), true);
         }
 
         ManagerFactory.getProManager().manage(this, ProManager.ManageMode.Recovery);
@@ -170,14 +173,30 @@ public class RecoveryManager extends Manager {
         return commands.toArray(new String[commands.size()]);
     }
 
-    private void test(final RecoveryInfo info) {
+    private void test(final RecoveryInfo info, boolean first) {
+
+        if (first) {
+            int recNumber = 0;
+            File folder = new File(mRecoveries.get(R.id.cwmbased).getFolderPath());
+            if (folder.exists()) {
+                recNumber++;
+            }
+            folder = new File(mRecoveries.get(R.id.twrp).getFolderPath());
+            if (folder.exists()) {
+                recNumber++;
+            }
+            folder = new File(mRecoveries.get(R.id.fourext).getFolderPath());
+            if (folder.exists()) {
+                recNumber++;
+            }
+            if (recNumber != 1) {
+                selectRecovery();
+                return;
+            }
+        }
 
         if (info.getId() == R.id.cwmbased) {
-            setRecovery(R.id.cwmbased);
-            Toast.makeText(
-                    mContext,
-                    mContext.getString(R.string.recovery_changed,
-                            mContext.getString(R.string.recovery_cwm)), Toast.LENGTH_LONG).show();
+            selectRecovery();
             return;
         }
 
@@ -205,10 +224,10 @@ public class RecoveryManager extends Manager {
                     dialog.dismiss();
                     switch (info.getId()) {
                         case R.id.fourext:
-                            test(mRecoveries.get(R.id.twrp));
+                            test(mRecoveries.get(R.id.twrp), false);
                             break;
                         case R.id.twrp:
-                            test(mRecoveries.get(R.id.cwmbased));
+                            test(mRecoveries.get(R.id.cwmbased), false);
                             break;
                     }
                 }
@@ -217,12 +236,38 @@ public class RecoveryManager extends Manager {
         } else {
             switch (info.getId()) {
                 case R.id.fourext:
-                    test(mRecoveries.get(R.id.twrp));
+                    test(mRecoveries.get(R.id.twrp), false);
                     break;
                 case R.id.twrp:
-                    test(mRecoveries.get(R.id.cwmbased));
+                    test(mRecoveries.get(R.id.cwmbased), false);
                     break;
             }
         }
+    }
+
+    private void selectRecovery() {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.recovery, null);
+
+        final RadioGroup mGroup = (RadioGroup) view.findViewById(R.id.recovery_radio_group);
+
+        new AlertDialog.Builder(mContext).setTitle(R.string.recovery_alert_title)
+                .setMessage(R.string.recovery_alert_summary).setView(view)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+
+                        int id = mGroup.getCheckedRadioButtonId();
+
+                        setRecovery(id);
+
+                        dialog.dismiss();
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.dismiss();
+                    }
+                }).show();
     }
 }
