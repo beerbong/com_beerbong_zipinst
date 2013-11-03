@@ -19,6 +19,7 @@
 
 package com.beerbong.zipinst.manager;
 
+import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -64,7 +65,7 @@ public class PreferencesManager extends Manager {
     private static final String DEFAULT_RECOVERY = "cwmbased";
     private static final String DEFAULT_INTERNAL_STORAGE = "emmc";
     private static final String DEFAULT_EXTERNAL_STORAGE = "sdcard";
-    private static final String DEFAULT_DOWNLOAD_PATH = "/sdcard/download/";
+    private static final String DEFAULT_DOWNLOAD_PATH = "/sdcard/zipinstaller/";
     private static final String DEFAULT_ZIP_POSITION = "last";
     private static final String DEFAULT_TIME_NOTIFICATIONS = "3600000"; // an hour
     private static final Set<String> DEFAULT_SHOW_OPTIONS = new HashSet<String>();
@@ -95,6 +96,11 @@ public class PreferencesManager extends Manager {
         DEFAULT_SHOW_OPTIONS.add(Constants.INSTALL_WIPEDATA);
         DEFAULT_SHOW_OPTIONS.add(Constants.INSTALL_WIPECACHES);
         DEFAULT_SHOW_OPTIONS.add(Constants.INSTALL_FIXPERM);
+
+        File file = new File(DEFAULT_DOWNLOAD_PATH);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
     }
 
     public String getInternalStorage() {
