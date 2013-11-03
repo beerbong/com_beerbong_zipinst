@@ -215,6 +215,10 @@ public class RebootManager extends Manager implements UIListener {
         input.setText(Constants.getDateAndTime());
         input.selectAll();
 
+        final ProManager pManager = ManagerFactory.getProManager();
+        final boolean isONandroid = onlyBackup && pManager.iAmPro()
+                && ManagerFactory.getPreferencesManager().isUseONandroid();
+
         final RecoveryManager rManager = ManagerFactory.getRecoveryManager();
         if (rManager.getRecovery().getId() == R.id.twrp) {
             if (!Constants.hasAndroidSecure()) {
@@ -271,8 +275,7 @@ public class RebootManager extends Manager implements UIListener {
                     }
                 }
 
-                ProManager pManager = ManagerFactory.getProManager();
-                if (onlyBackup && pManager.iAmPro() && ManagerFactory.getPreferencesManager().isUseONandroid()) {
+                if (isONandroid) {
                     pManager.manage(new String[] {text, backupOptions}, ManageMode.Nandroid);
                 } else {
                     reboot(wipeSystem, wipeData, wipeCaches, fixPermissions, text,
