@@ -22,9 +22,11 @@ package com.beerbong.zipinst.manager;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -894,18 +896,33 @@ public class FileManager extends Manager implements UIListener {
         return data.toString();
     }
 
-    public String[] readAssetsSplit(Context contex, String fileName) {
+    public String[] readAssetsSplit(Context context, String fileName) {
+        try {
+            return readFileSplit(context.getAssets().open(fileName));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    public String[] readFileSplit(String fileName) {
+        try {
+            return readFileSplit(new FileInputStream(fileName));
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+    }
+
+    private String[] readFileSplit(InputStream is) {
         List<String> data = new ArrayList<String>();
         Scanner scanner = null;
         try {
-            scanner = new Scanner(new InputStreamReader(contex.getAssets().open(fileName)));
+            scanner = new Scanner(new InputStreamReader(is));
             while (scanner.hasNext()) {
                 String line = scanner.nextLine();
                 data.add(line);
             }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
         } finally {
             if (scanner != null) {
                 scanner.close();

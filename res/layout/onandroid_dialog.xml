@@ -25,16 +25,9 @@
     android:padding="10dp" >
 
     <TextView
-        android:id="@+id/onandroid_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/onandroid_text" />
-
-    <TextView
-        android:id="@+id/onandroid_link"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/onandroid_link" />
 
     <Spinner
         android:id="@+id/onandroid_manufacturer"
@@ -43,6 +36,21 @@
 
     <Spinner
         android:id="@+id/onandroid_device"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/onandroid_text2" />
+
+    <Spinner
+        android:id="@+id/onandroid_manufacturer_mtd"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <Spinner
+        android:id="@+id/onandroid_device_mtd"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
 

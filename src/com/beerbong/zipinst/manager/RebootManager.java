@@ -220,7 +220,7 @@ public class RebootManager extends Manager implements UIListener {
                 && ManagerFactory.getPreferencesManager().isUseONandroid();
 
         final RecoveryManager rManager = ManagerFactory.getRecoveryManager();
-        if (rManager.getRecovery().getId() == R.id.twrp) {
+        if (!isONandroid && rManager.getRecovery().getId() == R.id.twrp) {
             if (!Constants.hasAndroidSecure()) {
                 cbSecure.setVisibility(View.GONE);
             }
@@ -276,7 +276,7 @@ public class RebootManager extends Manager implements UIListener {
                 }
 
                 if (isONandroid) {
-                    pManager.manage(new String[] {text, backupOptions}, ManageMode.Nandroid);
+                    pManager.manage(text, ManageMode.Nandroid);
                 } else {
                     reboot(wipeSystem, wipeData, wipeCaches, fixPermissions, text,
                             backupOptions, null);
