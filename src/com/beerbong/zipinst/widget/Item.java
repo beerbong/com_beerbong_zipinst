@@ -20,6 +20,7 @@
 package com.beerbong.zipinst.widget;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
@@ -42,6 +43,7 @@ public class Item extends LinearLayout {
     private TextView mTitleView;
     private int mDownColor;
     private OnItemClickListener mItemClickListener = null;
+    private ColorStateList mDefaultColors;
 
     public Item(final Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -70,6 +72,7 @@ public class Item extends LinearLayout {
 
         mTitleView = (TextView) view.findViewById(R.id.title);
         mTitleView.setText(title);
+        mDefaultColors = mTitleView.getTextColors();
 
         ImageView iView = (ImageView) view.findViewById(R.id.icon);
         iView.setImageDrawable(icon);
@@ -78,6 +81,9 @@ public class Item extends LinearLayout {
 
             @Override
             public boolean onTouch(View view, MotionEvent event) {
+                if (!isEnabled()) {
+                    return true;
+                }
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         setBackgroundColor(mDownColor);
@@ -101,5 +107,17 @@ public class Item extends LinearLayout {
 
     public void setTitle(int resourceId) {
         mTitleView.setText(resourceId);
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        if (mTitleView != null) {
+            if (enabled) {
+                mTitleView.setTextColor(mDefaultColors);
+            } else {
+                mTitleView.setTextColor(R.color.gray);
+            }
+        }
     }
 }
