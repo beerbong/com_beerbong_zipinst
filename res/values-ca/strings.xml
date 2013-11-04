@@ -305,4 +305,8 @@
 
     <string name="onandroid_text">Selecciona el teu dispositiu de la llista i clicka \'Configurar\', se descarregarà un arxiu i s\'instal\·larà per recovery.</string>
     <string name="onandroid_text2">Si el teu dispositiu no apareix adalt però està a la llista d\'abaix, no necesites cap altre configuració, ignora els missatges de \"no està configurat\".</string>
+
+    <string name="not_licensed_title">No autoritzat</string>
+    <string name="not_licensed_text">No has comprat l\'aplicació. Per favor, ves a la Play Store i compra-la.</string>
+    <string name="not_licensed_exit">Tancar app</string>
 </resources>

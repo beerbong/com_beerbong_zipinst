@@ -305,4 +305,8 @@
 
     <string name="onandroid_text">Selecciona tu dispositiu de la lista y clicka \'Configurar\', se descargará un archivo y se instalará por recovery.</string>
     <string name="onandroid_text2">Si tu dispositivo no aparece arriba pero está en la lista de abajo, no necesitas ninguna configuración, ignora los mensajes de \"no está configurado\".</string>
+
+    <string name="not_licensed_title">No autorizado</string>
+    <string name="not_licensed_text">No has comprado la aplicación. Por favor, ves a la Play Store y cómprala.</string>
+    <string name="not_licensed_exit">Cerrar app</string>
 </resources>

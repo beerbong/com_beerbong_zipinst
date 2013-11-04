@@ -19,18 +19,22 @@
 
 package com.beerbong.zipinst.manager.pro;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.Toast;
 
 import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.manager.Manager;
 import com.beerbong.zipinst.manager.ProManager;
+import com.beerbong.zipinst.util.ILicenseCallback;
 
 public class ProManagerImpl extends Manager implements ProManager {
 
     private static final String PRO_CLASS = "com.beerbong.zipinst.pro.ProManager";
+    private static final String PRO_LICENSE_CLASS = "com.beerbong.zipinst.pro.LicenseCallback";
 
     private ProManager mRealPro;
+    private ILicenseCallback mLicenseCallback;
 
     public ProManagerImpl(Context context) {
         super(context);
@@ -39,6 +43,10 @@ public class ProManagerImpl extends Manager implements ProManager {
             Class<?> pClass = Class.forName(PRO_CLASS);
             mRealPro = (ProManager) pClass.newInstance();
             mRealPro.setContext(context);
+            pClass = Class.forName(PRO_LICENSE_CLASS);
+            mLicenseCallback = (ILicenseCallback) pClass.newInstance();
+            mLicenseCallback.setActivity((Activity) context);
+            mLicenseCallback.check();
         } catch (Throwable t) {
             // sorry, you are not a pro
         }

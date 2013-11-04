@@ -306,4 +306,8 @@
 
     <string name="onandroid_text">Select your device from the list below and click \'Configure\', a file will be downloaded and installed via recovery.</string>
     <string name="onandroid_text2">If your device is not listed above but appears in the list below, you don\'t need any further configuration, ignore the \"not configured\" messages.</string>
+
+    <string name="not_licensed_title">Not licensed</string>
+    <string name="not_licensed_text">You have not purchased the application. Please go to the Play Store and buy it.</string>
+    <string name="not_licensed_exit">Close app</string>
 </resources>
