@@ -302,7 +302,7 @@
     <string name="nandroid_configure">Configure</string>
     <string name="nandroid_start">Start</string>
     <string name="nandroid_configured">ONandroid script thanks to Ameer Dawood.\n\nYour device seems to be configured correctly to use ONandroid.</string>
-    <string name="nandroid_not_configured">ONandroid script thanks to Ameer Dawood.\n\nYour device seems to not be configured correctly to use ONandroid. Please check it by pressing the \'Configure\' button.</string>
+    <string name="nandroid_not_configured">ONandroid script thanks to Ameer Dawood.\n\nYour device seems to not be configured correctly to use ONandroid. Please check it in \'Settings\' - \'Configure ONandroid\'.</string>
 
     <string name="onandroid_text">Select your device from the list below and click \'Configure\', a file will be downloaded and installed via recovery.</string>
     <string name="onandroid_text2">If your device is not listed above but appears in the list below, you don\'t need any further configuration, ignore the \"not configured\" messages.</string>

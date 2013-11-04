@@ -301,7 +301,7 @@
     <string name="nandroid_configure">Configurar</string>
     <string name="nandroid_start">Començar</string>
     <string name="nandroid_configured">ONandroid script gràcies a Ameer Dawood.\n\nEl teu dispositiu pareix ben configurat per utilitzar ONandroid.</string>
-    <string name="nandroid_not_configured">ONandroid script gràcies a Ameer Dawood.\n\nEl teu dispositiu no pareix cofigurat correctament per utilitzar ONandroid. Per favor, comprovau prement el botó \'Configurar\'.</string>
+    <string name="nandroid_not_configured">ONandroid script gràcies a Ameer Dawood.\n\nEl teu dispositiu no pareix cofigurat correctament per utilitzar ONandroid. Per favor, comprovau a \'Ajustaments\' - \'Configurar ONandroid\'.</string>
 
     <string name="onandroid_text">Selecciona el teu dispositiu de la llista i clicka \'Configurar\', se descarregarà un arxiu i s\'instal\·larà per recovery.</string>
     <string name="onandroid_text2">Si el teu dispositiu no apareix adalt però està a la llista d\'abaix, no necesites cap altre configuració, ignora els missatges de \"no està configurat\".</string>
