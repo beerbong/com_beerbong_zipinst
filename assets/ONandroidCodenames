@@ -182,7 +182,7 @@ vivo	HTC Incredible S
 a2107a	Lenovo A2107A-H
 janice	Samsung Galaxy S Advance GT-I9070
 SCH-R930	Samsung Galaxy S Aviator SCH-R930
-vanquish	Motorola Droid Razr HD XT926
+vanquish	Motorola Droid Razr HD XT926 (Verizon)
 venus2	Motorola Droid Pro XT610
 protou	HTC Desire X
 doubleshot	HTC MyTouch 4G Slide
@@ -192,7 +192,7 @@ vangogh	Acer Iconia Tab A100
 espresso10wifi	Samsung Galaxy Tab 2 Wifi GT-P5110 / GT-P5113
 triumph	Motorola Triumph WX435 (Virgin Mobile USA)
 e970	LG Optimus G E970 (AT&T)
-SGH-I577	Samsung Exhilerate SGH-I577 (AT&T)
+SGH-I577	Samsung Exhilarate SGH-I577 (AT&T)
 SGH-I727R	Samsung Galaxy S II LTE SGH-I727R (Rogers)
 jlo	Sony Xperia J ST26(i/a)
 oracle	Matsunichi Le Pan S
@@ -275,7 +275,7 @@ konawifi	Samsung Galaxy Note 8.0 GT-N5110
 k1	Lenovo IdeaPad K1
 kona3g	Samsung Galaxy Note 8.0 GT-N5100
 amazingtrf	Samsung Galaxy Discover SGH-S730M
-sgp311	Sony Xperia Tablet Z (Wifi)
+pollux_windy	Sony Xperia Tablet Z (Wifi) SGP311
 m7att	HTC One (AT&T)
 aries	Xiaomi MI 2
 y300	Huawei Ascend Y300
@@ -317,7 +317,7 @@ s2vep	Samsung Galaxy S II Plus GT-I9105P
 msm8625_d9	Innos D9
 COSMOSx2	Konka V981
 fx3	LG Optimus F3 LS720
-C6802	Sony Xperia Z Ultra C6802
+togari	Sony Xperia Z Ultra C6802
 N8000	ZTE Engage LT (Cricket)
 C5303	Sony Xperia SP C5303
 cooperve	Samsung Galaxy Ace GT-S5830M
@@ -328,7 +328,7 @@ F320K	LG G2 F320K (LTE)
 delos3geur	Samsung Galaxy Win GT-I8552
 hltetmo	Samsung Galaxy Note III (T-Mobile)
 ghost	Motorola Moto X XT1055
-expresslte	Galaxy Express Samsung GT-I8730
+expresslte	Samsung Galaxy Express GT-I8730
 D802	LG G2 (Worldwide)
 hlteskt	Samsung Galaxy Note III (SK Telecom) N900S
 m7wlv	HTC One (Verizon)
@@ -339,4 +339,8 @@ lt02wifi	Samsung Galaxy Tab 3 7.0 SM-T210
 deb	Google Nexus 7 LTE
 hlte	Samsung Galaxy Note III SM-N9005 (International)
 obake-maxx	Motorola Droid Ultra XT1080
-SO-04E	Sony Xperia ZR (Docomo)
+dogo	Sony Xperia ZR SO-04E (Docomo)
+obakem	Motorola Droid Mini XT1030
+hltevzw	Samsung Galaxy Note III SM-N900V (Verizon)
+meliuslteatt	Samsung Galaxy Mega SGH-I527
+vanquish_u	Motorola Droid Razr HD XT925
