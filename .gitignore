@@ -9,3 +9,4 @@ bin
 /lint.xml
 /src_pro
 /project.properties
+/proguard
