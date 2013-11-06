@@ -38,13 +38,16 @@ public class ManagerFactory {
     private static DownloadManager mDownloadManager;
 
     public static void start(Activity mActivity) throws NoSuException {
-        mProManager = new ProManagerImpl(mActivity);
+        if (mProManager == null) {
+            mProManager = new ProManagerImpl(mActivity);
+        }
         mFileManager = new FileManager(mActivity);
         mRebootManager = new RebootManager(mActivity);
         mMenuManager = new MenuManager(mActivity);
         mRecoveryManager = new RecoveryManager(mActivity);
-        if (mPreferencesManager == null)
+        if (mPreferencesManager == null) {
             mPreferencesManager = new PreferencesManager(mActivity);
+        }
         mUpdateManager = new UpdateManager(mActivity);
         mSUManager = new SUManager(mActivity);
         mDownloadManager = new DownloadManager(mActivity);
