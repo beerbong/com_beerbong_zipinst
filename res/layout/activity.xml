@@ -33,7 +33,8 @@
     <com.mopub.mobileads.MoPubView
         android:id="@+id/adview"
         android:layout_width="fill_parent"
-        android:layout_height="50dp" />
+        android:paddingBottom="10dp"
+        android:layout_height="60dp" />
 
     <com.mobeta.android.dslv.DragSortListView
         android:id="@+id/file_list"
