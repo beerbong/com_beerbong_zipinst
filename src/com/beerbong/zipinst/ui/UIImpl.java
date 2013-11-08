@@ -38,6 +38,7 @@ import com.beerbong.zipinst.util.StoredItems;
 import com.beerbong.zipinst.widget.FileItemsAdapter;
 import com.beerbong.zipinst.widget.Item;
 import com.mobeta.android.dslv.DragSortListView;
+import com.mopub.mobileads.MoPubErrorCode;
 import com.mopub.mobileads.MoPubView;
 
 public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolder {
@@ -134,7 +135,29 @@ public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolde
         } else {
             mPubView.setAdUnitId("79b58027d3b24736bc6e9d57377c0889");
             mPubView.loadAd();
-    //        mPubView.setBannerAdListener(this)
+            mPubView.setBannerAdListener(new MoPubView.BannerAdListener() {
+                
+                @Override
+                public void onBannerLoaded(MoPubView arg0) {
+                }
+                
+                @Override
+                public void onBannerFailed(MoPubView arg0, MoPubErrorCode arg1) {
+                    mPubView.loadAd();
+                }
+                
+                @Override
+                public void onBannerExpanded(MoPubView arg0) {
+                }
+                
+                @Override
+                public void onBannerCollapsed(MoPubView arg0) {
+                }
+                
+                @Override
+                public void onBannerClicked(MoPubView arg0) {
+                }
+            });
         }
     }
 
