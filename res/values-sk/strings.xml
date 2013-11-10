@@ -22,6 +22,12 @@
 
     <string name="alert_reboot_title">Vyberte akcie a spustite inštaláciu</string>
     <string name="alert_reboot_now">Inštalovať teraz</string>
+    
+    <string name="error_title">Chyba</string>
+    
+    <string name="error_no_rommanager_connection">Nie je k dispozícii pripojenie k aplikácii ROM Manager. Uistite sa, že máte nainštalovanú prémium verziu ROM Managera 4.5.0.0+.</string>
+    <string name="error_no_rommanager_premium">Zdá sa, že Vaša verzia ROM Managera nie je prémium.</string>
+    <string name="error_rommanager_unknown">Neznáma chyba pri pripájaní sa k aplikácii ROM Manager.</string>
 
     <string name="root_needed_title">Potrebný root</string>
     <string name="root_needed_summary">Nemožno získať root prístup.</string>
@@ -86,7 +92,8 @@
     <string name="recovery_change_alert_title">Nájdená recovery</string>
     <string name="recovery_change_alert_message">Nájdená recovery zložka %1$s. Chcete ju nastaviť ako predvolenú?</string>
     <string name="recovery_changed">Recovery %1$s bola nakonfigurovaná.</string>
-    <string name="recovery_cwm">CWM-based</string>
+    <string name="recovery_cwm">Založená na CWM</string>
+    <string name="recovery_cwm_official">Oficiálna CWM</string>
     <string name="recovery_4ext">4EXT</string>
     <string name="recovery_twrp">TWRP</string>
 
@@ -102,7 +109,13 @@
     <string name="sdcard_alert_title">Cesta k úložisku</string>
     <string name="sdcard_alert_summary">Upresnenie názvu úložiska</string>
     <string name="sdcard_alert_error">Prosím upresnite názov úložiska</string>
+    
+    <string name="force_extsdcard_mount_title">Vynútiť si pripojenie externej karty SD</string>
+    <string name="force_extsdcard_mount_summary">Povoľte túto možnosť, ak Vaša CWM recovery predvolene nepripája externú kartu SD</string>
 
+    <string name="backup_external_title">Záloha a obnova na externú kartu SD</string>
+    <string name="backup_external_summary">Povoľte túto možnosť, ak chcete zálohovať Vašu ROM na externú kartu SD</string>
+    
     <string name="about_title">O programe</string>
     <string name="about_zip_title">ZipInstaller</string>
     <string name="about_version_title">Verzia</string>
@@ -134,6 +147,9 @@
 
     <string name="folder_title">Predvolený priečinok</string>
     <string name="folder_error">Priečinok neexistuje alebo nie je platným priečinkom</string>
+    
+    <string name="pick_file">Vyberte súbor</string>
+    <string name="pick_folder">Vyberte priečinok</string>
     
     <string name="rules_title">Pravidlá priečinkov</string>
     <string name="rules_summary">Automaticky pridať súbory z priečinka spĺňajúceho tieto pravidlá</string>
@@ -253,6 +269,11 @@
     <string name="check_rom_updates_error">Vyskytla sa chyba pri kontrolovaní aktualizácií pre Vašu ROM</string>
     <string name="check_rom_updates_no_new">Neboli nájdené žiadne nové aktualizácie Vašej ROM</string>
 
+    <string name="use_onandroid_title">Používať ONandroid</string>
+    <string name="use_onandroid_summary">Zálohovať Vašu ROM bez reštartu do recovery</string>
+    <string name="configure_onandroid_title">Nastaviť ONandroid</string>
+    <string name="configure_onandroid_summary">Skontrolovať, či je Vaše zariadenie podporované ONandroid</string>
+
     <string name="new_rom_found_title">Nájdená nová verzia ROM</string>
     <string name="new_rom_found_summary">Nová verzia pre Vašu ROM bola nájdená. Chcete ju stiahnuť teraz?\n\n%1$s\n%2$s\n</string>
     <string name="new_rom_name">%1$s</string>
@@ -265,7 +286,28 @@
     <string name="goo_category_title">Prehliadávanie %1$s</string>
     <string name="goo_download_title">Stiahnuť</string>
     <string name="goo_download_summary">Chcete stiahnuť teraz tento súbor?\n\n%1$s\n%2$s\n</string>
+    <string name="goo_login">Prihlásiť sa do goo.im</string>
+    <string name="goo_logout">Odhlásiť sa z goo.im</string>
+    <string name="username">Užívateľské meno</string>
+    <string name="password">Heslo</string>
+    <string name="logged_in">Teraz ste prihlásení</string>
+    <string name="logged_invalid">Neplatné užívateľské meno/heslo</string>
+    <string name="logged_down">Nemožno sa pripojiť k serveru</string>
+    <string name="logged_out">Odhlásili ste sa</string>
+    <string name="logged_error">Neznáma chyba pri prihlasovaní</string>
  
     <string name="checktime_title">Frekvencia kontroly aktualizácií</string>
     <string name="checktime_summary">Upresnenie času medzi každou kontrolou aktualizácií</string>
+    
+    <string name="nandroid_configure">Nastaviť</string>
+    <string name="nandroid_start">Štart</string>
+    <string name="nandroid_configured">Vaše zariadenie je správne nastavené pre použitie ONandroid.</string>
+    <string name="nandroid_not_configured">Vaše zariadenie nie je správne nastavené pre použitie ONandroid. Prosím skontrolujte to v \'Nastavenia\' - \'Nastaviť ONandroid\'.</string>
+
+    <string name="onandroid_text">Vyberte Vaše zariadenie zo zoznamu nižšie a kliknite na tlačidlo \'Nastaviť\', súbor bude stiahnutý a nainštalovaný cez recovery.</string>
+    <string name="onandroid_link">Ak nie je Vaše zariadenie zobrazené vyššie, ale je zobrazené v zoznam nižšie, nie je potrebné žiadne ďalšie nastavenie, a preto ignorujte správu o nenastavení.</string>
+
+    <string name="not_licensed_title">Nelicencované</string>
+    <string name="not_licensed_text">Túto aplikáciu ste si nezakúpili. Prosím prejdite do Obchodu Play a zakúpte si ju.</string>
+    <string name="not_licensed_exit">Zatvoriť aplikáciu</string>
 </resources>
