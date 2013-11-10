@@ -271,6 +271,9 @@
 
     <string name="use_onandroid_title">Používať ONandroid</string>
     <string name="use_onandroid_summary">Zálohovať Vašu ROM bez reštartu do recovery</string>
+    <string name="configure_onandroid_title">Nastaviť ONandroid</string>
+    <string name="configure_onandroid_summary">Skontrolovať, či je Vaše zariadenie podporované ONandroid</string>
+
     <string name="new_rom_found_title">Nájdená nová verzia ROM</string>
     <string name="new_rom_found_summary">Nová verzia pre Vašu ROM bola nájdená. Chcete ju stiahnuť teraz?\n\n%1$s\n%2$s\n</string>
     <string name="new_rom_name">%1$s</string>
@@ -299,8 +302,12 @@
     <string name="nandroid_configure">Nastaviť</string>
     <string name="nandroid_start">Štart</string>
     <string name="nandroid_configured">Vaše zariadenie je správne nastavené pre použitie ONandroid.</string>
-    <string name="nandroid_not_configured">Vaše zariadenie nie je správne nastavené pre použitie ONandroid. Prosím skontrolujte to stlačením tlačidla \'Nastaviť\'.</string>
+    <string name="nandroid_not_configured">Vaše zariadenie nie je správne nastavené pre použitie ONandroid. Prosím skontrolujte to v \'Nastavenia\' - \'Nastaviť ONandroid\'.</string>
 
-    <string name="onandroid_text">Vyberte Vaše zariadenie zo zoznamu nižšie a kliknite na tlačidlo \'Nastaviť\', súbor bude stiahnutý a nainštalovaný cez recovery.\nAk Vaše zariadenie nie je zobrazené v zozname, prosím skontrolujte odkaz nižšie a zistite, či je podporované.</string>
-    <string name="onandroid_link"><a href="https://github.com/ameer1234567890/OnlineNandroid/wiki/Supported-Devices">Podporované zariadenia</a></string>
+    <string name="onandroid_text">Vyberte Vaše zariadenie zo zoznamu nižšie a kliknite na tlačidlo \'Nastaviť\', súbor bude stiahnutý a nainštalovaný cez recovery.</string>
+    <string name="onandroid_link">Ak nie je Vaše zariadenie zobrazené vyššie, ale je zobrazené v zoznam nižšie, nie je potrebné žiadne ďalšie nastavenie, a preto ignorujte správu o nenastavení.</string>
+
+    <string name="not_licensed_title">Nelicencované</string>
+    <string name="not_licensed_text">Túto aplikáciu ste si nezakúpili. Prosím prejdite do Obchodu Play a zakúpte si ju.</string>
+    <string name="not_licensed_exit">Zatvoriť aplikáciu</string>
 </resources>
