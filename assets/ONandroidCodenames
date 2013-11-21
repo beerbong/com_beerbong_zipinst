@@ -29,7 +29,7 @@ bryce	LG Revolution & LG Esteem
 a750	Lenovo A750
 ancora	Samsung Galaxy W (Wonder) GT-I8150
 cooper	Samsung Galaxy Ace GT-S5830
-cooperev	Samsung Galaxy Ace GT-S5830I
+cooperev	Samsung Galaxy Ace GT-S5830i
 hercules	Samsung Galaxy S2 Hercules SGH-T989 (T-Mobile)
 GT-P6800	Samsung Galaxy Tab 7.7 (3G) GT-P6800
 GT-P6810	Samsung Galaxy Tab 7.7 (Wifi) GT-P6810
@@ -142,11 +142,11 @@ tf101	Asus Transformer TF101
 su760	LG Optimus 3D SU760
 encore	Barnes & Noble Nook Color
 hikari	Sony Xperia Acro S LT26w
-kumquat	Sony Xperia U ST25
+kumquat	Sony Xperia U ST25(a/i)
 nozomi	Sony Xperia S LT26i
-nypon	Sony Xperia P LT22
+nypon	Sony Xperia P LT22i
 p920	LG Optimus 3D P920
-pepper	Sony Xperia Sola MT27
+pepper	Sony Xperia Sola MT27i
 manta	Google Nexus 10
 picasso_e	Acer Iconia A200
 presto	Pantech Burst P9070 (AT&T)
@@ -157,7 +157,7 @@ wingray	Motorola Xoom (Wifi)
 tf700t	Asus Transformer Prime TF700T
 t0ltecan	Samsung Galaxy Note II SGH-I317M (Rogers)
 geehrc	LG Optimus G LS970
-mint	Sony Xperia T LT30(at/p)
+mint	Sony Xperia T LT30p
 mw07	Arnova 10C G3
 p4100	Pantech Element P4100 (AT&T)
 SGH-T769	Samsung Galaxy S Blaze 4G SGH-T769 (T-Mobile)
@@ -174,7 +174,7 @@ SGH-I927R	Samsung Galaxy S Glide SGH-I927R (Rogers)
 SGH-I997R	Samsung Infuse 4G SGH-I997R (Rogers)
 GT-P5113	Samsung Galaxy Tab 2 10.1 (Wifi) GT-P5113
 golden	Samsung Galaxy S III Mini GT-I8190
-lotus	Sony Xperia Go ST27
+lotus	Sony Xperia Go ST27(a/i)
 otter	Amazon Kindle Fire
 x3	LG Optimus 4X HD P880
 GT-I9100M	Samsung Galaxy S II GT-I9100M (Bell Mobility)
@@ -240,7 +240,7 @@ e610	LG Optimus L5 E610
 l1m	LG Spirit 4G MS870 (MetroPCS)
 u8825d	Huawei U8825D
 vivow	HTC DROID Incredible 2
-yuga	Sony Xperia Z C6603
+yuga	Sony Xperia Z C6602 / C6603 / C6606
 fireball	HTC DROID Incredible 4G LTE
 kai	Medion LifeTab S9714
 vd920	LG Spectrum VS920 (Verizon)
@@ -275,7 +275,7 @@ konawifi	Samsung Galaxy Note 8.0 GT-N5110
 k1	Lenovo IdeaPad K1
 kona3g	Samsung Galaxy Note 8.0 GT-N5100
 amazingtrf	Samsung Galaxy Discover SGH-S730M
-pollux_windy	Sony Xperia Tablet Z (Wifi) SGP311
+pollux_windy	Sony Xperia Tablet Z (Wifi) SGP311 / SGP312
 m7att	HTC One (AT&T)
 aries	Xiaomi MI 2
 y300	Huawei Ascend Y300
@@ -317,7 +317,7 @@ s2vep	Samsung Galaxy S II Plus GT-I9105P
 msm8625_d9	Innos D9
 COSMOSx2	Konka V981
 fx3	LG Optimus F3 LS720
-togari	Sony Xperia Z Ultra C6802 / C6806 / C6833 (LTE)
+togari	Sony Xperia Z Ultra C6802 / C6806 / C6843 / C6833 (LTE)
 N8000	ZTE Engage LT (Cricket)
 huashan	Sony Xperia SP C5302 / C5303 / C5306
 cooperve	Samsung Galaxy Ace GT-S5830M
@@ -342,11 +342,11 @@ obake-maxx	Motorola Droid Ultra XT1080
 dogo	Sony Xperia ZR C5502 / C5503 / SO-04E (Docomo)
 obakem	Motorola Droid Mini XT1030
 hltevzw	Samsung Galaxy Note III SM-N900V (Verizon)
-meliuslteatt	Samsung Galaxy Mega SGH-I527
+meliuslteatt	Samsung Galaxy Mega SGH-I527 (AT&T)
 vanquish_u	Motorola Droid Razr HD XT925
 tsubasa	Sony Xperia V LT25i
 hammerhead	Google Nexus 5
-odin	Sony Xperia ZL C6503
+odin	Sony Xperia ZL C6502 / C6503 / C6506
 geefhd	LG Optimus G Pro E980
 lt03wifiue	Samsung Galaxy Note 10.1 SM-P600 (Wifi)
 lexikon	HTC Merge ADR6325 (Verizon)
@@ -361,3 +361,10 @@ dlxpul	HTC Butterfly S
 honami	Sony Xperia Z1 C6902 / C6903 / C6906 / C6943
 nanhu	Sony Xperia E C1504 / C1505
 skomer	Samsung Galaxy Xcover 2 GT-S7710
+mintl	Sony Xperia TL LT30a/at (AT&T)
+cdma_shadow	Motorola Droid X (Verizon)
+meliuslte	Samsung Samsung Galaxy Mega 6.3 GT-I9205 (LTE)
+nozomi2	Sony Xperia SL LT26ii
+taoshan	Sony Xperia L C2104 / C2105
+e975	LG Optimus G E975
+hltecan	Samsung Galaxy Note III SM-N900W8 (Rogers)
