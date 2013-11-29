@@ -314,4 +314,6 @@
     <string name="menu_flashrecovery">Flash recovery</string>
     <string name="flashrecovery_not_supported">Could not retrieve the flash command for your device</string>
     <string name="flashrecovery_installed">Recovery installed</string>
+    <string name="flashrecovery_confirm_title">Install recovery?</string>
+    <string name="flashrecovery_confirm_message">Install recovery %1$s</string>
 </resources>

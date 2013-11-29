@@ -313,4 +313,6 @@
     <string name="menu_flashrecovery">Flash recovery</string>
     <string name="flashrecovery_not_supported">No s\'ha pogut trobar la instrucció per flashear el recovery al teu dispositiu</string>
     <string name="flashrecovery_installed">"Recovery instal·lat"</string>
+    <string name="flashrecovery_confirm_title">"Instal·lar recovery?"</string>
+    <string name="flashrecovery_confirm_message">"Instal·lar recovery %1$s"</string>
 </resources>
