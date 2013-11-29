@@ -309,4 +309,8 @@
     <string name="not_licensed_title">No autorizado</string>
     <string name="not_licensed_text">No has comprado la aplicación. Por favor, ves a la Play Store y cómprala.</string>
     <string name="not_licensed_exit">Cerrar app</string>
+
+    <string name="menu_flashrecovery">Flash recovery</string>
+    <string name="flashrecovery_not_supported">No se ha podido encontrar la instrucción para flashear el recovery en tu dispositivo</string>
+    <string name="flashrecovery_installed">Recovery instalado</string>
 </resources>

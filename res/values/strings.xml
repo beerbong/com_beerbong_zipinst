@@ -310,4 +310,8 @@
     <string name="not_licensed_title">Not licensed</string>
     <string name="not_licensed_text">You have not purchased the application. Please go to the Play Store and buy it.</string>
     <string name="not_licensed_exit">Close app</string>
+
+    <string name="menu_flashrecovery">Flash recovery</string>
+    <string name="flashrecovery_not_supported">Could not retrieve the flash command for your device</string>
+    <string name="flashrecovery_installed">Recovery installed</string>
 </resources>
