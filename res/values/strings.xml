@@ -316,4 +316,10 @@
     <string name="flashrecovery_installed">Recovery installed</string>
     <string name="flashrecovery_confirm_title">Install recovery?</string>
     <string name="flashrecovery_confirm_message">Install recovery %1$s</string>
+
+    <string name="menu_flashboot">Flash boot.img</string>
+    <string name="flashboot_not_supported">Could not retrieve your boot mount point</string>
+    <string name="flashboot_installed">Boot image installed</string>
+    <string name="flashboot_confirm_title">Install boot image?</string>
+    <string name="flashboot_confirm_message">Install boot image %1$s</string>
 </resources>

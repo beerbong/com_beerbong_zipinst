@@ -315,4 +315,10 @@
     <string name="flashrecovery_installed">"Recovery instal·lat"</string>
     <string name="flashrecovery_confirm_title">"Instal·lar recovery?"</string>
     <string name="flashrecovery_confirm_message">"Instal·lar recovery %1$s"</string>
+
+    <string name="menu_flashboot">Flash boot.img</string>
+    <string name="flashboot_not_supported">No s\'ha pogut trobar el teu boot mount point</string>
+    <string name="flashboot_installed">"Boot image instal·lat"</string>
+    <string name="flashboot_confirm_title">"Instal·lar boot image?"</string>
+    <string name="flashboot_confirm_message">"Instal·lar boot image %1$s"</string>
 </resources>

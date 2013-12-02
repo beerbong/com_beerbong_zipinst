@@ -468,6 +468,10 @@ public class FileManager extends Manager implements UIListener {
         return mExternalStoragePath;
     }
 
+    public String getInternalStoragePath() {
+        return mInternalStoragePath;
+    }
+
     public String getPath(String path) {
         String filePath = new String(path);
 
