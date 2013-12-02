@@ -22,7 +22,6 @@ package com.beerbong.zipinst.manager;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -32,7 +31,6 @@ import com.beerbong.zipinst.activities.Recovery;
 import com.beerbong.zipinst.activities.Settings;
 import com.beerbong.zipinst.ui.UI;
 import com.beerbong.zipinst.ui.UIListener;
-import com.beerbong.zipinst.util.Constants;
 import com.beerbong.zipinst.util.FileItem;
 
 public class MenuManager extends Manager implements UIListener {
@@ -52,9 +50,6 @@ public class MenuManager extends Manager implements UIListener {
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         menu.findItem(R.id.rules).setVisible(ManagerFactory.getPreferencesManager().hasRules());
-        menu.findItem(R.id.donate).setTitle(
-                ManagerFactory.getProManager().iAmPro() ? R.string.donate_title
-                        : R.string.become_a_pro);
     }
 
     @Override
@@ -94,10 +89,6 @@ public class MenuManager extends Manager implements UIListener {
                 break;
             case R.id.downloadzip:
                 ManagerFactory.getFileManager().downloadZip();
-                break;
-            case R.id.donate:
-                mContext.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(ManagerFactory
-                        .getProManager().iAmPro() ? Constants.DONATE_URL : Constants.PRO_URL)));
                 break;
         }
     }

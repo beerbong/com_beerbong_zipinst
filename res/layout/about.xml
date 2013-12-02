@@ -40,6 +40,10 @@
             android:title="@string/license_title"
             android:summary="@string/license_apache_title"
             android:key="license_pref"/>
+        
+        <Preference 
+            android:title="@string/donate_title"
+            android:key="donate_pref"/>
 
     </PreferenceCategory>
 

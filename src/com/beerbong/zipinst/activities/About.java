@@ -20,6 +20,7 @@
 package com.beerbong.zipinst.activities;
 
 import com.beerbong.zipinst.R;
+import com.beerbong.zipinst.manager.ManagerFactory;
 import com.beerbong.zipinst.util.Constants;
 import com.beerbong.zipinst.widget.PreferenceActivity;
 
@@ -38,13 +39,16 @@ public class About extends PreferenceActivity {
 
         super.onCreate(savedInstanceState, R.layout.about);
 
-        Preference versionPref = findPreference(Constants.PREFERENCE_ABOUT_VERSION);
+        Preference pref = findPreference(Constants.PREFERENCE_ABOUT_VERSION);
         try {
-            versionPref
-                    .setSummary(getPackageManager().getPackageInfo(getPackageName(), 0).versionName);
+            pref.setSummary(getPackageManager().getPackageInfo(getPackageName(), 0).versionName);
         } catch (NameNotFoundException e) {
-            versionPref.setSummary(R.string.about_version_unknown);
+            pref.setSummary(R.string.about_version_unknown);
         }
+
+        pref = findPreference(Constants.PREFERENCE_ABOUT_DONATE);
+        pref.setTitle(ManagerFactory.getProManager().iAmPro() ? R.string.donate_title
+                : R.string.become_a_pro);
     }
 
     @Override
@@ -57,6 +61,9 @@ public class About extends PreferenceActivity {
             startActivity(new Intent(About.this, Changelog.class));
         } else if (Constants.PREFERENCE_ABOUT_SITE.equals(key)) {
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(Constants.ABOUT_URL)));
+        } else if (Constants.PREFERENCE_ABOUT_DONATE.equals(key)) {
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(ManagerFactory.getProManager()
+                    .iAmPro() ? Constants.DONATE_URL : Constants.PRO_URL)));
         } else {
             return super.onPreferenceTreeClick(preferenceScreen, preference);
         }

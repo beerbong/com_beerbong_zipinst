@@ -62,6 +62,7 @@ public class Constants {
     public static final String PREFERENCE_ABOUT_SITE = "about_pref";
     public static final String PREFERENCE_ABOUT_LICENSE = "license_pref";
     public static final String PREFERENCE_ABOUT_CHANGELOG = "changelog_pref";
+    public static final String PREFERENCE_ABOUT_DONATE = "donate_pref";
 
     // settings preferences
     public static final String PREFERENCE_SETTINGS_RECOVERY = "recovery";
