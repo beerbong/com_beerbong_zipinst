@@ -308,6 +308,8 @@
 
     <string name="not_licensed_title">No autoritzat</string>
     <string name="not_licensed_text">No has comprat l\'aplicació. Per favor, ves a la Play Store i compra-la.</string>
+    <string name="not_licensed_retry_title">Error de llicència</string>
+    <string name="not_licensed_retry_text">No s\'ha pogut comprovar la teva llicència al Play Store. Per favor, intenta-ho més tard.</string>
     <string name="not_licensed_exit">Tancar app</string>
 
     <string name="menu_flashrecovery">Flash recovery</string>
