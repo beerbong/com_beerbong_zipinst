@@ -965,8 +965,9 @@ public class FileManager extends Manager implements UIListener {
         ArrayList<String> mounts = new ArrayList<String>();
         ArrayList<String> vold = new ArrayList<String>();
 
+        Scanner scanner = null;
         try {
-            Scanner scanner = new Scanner(new File("/proc/mounts"));
+            scanner = new Scanner(new File("/proc/mounts"));
             while (scanner.hasNext()) {
                 String line = scanner.nextLine();
                 if (line.startsWith("/dev/block/vold/")) {
@@ -978,6 +979,10 @@ public class FileManager extends Manager implements UIListener {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            if (scanner != null) {
+                scanner.close();
+            }
         }
         if (mounts.size() == 0 || (mounts.size() == 1 && hasExternalStorage())) {
             mounts.add("/mnt/sdcard");
@@ -988,7 +993,7 @@ public class FileManager extends Manager implements UIListener {
             try {
                 copyOrRemoveCache(fstab, true);
 
-                Scanner scanner = new Scanner(new File("/cache/" + fstab.getName()));
+                scanner = new Scanner(new File("/cache/" + fstab.getName()));
                 while (scanner.hasNext()) {
                     String line = scanner.nextLine();
                     if (line.startsWith("dev_mount")) {
@@ -1019,6 +1024,9 @@ public class FileManager extends Manager implements UIListener {
                 e.printStackTrace();
             } finally {
                 copyOrRemoveCache(fstab, false);
+                if (scanner != null) {
+                    scanner.close();
+                }
             }
         }
         if (vold.size() == 0 || (vold.size() == 1 && hasExternalStorage())) {
