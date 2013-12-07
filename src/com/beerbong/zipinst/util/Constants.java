@@ -29,8 +29,6 @@ import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import com.beerbong.zipinst.R;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -41,6 +39,15 @@ import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.widget.Toast;
+
+import com.beerbong.zipinst.R;
+import com.beerbong.zipinst.manager.ManagerFactory;
+import com.beerbong.zipinst.manager.PreferencesManager;
+import com.dropbox.client2.DropboxAPI;
+import com.dropbox.client2.android.AndroidAuthSession;
+import com.dropbox.client2.session.AccessTokenPair;
+import com.dropbox.client2.session.AppKeyPair;
+import com.dropbox.client2.session.Session.AccessType;
 
 public class Constants {
 
@@ -130,7 +137,12 @@ public class Constants {
     private static final long G = M * K;
     private static final long T = G * K;
 
-    private static int isSystemApp = -1;
+    // dropbox
+    private static String sDropboxKey = "30sf9jomssqj6x8";
+    private static String sDropboxSecret = null;
+    private static AccessType sDropboxAccess = AccessType.APP_FOLDER;
+
+    private static int sIsSystemApp = -1;
 
     public static String getDateAndTime() {
         return SDF.format(new Date(System.currentTimeMillis()));
@@ -157,15 +169,15 @@ public class Constants {
     }
 
     public static boolean isSystemApp(Context context) throws Exception {
-        if (isSystemApp > -1) {
-            return isSystemApp == 1;
+        if (sIsSystemApp > -1) {
+            return sIsSystemApp == 1;
         }
         PackageManager pm = context.getPackageManager();
         PackageInfo info = pm.getPackageInfo("com.beerbong.zipinst", PackageManager.GET_ACTIVITIES);
         ApplicationInfo aInfo = info.applicationInfo;
         String path = aInfo.sourceDir.substring(0, aInfo.sourceDir.lastIndexOf("/"));
-        isSystemApp = path.contains("system/app") ? 1 : 0;
-        return isSystemApp == 1;
+        sIsSystemApp = path.contains("system/app") ? 1 : 0;
+        return sIsSystemApp == 1;
     }
 
     private static String format(final long value, final long divider, final String unit) {
@@ -278,5 +290,26 @@ public class Constants {
             }
         });
         alert.show();
+    }
+
+    public static DropboxAPI<AndroidAuthSession> createDropboxAPI(Context context) {
+        AppKeyPair appKeys = new AppKeyPair(sDropboxKey, getDropboxSecret(context));
+        AndroidAuthSession session = new AndroidAuthSession(appKeys, sDropboxAccess);
+        DropboxAPI<AndroidAuthSession> dBApi = new DropboxAPI<AndroidAuthSession>(session);
+        PreferencesManager pManager = ManagerFactory.getPreferencesManager();
+        String key = pManager.getDropboxKey();
+        String secret = pManager.getDropboxSecret();
+        if (key != null && secret != null) {
+            AccessTokenPair access = new AccessTokenPair(key, secret);
+            dBApi.getSession().setAccessTokenPair(access);
+        }
+        return dBApi;
+    }
+
+    private static String getDropboxSecret(Context context) {
+        if (sDropboxSecret == null) {
+            sDropboxSecret = ManagerFactory.getFileManager().readAssets(context, "dropbox");
+        }
+        return sDropboxSecret;
     }
 }

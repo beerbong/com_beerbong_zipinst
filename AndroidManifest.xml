@@ -140,6 +140,24 @@
         <activity
             android:name="com.millennialmedia.android.VideoPlayer"
             android:configChanges="keyboardHidden|orientation|keyboard" />
+        <activity
+            android:name="com.dropbox.client2.android.AuthActivity"
+            android:launchMode="singleTask"
+            android:configChanges="orientation|keyboard">
+            <intent-filter>
+                <data android:scheme="db-30sf9jomssqj6x8" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.beerbong.zipinst.activities.Dropbox"
+            android:label="@string/dropbox_title" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.beerbong.zipinst.MainActivity" />
+        </activity>
 
         <receiver android:name="com.beerbong.zipinst.NotificationAlarm" />
 

@@ -40,6 +40,9 @@
     <item android:id="@+id/advanced_recovery"
         android:title="@string/menu_advanced_recovery"/>
 
+    <item android:id="@+id/sync_backups"
+        android:title="@string/menu_sync_backups"/>
+
     <item android:id="@+id/savelist"
         android:title="@string/menu_savelist" />
 

@@ -136,6 +136,10 @@ public class RebootManager extends Manager implements UIListener {
 
     }
 
+    public void restore(String path) {
+        reboot(false, false, false, false, null, null, path);
+    }
+
     public void simpleReboot() {
         reboot(false, false, false, false, null, null, null, true);
     }

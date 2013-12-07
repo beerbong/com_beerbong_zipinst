@@ -57,6 +57,8 @@ public class PreferencesManager extends Manager {
     private static final String PROPERTY_RULES = "rules";
     private static final String PROPERTY_LOGIN = "goologin";
     private static final String PROPERTY_LOGIN_USERNAME = "goologinusername";
+    private static final String PROPERTY_DROPBOX_KEY = "dropboxkey";
+    private static final String PROPERTY_DROPBOX_SECRET = "dropboxsecret";
 
     public static final String PROPERTY_ENABLE_NOTIFICATIONS = "enable_notifications";
     public static final String PROPERTY_TIME_NOTIFICATIONS = "time_notifications";
@@ -352,6 +354,22 @@ public class PreferencesManager extends Manager {
 
     public String getLoginUserName() {
         return settings.getString(PROPERTY_LOGIN_USERNAME, null);
+    }
+
+    public void setDropboxKey(String value) {
+        savePreference(PROPERTY_DROPBOX_KEY, value);
+    }
+
+    public String getDropboxKey() {
+        return settings.getString(PROPERTY_DROPBOX_KEY, null);
+    }
+
+    public void setDropboxSecret(String value) {
+        savePreference(PROPERTY_DROPBOX_SECRET, value);
+    }
+
+    public String getDropboxSecret() {
+        return settings.getString(PROPERTY_DROPBOX_SECRET, null);
     }
 
     private String[] getArrayProperty(String property) {

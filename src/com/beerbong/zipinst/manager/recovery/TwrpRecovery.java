@@ -68,7 +68,7 @@ public class TwrpRecovery extends RecoveryInfo {
             File[] fs = f.listFiles();
             return force ? fs[0].getAbsolutePath() + "/" : fs[0].getName() + "/";
         }
-        return null;
+        return f.getAbsolutePath();
     }
 
     @Override

@@ -48,6 +48,7 @@
 
     <string name="alert_backup_title">Backup</string>
     <string name="alert_backup_message">Specify the backup name (spaces will be removed).</string>
+    <string name="alert_backup_actions">Select an action.</string>
 
     <string name="alert_restore_title">Restore</string>
 
@@ -85,6 +86,7 @@
     <string name="menu_apply_rules">Apply rules</string>
     <string name="menu_restore">Restore</string>
     <string name="menu_advanced_recovery">Recovery</string>
+    <string name="menu_sync_backups">Sync backups</string>
     <string name="menu_loadlist">Load list</string>
     <string name="menu_savelist">Save list</string>
     <string name="menu_downloadzip">Download zip</string>
@@ -255,6 +257,30 @@
     <string name="boot">Boot</string>
     <string name="androidsecure">Android secure</string>
     <string name="sdext">SD-Ext</string>
+
+    <string name="dropbox_title">Dropbox</string>
+    <string name="alert_backup_synchronize_title">Local backup</string>
+    <string name="alert_backup_synchronize_message">Select an action.\n%1$s</string>
+    <string name="alert_backup_synchronize">Zip and upload</string>
+    <string name="alert_backup_delete">Delete</string>
+    <string name="backups_in_storage_title">Backups in storage</string>
+    <string name="backups_in_cloud_title">Backups in the cloud</string>
+    <string name="backups_reading">Reading remote files...</string>
+    <string name="backup_zipping">Zipping backup...</string>
+    <string name="backup_unzipping">Unzipping backup...</string>
+    <string name="backup_uploading">Uploading backup...</string>
+    <string name="backup_downloading">Downloading backup...</string>
+    <string name="backup_error_uploading">Error uploading backup</string>
+    <string name="backup_error_downloading">Error downloading backup</string>
+    <string name="alert_backup_remote_title">Remote backup</string>
+    <string name="alert_backup_remote_message">Select an action.\n%1$s</string>
+    <string name="alert_backup_download">Download and restore</string>
+    <string name="error_deleting_remote_file">Error deleting remote file</string>
+    <string name="alert_restore_title">Restore</string>
+    <string name="alert_restore_message">Restore backup?\n%1$s</string>
+
+    <string name="error_zipping">Error zipping backup</string>
+    <string name="error_unzipping">Error unzipping backup</string>
 
     <!-- PRO -->
     <string name="enable_notifications">Enable notifications</string>
