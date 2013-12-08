@@ -48,6 +48,7 @@
 
     <string name="alert_backup_title">Backup</string>
     <string name="alert_backup_message">Especifica el nom del backup (els espais s\'esborraran).</string>
+    <string name="alert_backup_actions">Selecciona una acció.</string>
 
     <string name="alert_restore_title">Restaurar</string>
 
@@ -85,6 +86,7 @@
     <string name="menu_restore">Restore</string>
     <string name="menu_apply_rules">Aplicar regles</string>
     <string name="menu_advanced_recovery">Recovery</string>
+    <string name="menu_sync_backups">Sync backups</string>
     <string name="menu_loadlist">Carregar llista</string>
     <string name="menu_savelist">Guardar llista</string>
     <string name="menu_downloadzip">Descarregar zip</string>
@@ -254,6 +256,30 @@
     <string name="boot">Boot</string>
     <string name="androidsecure">Android secure</string>
     <string name="sdext">SD-Ext</string>
+
+    <string name="dropbox_title">Dropbox</string>
+    <string name="alert_backup_synchronize_title">Backup local</string>
+    <string name="alert_backup_synchronize_message">Selecciona una acció.\n%1$s</string>
+    <string name="alert_backup_synchronize">Comprimeix i puja</string>
+    <string name="alert_backup_delete">Esborrar</string>
+    <string name="backups_in_storage_title">Backups al storage</string>
+    <string name="backups_in_cloud_title">Backups al núvol</string>
+    <string name="backups_reading">Llegint arxius remots...</string>
+    <string name="backup_zipping">Comprimint backup...</string>
+    <string name="backup_unzipping">Descomprimint backup...</string>
+    <string name="backup_uploading">Pujant backup...</string>
+    <string name="backup_downloading">Descarregant backup...</string>
+    <string name="backup_error_uploading">Error pujant backup</string>
+    <string name="backup_error_downloading">Error descarregant backup</string>
+    <string name="alert_backup_remote_title">Backup remot</string>
+    <string name="alert_backup_remote_message">Selecciona una acció.\n%1$s</string>
+    <string name="alert_backup_download">Descarrega i restaura</string>
+    <string name="error_deleting_remote_file">Error esborrant arxiu remot</string>
+    <string name="alert_restore_title">Restaurar</string>
+    <string name="alert_restore_message">Restaurar backup?\n%1$s</string>
+
+    <string name="error_zipping">Error comprimint backup</string>
+    <string name="error_unzipping">Error descomprimint backup</string>
 
     <!-- PRO -->
     <string name="enable_notifications">Habilitar notifications</string>

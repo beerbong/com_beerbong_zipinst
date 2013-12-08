@@ -112,7 +112,9 @@ public class RecoveryManager extends Manager {
             if (f.exists()) {
                 File[] fs = f.listFiles();
                 for (int i = 0; i < fs.length; i++) {
-                    list.add(fs[i].getName());
+                    if (fs[i].isDirectory()) {
+                        list.add(fs[i].getName());
+                    }
                 }
             }
         }

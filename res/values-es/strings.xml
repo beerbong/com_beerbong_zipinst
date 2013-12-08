@@ -48,6 +48,7 @@
 
     <string name="alert_backup_title">Backup</string>
     <string name="alert_backup_message">Especifica el nombre del backup (los espacios se borraran).</string>
+    <string name="alert_backup_actions">Selecciona una acción.</string>
 
     <string name="alert_restore_title">Restaurar</string>
 
@@ -85,6 +86,7 @@
     <string name="menu_restore">Restore</string>
     <string name="menu_apply_rules">Aplicar reglas</string>
     <string name="menu_advanced_recovery">Recovery</string>
+    <string name="menu_sync_backups">Sync backups</string>
     <string name="menu_loadlist">Cargar lista</string>
     <string name="menu_savelist">Guardar lista</string>
     <string name="menu_downloadzip">Descargar zip</string>
@@ -254,6 +256,30 @@
     <string name="boot">Boot</string>
     <string name="androidsecure">Android secure</string>
     <string name="sdext">SD-Ext</string>
+
+    <string name="dropbox_title">Dropbox</string>
+    <string name="alert_backup_synchronize_title">Backup local</string>
+    <string name="alert_backup_synchronize_message">Selecciona una acción.\n%1$s</string>
+    <string name="alert_backup_synchronize">Comprime i sube</string>
+    <string name="alert_backup_delete">Borrar</string>
+    <string name="backups_in_storage_title">Backups en el storage</string>
+    <string name="backups_in_cloud_title">Backups en la nube</string>
+    <string name="backups_reading">Leyendo archivos remotos...</string>
+    <string name="backup_zipping">Comprimiendo backup...</string>
+    <string name="backup_unzipping">Descomprimiendo backup...</string>
+    <string name="backup_uploading">Subiendo backup...</string>
+    <string name="backup_downloading">Descargando backup...</string>
+    <string name="backup_error_uploading">Error subiendo backup</string>
+    <string name="backup_error_downloading">Error descargando backup</string>
+    <string name="alert_backup_remote_title">Backup remoto</string>
+    <string name="alert_backup_remote_message">Selecciona una acción.\n%1$s</string>
+    <string name="alert_backup_download">Descarga y restaura</string>
+    <string name="error_deleting_remote_file">Error borrando archivo remoto</string>
+    <string name="alert_restore_title">Restaurar</string>
+    <string name="alert_restore_message">Restaurar backup?\n%1$s</string>
+
+    <string name="error_zipping">Error comprimiendo backup</string>
+    <string name="error_unzipping">Error descomprimiendo backup</string>
 
     <!-- PRO -->
     <string name="enable_notifications">Habilitar notificationes</string>
