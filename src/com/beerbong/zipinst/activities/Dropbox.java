@@ -20,6 +20,7 @@
 package com.beerbong.zipinst.activities;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -52,6 +53,7 @@ public class Dropbox extends CloudActivity {
     private DropboxAPI<AndroidAuthSession> mDBApi;
     private UploadRequest mRequest;
     private DropboxInputStream mInputStream;
+    private String mBackupName;
     private String mRemoteFolder;
 
     @Override
@@ -59,6 +61,11 @@ public class Dropbox extends CloudActivity {
         super.onCreate(savedInstanceState);
 
         mDBApi = Constants.createDropboxAPI(this);
+        Intent i = getIntent();
+        mBackupName = null;
+        if (i.getExtras() != null && i.getExtras().getString("backupName") != null) {
+            mBackupName = i.getExtras().getString("backupName");
+        }
 
         if (mDBApi.getSession().getAccessTokenPair() == null) {
             mDBApi.getSession().startAuthentication(this);
@@ -85,6 +92,15 @@ public class Dropbox extends CloudActivity {
             } catch (IllegalStateException e) {
                 Log.i("DbAuthLog", "Error authenticating", e);
             }
+        }
+    }
+
+    @Override
+    public void onInited() {
+        if (mBackupName != null) {
+            String folder = ManagerFactory.getRecoveryManager().getBackupDir(true);
+            showStorageDialog(folder, mBackupName);
+            mBackupName = null;
         }
     }
 

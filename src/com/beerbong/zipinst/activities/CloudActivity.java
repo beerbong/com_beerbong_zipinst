@@ -47,6 +47,8 @@ public abstract class CloudActivity extends PreferenceActivity {
     private OnPreferenceClickListener mCloudListener;
     private ProgressDialog mUploadDialog;
 
+    public abstract void onInited();
+
     public abstract List<CloudEntry> getCloudEntries();
 
     public abstract int getCloudIcon();
@@ -69,7 +71,7 @@ public abstract class CloudActivity extends PreferenceActivity {
 
             @Override
             public boolean onPreferenceClick(Preference preference) {
-                showStorageDialog(preference);
+                showStorageDialog((String) preference.getSummary(), (String) preference.getTitle());
                 return false;
             }
         };
@@ -145,15 +147,20 @@ public abstract class CloudActivity extends PreferenceActivity {
                 return null;
             }
 
+            @Override
+            protected void onPostExecute(Void result) {
+                onInited();
+            }
+
         }.execute((Void) null);
 
     }
 
-    private void showStorageDialog(final Preference preference) {
+    protected void showStorageDialog(final String folder, final String name) {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle(R.string.alert_backup_synchronize_title);
         alert.setMessage(getResources().getString(
-                R.string.alert_backup_synchronize_message, preference.getTitle()));
+                R.string.alert_backup_synchronize_message, name));
         alert.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int whichButton) {
@@ -164,8 +171,7 @@ public abstract class CloudActivity extends PreferenceActivity {
 
             public void onClick(DialogInterface dialog, int whichButton) {
                 dialog.dismiss();
-                deleteLocal((String) preference.getTitle(),
-                        (String) preference.getSummary());
+                deleteLocal(name, folder);
             }
         });
         alert.setPositiveButton(R.string.alert_backup_synchronize,
@@ -173,8 +179,7 @@ public abstract class CloudActivity extends PreferenceActivity {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
                         dialog.dismiss();
-                        zipIt((String) preference.getSummary(),
-                                (String) preference.getTitle());
+                        zipIt(name, folder);
                     }
                 });
         alert.show();

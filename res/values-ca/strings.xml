@@ -325,6 +325,7 @@
     <string name="checktime_summary">Especifica el temps entre cada cerca de noves versions</string>
 
     <string name="nandroid_configure">Configurar</string>
+    <string name="nandroid_upload">Comprimir i pujar en acabar</string>
     <string name="nandroid_start">Començar</string>
     <string name="nandroid_configured">ONandroid script gràcies a Ameer Dawood.\n\nEl teu dispositiu pareix ben configurat per utilitzar ONandroid.</string>
     <string name="nandroid_not_configured">ONandroid script gràcies a Ameer Dawood.\n\nEl teu dispositiu no pareix cofigurat correctament per utilitzar ONandroid. Per favor, comprovau a \'Ajustaments\' - \'Configurar ONandroid\'.</string>
