@@ -248,6 +248,8 @@ public class RebootManager extends Manager implements UIListener {
 
                 String text = input.getText().toString();
                 text = text.replace(" ", "");
+                text = text.replace("/", "");
+                text = text.replace("\\", "");
 
                 String backupOptions = null;
                 if (rManager.getRecovery().getId() == R.id.twrp) {

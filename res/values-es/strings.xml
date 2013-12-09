@@ -47,7 +47,7 @@
     <string name="alert_sdcard_message">"Selecciona un zip de la sdcard interna."</string>
 
     <string name="alert_backup_title">Backup</string>
-    <string name="alert_backup_message">Especifica el nombre del backup (los espacios se borraran).</string>
+    <string name="alert_backup_message">Especifica el nombre del backup (los caracteres ilegales se borrarán).</string>
     <string name="alert_backup_actions">Selecciona una acción.</string>
 
     <string name="alert_restore_title">Restaurar</string>
