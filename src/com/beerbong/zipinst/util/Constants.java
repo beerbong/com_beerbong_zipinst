@@ -247,10 +247,14 @@ public class Constants {
     }
 
     public static void showToastOnUiThread(final Context context, final int resourceId) {
+        showToastOnUiThread(context, context.getResources().getString(resourceId));
+    }
+
+    public static void showToastOnUiThread(final Context context, final String message) {
         ((Activity) context).runOnUiThread(new Runnable() {
 
             public void run() {
-                Toast.makeText(context, resourceId, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, message, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -279,9 +283,13 @@ public class Constants {
     }
 
     public static void showError(Context context, int messageId) {
+        showError(context, context.getResources().getString(messageId));
+    }
+
+    public static void showError(Context context, String message) {
         AlertDialog.Builder alert = new AlertDialog.Builder(context);
         alert.setTitle(R.string.error_title);
-        alert.setMessage(messageId);
+        alert.setMessage(message);
         alert.setCancelable(false);
         alert.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 

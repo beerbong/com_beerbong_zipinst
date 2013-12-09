@@ -179,7 +179,7 @@ public abstract class CloudActivity extends PreferenceActivity {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
                         dialog.dismiss();
-                        zipIt(name, folder);
+                        zipIt(folder, name);
                     }
                 });
         alert.show();
@@ -332,6 +332,7 @@ public abstract class CloudActivity extends PreferenceActivity {
                     public void zipError(String error) {
                         file.delete();
                         pDialog.dismiss();
+                        Constants.showToastOnUiThread(CloudActivity.this, error);
                     }
 
                     @Override

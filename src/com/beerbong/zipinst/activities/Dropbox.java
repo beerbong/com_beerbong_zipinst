@@ -130,7 +130,9 @@ public class Dropbox extends CloudActivity {
             Entry dirent = mDBApi.metadata(mRemoteFolder, 1000, null, true, null);
             for (Entry e : dirent.contents) {
                 if (!e.isDeleted && !e.isDir && MIME_TYPE.equals(e.mimeType)) {
-                    CloudEntry entry = new CloudEntry(e.fileName(), e.path, e.bytes);
+                    String path = e.path;
+                    path = path.substring(0, path.lastIndexOf("/") + 1);
+                    CloudEntry entry = new CloudEntry(e.fileName(), path, e.bytes);
                     entries.add(entry);
                 }
             }
