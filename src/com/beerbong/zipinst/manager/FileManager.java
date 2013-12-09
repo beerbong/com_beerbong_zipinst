@@ -995,9 +995,9 @@ public class FileManager extends Manager implements UIListener {
         File fstab = findFstab();
         if (fstab != null) {
             try {
-                copyOrRemoveCache(fstab, true);
+                String filePath = copyOrRemoveCache(fstab, true);
 
-                scanner = new Scanner(new File("/cache/" + fstab.getName()));
+                scanner = new Scanner(new File(filePath));
                 while (scanner.hasNext()) {
                     String line = scanner.nextLine();
                     if (line.startsWith("dev_mount")) {
@@ -1084,13 +1084,15 @@ public class FileManager extends Manager implements UIListener {
         return null;
     }
 
-    private void copyOrRemoveCache(File file, boolean copy) throws NoSuException {
+    private String copyOrRemoveCache(File file, boolean copy) throws NoSuException {
         SUManager suManager = ManagerFactory.getSUManager(mContext);
+        String filePath = new File(mContext.getCacheDir().getAbsolutePath(), file.getName()).getAbsolutePath();
         if (copy) {
-            suManager.runWaitFor("cp " + file.getAbsolutePath() + " /cache/" + file.getName());
-            suManager.runWaitFor("chmod 644 /cache/" + file.getName());
+            suManager.runWaitFor("cp " + file.getAbsolutePath() + " " + filePath);
+            suManager.runWaitFor("chmod 644 " + filePath);
         } else {
-            suManager.runWaitFor("rm -f /cache/" + file.getName());
+            suManager.runWaitFor("rm -f " + filePath);
         }
+        return filePath;
     }
 }
