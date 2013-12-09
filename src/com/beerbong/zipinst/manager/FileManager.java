@@ -47,6 +47,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
 import android.provider.MediaStore;
@@ -122,12 +123,12 @@ public class FileManager extends Manager implements UIListener {
             } else {
                 PackageManager packageManager = mContext.getPackageManager();
                 Intent test = new Intent(Intent.ACTION_GET_CONTENT);
-                test.setType("file/*");
+                test.setType(Constants.MIME_TYPE);
                 List<ResolveInfo> list = packageManager.queryIntentActivities(test,
                         PackageManager.GET_ACTIVITIES);
                 if (list.size() > 0) {
                     Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
-                    intent.setType("file/*");
+                    intent.setType(Constants.MIME_TYPE);
                     getActivity().startActivityForResult(intent, Constants.REQUEST_PICK_FILE);
                 } else {
                     // No app installed to handle the intent - file explorer
@@ -254,6 +255,18 @@ public class FileManager extends Manager implements UIListener {
                             int index = cursor.getColumnIndex(MediaStore.MediaColumns.DATA);
                             if (index >= 0) {
                                 filePath = cursor.getString(index);
+                            } else if (Build.VERSION.SDK_INT >= 19
+                                    && uri.toString().startsWith(ContentResolver.SCHEME_CONTENT)) {
+                                String newUri = new Uri.Builder()
+                                        .scheme(ContentResolver.SCHEME_CONTENT)
+                                        .authority(uri.getAuthority()).appendPath("document")
+                                        .build().toString();
+                                String path = uri.toString();
+                                if (path.startsWith(newUri)) {
+                                    filePath = filePath.substring(filePath.indexOf(":") + 1);
+                                    filePath = ManagerFactory.getFileManager()
+                                            .getInternalStoragePath() + "/" + filePath;
+                                }
                             }
                         }
                     } finally {
