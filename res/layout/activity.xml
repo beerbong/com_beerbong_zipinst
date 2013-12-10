@@ -20,65 +20,75 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res/com.beerbong.zipinst"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="top"
     android:orientation="vertical"
     android:paddingBottom="10dp"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
     android:paddingTop="10dp"
     tools:context=".Activity" >
 
-    <com.mopub.mobileads.MoPubView
+    <com.google.ads.AdView
         android:id="@+id/adview"
         android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:paddingBottom="10dp"
-        android:layout_height="60dp" />
+        ads:adUnitId="ca-app-pub-2581158639472004/6218732979"
+        ads:adSize="BANNER" />
 
-    <com.mobeta.android.dslv.DragSortListView
-        android:id="@+id/file_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="10dp"
-        app:remove_enabled="true"
-        app:remove_mode="clickRemove"
-        app:drag_handle_id="@+id/grabber"
-        app:click_remove_id="@+id/trash"
-        app:float_background_color="?holoBlue" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/gray" />
-
-    <LinearLayout
-        android:id="@+id/buttons_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingTop="10dp" >
-
-        <com.beerbong.zipinst.widget.Item
-            android:id="@+id/choose_zip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:icon="?addIcon"
-            app:title="@string/main_choose_zip"
-            app:downColor="?holoBlue" />
-
-        <com.beerbong.zipinst.widget.Item
-            android:id="@+id/install_now"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:icon="?flashIcon"
-            app:title="@string/install_now"
-            app:downColor="?holoBlue" />
-
+	<LinearLayout android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:gravity="top"
+	    android:orientation="vertical"
+	    android:paddingLeft="20dp"
+	    android:paddingRight="20dp" >
+	
+	    <com.mobeta.android.dslv.DragSortListView
+	        android:id="@+id/file_list"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:divider="@android:color/transparent"
+	        android:dividerHeight="10dp"
+	        app:remove_enabled="true"
+	        app:remove_mode="clickRemove"
+	        app:drag_handle_id="@+id/grabber"
+	        app:click_remove_id="@+id/trash"
+	        app:float_background_color="?holoBlue" />
+	
+	    <View
+	        android:layout_width="match_parent"
+	        android:layout_height="1dp"
+	        android:background="@color/gray" />
+	
+	    <LinearLayout
+	        android:id="@+id/buttons_layout"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:orientation="horizontal"
+	        android:paddingTop="10dp" >
+	
+	        <com.beerbong.zipinst.widget.Item
+	            android:id="@+id/choose_zip"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            app:icon="?addIcon"
+	            app:title="@string/main_choose_zip"
+	            app:downColor="?holoBlue" />
+	
+	        <com.beerbong.zipinst.widget.Item
+	            android:id="@+id/install_now"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_weight="1"
+	            app:icon="?flashIcon"
+	            app:title="@string/install_now"
+	            app:downColor="?holoBlue" />
+	
+	    </LinearLayout>
+    
     </LinearLayout>
-
+    
 </LinearLayout>
