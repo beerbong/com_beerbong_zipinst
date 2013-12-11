@@ -22,6 +22,7 @@ package com.beerbong.zipinst.activities;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -39,6 +40,7 @@ import com.beerbong.zipinst.util.Zip.ZipCallback;
 import com.beerbong.zipinst.widget.PreferenceActivity;
 
 import java.io.File;
+import java.util.Iterator;
 import java.util.List;
 
 public abstract class CloudActivity extends PreferenceActivity {
@@ -46,8 +48,7 @@ public abstract class CloudActivity extends PreferenceActivity {
     private OnPreferenceClickListener mStorageListener;
     private OnPreferenceClickListener mCloudListener;
     private ProgressDialog mUploadDialog;
-
-    public abstract void onInited();
+    private String mBackupName;
 
     public abstract List<CloudEntry> getCloudEntries();
 
@@ -55,7 +56,7 @@ public abstract class CloudActivity extends PreferenceActivity {
 
     public abstract boolean deleteRemote(String toDelete);
 
-    public abstract boolean download(String folder, String name, long bytes, File file, ProgressDialog pDialog);
+    public abstract boolean download(String folder, String name, Bundle extras, File file, ProgressDialog pDialog);
 
     public abstract void cancelDownload();
 
@@ -66,6 +67,12 @@ public abstract class CloudActivity extends PreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.sync_backups);
+
+        Intent i = getIntent();
+        mBackupName = null;
+        if (i.getExtras() != null && i.getExtras().getString("backupName") != null) {
+            mBackupName = i.getExtras().getString("backupName");
+        }
 
         mStorageListener = new OnPreferenceClickListener() {
 
@@ -134,11 +141,16 @@ public abstract class CloudActivity extends PreferenceActivity {
                 }
                 for (CloudEntry e : entries) {
                     Preference pref = new Preference(CloudActivity.this);
-                    pref.getExtras().putLong("bytes", e.getSize());
                     pref.setTitle(e.getFileName());
                     pref.setSummary(e.getPath());
                     pref.setIcon(getCloudIcon());
                     pref.setOnPreferenceClickListener(mCloudListener);
+                    Iterator<String> it = e.getExtras().keySet().iterator();
+                    while (it.hasNext()) {
+                        String key = it.next();
+                        String value = e.getExtra(key);
+                        pref.getExtras().putString(key, value);
+                    }
                     cloudCategory.addPreference(pref);
                 }
 
@@ -149,14 +161,18 @@ public abstract class CloudActivity extends PreferenceActivity {
 
             @Override
             protected void onPostExecute(Void result) {
-                onInited();
+                if (mBackupName != null) {
+                    String folder = ManagerFactory.getRecoveryManager().getBackupDir(true);
+                    showStorageDialog(folder, mBackupName);
+                    mBackupName = null;
+                }
             }
 
         }.execute((Void) null);
 
     }
 
-    protected void showStorageDialog(final String folder, final String name) {
+    private void showStorageDialog(final String folder, final String name) {
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle(R.string.alert_backup_synchronize_title);
         alert.setMessage(getResources().getString(
@@ -186,7 +202,6 @@ public abstract class CloudActivity extends PreferenceActivity {
     }
 
     private void showCloudDialog(final Preference preference) {
-        final long bytes = preference.getExtras().getLong("bytes");
         AlertDialog.Builder alert = new AlertDialog.Builder(this);
         alert.setTitle(R.string.alert_backup_remote_title);
         alert.setMessage(getResources().getString(
@@ -210,8 +225,7 @@ public abstract class CloudActivity extends PreferenceActivity {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
                         dialog.dismiss();
-                        download((String) preference.getSummary(),
-                                (String) preference.getTitle(), bytes);
+                        download(preference);
                     }
                 });
         alert.show();
@@ -357,7 +371,10 @@ public abstract class CloudActivity extends PreferenceActivity {
         }.execute((Void) null);
     }
 
-    protected void download(final String folder, final String name, final long bytes) {
+    protected void download(final Preference preference) {
+
+        final String name = (String) preference.getTitle();
+        final String folder = (String) preference.getSummary();
 
         final File file = new File(ManagerFactory.getRecoveryManager().getBackupDir(true), name);
 
@@ -397,7 +414,7 @@ public abstract class CloudActivity extends PreferenceActivity {
             @Override
             protected Void doInBackground(Void... params) {
                 try {
-                    download(folder, name, bytes, file, pDialog);
+                    resultOk = download(folder, name, preference.getExtras(), file, pDialog);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                     Constants.showToastOnUiThread(CloudActivity.this, R.string.backup_error_downloading);

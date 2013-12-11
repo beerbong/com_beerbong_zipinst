@@ -76,4 +76,6 @@ public abstract class UI implements OnItemClickListener {
     public abstract void onPause();
 
     public abstract void onDestroy();
+
+    public abstract void onResume();
 }

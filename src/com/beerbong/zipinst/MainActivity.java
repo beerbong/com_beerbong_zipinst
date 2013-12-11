@@ -96,4 +96,12 @@ public class MainActivity extends FragmentActivity {
         super.onDestroy();
 
     }
+
+    @Override
+    public void onResume() {
+
+        UI.getInstance().onResume();
+        super.onResume();
+
+    }
 }

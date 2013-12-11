@@ -33,6 +33,7 @@ import com.beerbong.zipinst.activities.Settings;
 import com.beerbong.zipinst.ui.UI;
 import com.beerbong.zipinst.ui.UIListener;
 import com.beerbong.zipinst.util.FileItem;
+import com.beerbong.zipinst.widget.CloudPicker;
 
 public class MenuManager extends Manager implements UIListener {
 
@@ -83,7 +84,8 @@ public class MenuManager extends Manager implements UIListener {
                 mContext.startActivity(new Intent(mContext, Recovery.class));
                 break;
             case R.id.sync_backups:
-                mContext.startActivity(new Intent(mContext, Dropbox.class));
+                new CloudPicker(mContext, null).show();
+//                mContext.startActivity(new Intent(mContext, Dropbox.class));
                 break;
             case R.id.loadlist:
                 ManagerFactory.getFileManager().loadList();

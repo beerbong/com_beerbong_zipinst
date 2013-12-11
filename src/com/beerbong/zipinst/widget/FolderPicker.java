@@ -34,9 +34,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
-import android.view.animation.LayoutAnimationController;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
@@ -82,11 +79,6 @@ public class FolderPicker extends Dialog implements OnItemClickListener, OnClick
         mCurrentFolder.setSelected(true);
         mFolders = (ListView) findViewById(R.id.folders);
         mFolders.setOnItemClickListener(this);
-
-        Animation animation = new AlphaAnimation(0, 1);
-        animation.setDuration(150);
-        LayoutAnimationController controller = new LayoutAnimationController(animation);
-        mFolders.setLayoutAnimation(controller);
 
         mAdapter = new FolderAdapter();
         mFolders.setAdapter(mAdapter);

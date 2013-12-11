@@ -37,11 +37,9 @@ import com.beerbong.zipinst.util.FileItem;
 import com.beerbong.zipinst.util.StoredItems;
 import com.beerbong.zipinst.widget.FileItemsAdapter;
 import com.beerbong.zipinst.widget.Item;
-import com.google.ads.Ad;
-import com.google.ads.AdListener;
-import com.google.ads.AdRequest;
-import com.google.ads.AdRequest.ErrorCode;
-import com.google.ads.AdView;
+import com.google.android.gms.ads.*;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.mobeta.android.dslv.DragSortListView;
 
 public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolder {
@@ -136,28 +134,37 @@ public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolde
         if (ManagerFactory.getProManager(mActivity).iAmPro()) {
             mAdView.setVisibility(View.GONE);
         } else {
-            mAdView.loadAd(new AdRequest());
+            int resultCode = GooglePlayServicesUtil
+                    .isGooglePlayServicesAvailable(mActivity);
+            if (resultCode != ConnectionResult.SUCCESS) {
+                GooglePlayServicesUtil.getErrorDialog(resultCode, mActivity, 1);
+            }
+            mAdView.loadAd(new AdRequest.Builder().build());
             mAdView.setAdListener(new AdListener() {
 
                 @Override
-                public void onDismissScreen(Ad arg0) {
+                public void onAdClosed() {
+                    super.onAdClosed();
                 }
 
                 @Override
-                public void onFailedToReceiveAd(Ad arg0, ErrorCode arg1) {
-                    mAdView.loadAd(new AdRequest());
+                public void onAdFailedToLoad(int errorCode) {
+                    mAdView.loadAd(new AdRequest.Builder().build());
                 }
 
                 @Override
-                public void onLeaveApplication(Ad arg0) {
+                public void onAdLeftApplication() {
+                    super.onAdLeftApplication();
                 }
 
                 @Override
-                public void onPresentScreen(Ad arg0) {
+                public void onAdLoaded() {
+                    super.onAdLoaded();
                 }
 
                 @Override
-                public void onReceiveAd(Ad arg0) {
+                public void onAdOpened() {
+                    super.onAdOpened();
                 }
                 
             });
@@ -216,6 +223,8 @@ public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolde
     @Override
     public void onPause() {
 
+        mAdView.pause();
+
         dispatchOnPause();
 
     }
@@ -224,6 +233,13 @@ public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolde
     public void onDestroy() {
 
         mAdView.destroy();
+
+    }
+
+    @Override
+    public void onResume() {
+
+        mAdView.resume();
 
     }
 

@@ -19,16 +19,18 @@
 
 package com.beerbong.zipinst.util;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CloudEntry {
 
     private String mFileName;
     private String mPath;
-    private long mSize;
+    private Map<String, String> mExtras = new HashMap<String, String>();
 
-    public CloudEntry(String fileName, String path, long size) {
+    public CloudEntry(String fileName, String path) {
         mFileName = fileName;
         mPath = path;
-        mSize = size;
     }
 
     public String getFileName() {
@@ -39,9 +41,15 @@ public class CloudEntry {
         return mPath;
     }
 
-    public long getSize() {
-        return mSize;
+    public void putExtra(String id, String value) {
+        mExtras.put(id, value);
     }
 
-    
+    public String getExtra(String id) {
+        return mExtras.get(id);
+    }
+
+    public Map<String, String> getExtras() {
+        return mExtras;
+    }
 }
