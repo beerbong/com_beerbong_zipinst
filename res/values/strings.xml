@@ -47,7 +47,7 @@
     <string name="alert_sdcard_message">Select a zip from internal sdcard.</string>
 
     <string name="alert_backup_title">Backup</string>
-    <string name="alert_backup_message">Specify the backup name (spaces will be removed).</string>
+    <string name="alert_backup_message">Specify the backup name (illegal characters will be removed).</string>
     <string name="alert_backup_actions">Select an action.</string>
 
     <string name="alert_restore_title">Restore</string>
@@ -326,6 +326,7 @@
     <string name="checktime_summary">Specify the time between each update check</string>
 
     <string name="nandroid_configure">Configure</string>
+    <string name="nandroid_upload">Zip and upload on finished</string>
     <string name="nandroid_start">Start</string>
     <string name="nandroid_configured">ONandroid script thanks to Ameer Dawood.\n\nYour device seems to be configured correctly to use ONandroid.</string>
     <string name="nandroid_not_configured">ONandroid script thanks to Ameer Dawood.\n\nYour device seems to not be configured correctly to use ONandroid. Please check it in \'Settings\' - \'Configure ONandroid\'.</string>

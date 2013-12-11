@@ -20,6 +20,7 @@
 package com.beerbong.zipinst.activities;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -52,6 +53,7 @@ public class Dropbox extends CloudActivity {
     private DropboxAPI<AndroidAuthSession> mDBApi;
     private UploadRequest mRequest;
     private DropboxInputStream mInputStream;
+    private String mBackupName;
     private String mRemoteFolder;
 
     @Override
@@ -59,6 +61,11 @@ public class Dropbox extends CloudActivity {
         super.onCreate(savedInstanceState);
 
         mDBApi = Constants.createDropboxAPI(this);
+        Intent i = getIntent();
+        mBackupName = null;
+        if (i.getExtras() != null && i.getExtras().getString("backupName") != null) {
+            mBackupName = i.getExtras().getString("backupName");
+        }
 
         if (mDBApi.getSession().getAccessTokenPair() == null) {
             mDBApi.getSession().startAuthentication(this);
@@ -89,6 +96,15 @@ public class Dropbox extends CloudActivity {
     }
 
     @Override
+    public void onInited() {
+        if (mBackupName != null) {
+            String folder = ManagerFactory.getRecoveryManager().getBackupDir(true);
+            showStorageDialog(folder, mBackupName);
+            mBackupName = null;
+        }
+    }
+
+    @Override
     public List<CloudEntry> getCloudEntries() {
         RecoveryManager rManager = ManagerFactory.getRecoveryManager();
         String board = Constants.getProperty("ro.product.device");
@@ -114,7 +130,9 @@ public class Dropbox extends CloudActivity {
             Entry dirent = mDBApi.metadata(mRemoteFolder, 1000, null, true, null);
             for (Entry e : dirent.contents) {
                 if (!e.isDeleted && !e.isDir && MIME_TYPE.equals(e.mimeType)) {
-                    CloudEntry entry = new CloudEntry(e.fileName(), e.path, e.bytes);
+                    String path = e.path;
+                    path = path.substring(0, path.lastIndexOf("/") + 1);
+                    CloudEntry entry = new CloudEntry(e.fileName(), path, e.bytes);
                     entries.add(entry);
                 }
             }

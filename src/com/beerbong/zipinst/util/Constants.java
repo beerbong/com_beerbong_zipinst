@@ -38,6 +38,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.widget.Toast;
 
 import com.beerbong.zipinst.R;
@@ -107,6 +108,8 @@ public class Constants {
     public static final String DONATE_URL = "http://forum.xda-developers.com/donatetome.php?u=1806623";
     public static final String PRO_URL = "https://play.google.com/store/apps/details?id=com.beerbong.zipinst";
     public static final String ABOUT_URL = "http://forum.xda-developers.com/showthread.php?t=1920057";
+
+    public static final String MIME_TYPE = (Build.VERSION.SDK_INT < 19) ? "file/*" : "application/zip";
 
     public static final int REQUEST_PICK_FILE = 203;
 
@@ -247,10 +250,14 @@ public class Constants {
     }
 
     public static void showToastOnUiThread(final Context context, final int resourceId) {
+        showToastOnUiThread(context, context.getResources().getString(resourceId));
+    }
+
+    public static void showToastOnUiThread(final Context context, final String message) {
         ((Activity) context).runOnUiThread(new Runnable() {
 
             public void run() {
-                Toast.makeText(context, resourceId, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, message, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -279,9 +286,13 @@ public class Constants {
     }
 
     public static void showError(Context context, int messageId) {
+        showError(context, context.getResources().getString(messageId));
+    }
+
+    public static void showError(Context context, String message) {
         AlertDialog.Builder alert = new AlertDialog.Builder(context);
         alert.setTitle(R.string.error_title);
-        alert.setMessage(messageId);
+        alert.setMessage(message);
         alert.setCancelable(false);
         alert.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 

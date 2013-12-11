@@ -47,6 +47,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
 import android.provider.MediaStore;
@@ -122,12 +123,12 @@ public class FileManager extends Manager implements UIListener {
             } else {
                 PackageManager packageManager = mContext.getPackageManager();
                 Intent test = new Intent(Intent.ACTION_GET_CONTENT);
-                test.setType("file/*");
+                test.setType(Constants.MIME_TYPE);
                 List<ResolveInfo> list = packageManager.queryIntentActivities(test,
                         PackageManager.GET_ACTIVITIES);
                 if (list.size() > 0) {
                     Intent intent = new Intent(Intent.ACTION_GET_CONTENT, null);
-                    intent.setType("file/*");
+                    intent.setType(Constants.MIME_TYPE);
                     getActivity().startActivityForResult(intent, Constants.REQUEST_PICK_FILE);
                 } else {
                     // No app installed to handle the intent - file explorer
@@ -254,6 +255,18 @@ public class FileManager extends Manager implements UIListener {
                             int index = cursor.getColumnIndex(MediaStore.MediaColumns.DATA);
                             if (index >= 0) {
                                 filePath = cursor.getString(index);
+                            } else if (Build.VERSION.SDK_INT >= 19
+                                    && uri.toString().startsWith(ContentResolver.SCHEME_CONTENT)) {
+                                String newUri = new Uri.Builder()
+                                        .scheme(ContentResolver.SCHEME_CONTENT)
+                                        .authority(uri.getAuthority()).appendPath("document")
+                                        .build().toString();
+                                String path = uri.toString();
+                                if (path.startsWith(newUri)) {
+                                    filePath = filePath.substring(filePath.indexOf(":") + 1);
+                                    filePath = ManagerFactory.getFileManager()
+                                            .getInternalStoragePath() + "/" + filePath;
+                                }
                             }
                         }
                     } finally {
@@ -995,9 +1008,9 @@ public class FileManager extends Manager implements UIListener {
         File fstab = findFstab();
         if (fstab != null) {
             try {
-                copyOrRemoveCache(fstab, true);
+                String filePath = copyOrRemoveCache(fstab, true);
 
-                scanner = new Scanner(new File("/cache/" + fstab.getName()));
+                scanner = new Scanner(new File(filePath));
                 while (scanner.hasNext()) {
                     String line = scanner.nextLine();
                     if (line.startsWith("dev_mount")) {
@@ -1084,13 +1097,15 @@ public class FileManager extends Manager implements UIListener {
         return null;
     }
 
-    private void copyOrRemoveCache(File file, boolean copy) throws NoSuException {
+    private String copyOrRemoveCache(File file, boolean copy) throws NoSuException {
         SUManager suManager = ManagerFactory.getSUManager(mContext);
+        String filePath = new File(mContext.getCacheDir().getAbsolutePath(), file.getName()).getAbsolutePath();
         if (copy) {
-            suManager.runWaitFor("cp " + file.getAbsolutePath() + " /cache/" + file.getName());
-            suManager.runWaitFor("chmod 644 /cache/" + file.getName());
+            suManager.runWaitFor("cp " + file.getAbsolutePath() + " " + filePath);
+            suManager.runWaitFor("chmod 644 " + filePath);
         } else {
-            suManager.runWaitFor("rm -f /cache/" + file.getName());
+            suManager.runWaitFor("rm -f " + filePath);
         }
+        return filePath;
     }
 }

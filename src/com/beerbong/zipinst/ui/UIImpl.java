@@ -37,9 +37,12 @@ import com.beerbong.zipinst.util.FileItem;
 import com.beerbong.zipinst.util.StoredItems;
 import com.beerbong.zipinst.widget.FileItemsAdapter;
 import com.beerbong.zipinst.widget.Item;
+import com.google.ads.Ad;
+import com.google.ads.AdListener;
+import com.google.ads.AdRequest;
+import com.google.ads.AdRequest.ErrorCode;
+import com.google.ads.AdView;
 import com.mobeta.android.dslv.DragSortListView;
-import com.mopub.mobileads.MoPubErrorCode;
-import com.mopub.mobileads.MoPubView;
 
 public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolder {
 
@@ -55,7 +58,7 @@ public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolde
         }
     };
 
-    private MoPubView mPubView;
+    private AdView mAdView;
 
     protected UIImpl(MainActivity activity) {
 
@@ -129,34 +132,34 @@ public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolde
 
         onNewIntent(mActivity.getIntent());
 
-        mPubView = (MoPubView) mActivity.findViewById(R.id.adview);
+        mAdView = (AdView) mActivity.findViewById(R.id.adview);
         if (ManagerFactory.getProManager(mActivity).iAmPro()) {
-            mPubView.setVisibility(View.GONE);
+            mAdView.setVisibility(View.GONE);
         } else {
-            mPubView.setAdUnitId("79b58027d3b24736bc6e9d57377c0889");
-            mPubView.loadAd();
-            mPubView.setBannerAdListener(new MoPubView.BannerAdListener() {
-                
+            mAdView.loadAd(new AdRequest());
+            mAdView.setAdListener(new AdListener() {
+
                 @Override
-                public void onBannerLoaded(MoPubView arg0) {
+                public void onDismissScreen(Ad arg0) {
+                }
+
+                @Override
+                public void onFailedToReceiveAd(Ad arg0, ErrorCode arg1) {
+                    mAdView.loadAd(new AdRequest());
+                }
+
+                @Override
+                public void onLeaveApplication(Ad arg0) {
+                }
+
+                @Override
+                public void onPresentScreen(Ad arg0) {
+                }
+
+                @Override
+                public void onReceiveAd(Ad arg0) {
                 }
                 
-                @Override
-                public void onBannerFailed(MoPubView arg0, MoPubErrorCode arg1) {
-                    mPubView.loadAd();
-                }
-                
-                @Override
-                public void onBannerExpanded(MoPubView arg0) {
-                }
-                
-                @Override
-                public void onBannerCollapsed(MoPubView arg0) {
-                }
-                
-                @Override
-                public void onBannerClicked(MoPubView arg0) {
-                }
             });
         }
     }
@@ -220,7 +223,7 @@ public class UIImpl extends UI implements FileItemsAdapter.FileItemsAdapterHolde
     @Override
     public void onDestroy() {
 
-        mPubView.destroy();
+        mAdView.destroy();
 
     }
 

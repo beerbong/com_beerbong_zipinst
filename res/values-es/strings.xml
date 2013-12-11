@@ -47,7 +47,7 @@
     <string name="alert_sdcard_message">"Selecciona un zip de la sdcard interna."</string>
 
     <string name="alert_backup_title">Backup</string>
-    <string name="alert_backup_message">Especifica el nombre del backup (los espacios se borraran).</string>
+    <string name="alert_backup_message">Especifica el nombre del backup (los caracteres ilegales se borrarán).</string>
     <string name="alert_backup_actions">Selecciona una acción.</string>
 
     <string name="alert_restore_title">Restaurar</string>
@@ -325,6 +325,7 @@
     <string name="checktime_summary">Especifica el tiempo entre cada búsqueda de nuevas versiones</string>
 
     <string name="nandroid_configure">Configurar</string>
+    <string name="nandroid_upload">Comprimir y subir al acabar</string>
     <string name="nandroid_start">Empezar</string>
     <string name="nandroid_configured">ONandroid script gracias a Ameer Dawood.\n\nTu dispositivo parece bien configurado para utilizar ONandroid.</string>
     <string name="nandroid_not_configured">ONandroid script gracias a Ameer Dawood.\n\nTu dispositivo no parece cofigurado correctamente para utilizar ONandroid. Por favor, compruébalo a \'Ajustes\' - \'Configurar ONandroid\'.</string>
