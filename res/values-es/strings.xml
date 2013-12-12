@@ -50,8 +50,6 @@
     <string name="alert_backup_message">Especifica el nombre del backup (los caracteres ilegales se borrarán).</string>
     <string name="alert_backup_actions">Selecciona una acción.</string>
 
-    <string name="alert_restore_title">Restaurar</string>
-
     <string name="alert_delete_title">Borrar</string>
 
     <string name="alert_file_title">%1$s</string>
@@ -257,7 +255,10 @@
     <string name="androidsecure">Android secure</string>
     <string name="sdext">SD-Ext</string>
 
+    <string name="cloud_service">Servicio en la nube</string>
     <string name="dropbox_title">Dropbox</string>
+    <string name="drive_title">Drive</string>
+
     <string name="alert_backup_synchronize_title">Backup local</string>
     <string name="alert_backup_synchronize_message">Selecciona una acción.\n%1$s</string>
     <string name="alert_backup_synchronize">Comprime i sube</string>

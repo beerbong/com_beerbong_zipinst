@@ -19,8 +19,14 @@
 
 package com.beerbong.zipinst.activities;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -39,13 +45,6 @@ import com.dropbox.client2.android.AndroidAuthSession;
 import com.dropbox.client2.exception.DropboxException;
 import com.dropbox.client2.session.AccessTokenPair;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.util.ArrayList;
-import java.util.List;
-
 public class Dropbox extends CloudActivity {
 
     private static final String MIME_TYPE = "application/zip";
@@ -53,7 +52,6 @@ public class Dropbox extends CloudActivity {
     private DropboxAPI<AndroidAuthSession> mDBApi;
     private UploadRequest mRequest;
     private DropboxInputStream mInputStream;
-    private String mBackupName;
     private String mRemoteFolder;
 
     @Override
@@ -61,11 +59,6 @@ public class Dropbox extends CloudActivity {
         super.onCreate(savedInstanceState);
 
         mDBApi = Constants.createDropboxAPI(this);
-        Intent i = getIntent();
-        mBackupName = null;
-        if (i.getExtras() != null && i.getExtras().getString("backupName") != null) {
-            mBackupName = i.getExtras().getString("backupName");
-        }
 
         if (mDBApi.getSession().getAccessTokenPair() == null) {
             mDBApi.getSession().startAuthentication(this);
@@ -92,15 +85,6 @@ public class Dropbox extends CloudActivity {
             } catch (IllegalStateException e) {
                 Log.i("DbAuthLog", "Error authenticating", e);
             }
-        }
-    }
-
-    @Override
-    public void onInited() {
-        if (mBackupName != null) {
-            String folder = ManagerFactory.getRecoveryManager().getBackupDir(true);
-            showStorageDialog(folder, mBackupName);
-            mBackupName = null;
         }
     }
 
@@ -132,7 +116,8 @@ public class Dropbox extends CloudActivity {
                 if (!e.isDeleted && !e.isDir && MIME_TYPE.equals(e.mimeType)) {
                     String path = e.path;
                     path = path.substring(0, path.lastIndexOf("/") + 1);
-                    CloudEntry entry = new CloudEntry(e.fileName(), path, e.bytes);
+                    CloudEntry entry = new CloudEntry(e.fileName(), path);
+                    entry.putExtra("size", String.valueOf(e.size));
                     entries.add(entry);
                 }
             }
@@ -172,6 +157,7 @@ public class Dropbox extends CloudActivity {
         }
     }
 
+    @Override
     protected void upload(final String path) {
 
         final File file = new File(path);
@@ -199,13 +185,15 @@ public class Dropbox extends CloudActivity {
     }
 
     @Override
-    public boolean download(String folder, String name, long bytes, File file, ProgressDialog pDialog) {
+    public boolean download(String folder, String name, Bundle extras, File file, ProgressDialog pDialog) {
         BufferedOutputStream bw = null;
 
         try {
             if (!file.exists()) {
                 file.createNewFile();
             }
+
+            long bytes = Long.parseLong(extras.getString("size"));
 
             mInputStream = mDBApi.getFileStream(folder + name, null);
             bw = new BufferedOutputStream(new FileOutputStream(file));

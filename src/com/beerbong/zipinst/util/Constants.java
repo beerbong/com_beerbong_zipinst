@@ -112,6 +112,8 @@ public class Constants {
     public static final String MIME_TYPE = (Build.VERSION.SDK_INT < 19) ? "file/*" : "application/zip";
 
     public static final int REQUEST_PICK_FILE = 203;
+    public static final int REQUEST_ACCOUNT_PICKER = 204;
+    public static final int REQUEST_AUTHORIZATION = 205;
 
     public static final int NOTIFICATION_ID = 122303221;
 

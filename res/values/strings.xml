@@ -20,6 +20,8 @@
 <resources>
     <string name="app_name">ZipInstaller</string>
 
+    <string name="ad_unit_id" translatable="false">ca-app-pub-2581158639472004/6218732979</string>
+
     <string name="alert_reboot_title">Select actions and install</string>
     <string name="alert_reboot_now">Install now</string>
 
@@ -49,8 +51,6 @@
     <string name="alert_backup_title">Backup</string>
     <string name="alert_backup_message">Specify the backup name (illegal characters will be removed).</string>
     <string name="alert_backup_actions">Select an action.</string>
-
-    <string name="alert_restore_title">Restore</string>
 
     <string name="alert_delete_title">Delete</string>
 
@@ -258,7 +258,10 @@
     <string name="androidsecure">Android secure</string>
     <string name="sdext">SD-Ext</string>
 
+    <string name="cloud_service">Cloud service</string>
     <string name="dropbox_title">Dropbox</string>
+    <string name="drive_title">Drive</string>
+
     <string name="alert_backup_synchronize_title">Local backup</string>
     <string name="alert_backup_synchronize_message">Select an action.\n%1$s</string>
     <string name="alert_backup_synchronize">Zip and upload</string>
