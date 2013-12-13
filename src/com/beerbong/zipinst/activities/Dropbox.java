@@ -117,7 +117,7 @@ public class Dropbox extends CloudActivity {
                     String path = e.path;
                     path = path.substring(0, path.lastIndexOf("/") + 1);
                     CloudEntry entry = new CloudEntry(e.fileName(), path);
-                    entry.putExtra("size", String.valueOf(e.size));
+                    entry.putExtra("size", String.valueOf(e.bytes));
                     entries.add(entry);
                 }
             }
