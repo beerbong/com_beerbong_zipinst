@@ -458,13 +458,12 @@ public abstract class CloudActivity extends PreferenceActivity {
 
         new AsyncTask<Void, Void, Void>() {
 
-            private String path;
             private boolean resultOk = false;
 
             @Override
             protected Void doInBackground(Void... params) {
 
-                path = file.getAbsolutePath().replace(".zip", "");
+                String path = file.getAbsolutePath().replace(".zip", "");
                 zip.setZipCallback(new ZipCallback() {
 
                     @Override
@@ -500,6 +499,11 @@ public abstract class CloudActivity extends PreferenceActivity {
             @Override
             protected void onPostExecute(Void result) {
                 if (resultOk) {
+                    String storageFolder = ManagerFactory.getRecoveryManager().getBackupDir(false);
+                    if (!storageFolder.endsWith("/")) {
+                        storageFolder += "/";
+                    }
+                    String path = storageFolder + file.getName().replace(".zip", "");
                     showRestoreDialog(path);
                 }
             }
