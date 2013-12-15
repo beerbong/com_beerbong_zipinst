@@ -37,8 +37,8 @@
     <string name="alert_wipe_system_title">Vymazať všetky dáta</string>
     <string name="alert_wipe_system_message">Chystáte sa vymazať všetky dáta v zariadení. Ste si istí, že to chcete urobiť?</string>
 
-    <string name="install_file_manager_error">Nebola nájdená žiadna aplikácia pre vybratie ZIP súboru. Prosím nainštaluje správcu súborov.</string>
-    <string name="install_file_manager_intsdcard">Prosím vyberte súbor z vnútornej SD karty.</string>
+    <string name="install_file_manager_error">Nebola nájdená žiadna aplikácia pre vybratie ZIP súboru. Prosím, nainštaluje správcu súborov.</string>
+    <string name="install_file_manager_intsdcard">Prosím, vyberte súbor z vnútornej SD karty.</string>
     <string name="install_file_manager_zip">Vyberte ZIP alebo SH súbor.</string>
     <string name="install_file_manager_invalid_zip">Neplatný ZIP/SH súbor.</string>
     <string name="install_file_manager_not_found_zip">Nenájdená položka bola odstránená zo zoznamu.</string>
@@ -47,9 +47,8 @@
     <string name="alert_sdcard_message">Vyberte ZIP súbor z vnútornej SD karty.</string>
 
     <string name="alert_backup_title">Záloha</string>
-    <string name="alert_backup_message">Zadajte názov zálohy (medzery budú odstránené).</string>
-
-    <string name="alert_restore_title">Obnova</string>
+    <string name="alert_backup_message">Zadajte názov zálohy (neplatné znaky budú odstránené).</string>
+    <string name="alert_backup_actions">Vyberte akciu.</string>
 
     <string name="alert_delete_title">Vymazať</string>
 
@@ -85,6 +84,7 @@
     <string name="menu_apply_rules">Použiť pravidlá</string>
     <string name="menu_restore">Obnoviť</string>
     <string name="menu_advanced_recovery">Recovery</string>
+    <string name="menu_sync_backups">Synchronizovať zálohy</string>
     <string name="menu_loadlist">Načítať zoznam</string>
     <string name="menu_savelist">Uložiť zoznam</string>
     <string name="menu_downloadzip">Stiahnuť ZIP</string>
@@ -108,7 +108,7 @@
     <string name="externalsdcard_summary">Upresnenie cesty k externému úložisku, ktorú používa recovery</string>
     <string name="sdcard_alert_title">Cesta k úložisku</string>
     <string name="sdcard_alert_summary">Upresnenie názvu úložiska</string>
-    <string name="sdcard_alert_error">Prosím upresnite názov úložiska</string>
+    <string name="sdcard_alert_error">Prosím, upresnite názov úložiska</string>
     
     <string name="force_extsdcard_mount_title">Vynútiť si pripojenie externej karty SD</string>
     <string name="force_extsdcard_mount_summary">Povoľte túto možnosť, ak Vaša CWM recovery predvolene nepripája externú kartu SD</string>
@@ -212,7 +212,7 @@
 
     <string name="downloadzip_alert_title">Stiahnuť ZIP</string>
     <string name="downloadzip_alert_summary">Zadajte adresu URL zip súboru</string>
-    <string name="downloadzip_alert_error">Prosím zadajte adresu URL zip súboru</string>
+    <string name="downloadzip_alert_error">Prosím, zadajte adresu URL zip súboru</string>
 
     <string name="recovery_activity_title">Recovery</string>
     <string name="recovery_activity_backup_title">Zálohovať</string>
@@ -227,7 +227,7 @@
 
     <string name="alert_deleting_folder">Mazanie %1$s&#8230;</string>
 
-    <string name="consider_becoming_a_pro">Prosím zvážte kúpu aplikácie</string>
+    <string name="consider_becoming_a_pro">Prosím, zvážte kúpu aplikácie</string>
     <string name="become_a_pro">Zakúpiť aplikáciu</string>
 
     <string name="zipposition_title">Pozícia ZIPu</string>
@@ -254,6 +254,33 @@
     <string name="boot">Boot</string>
     <string name="androidsecure">Android secure</string>
     <string name="sdext">SD-Ext</string>
+    
+    <string name="cloud_service">Cloudová služba</string>
+    <string name="dropbox_title">Dropbox</string>
+    <string name="drive_title">Disk</string>
+    
+    <string name="alert_backup_synchronize_title">Miestná záloha</string>
+    <string name="alert_backup_synchronize_message">Vyberte akciu.\n%1$s</string>
+    <string name="alert_backup_synchronize">Zabaliť a nahrať</string>
+    <string name="alert_backup_delete">Vymazať</string>
+    <string name="backups_in_storage_title">Zálohy v úložisku</string>
+    <string name="backups_in_cloud_title">Zálohy v cloude</string>
+    <string name="backups_reading">Čítanie vzdialených súborov...</string>
+    <string name="backup_zipping">Balenie zálohy...</string>
+    <string name="backup_unzipping">Rozbaľovanie zálohy...</string>
+    <string name="backup_uploading">Nahrávanie zálohy...</string>
+    <string name="backup_downloading">Šťahovanie zálohy...</string>
+    <string name="backup_error_uploading">Chyba pri nahrávaní zálohy</string>
+    <string name="backup_error_downloading">Chyba pri sťahovaní zálohy</string>
+    <string name="alert_backup_remote_title">Vzdialená záloha</string>
+    <string name="alert_backup_remote_message">Vyberte akciu.\n%1$s</string>
+    <string name="alert_backup_download">Stiahnuť a obnoviť</string>
+    <string name="error_deleting_remote_file">Chyba pri mazaní vzdialených súborov</string>
+    <string name="alert_restore_title">Obnova</string>
+    <string name="alert_restore_message">Obnoviť zálohu?\n%1$s</string>
+
+    <string name="error_zipping">Chyba pri balení zálohy</string>
+    <string name="error_unzipping">Chyba pri rozbaľovaní zálogy</string>
 
     <!-- PRO -->
     <string name="enable_notifications">Povoliť oznámenia</string>
@@ -300,14 +327,29 @@
     <string name="checktime_summary">Upresnenie času medzi každou kontrolou aktualizácií</string>
     
     <string name="nandroid_configure">Nastaviť</string>
+    <string name="nandroid_upload">Zabaliť a nahrať po dokončení</string>
     <string name="nandroid_start">Štart</string>
     <string name="nandroid_configured">Vaše zariadenie je správne nastavené pre použitie ONandroid.</string>
-    <string name="nandroid_not_configured">Vaše zariadenie nie je správne nastavené pre použitie ONandroid. Prosím skontrolujte to v \'Nastavenia\' - \'Nastaviť ONandroid\'.</string>
+    <string name="nandroid_not_configured">Vaše zariadenie nie je správne nastavené pre použitie ONandroid. Prosím, skontrolujte to v \'Nastavenia\' - \'Nastaviť ONandroid\'.</string>
 
     <string name="onandroid_text">Vyberte Vaše zariadenie zo zoznamu nižšie a kliknite na tlačidlo \'Nastaviť\', súbor bude stiahnutý a nainštalovaný cez recovery.</string>
     <string name="onandroid_link">Ak nie je Vaše zariadenie zobrazené vyššie, ale je zobrazené v zoznam nižšie, nie je potrebné žiadne ďalšie nastavenie, a preto ignorujte správu o nenastavení.</string>
 
     <string name="not_licensed_title">Nelicencované</string>
-    <string name="not_licensed_text">Túto aplikáciu ste si nezakúpili. Prosím prejdite do Obchodu Play a zakúpte si ju.</string>
+    <string name="not_licensed_text">Túto aplikáciu ste si nezakúpili. Prosím, prejdite do Obchodu Play a zakúpte si ju.</string>
+    <string name="not_licensed_retry_title">Chyba licencie</string>
+    <string name="not_licensed_retry_text">Nemožno skontrolovať Vašu licenciu v Obchode Play. Skúste to znova neskôr, prosím.</string>
     <string name="not_licensed_exit">Zatvoriť aplikáciu</string>
+    
+    <string name="menu_flashrecovery">Flashnúť recovery</string>
+    <string name="flashrecovery_not_supported">Nemožno získať príkaz flashu pre Vaše zariadenie</string>
+    <string name="flashrecovery_installed">Recovery nainštalovaná</string>
+    <string name="flashrecovery_confirm_title">Inštalovať recovery?</string>
+    <string name="flashrecovery_confirm_message">Inštalovať recovery %1$s</string>
+    
+    <string name="menu_flashboot">Flashnúť boot.img</string>
+    <string name="flashboot_not_supported">Nemožno získať body pripojenia bootu</string>
+    <string name="flashboot_installed">Boot obraz nainštalovaný</string>
+    <string name="flashboot_confirm_title">Inštalovať boot obraz?</string>
+    <string name="flashboot_confirm_message">Inštalovať boot obraz %1$s</string>
 </resources>
