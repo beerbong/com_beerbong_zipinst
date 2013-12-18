@@ -19,16 +19,8 @@
 
 package com.beerbong.zipinst.activities;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import android.accounts.AccountManager;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -55,6 +47,13 @@ import com.google.api.services.drive.DriveScopes;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 import com.google.api.services.drive.model.ParentReference;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class GoogleDrive extends CloudActivity {
 
@@ -164,8 +163,7 @@ public class GoogleDrive extends CloudActivity {
     }
 
     @Override
-    public boolean download(String folder, String name, Bundle extras, java.io.File file,
-            final ProgressDialog pDialog) {
+    public boolean download(String folder, String name, Bundle extras, java.io.File file) {
         try {
             String id = extras.getString("id");
             File cloudFile = searchFile(id);
@@ -184,14 +182,17 @@ public class GoogleDrive extends CloudActivity {
                     new MediaHttpDownloaderProgressListener() {
 
                         @Override
-                        public void progressChanged(MediaHttpDownloader downloader) {
+                        public void progressChanged(MediaHttpDownloader downloader) throws IOException {
                             switch (downloader.getDownloadState()) {
                                 case NOT_STARTED:
                                     break;
                                 case MEDIA_IN_PROGRESS:
+                                    if (isDownloadCancelled()) {
+                                        throw new IOException();
+                                    }
                                     long bytes = downloader.getNumBytesDownloaded();
                                     int percent = (int) (bytes * 100 / length);
-                                    pDialog.setProgress(percent);
+                                    setDownloadProgress(percent);
                                     break;
                                 case MEDIA_COMPLETE:
                                     break;
@@ -210,12 +211,10 @@ public class GoogleDrive extends CloudActivity {
 
     @Override
     public void cancelDownload() {
-        // TODO implement this
     }
 
     @Override
     public void cancelUpload() {
-        // TODO implement this
     }
 
     @Override
@@ -260,6 +259,9 @@ public class GoogleDrive extends CloudActivity {
                         case INITIATION_COMPLETE:
                             break;
                         case MEDIA_IN_PROGRESS:
+                            if (isUploadCancelled()) {
+                                throw new IOException();
+                            }
                             long length = mediaHttpUploader.getMediaContent().getLength();
                             long bytes = mediaHttpUploader.getNumBytesUploaded();
                             int percent = (int) (bytes * 100 / length);

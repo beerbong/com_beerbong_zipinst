@@ -48,7 +48,10 @@ public abstract class CloudActivity extends PreferenceActivity {
     private OnPreferenceClickListener mStorageListener;
     private OnPreferenceClickListener mCloudListener;
     private ProgressDialog mUploadDialog;
+    private ProgressDialog mDownloadDialog;
     private String mBackupName;
+    private boolean mDownloadCancelled;
+    private boolean mUploadCancelled;
 
     public abstract List<CloudEntry> getCloudEntries();
 
@@ -56,7 +59,7 @@ public abstract class CloudActivity extends PreferenceActivity {
 
     public abstract boolean deleteRemote(String toDelete);
 
-    public abstract boolean download(String folder, String name, Bundle extras, File file, ProgressDialog pDialog);
+    public abstract boolean download(String folder, String name, Bundle extras, File file);
 
     public abstract void cancelDownload();
 
@@ -231,12 +234,17 @@ public abstract class CloudActivity extends PreferenceActivity {
         alert.show();
     }
 
+    protected boolean isUploadCancelled()  {
+        return mUploadCancelled || !mUploadDialog.isShowing();
+    }
+
     protected void setUploadProgress(int value) {
         mUploadDialog.setProgress(value);
     }
 
     protected void upload(final String path) {
 
+        mUploadCancelled = false;
         mUploadDialog = new ProgressDialog(this);
 
         final File file = new File(path);
@@ -256,6 +264,7 @@ public abstract class CloudActivity extends PreferenceActivity {
 
                             @Override
                             protected Void doInBackground(Void... params) {
+                                mUploadCancelled = true;
                                 cancelUpload();
                                 file.delete();
                                 mUploadDialog.dismiss();
@@ -371,19 +380,28 @@ public abstract class CloudActivity extends PreferenceActivity {
         }.execute((Void) null);
     }
 
+    protected boolean isDownloadCancelled()  {
+        return mDownloadCancelled || !mDownloadDialog.isShowing();
+    }
+
+    protected void setDownloadProgress(int value) {
+        mDownloadDialog.setProgress(value);
+    }
+
     protected void download(final Preference preference) {
 
+        mDownloadCancelled = false;
         final String name = (String) preference.getTitle();
         final String folder = (String) preference.getSummary();
 
         final File file = new File(ManagerFactory.getRecoveryManager().getBackupDir(true), name);
 
-        final ProgressDialog pDialog = new ProgressDialog(CloudActivity.this);
-        pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        pDialog.setMessage(getResources().getString(R.string.backup_downloading));
-        pDialog.setCancelable(false);
-        pDialog.setCanceledOnTouchOutside(false);
-        pDialog.setButton(DialogInterface.BUTTON_NEGATIVE,
+        mDownloadDialog = new ProgressDialog(CloudActivity.this);
+        mDownloadDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        mDownloadDialog.setMessage(getResources().getString(R.string.backup_downloading));
+        mDownloadDialog.setCancelable(false);
+        mDownloadDialog.setCanceledOnTouchOutside(false);
+        mDownloadDialog.setButton(DialogInterface.BUTTON_NEGATIVE,
                 getResources().getString(android.R.string.cancel),
                 new OnClickListener() {
 
@@ -394,9 +412,10 @@ public abstract class CloudActivity extends PreferenceActivity {
 
                             @Override
                             protected Void doInBackground(Void... params) {
+                                mDownloadCancelled = true;
                                 cancelDownload();
                                 file.delete();
-                                pDialog.dismiss();
+                                mDownloadDialog.dismiss();
 
                                 return null;
                             }
@@ -405,7 +424,7 @@ public abstract class CloudActivity extends PreferenceActivity {
                     }
 
                 });
-        pDialog.show();
+        mDownloadDialog.show();
 
         new AsyncTask<Void, Void, Void>() {
 
@@ -414,12 +433,12 @@ public abstract class CloudActivity extends PreferenceActivity {
             @Override
             protected Void doInBackground(Void... params) {
                 try {
-                    resultOk = download(folder, name, preference.getExtras(), file, pDialog);
+                    resultOk = download(folder, name, preference.getExtras(), file);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                     Constants.showToastOnUiThread(CloudActivity.this, R.string.backup_error_downloading);
                 }
-                pDialog.dismiss();
+                mDownloadDialog.dismiss();
 
                 return null;
             }

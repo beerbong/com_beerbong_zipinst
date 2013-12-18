@@ -19,14 +19,6 @@
 
 package com.beerbong.zipinst.activities;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.util.ArrayList;
-import java.util.List;
-
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -44,6 +36,13 @@ import com.dropbox.client2.ProgressListener;
 import com.dropbox.client2.android.AndroidAuthSession;
 import com.dropbox.client2.exception.DropboxException;
 import com.dropbox.client2.session.AccessTokenPair;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Dropbox extends CloudActivity {
 
@@ -185,7 +184,7 @@ public class Dropbox extends CloudActivity {
     }
 
     @Override
-    public boolean download(String folder, String name, Bundle extras, File file, ProgressDialog pDialog) {
+    public boolean download(String folder, String name, Bundle extras, File file) {
         BufferedOutputStream bw = null;
 
         try {
@@ -209,7 +208,7 @@ public class Dropbox extends CloudActivity {
                 bw.write(buffer, 0, read);
                 total += read;
                 int percent = (int)(total * 100 / bytes);
-                pDialog.setProgress(percent);
+                setDownloadProgress(percent);
             }
             return true;
         } catch (Exception ex) {
