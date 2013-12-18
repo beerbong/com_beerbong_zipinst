@@ -66,31 +66,6 @@ public class GoogleDrive extends CloudActivity {
     private List<File> mFiles;
     private Drive.Files.Insert mInsert;
 
-    private class FileUploadProgressListener implements MediaHttpUploaderProgressListener {
-
-        @Override
-        public void progressChanged(MediaHttpUploader mediaHttpUploader) throws IOException {
-            if (mediaHttpUploader == null) {
-                return;
-            }
-            switch (mediaHttpUploader.getUploadState()) {
-                case NOT_STARTED:
-                    break;
-                case INITIATION_STARTED:
-                    break;
-                case INITIATION_COMPLETE:
-                    break;
-                case MEDIA_IN_PROGRESS:
-                    int percent = (int) mediaHttpUploader.getProgress() * 100;
-                    System.out.println(percent);
-                    setUploadProgress(percent);
-                    break;
-                case MEDIA_COMPLETE:
-                    break;
-            }
-        }
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -194,17 +169,17 @@ public class GoogleDrive extends CloudActivity {
         try {
             String id = extras.getString("id");
             File cloudFile = searchFile(id);
+            final long length = cloudFile.getFileSize();
             java.io.File parent = new java.io.File(file.getParent());
             if (!parent.exists()) {
                 parent.mkdirs();
             }
             OutputStream out = new FileOutputStream(file);
 
-            // TODO progress doesn't work
             MediaHttpDownloader downloader = new MediaHttpDownloader(mService.getRequestFactory()
                     .getTransport(), mService.getRequestFactory().getInitializer());
             downloader.setDirectDownloadEnabled(false);
-            downloader.setChunkSize(MediaHttpDownloader.MAXIMUM_CHUNK_SIZE);
+            downloader.setChunkSize(2 * 1048576);
             downloader.setProgressListener(
                     new MediaHttpDownloaderProgressListener() {
 
@@ -214,8 +189,8 @@ public class GoogleDrive extends CloudActivity {
                                 case NOT_STARTED:
                                     break;
                                 case MEDIA_IN_PROGRESS:
-                                    int percent = (int) downloader.getProgress() * 100;
-                                    System.out.println(percent);
+                                    long bytes = downloader.getNumBytesDownloaded();
+                                    int percent = (int) (bytes * 100 / length);
                                     pDialog.setProgress(percent);
                                     break;
                                 case MEDIA_COMPLETE:
@@ -259,21 +234,42 @@ public class GoogleDrive extends CloudActivity {
         try {
             java.io.File file = new java.io.File(path);
             FileContent fileContent = new FileContent("application/zip", file);
-            //            InputStreamContent fileContent = new InputStreamContent("application/zip",
-            //                    new BufferedInputStream(new FileInputStream(file)));
-            //            fileContent.setLength(file.length());
 
             File body = new File();
+            body.setFileSize(file.length());
             body.setTitle(file.getName());
             body.setMimeType("application/zip");
             body.setParents(Arrays.asList(new ParentReference().setId(mRemoteFolder.getId())));
 
             mInsert = mService.files().insert(body, fileContent);
-            // TODO progress doesn't work
             MediaHttpUploader uploader = mInsert.getMediaHttpUploader();
             uploader.setDirectUploadEnabled(false);
             uploader.setChunkSize(MediaHttpUploader.MINIMUM_CHUNK_SIZE);
-            uploader.setProgressListener(new FileUploadProgressListener());
+            uploader.setProgressListener(new MediaHttpUploaderProgressListener() {
+
+                @Override
+                public void progressChanged(MediaHttpUploader mediaHttpUploader) throws IOException {
+                    if (mediaHttpUploader == null) {
+                        return;
+                    }
+                    switch (mediaHttpUploader.getUploadState()) {
+                        case NOT_STARTED:
+                            break;
+                        case INITIATION_STARTED:
+                            break;
+                        case INITIATION_COMPLETE:
+                            break;
+                        case MEDIA_IN_PROGRESS:
+                            long length = mediaHttpUploader.getMediaContent().getLength();
+                            long bytes = mediaHttpUploader.getNumBytesUploaded();
+                            int percent = (int) (bytes * 100 / length);
+                            setUploadProgress(percent);
+                            break;
+                        case MEDIA_COMPLETE:
+                            break;
+                    }
+                }
+            });
         } catch (UserRecoverableAuthIOException e) {
             startActivityForResult(e.getIntent(), Constants.REQUEST_AUTHORIZATION);
         } catch (IOException ex) {

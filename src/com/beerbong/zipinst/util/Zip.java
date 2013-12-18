@@ -130,10 +130,7 @@ public class Zip {
         for (File file : files) {
             fileList.add(file);
             if (file.isDirectory()) {
-                System.out.println("directory:" + file.getCanonicalPath());
                 getAllFiles(file, fileList);
-            } else {
-                System.out.println("     file:" + file.getCanonicalPath());
             }
         }
     }
