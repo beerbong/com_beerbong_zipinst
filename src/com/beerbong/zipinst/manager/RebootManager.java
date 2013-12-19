@@ -247,9 +247,7 @@ public class RebootManager extends Manager implements UIListener {
                 dialog.dismiss();
 
                 String text = input.getText().toString();
-                text = text.replace(" ", "");
-                text = text.replace("/", "");
-                text = text.replace("\\", "");
+                text = text.replaceAll("[^a-zA-Z0-9.-]", "");
 
                 String backupOptions = null;
                 if (rManager.getRecovery().getId() == R.id.twrp) {
