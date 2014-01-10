@@ -148,7 +148,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.beerbong.zipinst.MainActivity" />
-            <meta-data android:name="com.google.android.apps.drive.APP_ID" android:value="id=AIzaSyDZb5w7LdLZvH137xX_3wVkQIf7-K8FTNg" />
+            <meta-data android:name="com.google.android.apps.drive.APP_ID" android:value="id=AIzaSyD910PF-pzrPq0iJQeBVjiwZiK4HZmJbfc" />
 	        <intent-filter>
 		        <action android:name="com.google.android.apps.drive.DRIVE_OPEN" />
 		        <data android:mimeType="application/vnd.google-apps.folder" />
