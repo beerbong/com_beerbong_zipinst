@@ -1,6 +1,6 @@
 m0	Samsung Galaxy S III (International) GT-I9300
 d2tmo	Samsung Galaxy S III SGH-T999 (T-Mobile)
-olympus	Motorola Atrix 4G MB855
+olympus	Motorola Atrix 4G MB855 / MB860
 picasso	Acer Iconia A500 / A501
 sunfire	Motorola Photon 4G MB855
 p970	LG Optimus Black
@@ -240,7 +240,7 @@ e610	LG Optimus L5 E610
 l1m	LG Spirit 4G MS870 (MetroPCS)
 u8825d	Huawei U8825D
 vivow	HTC DROID Incredible 2
-yuga	Sony Xperia Z C6602 / C6603 / C6606
+yuga	Sony Xperia Z C6602 / C6603 / C6606 / C6616
 fireball	HTC DROID Incredible 4G LTE
 kai	Medion LifeTab S9714
 vd920	LG Spectrum VS920 (Verizon)
@@ -312,7 +312,7 @@ lt01wifi	Samsung Galaxy Tab 3 8.0 SM-T310
 beni	Samsung Galaxy Fit GT-S5670
 SPH-M930BST	Samsung Transform Ultra (Boost Mobile)
 a9	Acer CloudMobile S500
-serranolte	Samsung Galaxy S IV Mini GT-I9195
+serranolte	Samsung Galaxy S IV Mini LTE GT-I9195
 s2vep	Samsung Galaxy S II Plus GT-I9105P
 msm8625_d9	Innos D9
 COSMOSx2	Konka V981
@@ -363,7 +363,7 @@ nanhu	Sony Xperia E C1504 / C1505
 skomer	Samsung Galaxy Xcover 2 GT-S7710
 mintl	Sony Xperia TL LT30a/at (AT&T)
 cdma_shadow	Motorola Droid X (Verizon)
-meliuslte	Samsung Samsung Galaxy Mega 6.3 GT-I9205 (LTE)
+meliuslte	Samsung Galaxy Mega 6.3 GT-I9205 (LTE)
 nozomi2	Sony Xperia SL LT26ii
 taoshan	Sony Xperia L C2104 / C2105
 e975	LG Optimus G E975
@@ -408,3 +408,42 @@ GT-S6802	Samsung Galaxy Ace Duos GT-S6802
 GT-P6210	Samsung Galaxy Tab 7.0 Plus GT-P6210
 magnids	HTC Desire SV
 pap5300duo	Prestigio MultiPhone 5300 Duo
+ls980	LG G2 LS980 (Sprint)
+lg870	LG Optimus F7 LG870
+d500	LG Optimus F6 D500
+GT-S5282	Samsung Galaxy Star GT-S5282
+demeter	ZTE Dave 4G T83 (Telstra)
+jactivelteatt	Samsung Galaxy S4 Active SGH-I537 (AT&T)
+l-01f	LG G2 L-01F (DoCoMo)
+ms910	LG Esteem MS910 (MetroPCS)
+s2ve	Samsung Galaxy S II Plus GT-I9105
+serrano3g	Samsung Galaxy S IV Mini GT-I9190
+ivory	Samsung Galaxy Music Duos GT-S6012
+hlteatt	Samsung Galaxy Note III LTE SM-N900A
+ms659	LG Optimus F3 MS659 (MetroPCS)
+d801	LG G2 D801 (T-Mobile)
+espresso10tmo	Samsung Galaxy Tab 2 10.1 SGH-T779 (T-Mobile)
+quantum	ZTE Vital N9810 (Sprint)
+nevisds	Samsung Galaxy Fame Duos GT-S6812B
+q_i6p	Sencor Element P450
+vs870	LG Lucid2 VS870 (Verizon)
+nevisp	Samsung Galaxy Fame GT-S6810P
+ks01lteskt	Samsung Galaxy S IV LTE-A SHV-E330S
+umts_solana	Motorola Milestone 3 ME863
+d2tfnvzw	Samsung Galaxy S III SCH-S968C (Straight Talk)
+kinetic	Kyocera Hydro Elite C6750
+hltelgt	Samsung Galaxy Note III SM-N900L (Korean Version)
+n5	ZTE Nubia 5 N5
+p710	LG LG Optimus L7 II P710
+crane_MID9742_sc3052	Coby Kyros MID9742-8
+f320l	LG G2 LTE F320L (Korean)
+X40E	Enspert Lazer X40E
+iliamna	ZTE Grand X LTE T81
+C5215	Kyocera Hydro Edge (Boost Mobile)
+falcon_umtsds	Motorola Moto G Dual XT1033
+t03gchnduos	Samsung Galaxy Note II GT-N7102 (China Unicom)
+v909	LG G-Slate V909 (T-Mobile)
+ks01lte	Samsung Galaxy S IV LTE+ GT-I9506
+K00F	Asus Memo Pad 10 K00F
+ef51l	Pantech Vega N˚6 IM-A860L
+nex	ZTE Awe N800 (Virgin Mobile)
