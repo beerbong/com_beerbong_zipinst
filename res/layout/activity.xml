@@ -33,7 +33,6 @@
         android:id="@+id/adview"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
         ads:adUnitId="@string/ad_unit_id"
         ads:adSize="BANNER" />
 
@@ -41,6 +40,7 @@
 	    android:layout_height="match_parent"
 	    android:gravity="top"
 	    android:orientation="vertical"
+        android:paddingTop="10dp"
 	    android:paddingLeft="20dp"
 	    android:paddingRight="20dp" >
 	
