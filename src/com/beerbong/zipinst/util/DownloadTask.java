@@ -167,7 +167,7 @@ public class DownloadTask extends AsyncTask<Void, Integer, Integer> {
             }
             final int lengthOfFile = conn.getContentLength();
             StatFs stat = new StatFs(pManager.getDownloadPath());
-            long availSpace = ((long) stat.getAvailableBlocks()) * ((long) stat.getBlockSize());
+            long availSpace = stat.getAvailableBlocksLong() * stat.getBlockSizeLong();
             if (lengthOfFile >= availSpace) {
                 destFile.delete();
                 return 3;
