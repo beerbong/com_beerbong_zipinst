@@ -19,6 +19,7 @@
 
 package com.beerbong.zipinst.manager.recovery;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +46,7 @@ import com.koushikdutta.rommanager.api.IROMManagerAPIService;
 public class CwmRecovery extends RecoveryInfo {
 
     private Context mContext;
+    private boolean mOldBackup = false;
 
     public CwmRecovery(Context context) {
         super();
@@ -64,7 +66,22 @@ public class CwmRecovery extends RecoveryInfo {
 
     @Override
     public String getFolderPath() {
+        checkForOldBackup();
+        if (mOldBackup) {
+            return "/data/media/clockworkmod/";
+        }
         return "/sdcard/clockworkmod/";
+    }
+
+    protected String getFolderPath(String sdcard, boolean external) {
+        checkForOldBackup();
+        if (!external && mOldBackup) {
+            return "/data/media/clockworkmod/";
+        }
+        while (sdcard.startsWith("/")) {
+            sdcard = sdcard.substring(1);
+        }
+        return "/" + sdcard + "/clockworkmod/backup/";
     }
 
     @Override
@@ -75,6 +92,10 @@ public class CwmRecovery extends RecoveryInfo {
     @Override
     public String getBackupFolder(String sdcard, boolean force) {
         if (force) {
+            checkForOldBackup();
+            if (mOldBackup) {
+                return "/data/media/clockworkmod/backup/";
+            }
             while (sdcard.startsWith("/")) {
                 sdcard = sdcard.substring(1);
             }
@@ -129,6 +150,16 @@ public class CwmRecovery extends RecoveryInfo {
         return mContext;
     }
 
+    protected boolean isOldBackup() {
+        checkForOldBackup();
+        return mOldBackup;
+    }
+
+    private void checkForOldBackup() {
+        File file = new File("/data/media/clockworkmod/backup/");
+        mOldBackup = file.exists() && file.isDirectory() && file.listFiles().length > 0;
+    }
+
     private void run(IClockworkRecoveryScriptBuilder builder, String storage, boolean external,
             boolean wipeSystem, boolean wipeData, boolean wipeCaches, boolean fixPermissions,
             String backupFolder, String backupOptions, String restore) throws Exception {
@@ -154,15 +185,20 @@ public class CwmRecovery extends RecoveryInfo {
             builder.runProgram("/sbin/mount", params);
         }
 
+        String folder = storage + "/clockworkmod/backup/";
+        if (!external && isOldBackup() && storage != null) {
+            folder = getFolderPath(storage, external) + "backup/";
+        }
+
         if (restore != null) {
             builder.print(" Restore ROM");
-            builder.restore("/" + storage + "/clockworkmod/backup/" + restore, true, true, true,
+            builder.restore("/" + folder + restore, true, true, true,
                     true, true);
         }
 
         if (backupFolder != null) {
             builder.print(" Backup ROM");
-            builder.backupWithPath("/" + storage + "/clockworkmod/backup/" + backupFolder);
+            builder.backupWithPath("/" + folder + backupFolder);
         }
 
         if (wipeSystem) {

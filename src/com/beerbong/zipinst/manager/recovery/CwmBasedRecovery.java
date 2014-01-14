@@ -77,16 +77,21 @@ public class CwmBasedRecovery extends CwmRecovery {
                     + ManagerFactory.getPreferencesManager().getExternalStorage() + "\");");
         }
 
+        String folder = "/" + storage + "/clockworkmod/backup/";
+        if (!external && isOldBackup() && storage != null) {
+            folder = getFolderPath(storage, external) + "backup/";
+        }
+
         if (restore != null) {
-            commands.add("ui_print(\" Restore ROM\");");
-            commands.add("restore_rom(\"/" + storage + "/clockworkmod/backup/"
+            commands.add("ui_print(\" Restore ROM from " + folder + restore + "\");");
+            commands.add("restore_rom(\"" + folder
                     + restore
                     + "\", \"boot\", \"system\", \"data\", \"cache\", \"sd-ext\")");
         }
 
         if (backupFolder != null) {
-            commands.add("ui_print(\" Backup ROM\");");
-            commands.add("assert(backup_rom(\"/" + storage + "/clockworkmod/backup/"
+            commands.add("ui_print(\" Backup ROM to " + folder + backupFolder + "\");");
+            commands.add("assert(backup_rom(\"" + folder
                     + backupFolder + "\"));");
         }
 
