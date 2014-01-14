@@ -20,6 +20,8 @@
 <resources>
     <string name="app_name">ZipInstaller</string>
 
+    <string name="ad_unit_id" translatable="false">ca-app-pub-2581158639472004/6218732979</string>
+
     <string name="alert_reboot_title">Aktion auswählen &amp; Installieren</string>
     <string name="alert_reboot_now">Jetzt installieren</string>
 
@@ -48,8 +50,7 @@
 
     <string name="alert_backup_title">Sicherung</string>
     <string name="alert_backup_message">Sicherungsname angeben (Leerzeichen werden entfernt)</string>
-
-    <string name="alert_restore_title">Wiederherstellen</string>
+    <string name="alert_backup_actions">Eine Aktion auswählen</string>
 
     <string name="alert_delete_title">Löschen</string>
 
@@ -82,9 +83,9 @@
 
     <string name="menu_settings">Einstellungen</string>
     <string name="menu_backup">Sicherung</string>
-    <string name="menu_apply_rules">Regeln anwenden</string>
     <string name="menu_restore">Wiederherstellen</string>
-    <string name="menu_advanced_recovery">Recovery</string>
+    <string name="menu_advanced_recovery">Wiederherstellung</string>
+    <string name="menu_sync_backups">Sicherungen abgleichen</string>
     <string name="menu_loadlist">Liste laden</string>
     <string name="menu_savelist">Liste speichern</string>
     <string name="menu_downloadzip">ZIP herunterladen</string>
@@ -171,7 +172,7 @@
     <string name="alert_remove_file_not_done">Datei nicht gelöscht!</string>
 
     <string name="dad_title">Drag &amp; Drop</string>
-    <string name="dad_summary">Verwende Drag &amp; Drop für die Listenneurodnung</string>
+    <string name="dad_summary">Verwende Drag &amp; Drop für die Listenneuordnung</string>
 
     <string name="overridelist_title">Liste laden überschreibt</string>
     <string name="overridelist_summary">Laden einer gespeicherten Liste ersetzt ausgewählte ZIPs in der Liste</string>
@@ -183,7 +184,7 @@
     <string name="settings_showoptions_summary">Wählen Sie die Optionen, die beim Tippen auf \'Jetzt installieren\' angezeigt werden</string>
 
     <string name="settings_title">Einstellungen</string>
-    <string name="settings_recovery">Recovery</string>
+    <string name="settings_recovery">Wiederherstellung</string>
     <string name="settings_security">Sicherheit</string>
     <string name="settings_interface">Interface</string>
     <string name="settings_update">Aktualisieren</string>
@@ -215,7 +216,7 @@
     <string name="downloadzip_alert_summary">URL der ZIP angeben</string>
     <string name="downloadzip_alert_error">Bitte geben Sie die URL der ZIP an</string>
 
-    <string name="recovery_activity_title">Recovery</string>
+    <string name="recovery_activity_title">Wiederherstellung</string>
     <string name="recovery_activity_backup_title">Sicherung</string>
     <string name="recovery_activity_backup_summary">Sicherung Ihrer ROM erstellen</string>
     <string name="recovery_activity_restore_title">Wiederherstellen</string>
@@ -251,10 +252,37 @@
     <string name="system">System</string>
     <string name="data">Daten</string>
     <string name="cache">Cache</string>
-    <string name="recovery">Recovery</string>
+    <string name="recovery">Wiederherstellung</string>
     <string name="boot">Boot</string>
     <string name="androidsecure">Android-Sicherheit</string>
     <string name="sdext">SD-Ext</string>
+
+    <string name="cloud_service">Cloud-Dienste</string>
+    <string name="dropbox_title">Dropbox</string>
+    <string name="drive_title">Drive</string>
+
+    <string name="alert_backup_synchronize_title">Lokale Sicherung</string>
+    <string name="alert_backup_synchronize_message">Eine Aktion auswählen:\n%1$s</string>
+    <string name="alert_backup_synchronize">Zippen und Hochladen</string>
+    <string name="alert_backup_delete">Löschen</string>
+    <string name="backups_in_storage_title">Sicherungen im Speicher</string>
+    <string name="backups_in_cloud_title">Sicherungen in einer Cloud</string>
+    <string name="backups_reading">Lese dezentrale Daten...</string>
+    <string name="backup_zipping">Sicherung zippen...</string>
+    <string name="backup_unzipping">Sicherung entpacken...</string>
+    <string name="backup_uploading">Sicherung hochladen...</string>
+    <string name="backup_downloading">Sicherung herunterladen...</string>
+    <string name="backup_error_uploading">Fehler beim Hochladen der Sicherung</string>
+    <string name="backup_error_downloading">Fehler beim Herunterladen der Sicherung</string>
+    <string name="alert_backup_remote_title">Dezentrale Sicherung</string>
+    <string name="alert_backup_remote_message">Eine Aktion auswählen:\n%1$s</string>
+    <string name="alert_backup_download">Herunterladen und Wiederherstellen</string>
+    <string name="error_deleting_remote_file">Fehler beim Löschen der dezentralen Datei</string>
+    <string name="alert_restore_title">Wiederherstellen</string>
+    <string name="alert_restore_message">Sicherung wiederherstellen?\n%1$s</string>
+
+    <string name="error_zipping">Fehler beim Zippen der Sicherung</string>
+    <string name="error_unzipping">Fehler beim Entpacken der Sicherung</string>
 
     <!-- PRO -->
     <string name="enable_notifications">Benachrichtigungen aktivieren</string>
@@ -300,6 +328,7 @@
     <string name="checktime_summary">Legen Sie den Zeitraum für Prüfungen nach neuen Versionen fest</string>
 
     <string name="nandroid_configure">Konfigurieren</string>
+    <string name="nandroid_upload">Zippen und Hochladen abgeschlossen</string>
     <string name="nandroid_start">Start</string>
     <string name="nandroid_configured">Dank an Ameer Dawood für das ONandroid-Script.\n\nIhr Gerät scheint für ONandroid korrekt konfiguriert zu sein!</string>
     <string name="nandroid_not_configured">Dank an Ameer Dawood für das ONandroid-Script.\n\nIhr Gerät scheint für ONandroid NICHT korrekt konfiguriert zu sein! Bitte prüfen Sie unter \'Einstellungen\' - \'ONandroid konfigurieren\'</string>
@@ -309,5 +338,20 @@
 
     <string name="not_licensed_title">Nicht lizensiert!</string>
     <string name="not_licensed_text">Sie haben die App NICHT gekauft. Bitte gehen Sie in den Play Store und kaufen Sie sie!</string>
+    <string name="not_licensed_retry_title">Lizenzfehler</string>
+    <string name="not_licensed_retry_text">Prüfen der Lizenz im Play Store nicht möglich. Bitte später nochmals versuchen!</string>
     <string name="not_licensed_exit">App schließen</string>
+
+    <string name="menu_flashrecovery">Flash Recovery</string>
+    <string name="flashrecovery_not_supported">Konnte den Flash-Befehl für Ihr Gerät nicht aufrufen</string>
+    <string name="flashrecovery_installed">Recovery installiert</string>
+    <string name="flashrecovery_confirm_title">Recovery installieren?</string>
+    <string name="flashrecovery_confirm_message">Installiere Recovery %1$s</string>
+
+    <string name="menu_flashboot">Flash Boot-Image</string>
+    <string name="flashboot_not_supported">Konnte den Boot-Mount-Point nicht aufrufen</string>
+    <string name="flashboot_installed">Boot-Image installiert</string>
+    <string name="flashboot_confirm_title">Boot-Image installieren?</string>
+    <string name="flashboot_confirm_message">Installiere Boot-Image %1$s</string>
 </resources>
+
