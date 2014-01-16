@@ -59,6 +59,7 @@ public class PreferencesManager extends Manager {
     private static final String PROPERTY_LOGIN_USERNAME = "goologinusername";
     private static final String PROPERTY_DROPBOX_KEY = "dropboxkey";
     private static final String PROPERTY_DROPBOX_SECRET = "dropboxsecret";
+    private static final String PROPERTY_LICENSE = "license";
 
     public static final String PROPERTY_ENABLE_NOTIFICATIONS = "enable_notifications";
     public static final String PROPERTY_TIME_NOTIFICATIONS = "time_notifications";
@@ -370,6 +371,14 @@ public class PreferencesManager extends Manager {
 
     public String getDropboxSecret() {
         return settings.getString(PROPERTY_DROPBOX_SECRET, null);
+    }
+
+    public void setLicense(boolean value) {
+        savePreference(PROPERTY_LICENSE, value);
+    }
+
+    public boolean getLicense() {
+        return settings.getBoolean(PROPERTY_LICENSE, false);
     }
 
     private String[] getArrayProperty(String property) {
