@@ -257,17 +257,17 @@ public class FileManager extends Manager implements UIListener {
                                 filePath = cursor.getString(index);
                             } else if (Build.VERSION.SDK_INT >= 19
                                     && uri.toString().startsWith(ContentResolver.SCHEME_CONTENT)) {
-                                String authority = uri.getAuthority();
                                 String newUri = new Uri.Builder()
                                         .scheme(ContentResolver.SCHEME_CONTENT)
                                         .authority(uri.getAuthority()).appendPath("document")
                                         .build().toString();
                                 String path = uri.toString();
                                 if (path.startsWith(newUri)) {
+                                    String firstPath = filePath.substring(0, filePath.indexOf(":"));
                                     filePath = filePath.substring(filePath.indexOf(":") + 1);
                                     String storage = ManagerFactory.getFileManager()
                                             .getInternalStoragePath();
-                                    if (Constants.AUTHORITY_EXTERNAL.equals(authority)) {
+                                    if (firstPath.indexOf(Constants.ROOT_ID_PRIMARY_EMULATED) < 0) {
                                         storage = ManagerFactory.getFileManager()
                                                 .getExternalStoragePath();
                                     }
