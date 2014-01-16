@@ -250,6 +250,11 @@
     <string name="restart_needed">Restart needed</string>
     <string name="restart_needed_theme_message">A restart is needed to apply changes in theme. Do you want to restart the application now?</string>
 
+    <string name="checkroot_title">Check root</string>
+    <string name="checkroot_summary">Check if root access is well configured in your device</string>
+    <string name="checkroot_yes">Root access granted succesfully</string>
+    <string name="checkroot_no">Unable to grant root access</string>
+
     <string name="system">System</string>
     <string name="data">Data</string>
     <string name="cache">Cache</string>

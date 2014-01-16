@@ -93,6 +93,7 @@ public class Constants {
     public static final String PREFERENCE_SETTINGS_USE_FOLDER = "usefolder";
     public static final String PREFERENCE_SETTINGS_FOLDER = "folder";
     public static final String PREFERENCE_SETTINGS_RULES = "rules";
+    public static final String PREFERENCE_SETTINGS_CHECK_ROOT = "checkroot";
 
     // recovery preferences
     public static final String PREFERENCE_RECOVERY_BACKUP = "recovery_activity_backup";

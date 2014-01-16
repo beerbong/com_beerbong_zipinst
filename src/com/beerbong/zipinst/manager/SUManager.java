@@ -48,6 +48,10 @@ public class SUManager extends Manager {
         su.runWaitFor(s, callback);
     }
 
+    public boolean test() {
+        return su.test();
+    }
+
     public interface ReadOutCallback {
 
         public void lineRead(String line);
@@ -87,6 +91,7 @@ public class SUManager extends Manager {
             SHELL = SHELL_in;
         }
 
+        @SuppressWarnings("deprecation")
         private String getStreamLines(final InputStream is) {
             String out = null;
             StringBuffer buffer = null;
@@ -161,6 +166,29 @@ public class SUManager extends Manager {
                 }
             }
             return new CommandResult(exit_value, stdout, stderr);
+        }
+
+        public boolean test() {
+            Process p;
+            try {
+                p = Runtime.getRuntime().exec(SHELL);
+
+                DataOutputStream os = new DataOutputStream(p.getOutputStream());
+                os.writeBytes("echo \"test\" > /system/tmp.txt\n");
+                os.writeBytes("rm -f /system/tmp.txt\n");
+
+                os.writeBytes("exit\n");
+                os.flush();
+                try {
+                    p.waitFor();
+                    if (p.exitValue() != 255) {
+                        return true;
+                    }
+                } catch (InterruptedException e) {
+                }
+            } catch (IOException e) {
+            }
+            return false;
         }
     }
 

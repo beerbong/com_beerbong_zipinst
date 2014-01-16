@@ -247,6 +247,11 @@
     <string name="restart_needed">Se necesita reiniciar</string>
     <string name="restart_needed_theme_message">Se necesita reiniciar para aplicar los cambios en el tema. ¿Quieres reiniciar la aplicación ahora?</string>
 
+    <string name="checkroot_title">Verificar root</string>
+    <string name="checkroot_summary">Verificar si el acceso root está bien configurado en tu dispositivo</string>
+    <string name="checkroot_yes">Acceso root concedido con éxito</string>
+    <string name="checkroot_no">No se ha podido conceder el acceso root</string>
+
     <string name="system">System</string>
     <string name="data">Data</string>
     <string name="cache">Cache</string>

@@ -249,6 +249,10 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
             boolean showAlert = ((CheckBoxPreference) preference).isChecked();
             pManager.setShowSystemWipeAlert(showAlert);
 
+        } else if (Constants.PREFERENCE_SETTINGS_CHECK_ROOT.equals(key)) {
+
+            showCheckRootDialog(ManagerFactory.getSUManager().test());
+
         } else if ("about".equals(key)) {
 
             Intent i = new Intent(this, About.class);
@@ -485,5 +489,19 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         }
         textView.setText(text);
         UI.getInstance().refreshActionBar();
+    }
+
+    private void showCheckRootDialog(boolean granted) {
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        alert.setTitle(R.string.checkroot_title);
+        alert.setMessage(granted ? R.string.checkroot_yes : R.string.checkroot_no);
+        alert.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int whichButton) {
+
+                dialog.dismiss();
+            }
+        });
+        alert.show();
     }
 }

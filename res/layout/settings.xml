@@ -80,6 +80,11 @@
             android:key="wipesystemalert"
             android:summary="@string/settings_wipesystem_alert_summary"
             android:title="@string/settings_wipesystem_alert_title" />
+
+        <Preference
+            android:key="checkroot"
+            android:summary="@string/checkroot_summary"
+            android:title="@string/checkroot_title" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/settings_interface" >
