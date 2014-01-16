@@ -118,6 +118,9 @@ public class Constants {
 
     public static final int NOTIFICATION_ID = 122303221;
 
+    // authority for external sdcard
+    public static final String AUTHORITY_EXTERNAL = "com.android.externalstorage.documents";
+
     private static final SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd.HH.mm.ss");
 
     private static final char[] HEX_DIGITS = new char[] {

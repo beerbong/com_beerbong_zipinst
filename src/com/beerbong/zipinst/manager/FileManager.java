@@ -257,6 +257,7 @@ public class FileManager extends Manager implements UIListener {
                                 filePath = cursor.getString(index);
                             } else if (Build.VERSION.SDK_INT >= 19
                                     && uri.toString().startsWith(ContentResolver.SCHEME_CONTENT)) {
+                                String authority = uri.getAuthority();
                                 String newUri = new Uri.Builder()
                                         .scheme(ContentResolver.SCHEME_CONTENT)
                                         .authority(uri.getAuthority()).appendPath("document")
@@ -264,8 +265,13 @@ public class FileManager extends Manager implements UIListener {
                                 String path = uri.toString();
                                 if (path.startsWith(newUri)) {
                                     filePath = filePath.substring(filePath.indexOf(":") + 1);
-                                    filePath = ManagerFactory.getFileManager()
-                                            .getInternalStoragePath() + "/" + filePath;
+                                    String storage = ManagerFactory.getFileManager()
+                                            .getInternalStoragePath();
+                                    if (Constants.AUTHORITY_EXTERNAL.equals(authority)) {
+                                        storage = ManagerFactory.getFileManager()
+                                                .getExternalStoragePath();
+                                    }
+                                    filePath = storage + "/" + filePath;
                                 }
                             }
                         }
@@ -1001,7 +1007,8 @@ public class FileManager extends Manager implements UIListener {
                 scanner.close();
             }
         }
-        if (mounts.size() == 0 || (mounts.size() == 1 && hasExternalStorage())) {
+        boolean addExternal = mounts.size() == 1 && hasExternalStorage();
+        if (mounts.size() == 0 || addExternal) {
             mounts.add("/mnt/sdcard");
         }
 
@@ -1045,6 +1052,9 @@ public class FileManager extends Manager implements UIListener {
                     scanner.close();
                 }
             }
+        }
+        if (addExternal && (vold.size() == 1 && hasExternalStorage())) {
+            mounts.add(vold.get(0));
         }
         if (vold.size() == 0 || (vold.size() == 1 && hasExternalStorage())) {
             vold.add("/mnt/sdcard");
