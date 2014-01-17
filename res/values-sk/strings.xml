@@ -26,7 +26,7 @@
     <string name="error_title">Chyba</string>
     
     <string name="error_no_rommanager_connection">Nie je k dispozícii pripojenie k aplikácii ROM Manager. Uistite sa, že máte nainštalovanú prémium verziu ROM Managera 4.5.0.0+.</string>
-    <string name="error_no_rommanager_premium">Zdá sa, že Vaša verzia ROM Managera nie je prémium.</string>
+    <string name="error_no_rommanager_premium">Zdá sa, že vaša verzia ROM Managera nie je prémium.</string>
     <string name="error_rommanager_unknown">Neznáma chyba pri pripájaní sa k aplikácii ROM Manager.</string>
 
     <string name="root_needed_title">Potrebný root</string>
@@ -111,10 +111,10 @@
     <string name="sdcard_alert_error">Prosím, upresnite názov úložiska</string>
     
     <string name="force_extsdcard_mount_title">Vynútiť si pripojenie externej karty SD</string>
-    <string name="force_extsdcard_mount_summary">Povoľte túto možnosť, ak Vaša CWM recovery predvolene nepripája externú kartu SD</string>
+    <string name="force_extsdcard_mount_summary">Povoľte túto možnosť, ak vaša CWM recovery predvolene nepripája externú kartu SD</string>
 
     <string name="backup_external_title">Záloha a obnova na externú kartu SD</string>
-    <string name="backup_external_summary">Povoľte túto možnosť, ak chcete zálohovať Vašu ROM na externú kartu SD</string>
+    <string name="backup_external_summary">Povoľte túto možnosť, ak chcete zálohovať vašu ROM na externú kartu SD</string>
     
     <string name="about_title">O programe</string>
     <string name="about_zip_title">ZipInstaller</string>
@@ -216,7 +216,7 @@
 
     <string name="recovery_activity_title">Recovery</string>
     <string name="recovery_activity_backup_title">Zálohovať</string>
-    <string name="recovery_activity_backup_summary">Vykonanie zálohy Vašej ROM</string>
+    <string name="recovery_activity_backup_summary">Vykonanie zálohy vašej ROM</string>
     <string name="recovery_activity_restore_title">Obnoviť</string>
     <string name="recovery_activity_restore_summary">Obnovenie predchádzajúcej zálohy</string>
     <string name="recovery_activity_delete_title">Vymazať</string>
@@ -247,6 +247,11 @@
     <string name="restart_needed">Vyžadovaný reštart</string>
     <string name="restart_needed_theme_message">Reštart aplikácie je potrebný pre zmenu témy. Chcete aplikáciu reštartovať teraz?</string>
 
+    <string name="checkroot_title">Skontrolovať root</string>
+    <string name="checkroot_summary">Skontrolovať, či je root prístup správne nastavený vo vašom zariadení</string>
+    <string name="checkroot_yes">Root prístup bol úspešne povolený</string>
+    <string name="checkroot_no">Nemožno povoliť root prístup</string>
+ 
     <string name="system">System</string>
     <string name="data">Data</string>
     <string name="cache">Cache</string>
@@ -285,24 +290,24 @@
     <!-- PRO -->
     <string name="enable_notifications">Povoliť oznámenia</string>
     <string name="time_notifications_title">Čas oznámení</string>
-    <string name="time_notifications_summary">Čas medzi každým hľadaním aktualizácií pre Vašu ROM</string>
+    <string name="time_notifications_summary">Čas medzi každým hľadaním aktualizácií pre vašu ROM</string>
     <string name="time_notifications_never">Nekontrolovať</string>
     <string name="time_notifications_half_an_hour">Pol hodiny</string>
     <string name="time_notifications_an_hour">Hodina</string>
     <string name="time_notifications_two_hours">2 hodiny</string>
     <string name="time_notifications_five_hours">5 hodín</string>
     <string name="time_notifications_twentyfour_hours">24 hodín</string>
-    <string name="check_rom_updates">Kontrola aktualizácií pre Vašu ROM</string>
-    <string name="check_rom_updates_error">Vyskytla sa chyba pri kontrolovaní aktualizácií pre Vašu ROM</string>
-    <string name="check_rom_updates_no_new">Neboli nájdené žiadne nové aktualizácie Vašej ROM</string>
+    <string name="check_rom_updates">Kontrola aktualizácií pre vašu ROM</string>
+    <string name="check_rom_updates_error">Vyskytla sa chyba pri kontrolovaní aktualizácií pre vašu ROM</string>
+    <string name="check_rom_updates_no_new">Neboli nájdené žiadne nové aktualizácie vašej ROM</string>
 
     <string name="use_onandroid_title">Používať ONandroid</string>
-    <string name="use_onandroid_summary">Zálohovať Vašu ROM bez reštartu do recovery</string>
+    <string name="use_onandroid_summary">Zálohovať vašu ROM bez reštartu do recovery</string>
     <string name="configure_onandroid_title">Nastaviť ONandroid</string>
-    <string name="configure_onandroid_summary">Skontrolovať, či je Vaše zariadenie podporované ONandroid</string>
+    <string name="configure_onandroid_summary">Skontrolovať, či je vaše zariadenie podporované ONandroid</string>
 
     <string name="new_rom_found_title">Nájdená nová verzia ROM</string>
-    <string name="new_rom_found_summary">Nová verzia pre Vašu ROM bola nájdená. Chcete ju stiahnuť teraz?\n\n%1$s\n%2$s\n</string>
+    <string name="new_rom_found_summary">Nová verzia pre vašu ROM bola nájdená. Chcete ju stiahnuť teraz?\n\n%1$s\n%2$s\n</string>
     <string name="new_rom_name">%1$s</string>
 
     <string name="menu_gooim">Goo.im</string>
@@ -332,17 +337,17 @@
     <string name="nandroid_configured">Vaše zariadenie je správne nastavené pre použitie ONandroid.</string>
     <string name="nandroid_not_configured">Vaše zariadenie nie je správne nastavené pre použitie ONandroid. Prosím, skontrolujte to v \'Nastavenia\' - \'Nastaviť ONandroid\'.</string>
 
-    <string name="onandroid_text">Vyberte Vaše zariadenie zo zoznamu nižšie a kliknite na tlačidlo \'Nastaviť\', súbor bude stiahnutý a nainštalovaný cez recovery.</string>
-    <string name="onandroid_link">Ak nie je Vaše zariadenie zobrazené vyššie, ale je zobrazené v zoznam nižšie, nie je potrebné žiadne ďalšie nastavenie, a preto ignorujte správu o nenastavení.</string>
+    <string name="onandroid_text">Vyberte vaše zariadenie zo zoznamu nižšie a kliknite na tlačidlo \'Nastaviť\', súbor bude stiahnutý a nainštalovaný cez recovery.</string>
+    <string name="onandroid_link">Ak nie je vaše zariadenie zobrazené vyššie, ale je zobrazené v zoznam nižšie, nie je potrebné žiadne ďalšie nastavenie, a preto ignorujte správu o nenastavení.</string>
 
     <string name="not_licensed_title">Nelicencované</string>
     <string name="not_licensed_text">Túto aplikáciu ste si nezakúpili. Prosím, prejdite do Obchodu Play a zakúpte si ju.</string>
     <string name="not_licensed_retry_title">Chyba licencie</string>
-    <string name="not_licensed_retry_text">Nemožno skontrolovať Vašu licenciu v Obchode Play. Skúste to znova neskôr, prosím.</string>
+    <string name="not_licensed_retry_text">Nemožno skontrolovať vašu licenciu v Obchode Play. Skúste to znova neskôr, prosím.</string>
     <string name="not_licensed_exit">Zatvoriť aplikáciu</string>
     
     <string name="menu_flashrecovery">Flashnúť recovery</string>
-    <string name="flashrecovery_not_supported">Nemožno získať príkaz flashu pre Vaše zariadenie</string>
+    <string name="flashrecovery_not_supported">Nemožno získať príkaz flashu pre vaše zariadenie</string>
     <string name="flashrecovery_installed">Recovery nainštalovaná</string>
     <string name="flashrecovery_confirm_title">Inštalovať recovery?</string>
     <string name="flashrecovery_confirm_message">Inštalovať recovery %1$s</string>
