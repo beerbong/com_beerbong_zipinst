@@ -39,6 +39,11 @@
             android:title="@string/externalsdcard_title" />
 
         <CheckBoxPreference
+            android:key="forcedatamedia"
+            android:summary="@string/force_datamedia_summary"
+            android:title="@string/force_datamedia_title" />
+
+        <CheckBoxPreference
             android:key="mountextsdcard"
             android:summary="@string/force_extsdcard_mount_summary"
             android:title="@string/force_extsdcard_mount_title" />

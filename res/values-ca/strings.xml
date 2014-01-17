@@ -113,6 +113,9 @@
     <string name="force_extsdcard_mount_title">Forçar muntatge sdcard externa</string>
     <string name="force_extsdcard_mount_summary">Seleccionar aquesta opció si el teu CWM recovery no monta la sdcard externa per defecte</string>
 
+    <string name="force_datamedia_title">Utilitzar /data/media/</string>
+    <string name="force_datamedia_summary">Selecciona aquesta opció si el teu CWM recovery utilitza /data/media/clockworkmod/ per a guardar backups</string>
+
     <string name="backup_external_title">Backup i restore a la sdcard externa</string>
     <string name="backup_external_summary">Selecciona aquesta opció si vols fer els backup a la sdcard externa</string>
 

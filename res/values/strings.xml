@@ -115,6 +115,9 @@
     <string name="force_extsdcard_mount_title">Force external sdcard mount</string>
     <string name="force_extsdcard_mount_summary">Check this option if your CWM recovery doesn\'t mount external sdcard by default</string>
 
+    <string name="force_datamedia_title">Use /data/media/</string>
+    <string name="force_datamedia_summary">Check this option if your CWM recovery uses /data/media/clockworkmod/ to store backups</string>
+
     <string name="backup_external_title">Backup and restore in external sdcard</string>
     <string name="backup_external_summary">Check this option if you want to backup your rom in your external sdcard</string>
 

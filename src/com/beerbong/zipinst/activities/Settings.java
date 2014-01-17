@@ -64,6 +64,7 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
     private Preference mInternalSdcard;
     private Preference mExternalSdcard;
     private CheckBoxPreference mForceExternalSdcard;
+    private CheckBoxPreference mForceDataMedia;
     private CheckBoxPreference mBackupExternalSdcard;
     private CheckBoxPreference mDad;
     private CheckBoxPreference mDarkTheme;
@@ -89,6 +90,7 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         mInternalSdcard = findPreference(Constants.PREFERENCE_SETTINGS_INTERNAL_SDCARD);
         mExternalSdcard = findPreference(Constants.PREFERENCE_SETTINGS_EXTERNAL_SDCARD);
         mForceExternalSdcard = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_FORCE_EXTERNAL_SDCARD);
+        mForceDataMedia = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_FORCE_DATA_MEDIA);
         mBackupExternalSdcard = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_BACKUP_EXTERNAL_SDCARD);
         mDad = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_DAD);
         mDarkTheme = (CheckBoxPreference) findPreference(Constants.PREFERENCE_SETTINGS_DARK_THEME);
@@ -107,6 +109,8 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         PreferencesManager pManager = ManagerFactory.getPreferencesManager();
 
         mForceExternalSdcard.setChecked(pManager.isForceExternalStorage());
+
+        mForceDataMedia.setChecked(pManager.isForceDataMedia());
 
         mBackupExternalSdcard.setChecked(pManager.isBackupExternalStorage());
 

@@ -156,8 +156,13 @@ public class CwmRecovery extends RecoveryInfo {
     }
 
     private void checkForOldBackup() {
-        File file = new File("/data/media/clockworkmod/backup/");
-        mOldBackup = file.exists() && file.isDirectory() && file.listFiles().length > 0;
+        PreferencesManager pManager = ManagerFactory.getPreferencesManager();
+        if (pManager.isForceDataMedia()) {
+            mOldBackup = true;
+        } else {
+            File file = new File("/data/media/clockworkmod/backup/");
+            mOldBackup = file.exists() && file.isDirectory() && file.listFiles().length > 0;
+        }
     }
 
     private void run(IClockworkRecoveryScriptBuilder builder, String storage, boolean external,
