@@ -83,6 +83,7 @@
 
     <string name="menu_settings">Einstellungen</string>
     <string name="menu_backup">Sicherung</string>
+    <string name="menu_apply_rules">Regeln anwenden</string>
     <string name="menu_restore">Wiederherstellen</string>
     <string name="menu_advanced_recovery">Wiederherstellung</string>
     <string name="menu_sync_backups">Sicherungen abgleichen</string>
@@ -114,8 +115,11 @@
     <string name="force_extsdcard_mount_title">Externe SD-Karte immer einbinden</string>
     <string name="force_extsdcard_mount_summary">Aktivieren, falls Ihr CWM-Recovery die externe SD-Karte nicht automatisch einbindet</string>
 
+    <string name="force_datamedia_title">Verwende /data/media/</string>
+    <string name="force_datamedia_summary">Aktivieren, falls Ihr CWM-Recovery den Ordner /data/media/clockworkmod/ zum Speichern verwendet</string>
+
     <string name="backup_external_title">Sichern &amp; Wiederherstellen auf externe SD-Karte</string>
-    <string name="backup_external_summary">Aktivieren, wenn Sie immer mit der externen SD-Karte arbeiten möchten</string>
+    <string name="backup_external_summary">Aktivieren, wenn Sie eine ROM-Sicherung auf Ihrer externer SD-Karte haben möchten</string>
 
     <string name="about_title">Über</string>
     <string name="about_zip_title">ZipInstaller</string>
@@ -249,6 +253,11 @@
     <string name="restart_needed">Neustart notwendig</string>
     <string name="restart_needed_theme_message">Neustart für die Anwendung der Änderungen notwendig! Möchten Sie jetzt die App neu starten?</string>
 
+    <string name="checkroot_title">Root prüfen</string>
+    <string name="checkroot_summary">Prüfen, ob ein Root-Zugriff auf Ihrem Gerät möglich ist</string>
+    <string name="checkroot_yes">Root-Zugriff erfolgreich erhalten</string>
+    <string name="checkroot_no">Kein Root-Zugriff möglich!</string>
+
     <string name="system">System</string>
     <string name="data">Daten</string>
     <string name="cache">Cache</string>
@@ -354,4 +363,3 @@
     <string name="flashboot_confirm_title">Boot-Image installieren?</string>
     <string name="flashboot_confirm_message">Installiere Boot-Image %1$s</string>
 </resources>
-
