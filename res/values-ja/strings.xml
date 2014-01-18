@@ -87,7 +87,6 @@
     <string name="menu_loadlist">リストを読み込む</string>
     <string name="menu_savelist">リストを保存</string>
     <string name="menu_downloadzip">URLからzipをダウンロード</string>
-    <string name="menu_downloadzip">Download zip</string>
 
     <string name="recovery_change_alert_title">リカバリがあります</string>
     <string name="recovery_change_alert_message">%1$s リカバリのフォルダがあります。既定として設定しますか？</string>
