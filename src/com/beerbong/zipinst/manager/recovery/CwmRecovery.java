@@ -74,7 +74,7 @@ public class CwmRecovery extends RecoveryInfo {
         return "/sdcard/clockworkmod/";
     }
 
-    protected String getFolderPath(String sdcard, boolean external) {
+    public String getFolderPath(String sdcard, boolean external) {
         checkForOldBackup();
         if (!external && mOldBackup) {
             return "/data/media/clockworkmod/";
@@ -151,7 +151,7 @@ public class CwmRecovery extends RecoveryInfo {
         return mContext;
     }
 
-    protected boolean isOldBackup() {
+    public boolean isOldBackup() {
         checkForOldBackup();
         return mOldBackup;
     }
