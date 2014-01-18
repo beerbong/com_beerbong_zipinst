@@ -978,7 +978,12 @@ public class FileManager extends Manager implements UIListener {
 
     public double getSpaceLeft() {
         StatFs stat = new StatFs(Environment.getExternalStorageDirectory().getPath());
-        double sdAvailSize = (double) stat.getAvailableBlocksLong() * (double) stat.getBlockSizeLong();
+        double sdAvailSize = 0;
+        if (Build.VERSION.SDK_INT > 17) {
+            sdAvailSize = stat.getAvailableBlocksLong() * stat.getBlockSizeLong();
+        } else {
+            sdAvailSize = stat.getAvailableBlocks() * stat.getBlockSize();
+        }
         // One binary gigabyte equals 1,073,741,824 bytes.
         return sdAvailSize / 1073741824;
     }

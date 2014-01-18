@@ -32,6 +32,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.PowerManager;
 import android.os.StatFs;
 import android.os.PowerManager.WakeLock;
@@ -167,7 +168,12 @@ public class DownloadTask extends AsyncTask<Void, Integer, Integer> {
             }
             final int lengthOfFile = conn.getContentLength();
             StatFs stat = new StatFs(pManager.getDownloadPath());
-            long availSpace = stat.getAvailableBlocksLong() * stat.getBlockSizeLong();
+            long availSpace = 0;
+            if (Build.VERSION.SDK_INT > 17) {
+                availSpace = stat.getAvailableBlocksLong() * stat.getBlockSizeLong();
+            } else {
+                availSpace = stat.getAvailableBlocks() * stat.getBlockSize();
+            }
             if (lengthOfFile >= availSpace) {
                 destFile.delete();
                 return 3;
