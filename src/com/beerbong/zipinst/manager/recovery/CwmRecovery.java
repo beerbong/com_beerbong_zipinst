@@ -37,6 +37,7 @@ import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.manager.ManagerFactory;
 import com.beerbong.zipinst.manager.PreferencesManager;
 import com.beerbong.zipinst.manager.RecoveryInfo;
+import com.beerbong.zipinst.manager.SUManager;
 import com.beerbong.zipinst.util.Constants;
 import com.beerbong.zipinst.util.FileItem;
 import com.beerbong.zipinst.util.StoredItems;
@@ -157,11 +158,20 @@ public class CwmRecovery extends RecoveryInfo {
 
     private void checkForOldBackup() {
         PreferencesManager pManager = ManagerFactory.getPreferencesManager();
+        File file = new File("/data/media/clockworkmod/backup/");
         if (pManager.isForceDataMedia()) {
             mOldBackup = true;
         } else {
-            File file = new File("/data/media/clockworkmod/backup/");
             mOldBackup = file.exists() && file.isDirectory() && file.listFiles().length > 0;
+        }
+        try {
+            SUManager sManager = ManagerFactory.getSUManager();
+            sManager.runWaitFor("chmod 755 /data/");
+            sManager.runWaitFor("chmod 755 /data/media/");
+            sManager.runWaitFor("chmod 755 /data/media/clockworkmod/");
+            sManager.runWaitFor("chmod 755 /data/media/clockworkmod/backup/");
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
