@@ -25,6 +25,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -40,6 +41,7 @@ import com.beerbong.zipinst.manager.recovery.CwmBasedRecovery;
 import com.beerbong.zipinst.manager.recovery.CwmRecovery;
 import com.beerbong.zipinst.manager.recovery.FourExtRecovery;
 import com.beerbong.zipinst.manager.recovery.TwrpRecovery;
+import com.beerbong.zipinst.util.NoSuException;
 
 public class RecoveryManager extends Manager {
 
@@ -177,6 +179,8 @@ public class RecoveryManager extends Manager {
 
     private void test(final RecoveryInfo info, boolean first) {
 
+        final String recoveryName = info.getFullName(mContext);
+
         if (first) {
             int recNumber = 0;
             File folder = new File(mRecoveries.get(R.id.cwmbased).getFolderPath());
@@ -192,17 +196,30 @@ public class RecoveryManager extends Manager {
                 recNumber++;
             }
             if (recNumber != 1) {
-                selectRecovery();
-                return;
+                int rec = testLastLog();
+                if (rec == -1) {
+                    selectRecovery();
+                } else {
+                    setRecovery(rec);
+                    Toast.makeText(mContext,
+                            mContext.getString(R.string.recovery_changed, recoveryName),
+                            Toast.LENGTH_LONG).show();
+                }
             }
         }
 
         if (info.getId() == R.id.cwmbased) {
-            selectRecovery();
+            int rec = testLastLog();
+            if (rec == -1) {
+                selectRecovery();
+            } else {
+                setRecovery(rec);
+                Toast.makeText(mContext,
+                        mContext.getString(R.string.recovery_changed, recoveryName),
+                        Toast.LENGTH_LONG).show();
+            }
             return;
         }
-
-        final String recoveryName = info.getFullName(mContext);
 
         File folder = new File(info.getFolderPath());
         if (folder.exists()) {
@@ -271,5 +288,40 @@ public class RecoveryManager extends Manager {
                         dialog.dismiss();
                     }
                 }).show();
+    }
+
+    private int testLastLog() {
+        File file = new File("/cache/recovery/last_log");
+        try {
+            String path = ManagerFactory.getFileManager().copyOrRemoveCache(file, true);
+            Scanner scanner = null;
+            try {
+                scanner = new Scanner(new File(path));
+                while (scanner.hasNext()) {
+                    String line = scanner.nextLine();
+                    if (line != null) {
+                        if (line.indexOf("CWM-based Recovery") >= 0) {
+                            return R.id.cwmbased;
+                        } else if (line.indexOf("ClockworkMod Recovery") >= 0) {
+                            return R.id.cwm;
+                        } else if (line.indexOf("TWRP") >= 0) {
+                            return R.id.twrp;
+                        } else if (line.indexOf("4EXT") >= 0) {
+                            return R.id.twrp;
+                        }
+                    }
+                }
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            } finally {
+                ManagerFactory.getFileManager().copyOrRemoveCache(file, false);
+                if (scanner != null) {
+                    scanner.close();
+                }
+            }
+        } catch (NoSuException ex) {
+            ex.printStackTrace();
+        }
+        return -1;
     }
 }
