@@ -586,7 +586,10 @@ public class FileManager extends Manager implements UIListener {
 
                         public void run() {
 
-                            recursiveDelete(new File(toDelete));
+                            boolean deleted = recursiveDelete(new File(toDelete));
+                            if (!deleted) {
+                                ManagerFactory.getSUManager().runWaitFor("rm -r " + toDelete);
+                            }
 
                             pDialog.dismiss();
                         }
