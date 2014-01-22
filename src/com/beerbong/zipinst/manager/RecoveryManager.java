@@ -27,13 +27,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.beerbong.zipinst.R;
@@ -56,8 +60,52 @@ public class RecoveryManager extends Manager {
         mRecoveries.put(R.id.twrp, new TwrpRecovery());
         mRecoveries.put(R.id.fourext, new FourExtRecovery(context));
 
-        if (!ManagerFactory.getPreferencesManager().existsRecovery()) {
+        final PreferencesManager pManager = ManagerFactory.getPreferencesManager();
+        if (!pManager.existsRecovery()) {
             test(mRecoveries.get(R.id.fourext), true);
+        } else {
+            if (pManager.isAlertOnChangeRecovery()) {
+                final int rec = testLastLog();
+                if (rec != -1 && rec != getRecovery().getId()) {
+                    // show alert
+                    AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                    alert.setTitle(R.string.alert_changed_recovery_title);
+                    View view = LayoutInflater.from(context).inflate(R.layout.changed_recovery_dialog,
+                            (ViewGroup) ((Activity) context).findViewById(R.id.changed_recovery_dialog_layout));
+                    alert.setView(view);
+
+                    TextView text = (TextView) view.findViewById(R.id.text);
+                    text.setText(mContext.getResources().getString(
+                            R.string.alert_changed_recovery_message,
+                            getRecovery().getFullName(mContext),
+                            mRecoveries.get(rec).getFullName(mContext)));
+
+                    final CheckBox cbDontShow = (CheckBox) view.findViewById(R.id.dontshow);
+                    cbDontShow.setChecked(pManager.isAlertOnChangeRecovery());
+
+                    alert.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            dialog.dismiss();
+
+                            setRecovery(rec);
+
+                            pManager.setAlertOnChangeRecovery(cbDontShow.isChecked());
+                        }
+                    });
+
+                    alert.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            dialog.dismiss();
+
+                            pManager.setAlertOnChangeRecovery(cbDontShow.isChecked());
+                        }
+                    });
+
+                    alert.show();
+                }
+            }
         }
 
         ManagerFactory.getProManager().manage(this, ProManager.ManageMode.Recovery);

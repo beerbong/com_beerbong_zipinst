@@ -39,6 +39,7 @@ public class PreferencesManager extends Manager {
     private static final String PROPERTY_FORCE_DATA_MEDIA = "forcedatamedia";
     private static final String PROPERTY_BACKUP_EXTERNAL_STORAGE = "backupextsdcard";
     private static final String PROPERTY_RECOVERY = "recovery";
+    private static final String PROPERTY_CHANGED_RECOVERY = "changedrecovery";
     private static final String PROPERTY_LIST = "list";
     private static final String PROPERTY_DRAG_AND_DROP = "drag-and-drop";
     private static final String PROPERTY_SHOW_OPTIONS = "show-options";
@@ -74,6 +75,7 @@ public class PreferencesManager extends Manager {
     private static final String DEFAULT_TIME_NOTIFICATIONS = "3600000"; // an hour
     private static final Set<String> DEFAULT_SHOW_OPTIONS = new HashSet<String>();
     private static final String DEFAULT_SPACE_LEFT = "-1";
+    private static final boolean DEFAULT_CHANGED_RECOVERY = true;
     private static final boolean DEFAULT_FORCE_EXTERNAL_STORAGE = true;
     private static final boolean DEFAULT_FORCE_DATA_MEDIA = false;
     private static final boolean DEFAULT_BACKUP_EXTERNAL_STORAGE = false;
@@ -195,6 +197,14 @@ public class PreferencesManager extends Manager {
 
     public void setDarkTheme(boolean value) {
         savePreference(PROPERTY_DARK_THEME, value);
+    }
+
+    public boolean isAlertOnChangeRecovery() {
+        return settings.getBoolean(PROPERTY_CHANGED_RECOVERY, DEFAULT_CHANGED_RECOVERY);
+    }
+
+    public void setAlertOnChangeRecovery(boolean value) {
+        savePreference(PROPERTY_CHANGED_RECOVERY, value);
     }
 
     public boolean isCheckExists() {

@@ -18,42 +18,24 @@
   along with ZipInstaller.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/onandroid_dialog_layout"
+    android:id="@+id/changed_recovery_dialog_layout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
     android:padding="10dp" >
 
     <TextView
+        android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/onandroid_text"
+        android:text="@string/alert_changed_recovery_message"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <Spinner
-        android:id="@+id/onandroid_manufacturer"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
-
-    <Spinner
-        android:id="@+id/onandroid_device"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
+    <CheckBox
+        android:id="@+id/dontshow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/onandroid_text2"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <Spinner
-        android:id="@+id/onandroid_manufacturer_mtd"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
-
-    <Spinner
-        android:id="@+id/onandroid_device_mtd"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" />
+        android:checked="true"
+        android:text="@string/alert_changed_recovery_dont_show" />
 
 </LinearLayout>

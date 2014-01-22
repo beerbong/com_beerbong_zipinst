@@ -81,6 +81,10 @@
 
     <string name="install_now">Flash now</string>
 
+    <string name="alert_changed_recovery_title">Recovery changed</string>
+    <string name="alert_changed_recovery_message">Seems that you have changed your recovery from %1$s to %2$s.\nDo you want to configure your new recovery in ZipInstaller?</string>
+    <string name="alert_changed_recovery_dont_show">Don\'t show this dialog again</string>
+
     <string name="menu_settings">Settings</string>
     <string name="menu_backup">Backup</string>
     <string name="menu_apply_rules">Apply rules</string>

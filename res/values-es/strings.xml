@@ -79,6 +79,10 @@
 
     <string name="install_now">"Flashear ahora"</string>
 
+    <string name="alert_changed_recovery_title">Cambio de recovery</string>
+    <string name="alert_changed_recovery_message">Parece que has cambiado tu recovery de %1$s a %2$s.\n¿Quieres que se configure tu nuevo recovery en ZipInstaller?</string>
+    <string name="alert_changed_recovery_dont_show">No volver a mostrar este diálogo</string>
+
     <string name="menu_settings">Ajustes</string>
     <string name="menu_backup">Backup</string>
     <string name="menu_restore">Restore</string>
