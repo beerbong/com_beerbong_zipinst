@@ -19,6 +19,7 @@
 
 package com.beerbong.zipinst.widget;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
@@ -31,12 +32,15 @@ public class PreferenceActivity extends android.preference.PreferenceActivity {
     @SuppressWarnings("deprecation")
     protected void onCreate(Bundle savedInstanceState, int resourceId) {
 
-        boolean darkTheme = ManagerFactory.getPreferencesManager().isDarkTheme();
+        boolean darkTheme = ManagerFactory.getPreferencesManager(this).isDarkTheme();
         setTheme(darkTheme ? R.style.AppTheme_Dark : R.style.AppTheme);
 
         super.onCreate(savedInstanceState);
 
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar ab = getActionBar();
+        if (ab != null) {
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
 
         addPreferencesFromResource(resourceId);
     }
