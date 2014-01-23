@@ -71,7 +71,7 @@ public abstract class RecoveryInfo {
 
     public abstract String getCommandsFile();
 
-    public abstract String getBackupFolder(String sdcard, boolean force);
+    public abstract String getBackupFolder(String sdcard, boolean force, boolean external);
 
     public abstract List<String> getCommands(String storage, boolean external, boolean wipeSystem,
             boolean wipeData, boolean wipeCaches, boolean fixPermissions, String backupFolder,

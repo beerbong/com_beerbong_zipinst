@@ -91,10 +91,10 @@ public class CwmRecovery extends RecoveryInfo {
     }
 
     @Override
-    public String getBackupFolder(String sdcard, boolean force) {
+    public String getBackupFolder(String sdcard, boolean force, boolean external) {
         if (force) {
             checkForOldBackup();
-            if (mOldBackup) {
+            if (!external && mOldBackup) {
                 return "/data/media/clockworkmod/backup/";
             }
             while (sdcard.startsWith("/")) {

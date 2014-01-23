@@ -141,7 +141,7 @@ public class RecoveryManager extends Manager {
         String sdcard = external ? ManagerFactory.getFileManager()
                 .getExternalStoragePath() : "sdcard";
 
-        return info.getBackupFolder(sdcard, force);
+        return info.getBackupFolder(sdcard, force, external);
     }
 
     public String[] getBackupList() {
@@ -149,11 +149,12 @@ public class RecoveryManager extends Manager {
         RecoveryInfo info = getRecovery();
 
         PreferencesManager pManager = ManagerFactory.getPreferencesManager();
-        String sdcard = ManagerFactory.getFileManager().hasExternalStorage()
-                && pManager.isBackupExternalStorage() ? ManagerFactory.getFileManager()
+        boolean external = ManagerFactory.getFileManager().hasExternalStorage()
+                && pManager.isBackupExternalStorage();
+        String sdcard = external ? ManagerFactory.getFileManager()
                 .getExternalStoragePath() : "sdcard";
 
-        String folder = info.getBackupFolder(sdcard, true);
+        String folder = info.getBackupFolder(sdcard, true, external);
 
         List<String> list = new ArrayList<String>();
 

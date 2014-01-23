@@ -59,7 +59,7 @@ public class TwrpRecovery extends RecoveryInfo {
     }
 
     @Override
-    public String getBackupFolder(String sdcard, boolean force) {
+    public String getBackupFolder(String sdcard, boolean force, boolean external) {
         while (sdcard.startsWith("/")) {
             sdcard = sdcard.substring(1);
         }
