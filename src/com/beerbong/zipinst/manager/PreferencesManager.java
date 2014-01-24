@@ -62,6 +62,8 @@ public class PreferencesManager extends Manager {
     private static final String PROPERTY_DROPBOX_KEY = "dropboxkey";
     private static final String PROPERTY_DROPBOX_SECRET = "dropboxsecret";
     private static final String PROPERTY_LICENSE = "license";
+    private static final String PROPERTY_RECOVERY_BLOCK = "recoveryblock";
+    private static final String PROPERTY_BOOT_BLOCK = "bootblock";
 
     public static final String PROPERTY_ENABLE_NOTIFICATIONS = "enable_notifications";
     public static final String PROPERTY_TIME_NOTIFICATIONS = "time_notifications";
@@ -351,6 +353,22 @@ public class PreferencesManager extends Manager {
         }
         newRules[newRules.length - 1] = new Rule(name, type);
         savePreference(PROPERTY_RULES, Rule.storeRules(newRules));
+    }
+
+    public String getRecoveryBlock() {
+        return settings.getString(PROPERTY_RECOVERY_BLOCK, null);
+    }
+
+    public void setRecoveryBlock(String value) {
+        savePreference(PROPERTY_RECOVERY_BLOCK, value);
+    }
+
+    public String getBootBlock() {
+        return settings.getString(PROPERTY_BOOT_BLOCK, null);
+    }
+
+    public void setBootBlock(String value) {
+        savePreference(PROPERTY_BOOT_BLOCK, value);
     }
 
     public void logout() {
