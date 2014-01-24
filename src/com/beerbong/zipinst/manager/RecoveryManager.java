@@ -81,7 +81,7 @@ public class RecoveryManager extends Manager {
                             mRecoveries.get(rec).getFullName(mContext)));
 
                     final CheckBox cbDontShow = (CheckBox) view.findViewById(R.id.dontshow);
-                    cbDontShow.setChecked(pManager.isAlertOnChangeRecovery());
+                    cbDontShow.setChecked(!pManager.isAlertOnChangeRecovery());
 
                     alert.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
@@ -90,7 +90,7 @@ public class RecoveryManager extends Manager {
 
                             setRecovery(rec);
 
-                            pManager.setAlertOnChangeRecovery(cbDontShow.isChecked());
+                            pManager.setAlertOnChangeRecovery(!cbDontShow.isChecked());
                         }
                     });
 
