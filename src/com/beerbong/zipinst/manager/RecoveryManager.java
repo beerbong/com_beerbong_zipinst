@@ -248,11 +248,13 @@ public class RecoveryManager extends Manager {
                 int rec = testLastLog();
                 if (rec == -1) {
                     selectRecovery();
+                    return;
                 } else {
                     setRecovery(rec);
                     Toast.makeText(mContext,
                             mContext.getString(R.string.recovery_changed, recoveryName),
                             Toast.LENGTH_LONG).show();
+                    return;
                 }
             }
         }
