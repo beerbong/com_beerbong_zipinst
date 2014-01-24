@@ -1118,6 +1118,8 @@ public class FileManager extends Manager implements UIListener {
     public String copyOrRemoveCache(File file, boolean copy) throws NoSuException {
         SUManager suManager = ManagerFactory.getSUManager(mContext);
         String filePath = new File(mContext.getCacheDir().getAbsolutePath(), file.getName()).getAbsolutePath();
+        suManager.runWaitFor("chmod 755 /cache/");
+        suManager.runWaitFor("chmod 755 /cache/recovery/");
         if (copy) {
             suManager.runWaitFor("cp " + file.getAbsolutePath() + " " + filePath);
             suManager.runWaitFor("chmod 644 " + filePath);
