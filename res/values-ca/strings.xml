@@ -363,4 +363,10 @@
     <string name="flashboot_installed">"Boot image instal·lat"</string>
     <string name="flashboot_confirm_title">"Instal·lar boot image?"</string>
     <string name="flashboot_confirm_message">"Instal·lar boot image %1$s"</string>
+
+    <string name="picker_recovery_title">Flashear recovery</string>
+    <string name="picker_recovery_zip">Triar arxiu</string>
+    <string name="picker_recovery_twrp">Descarregar TWRP</string>
+    <string name="picker_recovery_error_twrp">Error descarregant TWRP</string>
+    <string name="picker_recovery_no_recovery_found">"No s'ha trobat cap recovery per al teu dispositiu"</string>
 </resources>

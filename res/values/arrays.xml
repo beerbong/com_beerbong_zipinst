@@ -76,5 +76,13 @@
         <item>2.0</item>
         <item>5.0</item>
     </string-array>
+    <string-array name="picker_recovery_entries">
+        <item>@string/picker_recovery_zip</item>
+        <item>@string/picker_recovery_twrp</item>
+    </string-array>
+    <string-array name="picker_recovery_values" translatable="false">
+        <item>zip</item>
+        <item>twrp</item>
+    </string-array>
 
 </resources>

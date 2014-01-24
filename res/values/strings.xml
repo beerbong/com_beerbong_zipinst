@@ -366,4 +366,10 @@
     <string name="flashboot_installed">Boot image installed</string>
     <string name="flashboot_confirm_title">Install boot image?</string>
     <string name="flashboot_confirm_message">Install boot image %1$s</string>
+
+    <string name="picker_recovery_title">Flash recovery</string>
+    <string name="picker_recovery_zip">Choose file</string>
+    <string name="picker_recovery_twrp">Download TWRP</string>
+    <string name="picker_recovery_error_twrp">Error downloading TWRP</string>
+    <string name="picker_recovery_no_recovery_found">No recovery found for your device</string>
 </resources>
