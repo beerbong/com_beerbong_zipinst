@@ -34,13 +34,12 @@ import com.beerbong.zipinst.util.StoredItems;
 
 public class TwrpRecovery extends RecoveryInfo {
 
-    public TwrpRecovery() {
-        super();
+    public TwrpRecovery(Context context) {
+        super(context);
 
         setId(R.id.twrp);
         setName("twrp");
         setInternalSdcard("sdcard");
-        setExternalSdcard("external_sd");
     }
 
     @Override

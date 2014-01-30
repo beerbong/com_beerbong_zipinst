@@ -57,7 +57,7 @@ public class RecoveryManager extends Manager {
 
         mRecoveries.put(R.id.cwmbased, new CwmBasedRecovery(context));
         mRecoveries.put(R.id.cwm, new CwmRecovery(context));
-        mRecoveries.put(R.id.twrp, new TwrpRecovery());
+        mRecoveries.put(R.id.twrp, new TwrpRecovery(context));
         mRecoveries.put(R.id.fourext, new FourExtRecovery(context));
 
         final PreferencesManager pManager = ManagerFactory.getPreferencesManager();

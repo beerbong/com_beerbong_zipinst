@@ -46,18 +46,14 @@ import com.koushikdutta.rommanager.api.IROMManagerAPIService;
 
 public class CwmRecovery extends RecoveryInfo {
 
-    private Context mContext;
     private boolean mOldBackup = false;
 
     public CwmRecovery(Context context) {
-        super();
-
-        mContext = context;
+        super(context);
 
         setId(R.id.cwm);
         setName("cwm");
         setInternalSdcard("sdcard");
-        setExternalSdcard(externalStorage(context));
     }
 
     @Override
@@ -112,7 +108,7 @@ public class CwmRecovery extends RecoveryInfo {
             final String restore) throws Exception {
         Intent i = new Intent("com.koushikdutta.rommanager.api.BIND");
         try {
-            mContext.bindService(i, new ServiceConnection() {
+            getContext().bindService(i, new ServiceConnection() {
                 @Override
                 public void onServiceDisconnected(ComponentName name) {
                 }
@@ -145,10 +141,6 @@ public class CwmRecovery extends RecoveryInfo {
             Constants.showError(getContext(), R.string.error_no_rommanager_connection);
         }
         return new ArrayList<String>();
-    }
-
-    protected Context getContext() {
-        return mContext;
     }
 
     public boolean isOldBackup() {
@@ -288,79 +280,5 @@ public class CwmRecovery extends RecoveryInfo {
         builder.print(" Rebooting");
 
         builder.runScript();
-    }
-
-    private String externalStorage(Context paramContext) {
-        String dirPath = null;
-        try {
-            String[] volumePaths = null;
-            ArrayList<String> volumePathsList = null;
-            String path = null;
-            if (Build.VERSION.SDK_INT >= 14) {
-                volumePaths = volumePaths(paramContext);
-                if (volumePaths != null) {
-                    volumePathsList = new ArrayList<String>();
-                    path = Environment.getExternalStorageDirectory().getAbsolutePath();
-                }
-            }
-            try {
-                String primaryVolumePath = primaryVolumePath(paramContext);
-                int i = volumePaths.length;
-                for (int j = 0;; j++)
-                    if (j < i) {
-                        String volumePath = volumePaths[j];
-                        try {
-                            if ((volumePath.equals(System.getenv("EMULATED_STORAGE_SOURCE")))
-                                    || (volumePath.equals(System.getenv("EXTERNAL_STORAGE")))
-                                    || (volumePath.equals(path))
-                                    || (volumePath.equals(primaryVolumePath))
-                                    || (volumePath.toLowerCase().contains("usb")))
-                                continue;
-                            volumePathsList.add(volumePath);
-                        } catch (Exception ex) {
-                            ex.printStackTrace();
-                        }
-                    } else {
-                        if (volumePathsList.size() == 1) {
-                            dirPath = (String) volumePathsList.get(0);
-                        }
-                        return dirPath;
-                    }
-            } catch (Exception ex) {
-                ex.printStackTrace();
-
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return dirPath;
-    }
-
-    private String[] volumePaths(Context context) {
-        try {
-            StorageManager localStorageManager = (StorageManager) context
-                    .getSystemService("storage");
-            return (String[]) (String[]) localStorageManager.getClass()
-                    .getMethod("getVolumePaths", new Class[0])
-                    .invoke(localStorageManager, new Object[0]);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return null;
-        }
-    }
-
-    private String primaryVolumePath(Context context) {
-        try {
-            StorageManager localStorageManager = (StorageManager) context
-                    .getSystemService("storage");
-            Object localObject = localStorageManager.getClass()
-                    .getMethod("getPrimaryVolume", new Class[0])
-                    .invoke(localStorageManager, new Object[0]);
-            return (String) localObject.getClass().getMethod("getPath", new Class[0])
-                    .invoke(localObject, new Object[0]);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return null;
-        }
     }
 }
