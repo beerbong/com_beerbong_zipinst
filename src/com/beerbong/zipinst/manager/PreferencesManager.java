@@ -21,6 +21,7 @@ package com.beerbong.zipinst.manager;
 
 import java.io.File;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import android.content.Context;
@@ -353,6 +354,17 @@ public class PreferencesManager extends Manager {
         }
         newRules[newRules.length - 1] = new Rule(name, type);
         savePreference(PROPERTY_RULES, Rule.storeRules(newRules));
+    }
+
+    public void removeRule(Rule rule) {
+        List<Rule> rules = Rule.createRulesAsList(settings.getString(PROPERTY_RULES, ""));
+        for (Rule r : rules) {
+            if (r.getName().equals(rule.getName()) && r.getType() == rule.getType()) {
+                rules.remove(r);
+                break;
+            }
+        }
+        savePreference(PROPERTY_RULES, Rule.storeRules(rules));
     }
 
     public String getRecoveryBlock() {

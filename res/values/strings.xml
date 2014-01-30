@@ -172,6 +172,7 @@
     <string name="alert_rules_add">Add rule</string>
     <string name="alert_rules_done">Done</string>
     <string name="alert_rules_delete">Delete all</string>
+    <string name="alert_rules_delete_selected">Delete selected</string>
 
     <string name="folder_activity_title">Select a file</string>
     <string name="alert_remove_file_title">Delete file</string>

@@ -169,6 +169,7 @@
     <string name="alert_rules_add">Añadir regla</string>
     <string name="alert_rules_done">Hecho</string>
     <string name="alert_rules_delete">Borrar todas</string>
+    <string name="alert_rules_delete_selected">Borrar selección</string>
 
     <string name="folder_activity_title">Selecciona un archivo</string>
     <string name="alert_remove_file_title">Borrar archivo</string>

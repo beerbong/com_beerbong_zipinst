@@ -169,6 +169,7 @@
     <string name="alert_rules_add">Afegir regla</string>
     <string name="alert_rules_done">Fet</string>
     <string name="alert_rules_delete">Esborrar totes</string>
+    <string name="alert_rules_delete_selected">Esborrar selecció</string>
 
     <string name="folder_activity_title">Selecciona un arxiu</string>
     <string name="alert_remove_file_title">Esborrar arxiu</string>

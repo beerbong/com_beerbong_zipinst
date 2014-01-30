@@ -38,7 +38,9 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -79,6 +81,7 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
     private ListPreference mSpaceLeft;
     private CheckBoxPreference mUseFolder;
     private Preference mFolder;
+    private LinearLayout mRulesLayout;
 
     @Override
     @SuppressWarnings("deprecation")
@@ -431,8 +434,8 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
                 (ViewGroup) findViewById(R.id.rules_dialog_layout));
         alert.setView(view);
 
-        final TextView textView = (TextView) view.findViewById(R.id.rules_text);
-        redrawRules(textView);
+        mRulesLayout = (LinearLayout) view.findViewById(R.id.rules_layout);
+        redrawRules();
 
         final EditText editText = (EditText) view.findViewById(R.id.rule_input);
         final Spinner spinner = (Spinner) view.findViewById(R.id.rule_rule);
@@ -449,7 +452,7 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
                 String text = editText.getText().toString();
                 if (text != null && !"".equals(text)) {
                     pManager.addRule(text, spinner.getSelectedItemPosition());
-                    redrawRules(textView);
+                    redrawRules();
                     view.invalidate();
                 }
             }
@@ -462,7 +465,27 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
             @Override
             public void onClick(View v) {
                 pManager.setRules(null);
-                redrawRules(textView);
+                redrawRules();
+                view.invalidate();
+            }
+            
+        });
+
+        Button delSelectedButton = (Button) view.findViewById(R.id.rule_delete_selected);
+        delSelectedButton.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                for (int i=0;i<mRulesLayout.getChildCount();i++) {
+                    if (mRulesLayout.getChildAt(i) instanceof CheckBox) {
+                        CheckBox ch = (CheckBox) mRulesLayout.getChildAt(i);
+                        if (ch.isChecked()) {
+                            Rule rule = (Rule) ch.getTag(R.id.title);
+                            pManager.removeRule(rule);
+                        }
+                    }
+                }
+                redrawRules();
                 view.invalidate();
             }
             
@@ -478,20 +501,22 @@ public class Settings extends PreferenceActivity implements OnPreferenceChangeLi
         alert.show();
     }
 
-    private void redrawRules(TextView textView) {
-        String text = getResources().getString(R.string.rules_text);
+    private void redrawRules() {
+        mRulesLayout.removeAllViews();
+
         PreferencesManager pManager = ManagerFactory.getPreferencesManager();
         if (pManager.hasRules()) {
             String folder = pManager.getFolder();
             Rule[] rules = pManager.getRules();
             for (int i = 0; i < rules.length; i++) {
-                if (!"".equals(rules[i])) {
-                    String type = getResources().getString(rules[i].getTypeString());
-                    text += type + " " + folder + File.separator + rules[i].getName() + "\n";
-                }
+                String type = getResources().getString(rules[i].getTypeString());
+                CheckBox ch = new CheckBox(this);
+                ch.setText(type + " " + folder + File.separator + rules[i].getName());
+                ch.setTag(R.id.title, rules[i]);
+
+                mRulesLayout.addView(ch);
             }
         }
-        textView.setText(text);
         UI.getInstance().refreshActionBar();
     }
 

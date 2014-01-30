@@ -33,8 +33,13 @@ public class Rule {
     public static final int EQUAL = 2;
 
     public static Rule[] createRules(String str) {
+        List<Rule> list = createRulesAsList(str);
+        return list.toArray(new Rule[list.size()]);
+    }
+
+    public static List<Rule> createRulesAsList(String str) {
         if (str == null || "".equals(str.trim())) {
-            return new Rule[0];
+            return new ArrayList<Rule>();
         }
         String[] rulesStr = str.split(RULES_SEPARATOR);
         List<Rule> list = new ArrayList<Rule>();
@@ -43,7 +48,14 @@ public class Rule {
                 list.add(new Rule(rulesStr[i]));
             }
         }
-        return list.toArray(new Rule[list.size()]);
+        return list;
+    }
+
+    public static String storeRules(List<Rule> rules) {
+        if (rules == null) {
+            return "";
+        }
+        return storeRules(rules.toArray(new Rule[rules.size()]));
     }
 
     public static String storeRules(Rule[] rules) {
