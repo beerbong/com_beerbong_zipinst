@@ -304,7 +304,6 @@
     <string name="use_onandroid_title">Používať ONandroid</string>
     <string name="use_onandroid_summary">Zálohovať vašu ROM bez reštartu do recovery</string>
     <string name="configure_onandroid_title">Nastaviť ONandroid</string>
-    <string name="configure_onandroid_summary">Skontrolovať, či je vaše zariadenie podporované ONandroid</string>
 
     <string name="new_rom_found_title">Nájdená nová verzia ROM</string>
     <string name="new_rom_found_summary">Nová verzia pre vašu ROM bola nájdená. Chcete ju stiahnuť teraz?\n\n%1$s\n%2$s\n</string>

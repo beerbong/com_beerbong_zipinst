@@ -309,7 +309,6 @@
     <string name="use_onandroid_title">ONandroid verwenden</string>
     <string name="use_onandroid_summary">ROM ohne Start ins Recovery sichern</string>
     <string name="configure_onandroid_title">ONandroid konfigurieren</string>
-    <string name="configure_onandroid_summary">Prüfen, ob ONandroid Ihr Gerät unterstützt</string>
 
     <string name="new_rom_found_title">Neue ROM-Version gefunden!</string>
     <string name="new_rom_found_summary">Eine neue ROM-Version wurde gefunden. Möchten Sie diese jetzt heruntladen?\n\n%1$s\n%2$s\n</string>

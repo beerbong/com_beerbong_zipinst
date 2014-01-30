@@ -271,7 +271,6 @@
     <string name="use_onandroid_title">Use ONandroid</string>
     <string name="use_onandroid_summary">Backup your rom without rebooting to recovery</string>
     <string name="configure_onandroid_title">Configure ONandroid</string>
-    <string name="configure_onandroid_summary">Check if your device is supported by ONandroid</string>
 
     <string name="new_rom_found_title">New ROM version found</string>
     <string name="new_rom_found_summary">A new version of your ROM has been found. Do you want to download it now?\n\n%1$s\n%2$s\n</string>

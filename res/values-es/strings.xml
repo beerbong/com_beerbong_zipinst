@@ -310,7 +310,8 @@
     <string name="use_onandroid_title">Utilizar ONandroid</string>
     <string name="use_onandroid_summary">Hacer un backup de tu rom sin reiniciar al recovery</string>
     <string name="configure_onandroid_title">Configurar ONandroid</string>
-    <string name="configure_onandroid_summary">Comprueba si ONandroid soporta tu dispositivo</string>
+    <string name="configure_onandroid_ok_summary">Comprueba soporte ONandroid (parece configurado)</string>
+    <string name="configure_onandroid_nok_summary">Comprueba soporte ONandroid (no parece configurado)</string>
 
     <string name="new_rom_found_title">Nueva versión de la ROM</string>
     <string name="new_rom_found_summary">Se ha encontrado una nueva versión de tu ROM. ¿Quieres descargarla ahora?\n\n%1$s\n%2$s\n</string>
