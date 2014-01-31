@@ -36,17 +36,18 @@ import com.beerbong.zipinst.util.Constants;
 import com.beerbong.zipinst.util.DownloadTask;
 import com.beerbong.zipinst.util.URLStringReader;
 import com.beerbong.zipinst.util.URLStringReader.URLStringReaderListener;
+import com.beerbong.zipinst.util.Version;
 
 public class UpdateManager extends Manager implements URLStringReaderListener {
 
     private Context mCheckContext;
-    private int mVersion = -1;
+    private Version mVersion;
 
     public UpdateManager(Context context) {
         super(context);
 
         try {
-            mVersion = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
+            mVersion = new Version(context);
         } catch (Exception ex) {
             ex.printStackTrace();
             Toast.makeText(mContext, R.string.check_for_updates_error, Toast.LENGTH_LONG).show();
@@ -58,7 +59,7 @@ public class UpdateManager extends Manager implements URLStringReaderListener {
     }
 
     public void checkForUpdate(Context context) {
-        if (mVersion == -1) {
+        if (mVersion.isEmpty()) {
             return;
         }
         mCheckContext = context;
@@ -70,19 +71,22 @@ public class UpdateManager extends Manager implements URLStringReaderListener {
         try {
             JSONObject object = (JSONObject) new JSONTokener(buffer).nextValue();
             JSONArray results = object.getJSONArray("search_result");
-            int newVersion = -1;
+            Version newVersion = null;
             for (int i = 0; i < results.length(); i++) {
                 JSONObject result = results.getJSONObject(i);
                 String path = result.getString("path");
                 String fileName = result.getString("filename");
-                if (path.indexOf("beerbong") < 0 || fileName.indexOf("ZipInstaller") < 0)
+                if (path.indexOf("beerbong") < 0 || fileName.indexOf("ZipInstaller") < 0
+                        || !fileName.endsWith(".apk")) {
                     continue;
-                newVersion = Math.max(newVersion, parseVersion(fileName));
+                }
+                Version version = new Version(fileName);
+                newVersion = newVersion == null ? version : Version.max(newVersion, version);
             }
-            if (mVersion >= newVersion) {
+            if (newVersion == null || Version.compare(mVersion, newVersion) > 0) {
                 showToastOnUiThread(mCheckContext, R.string.no_new_version);
             } else {
-                final int nVersion = newVersion;
+                final Version nVersion = newVersion;
                 ((Activity) mCheckContext).runOnUiThread(new Runnable() {
 
                     public void run() {
@@ -101,8 +105,8 @@ public class UpdateManager extends Manager implements URLStringReaderListener {
         showToastOnUiThread(mCheckContext, R.string.check_for_updates_error);
     }
 
-    private void requestForDownload(final Context context, int version) {
-        final String fileName = formatVersion(version);
+    private void requestForDownload(final Context context, Version version) {
+        final String fileName = version.getFileName();
 
         AlertDialog.Builder alert = new AlertDialog.Builder(context);
         alert.setTitle(R.string.new_version_title);
@@ -164,18 +168,5 @@ public class UpdateManager extends Manager implements URLStringReaderListener {
                 Toast.makeText(context, resourceId, Toast.LENGTH_LONG).show();
             }
         });
-    }
-
-    private int parseVersion(String fileName) {
-        String v = fileName.replace("ZipInstaller-", "");
-        v = v.replace(".apk", "");
-        v = v.replace(".", "");
-        return Integer.parseInt(v);
-    }
-
-    private String formatVersion(int versionNumber) {
-        String version = String.valueOf(versionNumber);
-        return "ZipInstaller-" + version.charAt(0) + "." + version.charAt(1) + "."
-                + version.charAt(2) + ".apk";
     }
 }
