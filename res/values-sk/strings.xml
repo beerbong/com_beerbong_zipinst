@@ -78,6 +78,11 @@
     <string name="main_choose_zip">Pridať súbor</string>
 
     <string name="install_now">Flashnúť teraz</string>
+    
+    <string name="alert_changed_recovery_title">Zmenená recovery</string>
+    <string name="alert_changed_recovery_message">Zdá sa, že ste zmenili vašu recovery z %1$s na %2$s.\nChcete nastaviť vašu novú recovery v ZipInstaller?</string>
+    <string name="alert_changed_recovery_dont_show">Nezobrazovať znovu tento dialóg</string>
+
 
     <string name="menu_settings">Nastavenia</string>
     <string name="menu_backup">Zálohovať</string>
@@ -112,6 +117,9 @@
     
     <string name="force_extsdcard_mount_title">Vynútiť si pripojenie externej karty SD</string>
     <string name="force_extsdcard_mount_summary">Povoľte túto možnosť, ak vaša CWM recovery predvolene nepripája externú kartu SD</string>
+
+    <string name="force_datamedia_title">Použiť /data/media/</string>
+   <string name="force_datamedia_summary">Zaškrnite túto možnosť, ak vaša CWM recovery používa /data/media/clockworkmod/ na ukladanie záloh</string>
 
     <string name="backup_external_title">Záloha a obnova na externú kartu SD</string>
     <string name="backup_external_summary">Povoľte túto možnosť, ak chcete zálohovať vašu ROM na externú kartu SD</string>
@@ -162,6 +170,7 @@
     <string name="alert_rules_add">Pridať pravidlo</string>
     <string name="alert_rules_done">Hotovo</string>
     <string name="alert_rules_delete">Vymazať všetky</string>
+    <string name="alert_rules_delete_selected">Vymazať vybrané</string>
 
     <string name="folder_activity_title">Vyberte súbor</string>
     <string name="alert_remove_file_title">Vymazať súbor</string>
@@ -356,4 +365,11 @@
     <string name="flashboot_installed">Boot obraz nainštalovaný</string>
     <string name="flashboot_confirm_title">Inštalovať boot obraz?</string>
     <string name="flashboot_confirm_message">Inštalovať boot obraz %1$s</string>
+    
+    <string name="picker_recovery_title">Flashnúť recovery</string>
+    <string name="picker_recovery_zip">Vybrať súbor</string>
+    <string name="picker_recovery_twrp">Stiahnuť TWRP</string>
+    <string name="picker_recovery_error_twrp">Chyba pri sťahovaní TWRP</string>
+    <string name="picker_recovery_no_recovery_found">Nebola nájdená žiadna recovery pre vaše zariadenie</string>
+
 </resources>
