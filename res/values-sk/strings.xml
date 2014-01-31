@@ -151,7 +151,7 @@
     <string name="donate_title">Prispieť</string>
 
     <string name="usefolder_title">Inštalačné tlačidlo otvorí priečinok</string>
-    <string name="usefolder_summary">Ak je povolené, aplikácia otvorí priečinoflashboot_confirm_messagek namiesto správcu súborov.</string>
+    <string name="usefolder_summary">Ak je povolené, aplikácia otvorí priečinok namiesto správcu súborov.</string>
 
     <string name="folder_title">Predvolený priečinok</string>
     <string name="folder_error">Priečinok neexistuje alebo nie je platným priečinkom</string>
