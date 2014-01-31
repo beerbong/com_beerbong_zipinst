@@ -147,6 +147,10 @@ public class FileManager extends Manager implements UIListener {
             Rule[] rules = pManager.getRules();
             File[] files = folder.listFiles();
 
+            if (files == null) {
+                return;
+            }
+
             Arrays.sort(files, new Comparator<File>() {
 
                 @Override
@@ -158,12 +162,12 @@ public class FileManager extends Manager implements UIListener {
 
             });
 
-            for (File file : files) {
-                for (int i = 0; i < rules.length; i++) {
+            for (Rule rule : rules) {
+                for (File file : files) {
                     String fileName = file.getName();
                     if (fileName.toLowerCase().endsWith(".zip")
                             && !file.isDirectory()
-                            && rules[i].apply(fileName)) {
+                            && rule.apply(fileName)) {
 
                         String sdcardPath = getPath(file
                                 .getAbsolutePath());
