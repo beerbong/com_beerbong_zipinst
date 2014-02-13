@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2014 ZipInstaller Project
+
+  This file is part of ZipInstaller.
+
+  ZipInstaller is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  ZipInstaller is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+ 
+  You should have received a copy of the GNU General Public License
+  along with ZipInstaller.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/menu_add_zip"
+          android:icon="?addIcon"
+          android:title="@string/menu_add_zip"
+          android:showAsAction="ifRoom|withText" />
+
+    <item android:id="@+id/menu_install"
+          android:icon="?flashIcon"
+          android:title="@string/menu_install"
+          android:showAsAction="ifRoom|withText" />
+
+    <item android:id="@+id/menu_apply_rules"
+          android:icon="?acceptIcon"
+          android:title="@string/menu_apply_rules"
+          android:showAsAction="ifRoom|withText" />
+
+    <item android:id="@+id/menu_install_recovery"
+          android:title="@string/menu_install_recovery" />
+
+    <item android:id="@+id/menu_install_boot"
+          android:title="@string/menu_install_boot" />
+
+    <item android:id="@+id/menu_add_rule"
+          android:icon="?addIcon"
+          android:title="@string/menu_add_rule"
+          android:showAsAction="ifRoom|withText" />
+
+    <item android:id="@+id/menu_backup"
+          android:icon="?replyIcon"
+          android:title="@string/menu_backup"
+          android:showAsAction="ifRoom|withText" />
+
+    <item android:id="@+id/menu_cloud"
+          android:icon="?cloudIcon"
+          android:title="@string/menu_cloud"
+          android:showAsAction="ifRoom|withText" />
+
+    <item android:id="@+id/menu_refresh"
+          android:icon="?refreshIcon"
+          android:title="@string/menu_refresh"
+          android:showAsAction="ifRoom" />
+
+    <item android:id="@+id/menu_login"
+          android:icon="?personIcon"
+          android:title="@string/menu_login"
+          android:showAsAction="ifRoom|withText" />
+
+</menu>

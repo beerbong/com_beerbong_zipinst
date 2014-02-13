@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Copyright 2013 ZipInstaller Project
+  Copyright 2014 ZipInstaller Project
 
   This file is part of ZipInstaller.
 
@@ -21,11 +21,13 @@
 
     <item android:state_focused="true" android:state_enabled="false" android:state_pressed="true"
         android:drawable="@drawable/list_selector_background_disable" />
+
     <item android:state_focused="true" android:state_enabled="false"
         android:drawable="@drawable/list_selector_background_disable" />
         
     <item android:state_focused="true" android:state_pressed="true"
         android:drawable="@drawable/list_selector_background_transition" />
+
     <item android:state_focused="false" android:state_pressed="true"
         android:drawable="@drawable/list_selector_background_transition" />
 

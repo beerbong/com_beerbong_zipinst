@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 ZipInstaller Project
+ * Copyright 2014 ZipInstaller Project
  *
  * This file is part of ZipInstaller.
  *
@@ -19,28 +19,26 @@
 
 package com.beerbong.zipinst;
 
+import com.beerbong.zipinst.core.plugins.update.RomUpdater;
+import com.beerbong.zipinst.io.SystemProperties;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.beerbong.zipinst.manager.ManagerFactory;
-import com.beerbong.zipinst.manager.ProManager;
-
 public class NotificationAlarm extends BroadcastReceiver {
+
+    private RomUpdater mRomUpdater;
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        ProManager pManager = ManagerFactory.getProManager(context);
-        if (pManager.iAmPro()) {
-            // call the pro BroadcastReceiver if available
-            try {
-                Class<?> pClass = Class.forName("com.beerbong.zipinst.pro.NotificationAlarm");
-                BroadcastReceiver mProReceiver = (BroadcastReceiver) pClass.newInstance();
-                mProReceiver.onReceive(context, intent);
-            } catch (Throwable t) {
-                // sorry, you are not a pro
-            }
+        if (mRomUpdater == null) {
+            mRomUpdater = new RomUpdater(context);
+        }
+
+        if (SystemProperties.isNetworkAvailable(context)) {
+            mRomUpdater.check();
         }
     }
 }

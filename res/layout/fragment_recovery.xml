@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2014 ZipInstaller Project
+
+  This file is part of ZipInstaller.
+
+  ZipInstaller is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  ZipInstaller is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+ 
+  You should have received a copy of the GNU General Public License
+  along with ZipInstaller.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.beerbong.zipinst.ui.preference.UIPreferenceCategory
+        android:title="@string/recovery_fragment_title">
+
+        <com.beerbong.zipinst.ui.preference.UIPreference
+            android:title="@string/recovery_fragment_backup_title"
+            android:summary="@string/recovery_fragment_backup_summary"
+            android:key="recovery_fragment_backup" />
+        
+        <com.beerbong.zipinst.ui.preference.UIPreference
+            android:title="@string/recovery_fragment_restore_title"
+            android:summary="@string/recovery_fragment_restore_summary"
+            android:key="recovery_fragment_restore" />
+        
+        <com.beerbong.zipinst.ui.preference.UIPreference 
+            android:title="@string/recovery_fragment_delete_title"
+            android:summary="@string/recovery_fragment_delete_summary"
+            android:key="recovery_fragment_delete"/>
+        
+        <com.beerbong.zipinst.ui.preference.UIPreference 
+            android:title="@string/recovery_fragment_wipe_data"
+            android:summary="@string/recovery_fragment_wipe_data_summary"
+            android:key="recovery_fragment_wipe_data"/>
+        
+        <com.beerbong.zipinst.ui.preference.UIPreference 
+            android:title="@string/recovery_fragment_wipe_caches"
+            android:summary="@string/recovery_fragment_wipe_caches_summary"
+            android:key="recovery_fragment_wipe_caches"/>
+        
+        <com.beerbong.zipinst.ui.preference.UIPreference 
+            android:title="@string/recovery_fragment_fix_permissions"
+            android:summary="@string/recovery_fragment_fix_permissions_summary"
+            android:key="recovery_fragment_fix_permissions"/>
+        
+        <com.beerbong.zipinst.ui.preference.UIPreference 
+            android:title="@string/recovery_fragment_reboot_title"
+            android:key="recovery_fragment_reboot"/>
+
+    </com.beerbong.zipinst.ui.preference.UIPreferenceCategory>
+
+</PreferenceScreen>

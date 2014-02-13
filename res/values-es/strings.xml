@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Copyright 2013 ZipInstaller Project
+  Copyright 2014 ZipInstaller Project
 
   This file is part of ZipInstaller.
 
@@ -18,248 +18,76 @@
   along with ZipInstaller.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
+
     <string name="app_name">ZipInstaller</string>
 
-    <string name="alert_reboot_title">"Seleccionar acciones y instalar"</string>
-    <string name="alert_reboot_now">"Instalar ahora"</string>
+    <!-- INTRO -->
+    <string name="version">v%1$s</string>
+    <string name="loading">Cargando&#8230;</string>
+    <string name="disclaimer_title">Descarga de responsabilidad</string>
+    <string name="disclaimer_text">"ZipInstaller proporciona una manera fácil de instalar archivos en tu dispositivo.\nEl autor no se hace responsable por los daños que instalar estos archivos pueda causarle.\nContinua bajo tu responsabilidad.\n\nPulsa en cualquier sitio para continuar."</string>
 
-    <string name="error_title">Error</string>
+    <!-- DRAWER -->
+    <string name="drawer_open">Abre el cajón de navegación</string>
+    <string name="drawer_close">Cierra el cajón de navegación</string>
 
-    <string name="error_no_rommanager_connection">"No hay conexión con RomManager. Asegúrate de tener instalado RomManager Premium y que sea 4.5.0.0+."</string>
-    <string name="error_no_rommanager_premium">"Tu instalación de RomManager no es premium."</string>
-    <string name="error_rommanager_unknown">Error desconocido conectando con RomManager.</string>
+    <!-- MENU -->
+    <string name="menu_add_zip">Añadir zip</string>
+    <string name="menu_install">"Instalar"</string>
+    <string name="menu_apply_rules">Aplicar reglas</string>
+    <string name="menu_install_recovery">Flash recovery</string>
+    <string name="menu_install_boot">Flash boot</string>
+    <string name="menu_add_rule">Añadir regla</string>
+    <string name="menu_backup">Backup</string>
+    <string name="menu_cloud">Nube</string>
+    <string name="menu_refresh">Refrescar</string>
+    <string name="menu_restore">Restaurar</string>
+    <string name="menu_remove">Borrar</string>
+    <string name="menu_sync_up">Sincroniza</string>
+    <string name="menu_sync_down">Sincroniza</string>
+    <string name="menu_login">Login</string>
+    <string name="menu_logout">Logout</string>
 
-    <string name="root_needed_title">Root necesario</string>
-    <string name="root_needed_summary">Imposible conseguir acceso root.</string>
-    <string name="root_needed_continue">Continuar de todas formas</string>
-    <string name="root_needed_close">Cerrar la aplicación</string>
+    <!-- SUPERUSER PLUGIN -->
+    <string name="requesting_su">"Solicitando acceso superusuario&#8230;"</string>
 
-    <string name="alert_wipe_system_title">System wipe</string>
-    <string name="alert_wipe_system_message">Estás a punto de hacer un system wipe. ¿Estás seguro de que quieres hacerlo?</string>
+    <!-- UI PLUGIN -->
+    <string name="initializing_ui">Inicializando ui&#8230;</string>
 
-    <string name="install_file_manager_error">"No se ha encontrado ninguna aplicación para seleccionar el archivo zip. Por favor, instala un administrador de archivos."</string>
-    <string name="install_file_manager_intsdcard">"Selecciona un archivo de la sd interna."</string>
-    <string name="install_file_manager_zip">"Por favor, selecciona un archivo ZIP o SH."</string>
-    <string name="install_file_manager_invalid_zip">Archivo ZIP/SH no válido.</string>
-    <string name="install_file_manager_not_found_zip">Se ha borrado un item no encontrado.</string>
+    <!-- STORAGE PLUGIN -->
+    <string name="reading_storage_paths">Leyendo rutas de los almacenamientos&#8230;</string>
 
-    <string name="alert_sdcard_title">Alerta</string>
-    <string name="alert_sdcard_message">"Selecciona un zip de la sdcard interna."</string>
-
-    <string name="alert_backup_title">Backup</string>
-    <string name="alert_backup_message">Especifica el nombre del backup (los caracteres ilegales se borrarán).</string>
-    <string name="alert_backup_actions">Selecciona una acción.</string>
-
-    <string name="alert_delete_title">Borrar</string>
-
-    <string name="alert_file_title">%1$s</string>
-    <string name="alert_file_summary">Ruta: %1$s\nTamaño: %2$s\nModificado: %3$s</string>
-    <string name="alert_file_close">"Cerrar"</string>
-    <string name="alert_file_md5">MD5</string>
-    <string name="alert_file_delete">Borrar después de flashear</string>
-
-    <string name="to_be_deleted">(Será borrado)</string>
-
-    <string name="alert_md5_title">Comprobar MD5</string>
-    <string name="alert_md5_summary">Introduce la suma MD5 para comparar o dejar en blanco para mostrar el MD5</string>
-    <string name="alert_md5_ok">Comprobar</string>
-    <string name="alert_md5_loading">Generando suma MD5&#8230;</string>
-    <string name="alert_md5_match">La suma MD5 especificada es correcta</string>
-    <string name="alert_md5_no_match">Las sumas MD5 no concuerdan:\nEspecificada: %1$s\nGenerada: %2$s</string>
-
-    <string name="alert_file_checking">Comprobando archivos&#8230;</string>
-    <string name="alert_file_alert">Alerta</string>
-    <string name="alert_file_exists_checking">Comprobando archivo %1$s&#8230;</string>
-    <string name="alert_file_not_exists">Archivo no encontrado: %1$s</string>
-    <string name="alert_file_md5_checking">Comprobando MD5 para el archivo %1$s&#8230;</string>
-    <string name="alert_file_incorrect_md5_file">Archivo MD5 incorrecto: %1$s</string>
-    <string name="alert_file_incorrect_md5">MD5 no coincide para el archivo %1$s</string>
-
-    <string name="main_choose_zip">"Añadir archivo"</string>
-
-    <string name="install_now">"Flashear ahora"</string>
-
-    <string name="alert_changed_recovery_title">Cambio de recovery</string>
+    <!-- RECOVERY PLUGIN -->
+    <string name="recovery_cwm_official">CWM oficial</string>
+    <string name="recovery_cwm_based">CWM based</string>
+    <string name="recovery_twrp">TWRP</string>
+    <string name="recovery_4ext">4EXT</string>
+    <string name="reading_recovery_info">Leyendo información del recovery&#8230;</string>
+    <string name="alert_changed_recovery_title">Recovery cambiado</string>
     <string name="alert_changed_recovery_message">Parece que has cambiado tu recovery de %1$s a %2$s.\n¿Quieres que se configure tu nuevo recovery en ZipInstaller?</string>
     <string name="alert_changed_recovery_dont_show">No volver a mostrar este diálogo</string>
-
-    <string name="menu_settings">Ajustes</string>
-    <string name="menu_backup">Backup</string>
-    <string name="menu_restore">Restore</string>
-    <string name="menu_apply_rules">Aplicar reglas</string>
-    <string name="menu_advanced_recovery">Recovery</string>
-    <string name="menu_sync_backups">Sync backups</string>
-    <string name="menu_loadlist">Cargar lista</string>
-    <string name="menu_savelist">Guardar lista</string>
-    <string name="menu_downloadzip">Descargar zip</string>
-
-    <string name="recovery_change_alert_title">Recovery encontrado</string>
-    <string name="recovery_change_alert_message">Se ha encontrado una carpeta del recovery %1$s. ¿Quieres que se configure por defecto?</string>
-    <string name="recovery_changed">Recovery %1$s configurado.</string>
-    <string name="recovery_cwm">CWM-based</string>
-    <string name="recovery_cwm_official">CWM oficial</string>
-    <string name="recovery_4ext">4EXT</string>
-    <string name="recovery_twrp">TWRP</string>
-
-    <string name="recovery_title">Seleccionar recovery</string>
-    <string name="recovery_summary">Selecciona el recovery instalado en tu dispositivo</string>
     <string name="recovery_alert_title">Seleccionar recovery</string>
-    <string name="recovery_alert_summary">Especifica el recovery que utilizas</string>
+    <string name="recovery_alert_summary">Especifica el recovery que estás utilizando</string>
+    <string name="recovery_changed">Recovery %1$s configurado.</string>
+    <string name="recovery_change_alert_title">Recovery encontrado</string>
+    <string name="recovery_change_alert_message">%1$s recovery encontrado. ¿Quieres que se configure por defecto?</string>
 
-    <string name="internalsdcard_title">"Path al internal storage"</string>
-    <string name="internalsdcard_summary">Especifica la ruta al internal storage utilizado por el recovery</string>
-    <string name="externalsdcard_title">"Path al external storage"</string>
-    <string name="externalsdcard_summary">Especifica la ruta al external storage utilizado por el recovery</string>
-    <string name="sdcard_alert_title">"Path al storage"</string>
-    <string name="sdcard_alert_summary">"Especifica el nombre del storage"</string>
-    <string name="sdcard_alert_error">"Por favor especifica el nombre del storage"</string>
-
-    <string name="force_extsdcard_mount_title">Forzar montaje sdcard externa</string>
-    <string name="force_extsdcard_mount_summary">Seleccionar esta opción si tu CWM recovery no monta la sdcard externa por defecto</string>
-
-    <string name="force_datamedia_title">Utilizar /data/media/</string>
-    <string name="force_datamedia_summary">Selecciona esta opción si tu CWM recovery utiliza /data/media/clockworkmod/ para guardar backups</string>
-
-    <string name="backup_external_title">Backup y restore en la sdcard externa en CWM</string>
-    <string name="backup_external_summary">Selecciona esta opción si quieres hacer los backup en la sdcard externa</string>
-
-    <string name="about_title">Sobre</string>
-    <string name="about_zip_title">ZipInstaller</string>
-    <string name="about_version_title">"Versión"</string>
-    <string name="about_version_unknown">"Versión desconocida (error en el administrador de paquetes)"</string>
-
-    <string name="license_title">"Licencia"</string>
-    <string name="license_apache_title">"Licencia apache"</string>
-    <string name="license_error">"Error cargando el archivo de licencia"</string>
-
-    <string name="changelog_title">Cambios</string>
-    <string name="changelog_apache_title">Cambios en ZipInstaller</string>
-    <string name="changelog_error">"Error cargando el archivo de cambios"</string>
-
+    <!-- REBOOT PLUGIN -->
     <string name="backup">Backup</string>
     <string name="wipe_system">Wipe System</string>
     <string name="wipe_data">Wipe Data</string>
     <string name="wipe_caches">Wipe Cache &amp; Dalvik</string>
     <string name="fix_permissions">Fix permissions</string>
-
-    <string name="savelist_title">Guardar lista</string>
-    <string name="loadlist_title">Cargar lista</string>
-    <string name="list_saved">Lista guardada satisfactóriamente</string>
-    <string name="list_loaded">Lista cargada satisfactóriamente</string>
-
-    <string name="donate_title">Donar</string>
-
-    <string name="usefolder_title">Botón de instalar abre carpeta</string>
-    <string name="usefolder_summary">Si está activo, la aplicación abrirá el contenido de una carpeta en lugar de un explorador de archivos.</string>
-
-    <string name="folder_title">Carpeta por defecto</string>
-    <string name="folder_error">La carpeta no existe o no es un directorio</string>
-
-    <string name="pick_file">Seleccionar archivo</string>
-    <string name="pick_folder">Seleccionar carpeta</string>
-
-    <string name="rules_title">Reglas de carpeta</string>
-    <string name="rules_summary">Añadir archivos de la carpeta automáticamente siguiendo estas reglas</string>
-    <string name="rule_starts_with">Empieza con</string>
-    <string name="rule_ends_with">Acaba con</string>
-    <string name="rule_equals">Igual a</string>
-
-    <string name="alert_rules_title">Reglas</string>
-    <string name="rules_text">Añadir los zips de la carpeta que:\n</string>
-    <string name="alert_rules_add">Añadir regla</string>
-    <string name="alert_rules_done">Hecho</string>
-    <string name="alert_rules_delete">Borrar todas</string>
-    <string name="alert_rules_delete_selected">Borrar selección</string>
-
-    <string name="folder_activity_title">Selecciona un archivo</string>
-    <string name="alert_remove_file_title">Borrar archivo</string>
-    <string name="alert_remove_file_summary">¿Estás seguro de que quieres borrar %1$s?</string>
-    <string name="alert_remove_file_done">Archivo borrado</string>
-    <string name="alert_remove_file_not_done">Archivo no borrado</string>
-
-    <string name="dad_title">Drag &amp; drop</string>
-    <string name="dad_summary">Utilizar drag &amp; drop para reordenar la lista</string>
-
-    <string name="overridelist_title">Cargar lista sobreescribe</string>
-    <string name="overridelist_summary">Cargar la lista guardada sobreescribirá la lista de zips seleccionados</string>
-
-    <string name="autoloadlist_title">Cargar lista al empezar</string>
-    <string name="autoloadlist_summary">Cargar lista guardada automáticamente al comenzar aplicación</string>
-
-    <string name="settings_showoptions_title">Opciones</string>
-    <string name="settings_showoptions_summary">Elije las opciones a mostrar al presionar el botón Instalar ahora</string>
-
-    <string name="settings_title">Ajustes</string>
-    <string name="settings_recovery">Recovery</string>
-    <string name="settings_security">Seguridad</string>
-    <string name="settings_interface">Interfaz</string>
-    <string name="settings_update">Actualizaciones</string>
-    <string name="settings_misc">Misc</string>
-
-    <string name="settings_theme_title">Utilizar tema oscuro</string>
-    <string name="settings_theme_summary">Utilizar tema oscuro en lugar de Holo</string>
-
-    <string name="settings_checkexists_title">Comprovar arxius zip</string>
-    <string name="settings_checkexists_summary">"Comprobar que los archivos zips existan antes de instalar</string>
-
-    <string name="settings_checkmd5_title">Comprobar MD5</string>
-    <string name="settings_checkmd5_summary">Comprobar MD5 si se encuentra un archivo md5sum antes de instalar</string>
-
-    <string name="check_for_updates">Comprobar actualizaciones</string>
-    <string name="check_for_updates_startup">Comprobar al iniciar</string>
-    <string name="check_for_updates_error">Error comprobando actualizaciones</string>
-    <string name="no_new_version">No se ha encontrado ninguna actualización</string>
-    <string name="new_version_title">Nueva actualización</string>
-    <string name="new_version_summary">"%1$s encontrado. ¿Quieres bajarla e instalarla ahora?"</string>
-    <string name="new_version_download">"Bajar e instalar"</string>
-    <string name="download_path">Ruta descargas</string>
-    <string name="downloading">Bajando %1$s a %2$s</string>
-    <string name="downloading_error">Error bajando archivo</string>
-    <string name="downloading_interrupted">Bajada interrumpida</string>
-    <string name="downloading_nospace">Error bajando archivo: no hay espacio</string>
-
-    <string name="downloadzip_alert_title">Descargar zip</string>
-    <string name="downloadzip_alert_summary">Especifica la url del zip</string>
-    <string name="downloadzip_alert_error">Por favor especifica la url del zip</string>
-
-    <string name="recovery_activity_title">Recovery</string>
-    <string name="recovery_activity_backup_title">Backup</string>
-    <string name="recovery_activity_backup_summary">Haz un backup de tu rom</string>
-    <string name="recovery_activity_restore_title">Restore</string>
-    <string name="recovery_activity_restore_summary">Restaura un backup anterior</string>
-    <string name="recovery_activity_delete_title">Borrar</string>
-    <string name="recovery_activity_delete_summary">Borra un backup anterior</string>
-    <string name="recovery_activity_reboot_title">Reiniciar al recovery</string>
-    <string name="recovery_activity_actions">Acciones del recovery</string>
-    <string name="recovery_activity_actions_summary">Wipe data, caches y/o fix permissions</string>
-
-    <string name="alert_deleting_folder">Borrando %1$s&#8230;</string>
-
-    <string name="consider_becoming_a_pro">Por favor, considera comprar la aplicación</string>
-    <string name="become_a_pro">Compra la aplicación</string>
-
-    <string name="zipposition_title">Posición de los zip</string>
-    <string name="zipposition_summary">Posición en la que añadir los nuevos zips en la lista</string>
-    <string name="zip_position_first">Primero</string>
-    <string name="zip_position_last">Último</string>
-
-    <string name="spaceleft_title">Comprobar espacio antes de backup</string>
-    <string name="spaceleft_summary">Mostrar alerta cuando se hace un backup y hay menos espacio que...</string>
-    <string name="spaceleft_dontcheck">No comprobar</string>
-
-    <string name="alert_backup_space_title">Espacio disponible</string>
-    <string name="alert_backup_space_message">Hay menos de %1$sGB disponible en la sdcard interna. ¿Quieres continuar con el backup?</string>
-
-    <string name="settings_wipesystem_alert_title">Alerta wipe system</string>
-    <string name="settings_wipesystem_alert_summary">Mostrar un diálogo de confirmación cuando se intenta hacer un system wipe</string>
-    <string name="restart_needed">Se necesita reiniciar</string>
-    <string name="restart_needed_theme_message">Se necesita reiniciar para aplicar los cambios en el tema. ¿Quieres reiniciar la aplicación ahora?</string>
-
-    <string name="checkroot_title">Verificar root</string>
-    <string name="checkroot_summary">Verificar si el acceso root está bien configurado en tu dispositivo</string>
-    <string name="checkroot_yes">Acceso root concedido con éxito</string>
-    <string name="checkroot_no">No se ha podido conceder el acceso root</string>
-
+    <string name="alert_restore_title">Restaurar</string>
+    <string name="alert_restore_message">¿Restaurar backup?\n%1$s</string>
+    <string name="alert_backup_space_title">Espacio sobrante</string>
+    <string name="alert_backup_space_message">Queda menos de %1$sGB en la sdcard interna. ¿Quieres continuar con el backup?</string>
+    <string name="alert_backup_title">Backup</string>
+    <string name="alert_backup_message">Reiniciar al recovery y hacer backup</string>
+    <string name="alert_backup_message_onandroid">Empezar backup onandroid</string>
+    <string name="alert_backup_name">Especifica un nombre para el backup</string>
+    <string name="alert_backup_message2">"Los carateres ilegales se borrarán"</string>
+    <string name="alert_backup_actions">Selecciona una acción.</string>
     <string name="system">System</string>
     <string name="data">Data</string>
     <string name="cache">Cache</string>
@@ -267,108 +95,261 @@
     <string name="boot">Boot</string>
     <string name="androidsecure">Android secure</string>
     <string name="sdext">SD-Ext</string>
+    <string name="alert_reboot_title">"Selecciona las acciones y instala"</string>
+    <string name="alert_reboot_now">"Instalar ahora"</string>
+    <string name="alert_wipe_system_title">System wipe</string>
+    <string name="alert_wipe_system_message">Estás a punto de hacer un system wipe. ¿Estás segur de que lo quieres hacer?</string>
+    <string name="alert_file_exists_checking">Comprobando archivo %1$s&#8230;</string>
+    <string name="alert_file_not_exists">Archivo no encontrado: %1$s</string>
+    <string name="alert_file_md5_checking">Comprobando MD5 para el archivo %1$s&#8230;</string>
+    <string name="alert_file_incorrect_md5_file">Archivo MD5 malformado: %1$s</string>
+    <string name="alert_file_incorrect_md5">MD5 no concuerda para el archivo %1$s</string>
+    <string name="alert_file_alert">Alerta</string>
+    <string name="alert_file_checking">Comprobando archivos&#8230;</string>
+    <string name="use_onandroid">Utilizar ONandroid</string>
 
-    <string name="cloud_service">Servicio en la nube</string>
-    <string name="dropbox_title">Dropbox</string>
-    <string name="drive_title">Drive</string>
+    <!-- LICENSE PLUGIN -->
+    <string name="checking_license">Comprobando licencia&#8230;</string>
+    <string name="not_licensed_title">No autorizado</string>
+    <string name="not_licensed_text">No has comprado la aplicación. Por favor, ves a la Play Store y cómprala.</string>
+    <string name="not_licensed_retry_title">Error de licencia</string>
+    <string name="not_licensed_retry_text">No se ha podido comprobar la licencia en el Play Store. Por favor, inténtalo más tarde.</string>
+    <string name="not_licensed_exit">Cerrar aplicación</string>
+    <string name="consider_becoming_a_pro">Por favor, considera comprar la aplicación</string>
 
-    <string name="alert_backup_synchronize_title">Backup local</string>
-    <string name="alert_backup_synchronize_message">Selecciona una acción.\n%1$s</string>
-    <string name="alert_backup_synchronize">Comprime i sube</string>
-    <string name="alert_backup_delete">Borrar</string>
-    <string name="backups_in_storage_title">Backups en el storage</string>
-    <string name="backups_in_cloud_title">Backups en la nube</string>
-    <string name="backups_reading">Leyendo archivos remotos...</string>
-    <string name="backup_zipping">Comprimiendo backup...</string>
-    <string name="backup_unzipping">Descomprimiendo backup...</string>
-    <string name="backup_uploading">Subiendo backup...</string>
-    <string name="backup_downloading">Descargando backup...</string>
-    <string name="backup_error_uploading">Error subiendo backup</string>
-    <string name="backup_error_downloading">Error descargando backup</string>
-    <string name="alert_backup_remote_title">Backup remoto</string>
-    <string name="alert_backup_remote_message">Selecciona una acción.\n%1$s</string>
-    <string name="alert_backup_download">Descarga y restaura</string>
-    <string name="error_deleting_remote_file">Error borrando archivo remoto</string>
-    <string name="alert_restore_title">Restaurar</string>
-    <string name="alert_restore_message">Restaurar backup?\n%1$s</string>
+    <!-- UPDATE PLUGIN -->
+    <string name="check_for_updates_error">Error comprovant actualizaciones</string>
+    <string name="no_new_version">No se han encontrado actualizaciones</string>
+    <string name="new_version_title">Actualización encontrada</string>
+    <string name="new_version_summary">"%1$s encontrado. ¿Quieres descargarla y instalarla ahora?"</string>
+    <string name="new_version_download">"Descargar y instalar"</string>
+    <string name="check_rom_updates_no_new">No se han encontrado actualizaciones de la ROM</string>
+    <string name="check_rom_updates_error">Error comprobando actualizaciones de la ROM</string>
+    <string name="new_rom_found_title">Actualizació de la ROM encontrada</string>
+    <string name="new_rom_found_summary">Se ha encontrado una nueva versión de tu ROM. ¿Quieres descargarla ahora?\n\n%1$s\n</string>
+    <string name="new_rom_name">%1$s</string>
 
-    <string name="error_zipping">Error comprimiendo backup</string>
-    <string name="error_unzipping">Error descomprimiendo backup</string>
+    <!-- INSTALL FRAGMENT -->
+    <string name="install_title">"Instalar"</string>
+    <string name="flashboot_installed">"Boot image instalada"</string>
+    <string name="flashboot_confirm_title">"Instalar boot image?"</string>
+    <string name="flashboot_confirm_message">"Instalar boot image %1$s"</string>
+    <string name="flashrecovery_installed">"Recovery instalado"</string>
+    <string name="flashrecovery_confirm_title">"Instalar recovery?"</string>
+    <string name="flashrecovery_confirm_message">"Instalar recovery %1$s"</string>
+    <string name="install_fragment_help">"Pulsa el botón + de arriba para añadir zips para instalar."</string>
 
-    <!-- PRO -->
-    <string name="enable_notifications">Habilitar notificationes</string>
-    <string name="time_notifications_title">Tiempo notificaciones</string>
-    <string name="time_notifications_summary">Tiempo de espera para buscar actualizaciones de la ROM</string>
-    <string name="time_notifications_never">No buscar</string>
+    <!-- BACKUP/RESTORE FRAGMENT -->
+    <string name="backuprestore_title">Backup y Restauración</string>
+    <string name="backups_in_storage">Backups en el almacenamiento</string>
+    <string name="backups_folder_empty">No se han encontrado backups en %1$s</string>
+    <string name="delete_backup_confirm">¿Estás seguro de que quieres borrar el backup %1$s?</string>
+    <string name="backups_in_cloud">Backups en %1$s</string>
+    <string name="backups_cloud_empty">No se han encontrado backups en %1$s</string>
+
+    <!-- RECOVERY FRAGMENT -->
+    <string name="recovery_fragment_title">Recovery</string>
+    <string name="recovery_fragment_backup_title">Backup</string>
+    <string name="recovery_fragment_backup_summary">Backup de tu ROM</string>
+    <string name="recovery_fragment_restore_title">Restaurar</string>
+    <string name="recovery_fragment_restore_summary">Restaurar un backup previo</string>
+    <string name="recovery_fragment_delete_title">Borrar</string>
+    <string name="recovery_fragment_delete_summary">Borrar un backup previo</string>
+    <string name="recovery_fragment_wipe_data">Wipe data</string>
+    <string name="recovery_fragment_wipe_data_summary">Reinicia al recovery y haz un wipe data</string>
+    <string name="recovery_fragment_wipe_caches">Wipe cache y dalvik</string>
+    <string name="recovery_fragment_wipe_caches_summary">Reinicia al recovery y haz un wipe cache y un dalvik cache</string>
+    <string name="recovery_fragment_fix_permissions">Fix permissions</string>
+    <string name="recovery_fragment_fix_permissions_summary">Reinicia al recovery y haz un fix permissions</string>
+    <string name="recovery_fragment_reboot_title">Reinicia al recovery</string>
+    <string name="recovery_fragment_reboot_question">¿Reiniciar al recovery?</string>
+    <string name="recovery_fragment_reboot">Reiniciar al recovery y hacer %1$s?</string>
+    <string name="alert_delete_title">Borrar backup</string>
+    <string name="alert_deleting_folder">Borrando %1$s&#8230;</string>
+
+    <!-- RULES FRAGMENT -->
+    <string name="rules_title">Reglas</string>
+    <string name="rules_fragment_help">Pulsa el botón + de arriba para crear reglas.</string>
+    <string name="alert_rules_title">Añadir regla</string>
+    <string name="alert_rules_text">Añade los zips de la carpeta por defecto que:</string>
+    <string name="alert_rules_add">Añadir</string>
+    <string name="rule_starts_with">Empieza por</string>
+    <string name="rule_ends_with">Acaba por</string>
+    <string name="rule_equals">Igual a</string>
+
+    <!-- GOO FRAGMENT -->
+    <string name="goo_title">Navegar goo</string>
+    <string name="navigating_folder">Navegando en la carpeta %1$s</string>
+    <string name="only_compatible">Sólo ROMs compatibles</string>
+    <string name="goo_browse_error">Error navegando por los archivos</string>
+    <string name="goo_browse_searching">Buscando&#8230;</string>
+    <string name="goo_download_title">Descargar</string>
+    <string name="goo_download_summary">¿Quieres descargar este archivo ahora?\n\n%1$s\n</string>
+    <string name="up_a_level">Sube un nivel</string>
+    <string name="username">Usuario</string>
+    <string name="password">Contraseña</string>
+    <string name="logged_in">Has iniciado sesión</string>
+    <string name="logged_invalid">Usuario/contraseña incorrecta</string>
+    <string name="logged_down">No se ha podido llegar al servidor</string>
+    <string name="logged_out">Has cerrado la sesión</string>
+    <string name="logged_error">Error desconocido iniciando sesión</string>
+    <string name="goo_login">Iniciar sesión en goo</string>
+    <string name="goo_loging">Iniciando sesión en goo&#8230;</string>
+
+    <!-- SETTINGS FRAGMENT -->
+    <string name="settings_title">Ajustes</string>
+    <string name="settings_recovery">Recovery</string>
+    <string name="recovery_title">Seleccionar recovery</string>
+    <string name="recovery_summary">"Selecciona el recovery instalado en tu dispositivo"</string>
+    <string name="internalsdcard_title">Ruta al almacenamiento interno</string>
+    <string name="internalsdcard_summary">Especifica la ruta al almacenamiento interno utilizada por el recovery</string>
+    <string name="externalsdcard_title">Ruta al almacenamiento externo</string>
+    <string name="externalsdcard_summary">Especifica la ruta al almacenamiento externo utilizada por el recovery</string>
+    <string name="force_datamedia_title">Utilizar /data/media/</string>
+    <string name="force_datamedia_summary">Selecciona esta opción si tu CWM recovery utiliza /data/media/ para guardar backups</string>
+    <string name="force_extsdcard_mount_title">Forzar el montaje del almacenamiento externo</string>
+    <string name="force_extsdcard_mount_summary">Selecciona esta opción si CWM recovery no monta el almacenamiento externo por defecto</string>
+    <string name="backup_external_title">Backup y restauración en el almacenamiento externo</string>
+    <string name="backup_external_summary">Selecciona esta opción si quieres que los backups se hagan en el almacenamiento externo</string>
+    <string name="settings_showoptions_title">Opciones</string>
+    <string name="settings_showoptions_summary">"Selecciona las opciones para mostrar antes de instalar zips"</string>
+    <string name="settings_security">Seguridad</string>
+    <string name="settings_checkexists_title">Comprueba los archivos zip</string>
+    <string name="settings_checkexists_summary">"Comprobar que los archivos zip existan abans de instalar"</string>
+    <string name="settings_checkmd5_title">Comprobar MD5</string>
+    <string name="settings_checkmd5_summary">"Comprobar MD5 si existe un archivo md5sum antes de instalar"</string>
+    <string name="spaceleft_title">Comprobar el espacio antes de hacer un backup</string>
+    <string name="spaceleft_summary">Mostrar una alerta quan se hace un backup y hay menos espacio que&#8230;</string>
+    <string name="spaceleft_dontcheck">No comprobar</string>
+    <string name="settings_wipesystem_alert_title">Alerta wipe system</string>
+    <string name="settings_wipesystem_alert_summary">Mostrar una confirmación si se va a hacer un system wipe</string>
+    <string name="checkroot_title">Comprobar acceso root</string>
+    <string name="checkroot_summary">Comprueba si el acceso root está bien configurado en tu dispositivo</string>
+    <string name="settings_interface">Interfaz</string>
+    <string name="usefolder_title">"El botón de instalar abre una carpeta"</string>
+    <string name="usefolder_summary">Si está seleccionado, la aplicación abrirá el contenido de una carpeta en lugar de un administrador de archivos.</string>
+    <string name="folder_title">Carpeta por defecto</string>
+    <string name="dad_title">Drag &amp; drop</string>
+    <string name="dad_summary">Utilizar drag &amp; drop para reordenar la lista</string>
+    <string name="zipposition_title">Posición de los zip</string>
+    <string name="zipposition_summary">Posición para añadir los zips a la lista</string>
+    <string name="zip_position_first">Primero</string>
+    <string name="zip_position_last">Último</string>
+    <string name="settings_theme_title">Utilizar tema oscuro</string>
+    <string name="settings_theme_summary">Utilizar tema oscuro en lugar de holo light</string>
+    <string name="settings_update">Actualizaciones</string>
+    <string name="download_path">Ruta descargas</string>
+    <string name="sdcard_alert_title">Ruta almacenamiento</string>
+    <string name="sdcard_alert_summary">Especifica la ruta al almacenamiento</string>
+    <string name="sdcard_alert_error">Por favor, especifica la ruta al almacenamiento</string>
+    <string name="restart_needed">Se necesita reiniciar</string>
+    <string name="restart_needed_theme_message">Es necesari reiniciar para aplicar los cambios en el tema. ¿Quieres reiniciar la aplicación ahora?</string>
+    <string name="checkroot_yes">Acceso root concedido con éxito</string>
+    <string name="checkroot_no">Imposible conceder acceso root</string>
+    <string name="check_for_updates_startup_title">Comprobar al iniciar</string>
+    <string name="check_for_updates_startup_summary">Comprobar actualizaciones de ZipInstaller cuando se inicia la aplicación</string>
+    <string name="checktime_title">Frecuencia de comprobación de actualizaciones</string>
+    <string name="checktime_summary">Especifica el tiempo entre cada comprobación de actualizaciones de la ROM</string>
+    <string name="time_notifications_never">No comprobar</string>
     <string name="time_notifications_half_an_hour">Media hora</string>
     <string name="time_notifications_an_hour">Una hora</string>
     <string name="time_notifications_two_hours">Dos horas</string>
     <string name="time_notifications_five_hours">Cinco horas</string>
     <string name="time_notifications_twentyfour_hours">Veinticuatro horas</string>
-    <string name="check_rom_updates">Buscar actualizaciones de la ROM</string>
-    <string name="check_rom_updates_error">Error buscando actualizaciones de la ROM</string>
-    <string name="check_rom_updates_no_new">No se ha encontrado ninguna nueva actualización de la ROM</string>
-    <string name="use_onandroid_title">Utilizar ONandroid</string>
-    <string name="use_onandroid_summary">Hacer un backup de tu rom sin reiniciar al recovery</string>
-    <string name="configure_onandroid_title">Configurar ONandroid</string>
-    <string name="configure_onandroid_ok_summary">Comprueba soporte ONandroid (parece configurado)</string>
-    <string name="configure_onandroid_nok_summary">Comprueba soporte ONandroid (no parece configurado)</string>
+    <string name="check_rom_updates">Comprobar actualizaciones de la ROM</string>
 
-    <string name="new_rom_found_title">Nueva versión de la ROM</string>
-    <string name="new_rom_found_summary">Se ha encontrado una nueva versión de tu ROM. ¿Quieres descargarla ahora?\n\n%1$s\n%2$s\n</string>
-    <string name="new_rom_name">%1$s</string>
+    <!-- ABOUT FRAGMENT -->
+    <string name="about_title">Sobre</string>
+    <string name="about_zip_title">ZipInstaller</string>
+    <string name="about_version_title">Versión</string>
+    <string name="license_title">Licencia</string>
+    <string name="license_apache_title">Licencia GPL v3</string>
+    <string name="license_error">Error cargando el archivo de licencia</string>
+    <string name="changelog_title">Cambios</string>
+    <string name="changelog_apache_title">Cambios en ZipInstaller</string>
+    <string name="changelog_error">Error cargando el archivo de cambios</string>
+    <string name="checkforupdates_title">Comprobar actualizaciones</string>
+    <string name="donate_title">Donar</string>
+    <string name="become_a_pro">Comprar la aplicación</string>
 
-    <string name="menu_gooim">Goo.im</string>
-    <string name="goo_browse_all_compatible">Navegar por ROMs compatibles</string>
-    <string name="goo_browse_all">Navegar por todos los archivos</string>
-    <string name="goo_browse_error">Error navegando por los archivos</string>
-    <string name="goo_browse_searching">Buscando&#8230;</string>
-    <string name="goo_category_title">Navegando %1$s</string>
-    <string name="goo_download_title">Descargar</string>
-    <string name="goo_download_summary">¿Quieres descargar este archivo ahora?\n\n%1$s\n%2$s\n</string>
-    <string name="goo_login">Iniciar sesión en goo.im</string>
-    <string name="goo_logout">Cerrar sesión en goo.im</string>
-    <string name="username">Usuario</string>
-    <string name="password">Contraseña</string>
-    <string name="logged_in">Ahora estás conectado</string>
-    <string name="logged_invalid">Usuario/contraseña no válidos</string>
-    <string name="logged_down">No se ha podido llegar al servidor</string>
-    <string name="logged_out">Te has desconectado</string>
-    <string name="logged_error">Error desconocido conectando</string>
+    <!-- DOWNLOADS -->
+    <string name="download">Descarga</string>
+    <string name="downloading">Descargando %1$s a %2$s</string>
+    <string name="downloading_error">Error descargando archivo</string>
+    <string name="downloading_interrupted">Descarga interrumpida</string>
+    <string name="downloading_nospace">Error descargando archivo: no hay espacio sifuciente</string>
 
-    <string name="checktime_title">Frecuencia buscar updates</string>
-    <string name="checktime_summary">Especifica el tiempo entre cada búsqueda de nuevas versiones</string>
-
-    <string name="nandroid_configure">Configurar</string>
-    <string name="nandroid_upload">Comprimir y subir al acabar</string>
-    <string name="nandroid_start">Empezar</string>
-    <string name="nandroid_configured">ONandroid script gracias a Ameer Dawood.\n\nTu dispositivo parece bien configurado para utilizar ONandroid.</string>
-    <string name="nandroid_not_configured">ONandroid script gracias a Ameer Dawood.\n\nTu dispositivo no parece cofigurado correctamente para utilizar ONandroid. Por favor, compruébalo a \'Ajustes\' - \'Configurar ONandroid\'.</string>
-
-    <string name="onandroid_text">Selecciona tu dispositiu de la lista y clicka \'Configurar\', se descargará un archivo y se instalará por recovery.</string>
-    <string name="onandroid_text2">Si tu dispositivo no aparece arriba pero está en la lista de abajo, no necesitas ninguna configuración, ignora los mensajes de \"no está configurado\".</string>
-
-    <string name="not_licensed_title">No autorizado</string>
-    <string name="not_licensed_text">No has comprado la aplicación. Por favor, ves a la Play Store y cómprala.</string>
-    <string name="not_licensed_retry_title">Error de licencia</string>
-    <string name="not_licensed_retry_text">No se ha podido comprobar tu licencia en el Play Store. Por favor, inténtalo más tarde.</string>
-    <string name="not_licensed_exit">Cerrar app</string>
-
-    <string name="menu_flashrecovery">Flash recovery</string>
-    <string name="flashrecovery_not_supported">No se ha podido encontrar la instrucción para flashear el recovery en tu dispositivo</string>
-    <string name="flashrecovery_installed">Recovery instalado</string>
-    <string name="flashrecovery_confirm_title">¿Instalar recovery?</string>
-    <string name="flashrecovery_confirm_message">Instalar recovery %1$s</string>
-
-    <string name="menu_flashboot">Flash boot.img</string>
-    <string name="flashboot_not_supported">No se ha podido encontrar tu boot mount point</string>
-    <string name="flashboot_installed">"Boot image instalado"</string>
-    <string name="flashboot_confirm_title">"Instalar boot image?"</string>
-    <string name="flashboot_confirm_message">"Instalar boot image %1$s"</string>
-
-    <string name="picker_recovery_title">Flashear recovery</string>
-    <string name="picker_recovery_zip">Elegir arxiu</string>
-    <string name="picker_recovery_twrp">Descargar TWRP</string>
+    <!-- PICKER RECOVERY -->
+    <string name="picker_recovery_title">Flash recovery</string>
+    <string name="picker_recovery_zip">Seleccionar archivo</string>
+    <string name="picker_recovery_twrp">Descarga TWRP</string>
     <string name="picker_recovery_error_twrp">Error descargando TWRP</string>
-    <string name="picker_recovery_no_recovery_found">"No se ha encontrado ningún recovery para tu dispositivo"</string>
+    <string name="picker_recovery_no_recovery_found">No se ha encontrado ningún recovery para tu dispositivo</string>
+
+    <!-- ONANDROID -->
+    <string name="onandroid_wizard_title">Configurar ONandroid</string>
+    <string name="onandroid_wizard_finish">Configurar</string>
+    <string name="onandroid_wizard_1">Este asistente te ayudará a configurar tu dispositivo para utilizar backups ONandroid.\n\nSi continuas, la aplicación descargará los archivos necesarios.</string>
+    <string name="onandroid_wizard_2_checking">Comprobando versión del script&#8230;</string>
+    <string name="onandroid_wizard_2_updating">Actualizant script&#8230;</string>
+    <string name="onandroid_wizard_2_continue">El script ONandroid está actualizado a su última versión.\n\nContinua para descargar las definiciones de dispositivos.</string>
+    <string name="onandroid_wizard_3_downloading_1">Descargando formato de particiones&#8230;</string>
+    <string name="onandroid_wizard_3_downloading_2">Descargando dispositivos mtd&#8230;</string>
+    <string name="onandroid_wizard_3_reading">Leyendo definición de dispositivos&#8230;</string>
+    <string name="onandroid_wizard_3_continue">Continua para comprobar si tu dispositivo está soportado.</string>
+    <string name="onandroid_wizard_4_text_1">"Selecciona tu dispositivo de la siguiente lista y clicka en 'Configurar'. Se descargará el archivo de configuración y se instalará por recovery."</string>
+    <string name="onandroid_wizard_4_text_2">"Si tu dispositivo no está listado arriba pero aparece en la siguiente lista, simplemente cancela el asistente. Si tu dispositivo no está en ninguna de las dos listes, no está soportado."</string>
+    <string name="onandroid_dialog_title">Backup</string>
+    <string name="onandroid_dialog_button">Cerrar</string>
+
+    <!-- DIALOG -->
+    <string name="wizard_continue">Continuar</string>
+    <string name="wizard_finish">Acabar</string>
+
+    <!-- ERRORS -->
+    <string name="error_title">Error</string>
+    <string name="alert_title">Alerta</string>
+    <string name="error_no_rommanager_connection">"No hay conexión con RomManager. Asegurate de que tienes RomManager Premium instalado y que es 4.5.0.0+."</string>
+    <string name="error_no_rommanager_premium">"Tu instalación de RomManager no es premium."</string>
+    <string name="error_rommanager_unknown">Error desconocido conectando con RomManager.</string>
+    <string name="error_file_manager">"No se ha encontrado ninguna aplicación para seleccionar un zip. Por favor, instala un administrador de archivos."</string>
+    <string name="error_file_manager_zip">Por favor, selecciona un archivo zip.</string>
+    <string name="error_file_manager_invalid_zip">Archivo zip no válido.</string>
+    <string name="error_file_manager_not_found_zip">Item no encontrado borrado de la lista.</string>
+    <string name="error_folder">La carpeta no existe o no es un directorio.</string>
+    <string name="alert_no_superuser">No se ha podido tener acceso superusuario. Pueden pasar cosas extrañes.</string>
+    <string name="error_zipping">Error comprimiendo backup</string>
+    <string name="error_unzipping">Error descomprimiendo backup</string>
+
+    <!-- CLOUD -->
+    <string name="cloud_service">Almacenamiento en la nube</string>
+    <string name="storage_none">Ninguno</string>
+    <string name="dropbox">Dropbox</string>
+    <string name="drive">Drive</string>
+    <string name="cloud_backup_uploading">Publicando backup&#8230;</string>
+    <string name="cloud_backup_error_uploading">Error publicando backup</string>
+    <string name="cloud_backup_zipping">Comprimiendo backup&#8230;</string>
+    <string name="cloud_backup_downloading">Descargando backup&#8230;</string>
+    <string name="cloud_backup_error_downloading">Error descargando backup</string>
+    <string name="cloud_backup_unzipping">Descomprimiendo backup&#8230;</string>
+    <string name="cloud_error_deleting_remote_file">Error borrando archivo remoto</string>
+
+    <!-- FOLDER PICKER -->
+    <string name="pick_file">Seleccionar archivo</string>
+    <string name="pick_folder">Seleccionar carpeta</string>
+
+    <!-- FILE INFO -->
+    <string name="alert_file_title">%1$s</string>
+    <string name="alert_file_summary">Ruta: %1$s\nTamaño: %2$s\nModificado: %3$s</string>
+    <string name="alert_file_close">Cerrar</string>
+    <string name="alert_file_md5">MD5</string>
+    <string name="alert_file_delete">"Borrar después de instalar"</string>
+    <string name="to_be_deleted">(Será borrado)</string>
+    <string name="alert_md5_title">Comprobar MD5</string>
+    <string name="alert_md5_summary">Introduce la suma MD5 para comparar o deja en blanco para mostrar el MD5</string>
+    <string name="alert_md5_ok">Comprobar</string>
+    <string name="alert_md5_loading">Generando suma MD5&#8230;</string>
+    <string name="alert_md5_match">La suma MD5 especificada es correcta</string>
+    <string name="alert_md5_no_match">La suma MD5 no concuerda:\nEspecificada: %1$s\nGenerada: %2$s</string>
+
 </resources>

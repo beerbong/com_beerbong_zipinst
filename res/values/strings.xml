@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Copyright 2013 ZipInstaller Project
+  Copyright 2014 ZipInstaller Project
 
   This file is part of ZipInstaller.
 
@@ -18,251 +18,77 @@
   along with ZipInstaller.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
-    <string name="app_name">ZipInstaller</string>
 
+    <string name="app_name">ZipInstaller</string>
     <string name="ad_unit_id" translatable="false">ca-app-pub-2581158639472004/6218732979</string>
 
-    <string name="alert_reboot_title">Select actions and install</string>
-    <string name="alert_reboot_now">Install now</string>
+    <!-- INTRO -->
+    <string name="version">v%1$s</string>
+    <string name="loading">Loading&#8230;</string>
+    <string name="disclaimer_title">Disclaimer</string>
+    <string name="disclaimer_text">ZipInstaller provides an easy way of flashing files to your device.\nThe author is not responsible for the damage that flashing this files can do to it.\nContinue at your own risk.\n\nTap anywhere to continue.</string>
 
-    <string name="error_title">Error</string>
+    <!-- DRAWER -->
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
 
-    <string name="error_no_rommanager_connection">No RomManager connection available. Make sure you\'ve got RomManager Premium installed and it\'s 4.5.0.0+.</string>
-    <string name="error_no_rommanager_premium">Your RomManager installation seems to not be premium.</string>
-    <string name="error_rommanager_unknown">Unknown error connecting to RomManager.</string>
+    <!-- MENU -->
+    <string name="menu_add_zip">Add zip</string>
+    <string name="menu_install">Install</string>
+    <string name="menu_apply_rules">Apply rules</string>
+    <string name="menu_install_recovery">Flash recovery</string>
+    <string name="menu_install_boot">Flash boot</string>
+    <string name="menu_add_rule">Add rule</string>
+    <string name="menu_backup">Backup</string>
+    <string name="menu_cloud">Cloud</string>
+    <string name="menu_refresh">Refresh</string>
+    <string name="menu_restore">Restore</string>
+    <string name="menu_remove">Delete</string>
+    <string name="menu_sync_up">Synchronize</string>
+    <string name="menu_sync_down">Synchronize</string>
+    <string name="menu_login">Login</string>
+    <string name="menu_logout">Logout</string>
 
-    <string name="root_needed_title">Root needed</string>
-    <string name="root_needed_summary">Unable to reach root access.</string>
-    <string name="root_needed_continue">Continue anyway</string>
-    <string name="root_needed_close">Close the app</string>
+    <!-- SUPERUSER PLUGIN -->
+    <string name="requesting_su">Requesting superuser access&#8230;</string>
 
-    <string name="alert_wipe_system_title">System wipe</string>
-    <string name="alert_wipe_system_message">You are about to perform a system wipe. Are you sure you want to do that?</string>
+    <!-- UI PLUGIN -->
+    <string name="initializing_ui">Initializing ui&#8230;</string>
 
-    <string name="install_file_manager_error">No application found to pick the zip file. Please install a file manager.</string>
-    <string name="install_file_manager_intsdcard">Please select a file from internal sdcard.</string>
-    <string name="install_file_manager_zip">Please select a ZIP or SH file.</string>
-    <string name="install_file_manager_invalid_zip">Invalid ZIP/SH file.</string>
-    <string name="install_file_manager_not_found_zip">Not found item deleted from list.</string>
+    <!-- STORAGE PLUGIN -->
+    <string name="reading_storage_paths">Reading storage paths&#8230;</string>
 
-    <string name="alert_sdcard_title">Alert</string>
-    <string name="alert_sdcard_message">Select a zip from internal sdcard.</string>
-
-    <string name="alert_backup_title">Backup</string>
-    <string name="alert_backup_message">Specify the backup name (illegal characters will be removed).</string>
-    <string name="alert_backup_actions">Select an action.</string>
-
-    <string name="alert_delete_title">Delete</string>
-
-    <string name="alert_file_title">%1$s</string>
-    <string name="alert_file_summary">Path: %1$s\nSize: %2$s\nModified: %3$s</string>
-    <string name="alert_file_close">Close</string>
-    <string name="alert_file_md5">MD5</string>
-    <string name="alert_file_delete">Delete after flashing</string>
-
-    <string name="to_be_deleted">(To be deleted)</string>
-
-    <string name="alert_md5_title">Check MD5</string>
-    <string name="alert_md5_summary">Enter the MD5 sum to compare or leave blank to show the MD5</string>
-    <string name="alert_md5_ok">Check</string>
-    <string name="alert_md5_loading">Generating MD5 sum&#8230;</string>
-    <string name="alert_md5_match">The specified MD5 sum is correct</string>
-    <string name="alert_md5_no_match">The MD5 sums does not match:\nSpecified: %1$s\nGenerated: %2$s</string>
-
-    <string name="alert_file_checking">Checking files&#8230;</string>
-    <string name="alert_file_alert">Alert</string>
-    <string name="alert_file_exists_checking">Checking file %1$s&#8230;</string>
-    <string name="alert_file_not_exists">File not found: %1$s</string>
-    <string name="alert_file_md5_checking">Checking MD5 for file %1$s&#8230;</string>
-    <string name="alert_file_incorrect_md5_file">Malformed MD5 file: %1$s</string>
-    <string name="alert_file_incorrect_md5">Mismatch MD5 for file %1$s</string>
-
-    <string name="main_choose_zip">Add file</string>
-
-    <string name="install_now">Flash now</string>
-
+    <!-- RECOVERY PLUGIN -->
+    <string name="recovery_cwm_official">CWM official</string>
+    <string name="recovery_cwm_based">CWM based</string>
+    <string name="recovery_twrp">TWRP</string>
+    <string name="recovery_4ext">4EXT</string>
+    <string name="reading_recovery_info">Reading recovery info&#8230;</string>
     <string name="alert_changed_recovery_title">Recovery changed</string>
     <string name="alert_changed_recovery_message">Seems that you have changed your recovery from %1$s to %2$s.\nDo you want to configure your new recovery in ZipInstaller?</string>
     <string name="alert_changed_recovery_dont_show">Don\'t show this dialog again</string>
-
-    <string name="menu_settings">Settings</string>
-    <string name="menu_backup">Backup</string>
-    <string name="menu_apply_rules">Apply rules</string>
-    <string name="menu_restore">Restore</string>
-    <string name="menu_advanced_recovery">Recovery</string>
-    <string name="menu_sync_backups">Sync backups</string>
-    <string name="menu_loadlist">Load list</string>
-    <string name="menu_savelist">Save list</string>
-    <string name="menu_downloadzip">Download zip</string>
-
-    <string name="recovery_change_alert_title">Recovery found</string>
-    <string name="recovery_change_alert_message">%1$s recovery folder found. Do you want to configure it as default?</string>
-    <string name="recovery_changed">Recovery %1$s configured.</string>
-    <string name="recovery_cwm">CWM-based</string>
-    <string name="recovery_cwm_official">CWM official</string>
-    <string name="recovery_4ext">4EXT</string>
-    <string name="recovery_twrp">TWRP</string>
-
-    <string name="recovery_title">Select recovery</string>
-    <string name="recovery_summary">Select the recovery intalled in your device</string>
     <string name="recovery_alert_title">Select recovery</string>
     <string name="recovery_alert_summary">Specify the recovery you are using</string>
+    <string name="recovery_changed">Recovery %1$s configured.</string>
+    <string name="recovery_change_alert_title">Recovery found</string>
+    <string name="recovery_change_alert_message">%1$s recovery found. Do you want to configure it as default?</string>
 
-    <string name="internalsdcard_title">Internal storage path</string>
-    <string name="internalsdcard_summary">Specify the internal storage path used by the recovery</string>
-    <string name="externalsdcard_title">External storage path</string>
-    <string name="externalsdcard_summary">Specify the external storage path used by the recovery</string>
-    <string name="sdcard_alert_title">Storage path</string>
-    <string name="sdcard_alert_summary">Specify the storage name</string>
-    <string name="sdcard_alert_error">Please specify the storage name</string>
-
-    <string name="force_extsdcard_mount_title">Force external sdcard mount</string>
-    <string name="force_extsdcard_mount_summary">Check this option if your CWM recovery doesn\'t mount external sdcard by default</string>
-
-    <string name="force_datamedia_title">Use /data/media/</string>
-    <string name="force_datamedia_summary">Check this option if your CWM recovery uses /data/media/clockworkmod/ to store backups</string>
-
-    <string name="backup_external_title">Backup and restore in external sdcard</string>
-    <string name="backup_external_summary">Check this option if you want to backup your rom in your external sdcard</string>
-
-    <string name="about_title">About</string>
-    <string name="about_zip_title">ZipInstaller</string>
-    <string name="about_zip_summary" translatable="false">http://forum.xda-developers.com/showthread.php?t=1920057</string>
-    <string name="about_version_title">Version</string>
-    <string name="about_version_unknown">Unknown Version (error in package manager)</string>
-
-    <string name="license_title">License</string>
-    <string name="license_apache_title">Apache License</string>
-    <string name="license_error">Error loading license file</string>
-
-    <string name="changelog_title">Changelog</string>
-    <string name="changelog_apache_title">ZipInstaller Changelog</string>
-    <string name="changelog_error">Error loading changelog file</string>
-
+    <!-- REBOOT PLUGIN -->
     <string name="backup">Backup</string>
     <string name="wipe_system">Wipe System</string>
     <string name="wipe_data">Wipe Data</string>
     <string name="wipe_caches">Wipe Cache &amp; Dalvik</string>
     <string name="fix_permissions">Fix permissions</string>
-
-    <string name="savelist_title">Save list</string>
-    <string name="loadlist_title">Load list</string>
-    <string name="list_saved">List successfully saved</string>
-    <string name="list_loaded">List successfully loaded</string>
-
-    <string name="donate_title">Donate</string>
-
-    <string name="usefolder_title">Install button opens folder</string>
-    <string name="usefolder_summary">If checked, the application will open a folder\'s content instead of a file manager.</string>
-
-    <string name="folder_title">Default folder</string>
-    <string name="folder_error">The folder doesn\'t exist or is not a directory</string>
-
-    <string name="pick_file">Pick file</string>
-    <string name="pick_folder">Pick folder</string>
-
-    <string name="rules_title">Folder rules</string>
-    <string name="rules_summary">Automatically add files from the folder following these rules</string>
-    <string name="rule_starts_with">Starts with</string>
-    <string name="rule_ends_with">Ends with</string>
-    <string name="rule_equals">Equal to</string>
-
-    <string name="alert_rules_title">Rules</string>
-    <string name="rules_text">Add the zips in the folder that:\n</string>
-    <string name="alert_rules_add">Add rule</string>
-    <string name="alert_rules_done">Done</string>
-    <string name="alert_rules_delete">Delete all</string>
-    <string name="alert_rules_delete_selected">Delete selected</string>
-
-    <string name="folder_activity_title">Select a file</string>
-    <string name="alert_remove_file_title">Delete file</string>
-    <string name="alert_remove_file_summary">Are you sure you want to delete %1$s?</string>
-    <string name="alert_remove_file_done">File deleted</string>
-    <string name="alert_remove_file_not_done">File not deleted</string>
-
-    <string name="dad_title">Drag &amp; drop</string>
-    <string name="dad_summary">Use drag &amp; drop to reorder the list</string>
-
-    <string name="overridelist_title">Load list overrides</string>
-    <string name="overridelist_summary">Loading the saved list will override the selected zips list</string>
-
-    <string name="autoloadlist_title">Load list on startup</string>
-    <string name="autoloadlist_summary">Automatically load saved list on start application</string>
-
-    <string name="settings_showoptions_title">Options</string>
-    <string name="settings_showoptions_summary">Chose options to show when pressing the Install Now button</string>
-
-    <string name="settings_title">Settings</string>
-    <string name="settings_recovery">Recovery</string>
-    <string name="settings_security">Security</string>
-    <string name="settings_interface">Interface</string>
-    <string name="settings_update">Updates</string>
-    <string name="settings_misc">Misc</string>
-
-    <string name="settings_theme_title">Use dark theme</string>
-    <string name="settings_theme_summary">Use dark them instead of Holo</string>
-
-    <string name="settings_checkexists_title">Check zip files</string>
-    <string name="settings_checkexists_summary">Check whether zip files exists or not before flashing</string>
-
-    <string name="settings_checkmd5_title">Check MD5</string>
-    <string name="settings_checkmd5_summary">Check MD5 if a md5sum file is present before flashing</string>
-
-    <string name="check_for_updates">Check for updates</string>
-    <string name="check_for_updates_startup">Check on startup</string>
-    <string name="check_for_updates_error">Error checking for updates</string>
-    <string name="no_new_version">No new update found</string>
-    <string name="new_version_title">New update found</string>
-    <string name="new_version_summary">%1$s found. Do you want to download and install it now?</string>
-    <string name="new_version_download">Download &amp; install</string>
-    <string name="download_path">Download path</string>
-    <string name="downloading">Downloading %1$s to %2$s</string>
-    <string name="downloading_error">Error downloading file</string>
-    <string name="downloading_interrupted">Download interrupted</string>
-    <string name="downloading_nospace">Error downloading file: no space available</string>
-
-    <string name="downloadzip_alert_title">Download zip</string>
-    <string name="downloadzip_alert_summary">Specify the url of the zip</string>
-    <string name="downloadzip_alert_error">Please specify the url of the zip</string>
-
-    <string name="recovery_activity_title">Recovery</string>
-    <string name="recovery_activity_backup_title">Backup</string>
-    <string name="recovery_activity_backup_summary">Do a backup of your rom</string>
-    <string name="recovery_activity_restore_title">Restore</string>
-    <string name="recovery_activity_restore_summary">Restore a previous backup</string>
-    <string name="recovery_activity_delete_title">Delete</string>
-    <string name="recovery_activity_delete_summary">Delete a previous backup</string>
-    <string name="recovery_activity_reboot_title">Reboot into recovery</string>
-    <string name="recovery_activity_actions">Recovery actions</string>
-    <string name="recovery_activity_actions_summary">Wipe data, caches and/or fix permissions</string>
-
-    <string name="alert_deleting_folder">Deleting %1$s&#8230;</string>
-
-    <string name="consider_becoming_a_pro">Please consider purchasing the application</string>
-    <string name="become_a_pro">Purchase the application</string>
-
-    <string name="zipposition_title">Zip position</string>
-    <string name="zipposition_summary">Position to add the new zip files added to the list</string>
-    <string name="zip_position_first">First</string>
-    <string name="zip_position_last">Last</string>
-
-    <string name="spaceleft_title">Check space before backup</string>
-    <string name="spaceleft_summary">Display alert when doing a backup and there\'s less space than...</string>
-    <string name="spaceleft_dontcheck">Don\'t check</string>
-
+    <string name="alert_restore_title">Restore</string>
+    <string name="alert_restore_message">Restore backup?\n%1$s</string>
     <string name="alert_backup_space_title">Space left</string>
     <string name="alert_backup_space_message">There\'s less than %1$sGB in the internal sdcard. Do you want to continue with the backup?</string>
-
-    <string name="settings_wipesystem_alert_title">Wipe system alert</string>
-    <string name="settings_wipesystem_alert_summary">Show a confirmation dialog if trying to do a system wipe</string>
-    <string name="restart_needed">Restart needed</string>
-    <string name="restart_needed_theme_message">A restart is needed to apply changes in theme. Do you want to restart the application now?</string>
-
-    <string name="checkroot_title">Check root</string>
-    <string name="checkroot_summary">Check if root access is well configured in your device</string>
-    <string name="checkroot_yes">Root access granted succesfully</string>
-    <string name="checkroot_no">Unable to grant root access</string>
-
+    <string name="alert_backup_title">Backup</string>
+    <string name="alert_backup_message">Reboot to recovery and backup</string>
+    <string name="alert_backup_message_onandroid">Start onandroid backup</string>
+    <string name="alert_backup_name">Specify a name for the backup</string>
+    <string name="alert_backup_message2">Illegal characters will be removed</string>
+    <string name="alert_backup_actions">Select an action.</string>
     <string name="system">System</string>
     <string name="data">Data</string>
     <string name="cache">Cache</string>
@@ -270,67 +96,97 @@
     <string name="boot">Boot</string>
     <string name="androidsecure">Android secure</string>
     <string name="sdext">SD-Ext</string>
+    <string name="alert_reboot_title">Select actions and install</string>
+    <string name="alert_reboot_now">Install now</string>
+    <string name="alert_wipe_system_title">System wipe</string>
+    <string name="alert_wipe_system_message">You are about to perform a system wipe. Are you sure you want to do that?</string>
+    <string name="alert_file_exists_checking">Checking file %1$s&#8230;</string>
+    <string name="alert_file_not_exists">File not found: %1$s</string>
+    <string name="alert_file_md5_checking">Checking MD5 for file %1$s&#8230;</string>
+    <string name="alert_file_incorrect_md5_file">Malformed MD5 file: %1$s</string>
+    <string name="alert_file_incorrect_md5">Mismatch MD5 for file %1$s</string>
+    <string name="alert_file_alert">Alert</string>
+    <string name="alert_file_checking">Checking files&#8230;</string>
+    <string name="use_onandroid">Use ONandroid</string>
 
-    <string name="cloud_service">Cloud service</string>
-    <string name="dropbox_title">Dropbox</string>
-    <string name="drive_title">Drive</string>
+    <!-- LICENSE PLUGIN -->
+    <string name="checking_license">Checking license&#8230;</string>
+    <string name="not_licensed_title">Not licensed</string>
+    <string name="not_licensed_text">You have not purchased the application. Please go to the Play Store and buy it.</string>
+    <string name="not_licensed_retry_title">License error</string>
+    <string name="not_licensed_retry_text">Could not check your license in the Play Store. Please try again later.</string>
+    <string name="not_licensed_exit">Close app</string>
+    <string name="consider_becoming_a_pro">Please consider purchasing the application</string>
 
-    <string name="alert_backup_synchronize_title">Local backup</string>
-    <string name="alert_backup_synchronize_message">Select an action.\n%1$s</string>
-    <string name="alert_backup_synchronize">Zip and upload</string>
-    <string name="alert_backup_delete">Delete</string>
-    <string name="backups_in_storage_title">Backups in storage</string>
-    <string name="backups_in_cloud_title">Backups in the cloud</string>
-    <string name="backups_reading">Reading remote files...</string>
-    <string name="backup_zipping">Zipping backup...</string>
-    <string name="backup_unzipping">Unzipping backup...</string>
-    <string name="backup_uploading">Uploading backup...</string>
-    <string name="backup_downloading">Downloading backup...</string>
-    <string name="backup_error_uploading">Error uploading backup</string>
-    <string name="backup_error_downloading">Error downloading backup</string>
-    <string name="alert_backup_remote_title">Remote backup</string>
-    <string name="alert_backup_remote_message">Select an action.\n%1$s</string>
-    <string name="alert_backup_download">Download and restore</string>
-    <string name="error_deleting_remote_file">Error deleting remote file</string>
-    <string name="alert_restore_title">Restore</string>
-    <string name="alert_restore_message">Restore backup?\n%1$s</string>
-
-    <string name="error_zipping">Error zipping backup</string>
-    <string name="error_unzipping">Error unzipping backup</string>
-
-    <!-- PRO -->
-    <string name="enable_notifications">Enable notifications</string>
-    <string name="time_notifications_title">Notifications time</string>
-    <string name="time_notifications_summary">Time between each search for ROM updates</string>
-    <string name="time_notifications_never">Don\'t check</string>
-    <string name="time_notifications_half_an_hour">Half an hour</string>
-    <string name="time_notifications_an_hour">An hour</string>
-    <string name="time_notifications_two_hours">Two hours</string>
-    <string name="time_notifications_five_hours">Five hours</string>
-    <string name="time_notifications_twentyfour_hours">Twenty four hours</string>
-    <string name="check_rom_updates">Check for ROM updates</string>
+    <!-- UPDATE PLUGIN -->
+    <string name="check_for_updates_error">Error checking for updates</string>
+    <string name="no_new_version">No updates found</string>
+    <string name="new_version_title">New update found</string>
+    <string name="new_version_summary">%1$s found. Do you want to download and install it now?</string>
+    <string name="new_version_download">Download &amp; install</string>
+    <string name="check_rom_updates_no_new">No ROM updates found</string>
     <string name="check_rom_updates_error">Error checking for ROM updates</string>
-    <string name="check_rom_updates_no_new">No new ROM updates found</string>
-    <string name="use_onandroid_title">Use ONandroid</string>
-    <string name="use_onandroid_summary">Backup your rom without rebooting to recovery</string>
-    <string name="configure_onandroid_title">Configure ONandroid</string>
-    <string name="configure_onandroid_ok_summary">Check ONandroid support (seems configured)</string>
-    <string name="configure_onandroid_nok_summary">Check ONandroid support (seems not configured)</string>
-
     <string name="new_rom_found_title">New ROM version found</string>
-    <string name="new_rom_found_summary">A new version of your ROM has been found. Do you want to download it now?\n\n%1$s\n%2$s\n</string>
+    <string name="new_rom_found_summary">A new version of your ROM has been found. Do you want to download it now?\n\n%1$s\n</string>
     <string name="new_rom_name">%1$s</string>
 
-    <string name="menu_gooim">Goo.im</string>
-    <string name="goo_browse_all_compatible">Browse compatible ROMs</string>
-    <string name="goo_browse_all">Browse all files</string>
+    <!-- INSTALL FRAGMENT -->
+    <string name="install_title">Install</string>
+    <string name="flashboot_installed">Boot image installed</string>
+    <string name="flashboot_confirm_title">Install boot image?</string>
+    <string name="flashboot_confirm_message">Install boot image %1$s</string>
+    <string name="flashrecovery_installed">Recovery installed</string>
+    <string name="flashrecovery_confirm_title">Install recovery?</string>
+    <string name="flashrecovery_confirm_message">Install recovery %1$s</string>
+    <string name="install_fragment_help">Press the + button above to add files to flash.</string>
+
+    <!-- BACKUP/RESTORE FRAGMENT -->
+    <string name="backuprestore_title">Backup &amp; Restore</string>
+    <string name="backups_in_storage">Backups in storage</string>
+    <string name="backups_folder_empty">No backups found in %1$s</string>
+    <string name="delete_backup_confirm">Are you sure you want to delete %1$s backup?</string>
+    <string name="backups_in_cloud">Backups in %1$s</string>
+    <string name="backups_cloud_empty">No backups found in %1$s</string>
+
+    <!-- RECOVERY FRAGMENT -->
+    <string name="recovery_fragment_title">Recovery</string>
+    <string name="recovery_fragment_backup_title">Backup</string>
+    <string name="recovery_fragment_backup_summary">Backup your rom</string>
+    <string name="recovery_fragment_restore_title">Restore</string>
+    <string name="recovery_fragment_restore_summary">Restore a previous backup</string>
+    <string name="recovery_fragment_delete_title">Delete</string>
+    <string name="recovery_fragment_delete_summary">Delete a previous backup</string>
+    <string name="recovery_fragment_wipe_data">Wipe data</string>
+    <string name="recovery_fragment_wipe_data_summary">Reboot into recovery and wipe data</string>
+    <string name="recovery_fragment_wipe_caches">Wipe cache &amp; dalvik</string>
+    <string name="recovery_fragment_wipe_caches_summary">Reboot into recovery and wipe cache and dalvik cache</string>
+    <string name="recovery_fragment_fix_permissions">Fix permissions</string>
+    <string name="recovery_fragment_fix_permissions_summary">Reboot into recovery and fix permissions</string>
+    <string name="recovery_fragment_reboot_title">Reboot into recovery</string>
+    <string name="recovery_fragment_reboot_question">Reboot into recovery?</string>
+    <string name="recovery_fragment_reboot">Reboot into recovery and %1$s?</string>
+    <string name="alert_delete_title">Delete backup</string>
+    <string name="alert_deleting_folder">Deleting %1$s&#8230;</string>
+
+    <!-- RULES FRAGMENT -->
+    <string name="rules_title">Rules</string>
+    <string name="rules_fragment_help">Press the + button above to create rules.</string>
+    <string name="alert_rules_title">Add rule</string>
+    <string name="alert_rules_text">Add the zips in the default folder that:</string>
+    <string name="alert_rules_add">Add</string>
+    <string name="rule_starts_with">Starts with</string>
+    <string name="rule_ends_with">Ends with</string>
+    <string name="rule_equals">Equal to</string>
+
+    <!-- GOO FRAGMENT -->
+    <string name="goo_title">Navigate goo</string>
+    <string name="navigating_folder">Navigating folder %1$s</string>
+    <string name="only_compatible">Only compatible ROMs</string>
     <string name="goo_browse_error">Error browsing files</string>
     <string name="goo_browse_searching">Searching&#8230;</string>
-    <string name="goo_category_title">Browsing %1$s</string>
     <string name="goo_download_title">Download</string>
-    <string name="goo_download_summary">Do you want to download this file now?\n\n%1$s\n%2$s\n</string>
-    <string name="goo_login">Login to goo.im</string>
-    <string name="goo_logout">Logout from goo.im</string>
+    <string name="goo_download_summary">Do you want to download this file now?\n\n%1$s\n</string>
+    <string name="up_a_level">Up a level</string>
     <string name="username">User</string>
     <string name="password">Password</string>
     <string name="logged_in">Now you are logged in</string>
@@ -338,40 +194,164 @@
     <string name="logged_down">Unable to reach server</string>
     <string name="logged_out">You\'ve been logged out</string>
     <string name="logged_error">Unknown error logging in</string>
+    <string name="goo_login">Login to goo</string>
+    <string name="goo_loging">Loging in goo&#8230;</string>
 
+    <!-- SETTINGS FRAGMENT -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_recovery">Recovery</string>
+    <string name="recovery_title">Select recovery</string>
+    <string name="recovery_summary">Select the recovery intalled in your device</string>
+    <string name="internalsdcard_title">Internal storage path</string>
+    <string name="internalsdcard_summary">Specify the internal storage path used by the recovery</string>
+    <string name="externalsdcard_title">External storage path</string>
+    <string name="externalsdcard_summary">Specify the external storage path used by the recovery</string>
+    <string name="force_datamedia_title">Use /data/media/</string>
+    <string name="force_datamedia_summary">Check this option if your CWM recovery uses /data/media/ to store backups</string>
+    <string name="force_extsdcard_mount_title">Force external sdcard mount</string>
+    <string name="force_extsdcard_mount_summary">Check this option if your CWM recovery doesn\'t mount external sdcard by default</string>
+    <string name="backup_external_title">Backup and restore in external sdcard</string>
+    <string name="backup_external_summary">Check this option if you want to backup your rom in your external sdcard</string>
+    <string name="settings_showoptions_title">Options</string>
+    <string name="settings_showoptions_summary">Chose options to show when pressing the Install button</string>
+    <string name="settings_security">Security</string>
+    <string name="settings_checkexists_title">Check zip files</string>
+    <string name="settings_checkexists_summary">Check whether zip files exists or not before flashing</string>
+    <string name="settings_checkmd5_title">Check MD5</string>
+    <string name="settings_checkmd5_summary">Check MD5 if a md5sum file is present before flashing</string>
+    <string name="spaceleft_title">Check space before backup</string>
+    <string name="spaceleft_summary">Display alert when doing a backup and there\'s less space than&#8230;</string>
+    <string name="spaceleft_dontcheck">Don\'t check</string>
+    <string name="settings_wipesystem_alert_title">Wipe system alert</string>
+    <string name="settings_wipesystem_alert_summary">Show a confirmation dialog if trying to do a system wipe</string>
+    <string name="checkroot_title">Check root</string>
+    <string name="checkroot_summary">Check if root access is well configured in your device</string>
+    <string name="settings_interface">Interface</string>
+    <string name="usefolder_title">Install button opens folder</string>
+    <string name="usefolder_summary">If checked, the application will open a folder\'s content instead of a file manager.</string>
+    <string name="folder_title">Default folder</string>
+    <string name="dad_title">Drag &amp; drop</string>
+    <string name="dad_summary">Use drag &amp; drop to reorder the list</string>
+    <string name="zipposition_title">Zip position</string>
+    <string name="zipposition_summary">Position to add the new zip files added to the list</string>
+    <string name="zip_position_first">First</string>
+    <string name="zip_position_last">Last</string>
+    <string name="settings_theme_title">Use dark theme</string>
+    <string name="settings_theme_summary">Use dark theme instead of holo light</string>
+    <string name="settings_update">Updates</string>
+    <string name="download_path">Download path</string>
+    <string name="sdcard_alert_title">Storage path</string>
+    <string name="sdcard_alert_summary">Specify the storage path</string>
+    <string name="sdcard_alert_error">Please specify the storage path</string>
+    <string name="restart_needed">Restart needed</string>
+    <string name="restart_needed_theme_message">A restart is needed to apply changes in theme. Do you want to restart the application now?</string>
+    <string name="checkroot_yes">Root access granted succesfully</string>
+    <string name="checkroot_no">Unable to grant root access</string>
+    <string name="check_for_updates_startup_title">Check on startup</string>
+    <string name="check_for_updates_startup_summary">Check for ZipInstaller updates when the app is launched</string>
     <string name="checktime_title">Update check frequency</string>
-    <string name="checktime_summary">Specify the time between each update check</string>
+    <string name="checktime_summary">Specify the time between each ROM update check</string>
+    <string name="time_notifications_never">Don\'t check</string>
+    <string name="time_notifications_half_an_hour">Half an hour</string>
+    <string name="time_notifications_an_hour">An hour</string>
+    <string name="time_notifications_two_hours">Two hours</string>
+    <string name="time_notifications_five_hours">Five hours</string>
+    <string name="time_notifications_twentyfour_hours">Twenty four hours</string>
+    <string name="check_rom_updates">Check for ROM updates</string>
 
-    <string name="nandroid_configure">Configure</string>
-    <string name="nandroid_upload">Zip and upload on finished</string>
-    <string name="nandroid_start">Start</string>
-    <string name="nandroid_configured">ONandroid script thanks to Ameer Dawood.\n\nYour device seems to be configured correctly to use ONandroid.</string>
-    <string name="nandroid_not_configured">ONandroid script thanks to Ameer Dawood.\n\nYour device seems to not be configured correctly to use ONandroid. Please check it in \'Settings\' - \'Configure ONandroid\'.</string>
+    <!-- ABOUT FRAGMENT -->
+    <string name="about_title">About</string>
+    <string name="about_zip_title">ZipInstaller</string>
+    <string name="about_zip_summary" translatable="false">http://forum.xda-developers.com/showthread.php?t=1920057</string>
+    <string name="about_version_title">Version</string>
+    <string name="license_title">License</string>
+    <string name="license_apache_title">GPL v3 License</string>
+    <string name="license_error">Error loading license file</string>
+    <string name="changelog_title">Changelog</string>
+    <string name="changelog_apache_title">Changes in ZipInstaller</string>
+    <string name="changelog_error">Error loading changelog file</string>
+    <string name="checkforupdates_title">Check for updates</string>
+    <string name="donate_title">Donate</string>
+    <string name="become_a_pro">Purchase the application</string>
 
-    <string name="onandroid_text">Select your device from the list below and click \'Configure\', a file will be downloaded and installed via recovery.</string>
-    <string name="onandroid_text2">If your device is not listed above but appears in the list below, you don\'t need any further configuration, ignore the \"not configured\" messages.</string>
+    <!-- DOWNLOADS -->
+    <string name="download">Download</string>
+    <string name="downloading">Downloading %1$s to %2$s</string>
+    <string name="downloading_error">Error downloading file</string>
+    <string name="downloading_interrupted">Download interrupted</string>
+    <string name="downloading_nospace">Error downloading file: no space available</string>
 
-    <string name="not_licensed_title">Not licensed</string>
-    <string name="not_licensed_text">You have not purchased the application. Please go to the Play Store and buy it.</string>
-    <string name="not_licensed_retry_title">License error</string>
-    <string name="not_licensed_retry_text">Could not check your license in the Play Store. Please try again later.</string>
-    <string name="not_licensed_exit">Close app</string>
-
-    <string name="menu_flashrecovery">Flash recovery</string>
-    <string name="flashrecovery_not_supported">Could not retrieve the flash command for your device</string>
-    <string name="flashrecovery_installed">Recovery installed</string>
-    <string name="flashrecovery_confirm_title">Install recovery?</string>
-    <string name="flashrecovery_confirm_message">Install recovery %1$s</string>
-
-    <string name="menu_flashboot">Flash boot.img</string>
-    <string name="flashboot_not_supported">Could not retrieve your boot mount point</string>
-    <string name="flashboot_installed">Boot image installed</string>
-    <string name="flashboot_confirm_title">Install boot image?</string>
-    <string name="flashboot_confirm_message">Install boot image %1$s</string>
-
+    <!-- PICKER RECOVERY -->
     <string name="picker_recovery_title">Flash recovery</string>
     <string name="picker_recovery_zip">Choose file</string>
     <string name="picker_recovery_twrp">Download TWRP</string>
     <string name="picker_recovery_error_twrp">Error downloading TWRP</string>
     <string name="picker_recovery_no_recovery_found">No recovery found for your device</string>
+
+    <!-- ONANDROID -->
+    <string name="onandroid_wizard_title">Configure ONandroid</string>
+    <string name="onandroid_wizard_finish">Configure</string>
+    <string name="onandroid_wizard_1">This wizard will help you to configure your device to use ONandroid backups.\n\nIf you continue, the app will download the necessary files.</string>
+    <string name="onandroid_wizard_2_checking">Checking script version&#8230;</string>
+    <string name="onandroid_wizard_2_updating">Updating script&#8230;</string>
+    <string name="onandroid_wizard_2_continue">The ONandroid script is updated to its latest version.\n\nContinue to download device definitions.</string>
+    <string name="onandroid_wizard_3_downloading_1">Downloading partition layouts&#8230;</string>
+    <string name="onandroid_wizard_3_downloading_2">Downloading mtd devices&#8230;</string>
+    <string name="onandroid_wizard_3_reading">Reading device definitions&#8230;</string>
+    <string name="onandroid_wizard_3_continue">Continue to check if your device is supported.</string>
+    <string name="onandroid_wizard_4_text_1">Select your device from the list below and click \'Configure\'. The configuration file will be downloaded and installed via recovery.</string>
+    <string name="onandroid_wizard_4_text_2">If your device is not listed above but appears in the list below, just cancel this wizard. If your device isn\'t listed in neither of the two lists, your device is not supported.</string>
+    <string name="onandroid_dialog_title">Backup</string>
+    <string name="onandroid_dialog_button">Close</string>
+
+    <!-- DIALOG -->
+    <string name="wizard_continue">Continue</string>
+    <string name="wizard_finish">Finish</string>
+
+    <!-- ERRORS -->
+    <string name="error_title">Error</string>
+    <string name="alert_title">Alert</string>
+    <string name="error_no_rommanager_connection">No RomManager connection available. Make sure you\'ve got RomManager Premium installed and it\'s 4.5.0.0+.</string>
+    <string name="error_no_rommanager_premium">Your RomManager installation seems to not be premium.</string>
+    <string name="error_rommanager_unknown">Unknown error connecting to RomManager.</string>
+    <string name="error_file_manager">No application found to pick the zip file. Please install a file manager.</string>
+    <string name="error_file_manager_zip">Please select a ZIP file.</string>
+    <string name="error_file_manager_invalid_zip">Invalid ZIP file.</string>
+    <string name="error_file_manager_not_found_zip">Not found item deleted from list.</string>
+    <string name="error_folder">The folder doesn\'t exist or is not a directory</string>
+    <string name="alert_no_superuser">Could not access superuser. Strange things may happen.</string>
+    <string name="error_zipping">Error zipping backup</string>
+    <string name="error_unzipping">Error unzipping backup</string>
+
+    <!-- CLOUD -->
+    <string name="cloud_service">Cloud storage</string>
+    <string name="storage_none">None</string>
+    <string name="dropbox">Dropbox</string>
+    <string name="drive">Drive</string>
+    <string name="cloud_backup_uploading">Uploading backup&#8230;</string>
+    <string name="cloud_backup_error_uploading">Error uploading backup</string>
+    <string name="cloud_backup_zipping">Zipping backup&#8230;</string>
+    <string name="cloud_backup_downloading">Downloading backup&#8230;</string>
+    <string name="cloud_backup_error_downloading">Error downloading backup</string>
+    <string name="cloud_backup_unzipping">Unzipping backup&#8230;</string>
+    <string name="cloud_error_deleting_remote_file">Error deleting remote file</string>
+
+    <!-- FOLDER PICKER -->
+    <string name="pick_file">Pick file</string>
+    <string name="pick_folder">Pick folder</string>
+
+    <!-- FILE INFO -->
+    <string name="alert_file_title">%1$s</string>
+    <string name="alert_file_summary">Path: %1$s\nSize: %2$s\nModified: %3$s</string>
+    <string name="alert_file_close">Close</string>
+    <string name="alert_file_md5">MD5</string>
+    <string name="alert_file_delete">Delete after flashing</string>
+    <string name="to_be_deleted">(To be deleted)</string>
+    <string name="alert_md5_title">Check MD5</string>
+    <string name="alert_md5_summary">Enter the MD5 sum to compare or leave blank to show the MD5</string>
+    <string name="alert_md5_ok">Check</string>
+    <string name="alert_md5_loading">Generating MD5 sum&#8230;</string>
+    <string name="alert_md5_match">The specified MD5 sum is correct</string>
+    <string name="alert_md5_no_match">The MD5 sums does not match:\nSpecified: %1$s\nGenerated: %2$s</string>
+
 </resources>

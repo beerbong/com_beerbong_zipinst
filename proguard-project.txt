@@ -18,6 +18,18 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+-keep class com.beerbong.zipinst.cloud.** { *; }
+-keep class com.beerbong.zipinst.core.** { *; }
+-keep class com.beerbong.zipinst.fragment.** { *; }
+-keep class com.beerbong.zipinst.http.** { *; }
+-keep class com.beerbong.zipinst.io.** { *; }
+-keep class com.beerbong.zipinst.onandroid.** { *; }
+-keep class com.beerbong.zipinst.preferences.** { *; }
+-keep class com.beerbong.zipinst.store.** { *; }
+-keep class com.beerbong.zipinst.ui.** { *; }
+-keep class * extends android.app.Activity { *; }
+-keep class * extends android.content.BroadcastReceiver { *; }
+
 -keep class * extends java.util.ListResourceBundle {
     protected Object[][] getContents();
 }

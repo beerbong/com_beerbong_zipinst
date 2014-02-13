@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Copyright 2013 ZipInstaller Project
+  Copyright 2014 ZipInstaller Project
 
   This file is part of ZipInstaller.
 
@@ -19,26 +19,15 @@
 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-	android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="8dip" >
 
-	<LinearLayout
-	    android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
-		android:layout_weight="1"
-	    android:orientation="vertical"
-		android:paddingLeft="8dip"
-        android:paddingRight="8dip"
-        android:paddingTop="8dip"
-        android:paddingBottom="8dip" >
-
-	    <ListView
-	  		android:id="@+id/list"
-			android:layout_width="fill_parent"
-			android:layout_height="fill_parent"
-			android:cacheColorHint="@android:color/transparent"
-			android:listSelector="@drawable/list_selector_background" />
-
-	</LinearLayout>
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:cacheColorHint="@android:color/transparent"
+        android:listSelector="@drawable/list_selector_background" />
 
 </LinearLayout>

@@ -1,5 +1,5 @@
 /*
- * Copyright 2013 ZipInstaller Project
+ * Copyright 2014 ZipInstaller Project
  *
  * This file is part of ZipInstaller.
  *
@@ -21,7 +21,8 @@ package com.beerbong.zipinst;
 
 import java.io.File;
 
-import com.beerbong.zipinst.manager.ManagerFactory;
+import com.beerbong.zipinst.io.SystemProperties;
+import com.beerbong.zipinst.preferences.Preferences;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -31,7 +32,7 @@ public class Receiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        String[] files = ManagerFactory.getPreferencesManager(context).getToDelete();
+        String[] files = (new Preferences(context)).getToDelete();
         for (int i = 0; i < files.length; i++) {
             if (!"".equals(files[i].trim())) {
                 File file = new File(files[i]);
@@ -40,14 +41,8 @@ public class Receiver extends BroadcastReceiver {
                 }
             }
         }
-        // call the pro receiver if available
-        try {
-            Class<?> pClass = Class.forName("com.beerbong.zipinst.pro.Receiver");
-            BroadcastReceiver mProReceiver = (BroadcastReceiver) pClass.newInstance();
-            mProReceiver.onReceive(context, intent);
-        } catch (Throwable t) {
-            // sorry, you are not a pro
-        }
+        Preferences prefs = new Preferences(context);
+        SystemProperties.setAlarm(context, prefs.getTimeNotifications(), true);
     }
 
 }

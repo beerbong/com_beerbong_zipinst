@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Copyright 2013 ZipInstaller Project
+  Copyright 2014 ZipInstaller Project
 
   This file is part of ZipInstaller.
 
@@ -33,11 +33,22 @@
         <item>WIPECACHES</item>
         <item>FIXPERM</item>
     </string-array>
-    <string-array name="rule_options">
-        <item>@string/rule_starts_with</item>
-        <item>@string/rule_ends_with</item>
-        <item>@string/rule_equals</item>
+
+    <string-array name="spaceleft_options">
+        <item>@string/spaceleft_dontcheck</item>
+        <item>0.5GB</item>
+        <item>1GB</item>
+        <item>2GB</item>
+        <item>5GB</item>
     </string-array>
+    <string-array name="spaceleft_values" translatable="false">
+        <item>-1.0</item>
+        <item>0.5</item>
+        <item>1.0</item>
+        <item>2.0</item>
+        <item>5.0</item>
+    </string-array>
+
     <string-array name="zip_position_options">
         <item>@string/zip_position_first</item>
         <item>@string/zip_position_last</item>
@@ -46,6 +57,16 @@
         <item>first</item>
         <item>last</item>
     </string-array>
+
+    <string-array name="picker_recovery_entries">
+        <item>@string/picker_recovery_zip</item>
+        <item>@string/picker_recovery_twrp</item>
+    </string-array>
+    <string-array name="picker_recovery_values" translatable="false">
+        <item>zip</item>
+        <item>twrp</item>
+    </string-array>
+
     <string-array name="time_notifications_options">
         <item>@string/time_notifications_never</item>
         <item>@string/time_notifications_half_an_hour</item>
@@ -62,27 +83,11 @@
         <item>18000000</item>
         <item>86400000</item>
     </string-array>
-    <string-array name="spaceleft_options">
-        <item>@string/spaceleft_dontcheck</item>
-        <item>0.5GB</item>
-        <item>1GB</item>
-        <item>2GB</item>
-        <item>5GB</item>
-    </string-array>
-    <string-array name="spaceleft_values" translatable="false">
-        <item>-1.0</item>
-        <item>0.5</item>
-        <item>1.0</item>
-        <item>2.0</item>
-        <item>5.0</item>
-    </string-array>
-    <string-array name="picker_recovery_entries">
-        <item>@string/picker_recovery_zip</item>
-        <item>@string/picker_recovery_twrp</item>
-    </string-array>
-    <string-array name="picker_recovery_values" translatable="false">
-        <item>zip</item>
-        <item>twrp</item>
+
+    <string-array name="rule_options">
+        <item>@string/rule_starts_with</item>
+        <item>@string/rule_ends_with</item>
+        <item>@string/rule_equals</item>
     </string-array>
 
 </resources>

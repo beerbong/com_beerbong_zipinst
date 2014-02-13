@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2014 ZipInstaller Project
+
+  This file is part of ZipInstaller.
+
+  ZipInstaller is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  ZipInstaller is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+ 
+  You should have received a copy of the GNU General Public License
+  along with ZipInstaller.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <com.beerbong.zipinst.ui.preference.UIPreferenceCategory
+        android:key="about_category"
+        android:title="@string/about_title">
+
+        <com.beerbong.zipinst.ui.preference.UIPreference
+            android:title="@string/about_zip_title"
+            android:summary="@string/about_zip_summary"
+            android:key="about_pref" />
+
+        <com.beerbong.zipinst.ui.preference.UIPreference
+            android:title="@string/about_version_title"
+            android:key="about_version" />
+
+        <com.beerbong.zipinst.ui.preference.UIPreference 
+            android:title="@string/changelog_title"
+            android:summary="@string/changelog_apache_title"
+            android:key="changelog_pref"/>
+
+        <com.beerbong.zipinst.ui.preference.UIPreference 
+            android:title="@string/license_title"
+            android:summary="@string/license_apache_title"
+            android:key="license_pref"/>
+
+        <com.beerbong.zipinst.ui.preference.UIPreference 
+            android:title="@string/checkforupdates_title"
+            android:key="updates_pref"/>
+
+        <com.beerbong.zipinst.ui.preference.UIPreference 
+            android:title="@string/donate_title"
+            android:key="donate_pref"/>
+
+    </com.beerbong.zipinst.ui.preference.UIPreferenceCategory>
+
+</PreferenceScreen>

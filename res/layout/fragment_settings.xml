@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2014 ZipInstaller Project
+
+  This file is part of ZipInstaller.
+
+  ZipInstaller is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  ZipInstaller is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+ 
+  You should have received a copy of the GNU General Public License
+  along with ZipInstaller.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <com.beerbong.zipinst.ui.preference.UIPreferenceCategory
+        android:key="settings_recovery"
+        android:title="@string/settings_recovery" >
+
+        <com.beerbong.zipinst.ui.preference.UIPreference
+            android:key="recovery"
+            android:summary="@string/recovery_summary"
+            android:title="@string/recovery_title" />
+
+        <com.beerbong.zipinst.ui.preference.UIPreference
+            android:key="internalsdcard"
+            android:summary="@string/internalsdcard_summary"
+            android:title="@string/internalsdcard_title" />
+
+        <com.beerbong.zipinst.ui.preference.UIPreference
+            android:key="externalsdcard"
+            android:summary="@string/externalsdcard_summary"
+            android:title="@string/externalsdcard_title" />
+
+        <com.beerbong.zipinst.ui.preference.UICheckBoxPreference
+            android:key="forcedatamedia"
+            android:summary="@string/force_datamedia_summary"
+            android:title="@string/force_datamedia_title" />
+
+        <com.beerbong.zipinst.ui.preference.UICheckBoxPreference
+            android:key="mountextsdcard"
+            android:summary="@string/force_extsdcard_mount_summary"
+            android:title="@string/force_extsdcard_mount_title" />
+
+        <com.beerbong.zipinst.ui.preference.UICheckBoxPreference
+            android:key="backupextsdcard"
+            android:summary="@string/backup_external_summary"
+            android:title="@string/backup_external_title" />
+
+        <com.beerbong.zipinst.ui.preference.UIMultiSelectListPreference
+            android:entries="@array/wipe_options"
+            android:entryValues="@array/wipe_options_values"
+            android:key="show-options"
+            android:summary="@string/settings_showoptions_summary"
+            android:title="@string/settings_showoptions_title" />
+
+    </com.beerbong.zipinst.ui.preference.UIPreferenceCategory>
+
+    <com.beerbong.zipinst.ui.preference.UIPreferenceCategory android:title="@string/settings_security" >
+
+        <com.beerbong.zipinst.ui.preference.UICheckBoxPreference
+            android:key="checkexists"
+            android:summary="@string/settings_checkexists_summary"
+            android:title="@string/settings_checkexists_title" />
+
+        <com.beerbong.zipinst.ui.preference.UICheckBoxPreference
+            android:key="checkmd5"
+            android:summary="@string/settings_checkmd5_summary"
+            android:title="@string/settings_checkmd5_title" />
+
+        <com.beerbong.zipinst.ui.preference.UIListPreference
+            android:dialogTitle="@string/spaceleft_title"
+            android:entries="@array/spaceleft_options"
+            android:entryValues="@array/spaceleft_values"
+            android:key="spaceleft"
+            android:summary="@string/spaceleft_summary"
+            android:title="@string/spaceleft_title" />
+
+        <com.beerbong.zipinst.ui.preference.UICheckBoxPreference
+            android:key="wipesystemalert"
+            android:summary="@string/settings_wipesystem_alert_summary"
+            android:title="@string/settings_wipesystem_alert_title" />
+
+        <com.beerbong.zipinst.ui.preference.UIPreference
+            android:key="checkroot"
+            android:summary="@string/checkroot_summary"
+            android:title="@string/checkroot_title" />
+
+    </com.beerbong.zipinst.ui.preference.UIPreferenceCategory>
+
+    <com.beerbong.zipinst.ui.preference.UIPreferenceCategory android:title="@string/settings_interface" >
+
+        <com.beerbong.zipinst.ui.preference.UICheckBoxPreference
+            android:key="usefolder"
+            android:summary="@string/usefolder_summary"
+            android:title="@string/usefolder_title" />
+
+        <com.beerbong.zipinst.ui.preference.UIPreference
+            android:key="folder"
+            android:title="@string/folder_title" />
+
+        <!--com.beerbong.zipinst.ui.preference.UIPreference
+            android:key="rules"
+            android:title="@string/rules_title"
+            android:summary="@string/rules_summary" /-->
+
+        <com.beerbong.zipinst.ui.preference.UICheckBoxPreference
+            android:key="draganddrop"
+            android:summary="@string/dad_summary"
+            android:title="@string/dad_title" />
+
+        <com.beerbong.zipinst.ui.preference.UIListPreference
+            android:dialogTitle="@string/zipposition_title"
+            android:entries="@array/zip_position_options"
+            android:entryValues="@array/zip_position_values"
+            android:key="zipposition"
+            android:summary="@string/zipposition_summary"
+            android:title="@string/zipposition_title" />
+
+        <!--com.beerbong.zipinst.ui.preference.UICheckBoxPreference
+            android:key="overridelist"
+            android:summary="@string/overridelist_summary"
+            android:title="@string/overridelist_title" />
+
+        <com.beerbong.zipinst.ui.preference.UICheckBoxPreference
+            android:key="autoloadlist"
+            android:summary="@string/autoloadlist_summary"
+            android:title="@string/autoloadlist_title" /-->
+
+        <com.beerbong.zipinst.ui.preference.UICheckBoxPreference
+            android:key="darktheme"
+            android:summary="@string/settings_theme_summary"
+            android:title="@string/settings_theme_title" />
+
+    </com.beerbong.zipinst.ui.preference.UIPreferenceCategory>
+
+    <com.beerbong.zipinst.ui.preference.UIPreferenceCategory
+        android:key="settings_update"
+        android:title="@string/settings_update" >
+
+        <com.beerbong.zipinst.ui.preference.UIListPreference
+            android:dialogTitle="@string/checktime_title"
+            android:entries="@array/time_notifications_options"
+            android:entryValues="@array/time_notifications_values"
+            android:key="time_notifications"
+            android:summary="@string/checktime_title"
+            android:title="@string/checktime_title" />
+
+        <com.beerbong.zipinst.ui.preference.UIPreference
+            android:key="check_rom_updates"
+            android:title="@string/check_rom_updates" />
+
+        <com.beerbong.zipinst.ui.preference.UICheckBoxPreference
+            android:key="updateonstartup"
+            android:title="@string/check_for_updates_startup_title"
+            android:summary="@string/check_for_updates_startup_summary" />
+
+        <com.beerbong.zipinst.ui.preference.UIPreference
+            android:key="downloadpath"
+            android:title="@string/download_path" />
+
+    </com.beerbong.zipinst.ui.preference.UIPreferenceCategory>
+
+</PreferenceScreen>

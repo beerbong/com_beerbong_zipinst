@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Copyright 2013 ZipInstaller Project
+  Copyright 2014 ZipInstaller Project
 
   This file is part of ZipInstaller.
 
@@ -18,6 +18,9 @@
   along with ZipInstaller.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <transition xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item android:drawable="@drawable/list_selector_background_pressed"  />
+
     <item android:drawable="@drawable/list_selector_background_longpress"  />
+
 </transition>

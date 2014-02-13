@@ -1,6 +1,7 @@
 package com.mobeta.android.dslv;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.MeasureSpec;
@@ -25,6 +26,7 @@ import android.util.Log;
  */
 public class DragSortItemView extends ViewGroup {
 
+    private int mSelectableColor = Color.BLACK;
     private int mGravity = Gravity.TOP;
 
     public DragSortItemView(Context context) {
@@ -44,6 +46,10 @@ public class DragSortItemView extends ViewGroup {
 
     public int getGravity() {
         return mGravity;
+    }
+
+    public void setSelectableColor(int color) {
+        mSelectableColor = color;
     }
 
     @Override
@@ -95,6 +101,10 @@ public class DragSortItemView extends ViewGroup {
         }
 
         setMeasuredDimension(width, height);
+    }
+
+    public void setListSelected(boolean selected) {
+        super.setBackgroundColor(selected ? mSelectableColor : 0);
     }
 
 }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright 2014 ZipInstaller Project
+
+  This file is part of ZipInstaller.
+
+  ZipInstaller is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  ZipInstaller is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+ 
+  You should have received a copy of the GNU General Public License
+  along with ZipInstaller.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<LinearLayout android:id="@+id/recovery_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="10dp"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <RadioGroup
+        android:id="@+id/recovery_radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+    
+        <RadioButton android:text="@string/recovery_twrp"
+                android:id="@+id/twrp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"></RadioButton>
+
+        <RadioButton android:text="@string/recovery_cwm_based"
+                android:id="@+id/cwmbased"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"></RadioButton>
+
+        <RadioButton android:text="@string/recovery_cwm_official"
+                android:id="@+id/cwm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"></RadioButton>
+    
+        <RadioButton android:text="@string/recovery_4ext"
+                android:id="@+id/fourext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"></RadioButton>
+        
+    </RadioGroup>
+
+</LinearLayout>

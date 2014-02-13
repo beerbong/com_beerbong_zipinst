@@ -5,6 +5,7 @@
  * and drop re-ordering of list items.
  *
  * Copyright 2012 Carl Bauer
+ * Copyright modified parts ZipInstaller Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,6 +51,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.beerbong.zipinst.R;
+import com.beerbong.zipinst.ui.UIInterface;
 
 /**
  * ListView subclass that mediates drag and drop resorting of items.
@@ -59,8 +61,8 @@ import com.beerbong.zipinst.R;
  *
  */
 public class DragSortListView extends ListView {
-    
-    
+
+    private UIInterface mUiInterface;
     /**
      * The View that floats above the ListView and represents
      * the dragged item.
@@ -90,7 +92,7 @@ public class DragSortListView extends ListView {
     /**
      * Watch the Adapter for data changes. Cancel a drag if
      * coincident with a change.
-     */ 
+     */
     private DataSetObserver mObserver;
 
     /**
@@ -140,7 +142,6 @@ public class DragSortListView extends ListView {
      * picked it up (or first touched down with the digitalis).
      */
     private int mDragDeltaY;
-
 
     /**
      * The difference (in x) between screen coordinates and coordinates
@@ -270,6 +271,7 @@ public class DragSortListView extends ListView {
      * nears the top/bottom of the ListView.
      */
     private DragScrollProfile mScrollProfile = new DragScrollProfile() {
+
         @Override
         public float getSpeed(float w, long t) {
             return mMaxScrollSpeed * w;
@@ -368,7 +370,7 @@ public class DragSortListView extends ListView {
     /**
      * Where to cancel the ListView action when a
      * drag-sort begins
-     */ 
+     */
     private int mCancelMethod = NO_CANCEL;
 
     /**
@@ -440,6 +442,8 @@ public class DragSortListView extends ListView {
     private boolean mUseRemoveVelocity;
     private float mRemoveVelocityX = 0;
 
+    private int mFloatBGColor = Color.BLACK;
+
     public DragSortListView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
@@ -448,14 +452,13 @@ public class DragSortListView extends ListView {
         int dropAnimDuration = defaultDuration; // ms
 
         if (attrs != null) {
-            TypedArray a = getContext().obtainStyledAttributes(attrs,
-                    R.styleable.DragSortListView, 0, 0);
+            TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.DragSortListView,
+                    0, 0);
 
-            mItemHeightCollapsed = Math.max(1, a.getDimensionPixelSize(
-                    R.styleable.DragSortListView_collapsed_height, 1));
+            mItemHeightCollapsed = Math.max(1,
+                    a.getDimensionPixelSize(R.styleable.DragSortListView_collapsed_height, 1));
 
-            mTrackDragSort = a.getBoolean(
-                    R.styleable.DragSortListView_track_drag_sort, false);
+            mTrackDragSort = a.getBoolean(R.styleable.DragSortListView_track_drag_sort, false);
 
             if (mTrackDragSort) {
                 mDragSortTracker = new DragSortTracker();
@@ -467,67 +470,49 @@ public class DragSortListView extends ListView {
 
             mDragEnabled = a.getBoolean(R.styleable.DragSortListView_drag_enabled, mDragEnabled);
 
-            mSlideRegionFrac = Math.max(0.0f,
-                    Math.min(1.0f, 1.0f - a.getFloat(
-                            R.styleable.DragSortListView_slide_shuffle_speed,
-                            0.75f)));
+            mSlideRegionFrac = Math.max(0.0f, Math.min(1.0f,
+                    1.0f - a.getFloat(R.styleable.DragSortListView_slide_shuffle_speed, 0.75f)));
 
             mAnimate = mSlideRegionFrac > 0.0f;
 
-            float frac = a.getFloat(
-                    R.styleable.DragSortListView_drag_scroll_start,
+            float frac = a.getFloat(R.styleable.DragSortListView_drag_scroll_start,
                     mDragUpScrollStartFrac);
 
             setDragScrollStart(frac);
 
-            mMaxScrollSpeed = a.getFloat(
-                    R.styleable.DragSortListView_max_drag_scroll_speed,
+            mMaxScrollSpeed = a.getFloat(R.styleable.DragSortListView_max_drag_scroll_speed,
                     mMaxScrollSpeed);
 
-            removeAnimDuration = a.getInt(
-                    R.styleable.DragSortListView_remove_animation_duration,
+            removeAnimDuration = a.getInt(R.styleable.DragSortListView_remove_animation_duration,
                     removeAnimDuration);
 
-            dropAnimDuration = a.getInt(
-                    R.styleable.DragSortListView_drop_animation_duration,
+            dropAnimDuration = a.getInt(R.styleable.DragSortListView_drop_animation_duration,
                     dropAnimDuration);
 
-            boolean useDefault = a.getBoolean(
-                    R.styleable.DragSortListView_use_default_controller,
+            boolean useDefault = a.getBoolean(R.styleable.DragSortListView_use_default_controller,
                     true);
 
             if (useDefault) {
-                boolean removeEnabled = a.getBoolean(
-                        R.styleable.DragSortListView_remove_enabled,
+                boolean removeEnabled = a.getBoolean(R.styleable.DragSortListView_remove_enabled,
                         false);
-                int removeMode = a.getInt(
-                        R.styleable.DragSortListView_remove_mode,
+                int removeMode = a.getInt(R.styleable.DragSortListView_remove_mode,
                         DragSortController.FLING_REMOVE);
-                boolean sortEnabled = a.getBoolean(
-                        R.styleable.DragSortListView_sort_enabled,
-                        true);
-                int dragInitMode = a.getInt(
-                        R.styleable.DragSortListView_drag_start_mode,
+                boolean sortEnabled = a.getBoolean(R.styleable.DragSortListView_sort_enabled, true);
+                int dragInitMode = a.getInt(R.styleable.DragSortListView_drag_start_mode,
                         DragSortController.ON_DOWN);
-                int dragHandleId = a.getResourceId(
-                        R.styleable.DragSortListView_drag_handle_id,
-                        0);
-                int flingHandleId = a.getResourceId(
-                        R.styleable.DragSortListView_fling_handle_id,
-                        0);
-                int clickRemoveId = a.getResourceId(
-                        R.styleable.DragSortListView_click_remove_id,
-                        0);
-                int bgColor = a.getColor(
-                        R.styleable.DragSortListView_float_background_color,
+                int dragHandleId = a.getResourceId(R.styleable.DragSortListView_drag_handle_id, 0);
+                int flingHandleId = a
+                        .getResourceId(R.styleable.DragSortListView_fling_handle_id, 0);
+                int clickRemoveId = a
+                        .getResourceId(R.styleable.DragSortListView_click_remove_id, 0);
+                mFloatBGColor = a.getColor(R.styleable.DragSortListView_float_background_color,
                         Color.BLACK);
 
-                DragSortController controller = new DragSortController(
-                        this, dragHandleId, dragInitMode, removeMode,
-                        clickRemoveId, flingHandleId);
+                DragSortController controller = new DragSortController(this, dragHandleId,
+                        dragInitMode, removeMode, clickRemoveId, flingHandleId);
                 controller.setRemoveEnabled(removeEnabled);
                 controller.setSortEnabled(sortEnabled);
-                controller.setBackgroundColor(bgColor);
+                controller.setBackgroundColor(mFloatBGColor);
 
                 mFloatViewManager = controller;
                 setOnTouchListener(controller);
@@ -552,6 +537,7 @@ public class DragSortListView extends ListView {
 
         // construct the dataset observer
         mObserver = new DataSetObserver() {
+
             private void cancel() {
                 if (mDragState == DRAGGING) {
                     cancelDrag();
@@ -568,6 +554,10 @@ public class DragSortListView extends ListView {
                 cancel();
             }
         };
+    }
+
+    public void setUiInterface(UIInterface uiInterface) {
+        mUiInterface = uiInterface;
     }
 
     /**
@@ -641,13 +631,15 @@ public class DragSortListView extends ListView {
     }
 
     private class AdapterWrapper extends BaseAdapter {
+
         private ListAdapter mAdapter;
 
         public AdapterWrapper(ListAdapter adapter) {
             super();
             mAdapter = adapter;
-            
+
             mAdapter.registerDataSetObserver(new DataSetObserver() {
+
                 public void onChanged() {
                     notifyDataSetChanged();
                 }
@@ -686,7 +678,7 @@ public class DragSortListView extends ListView {
         public boolean isEnabled(int position) {
             return mAdapter.isEnabled(position);
         }
-        
+
         @Override
         public int getItemViewType(int position) {
             return mAdapter.getItemViewType(position);
@@ -696,17 +688,16 @@ public class DragSortListView extends ListView {
         public int getViewTypeCount() {
             return mAdapter.getViewTypeCount();
         }
-        
+
         @Override
         public boolean hasStableIds() {
             return mAdapter.hasStableIds();
         }
-        
+
         @Override
         public boolean isEmpty() {
             return mAdapter.isEmpty();
         }
-
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
@@ -735,8 +726,8 @@ public class DragSortListView extends ListView {
                 } else {
                     v = new DragSortItemView(getContext());
                 }
-                v.setLayoutParams(new AbsListView.LayoutParams(
-                        ViewGroup.LayoutParams.FILL_PARENT,
+                v.setSelectableColor(mFloatBGColor);
+                v.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT));
                 v.addView(child);
             }
@@ -1131,6 +1122,7 @@ public class DragSortListView extends ListView {
     }
 
     private class SmoothAnimator implements Runnable {
+
         protected long mStartTime;
 
         private float mDurationF;
@@ -1824,8 +1816,7 @@ public class DragSortListView extends ListView {
 
             // start scrolling up
             mDragScroller.startScrolling(DragScroller.UP);
-        }
-        else if (maxY >= mUpScrollStartY && minY <= mDownScrollStartY
+        } else if (maxY >= mUpScrollStartY && minY <= mDownScrollStartY
                 && mDragScroller.isScrolling()) {
             // not in the upper nor in the lower drag-scroll regions but it is
             // still scrolling
@@ -2098,7 +2089,8 @@ public class DragSortListView extends ListView {
     private void measureItem(View item) {
         ViewGroup.LayoutParams lp = item.getLayoutParams();
         if (lp == null) {
-            lp = new AbsListView.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            lp = new AbsListView.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
             item.setLayoutParams(lp);
         }
         int wspec = ViewGroup.getChildMeasureSpec(mWidthMeasureSpec, getListPaddingLeft()
@@ -2146,6 +2138,10 @@ public class DragSortListView extends ListView {
             }
             mFloatView.layout(0, 0, mFloatView.getMeasuredWidth(), mFloatView.getMeasuredHeight());
             mFloatViewOnMeasured = false;
+        }
+
+        if (mUiInterface != null) {
+            mUiInterface.redraw();
         }
     }
 
@@ -2425,6 +2421,7 @@ public class DragSortListView extends ListView {
      * implementation is used.
      */
     public interface FloatViewManager {
+
         /**
          * Return the floating View for item at <code>position</code>.
          * DragSortListView will measure and layout this View for you,
@@ -2527,6 +2524,7 @@ public class DragSortListView extends ListView {
     }
 
     public interface DragListener {
+
         public void drag(int from, int to);
     }
 
@@ -2540,6 +2538,7 @@ public class DragSortListView extends ListView {
      *
      */
     public interface DropListener {
+
         public void drop(int from, int to);
     }
 
@@ -2552,6 +2551,7 @@ public class DragSortListView extends ListView {
      *
      */
     public interface RemoveListener {
+
         public void remove(int which);
     }
 
@@ -2696,8 +2696,8 @@ public class DragSortListView extends ListView {
         }
     }
 
-    private static int buildRunList(SparseBooleanArray cip, int rangeStart,
-            int rangeEnd, int[] runStart, int[] runEnd) {
+    private static int buildRunList(SparseBooleanArray cip, int rangeStart, int rangeEnd,
+            int[] runStart, int[] runEnd) {
         int runCount = 0;
 
         int i = findFirstSetIndex(cip, rangeStart, rangeEnd);
@@ -2790,6 +2790,7 @@ public class DragSortListView extends ListView {
      *
      */
     public interface DragScrollProfile {
+
         /**
          * Return a scroll speed in pixels/millisecond. Always return a
          * positive number.
@@ -2952,6 +2953,7 @@ public class DragSortListView extends ListView {
     }
 
     private class DragSortTracker {
+
         StringBuilder mBuilder = new StringBuilder();
 
         File mFile;

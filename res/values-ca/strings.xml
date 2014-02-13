@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Copyright 2013 ZipInstaller Project
+  Copyright 2014 ZipInstaller Project
 
   This file is part of ZipInstaller.
 
@@ -18,248 +18,76 @@
   along with ZipInstaller.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
+
     <string name="app_name">ZipInstaller</string>
 
-    <string name="alert_reboot_title">"Seleccionar accions i instal·lar"</string>
-    <string name="alert_reboot_now">"Instal·lar ara"</string>
+    <!-- INTRO -->
+    <string name="version">v%1$s</string>
+    <string name="loading">Carregant&#8230;</string>
+    <string name="disclaimer_title">Descàrrega de responsabilitat</string>
+    <string name="disclaimer_text">"ZipInstaller proporciona una manera fàcil per instal·lar arxius al teu dispositiu.\nL'autor no se fa responsable pels danys que instal·lar aquests arxius pugui causar-li.\nContinua sota la teva responsabilitat.\n\nPulsa a qualsevol lloc per continuar."</string>
 
-    <string name="error_title">Error</string>
+    <!-- DRAWER -->
+    <string name="drawer_open">Obre el calaix de navegació</string>
+    <string name="drawer_close">Tanca el calaix de navegació</string>
 
-    <string name="error_no_rommanager_connection">"No hi ha connexió amb RomManager. Assegura't de tenir instal·lat RomManager Premium i que sigui 4.5.0.0+."</string>
-    <string name="error_no_rommanager_premium">"La teva instal·lació de RomManager no és premium."</string>
-    <string name="error_rommanager_unknown">Error desconegut connectant amb RomManager.</string>
+    <!-- MENU -->
+    <string name="menu_add_zip">Afegir zip</string>
+    <string name="menu_install">"Instal·lar"</string>
+    <string name="menu_apply_rules">Aplicar regles</string>
+    <string name="menu_install_recovery">Flash recovery</string>
+    <string name="menu_install_boot">Flash boot</string>
+    <string name="menu_add_rule">Afegir regla</string>
+    <string name="menu_backup">Backup</string>
+    <string name="menu_cloud">Núvol</string>
+    <string name="menu_refresh">Refrescar</string>
+    <string name="menu_restore">Restaurar</string>
+    <string name="menu_remove">Esborrar</string>
+    <string name="menu_sync_up">Sincronitza</string>
+    <string name="menu_sync_down">Sincronitza</string>
+    <string name="menu_login">Login</string>
+    <string name="menu_logout">Logout</string>
 
-    <string name="root_needed_title">Root necessari</string>
-    <string name="root_needed_summary">Impossible aconseguir accés root.</string>
-    <string name="root_needed_continue">Continuar de totes formes</string>
-    <string name="root_needed_close">Tancar l\'aplicació</string>
+    <!-- SUPERUSER PLUGIN -->
+    <string name="requesting_su">"Sol·licitant accés superusuari&#8230;"</string>
 
-    <string name="alert_wipe_system_title">System wipe</string>
-    <string name="alert_wipe_system_message">Estàs a punt de fer un system wipe. Estàs segur que ho vols fer?</string>
+    <!-- UI PLUGIN -->
+    <string name="initializing_ui">Inicialitzant ui&#8230;</string>
 
-    <string name="install_file_manager_error">"No s'ha trobat cap aplicació per seleccionar l'arxiu zip. Per favor, instal·la un administrador d'arxius."</string>
-    <string name="install_file_manager_intsdcard">"Selecciona un arxiu de la sd interna."</string>
-    <string name="install_file_manager_zip">"Per favor, selecciona un arxiu ZIP o SH."</string>
-    <string name="install_file_manager_invalid_zip">Arxiu ZIP/SH no vàlid.</string>
-    <string name="install_file_manager_not_found_zip">S\'ha esborrat un item no trobat.</string>
+    <!-- STORAGE PLUGIN -->
+    <string name="reading_storage_paths">Llegint rutes dels emmagatzematges&#8230;</string>
 
-    <string name="alert_sdcard_title">Alerta</string>
-    <string name="alert_sdcard_message">"Selecciona un zip de la sdcard interna."</string>
-
-    <string name="alert_backup_title">Backup</string>
-    <string name="alert_backup_message">"Especifica el nom del backup (els caràcters il·legals s'esborraran)."</string>
-    <string name="alert_backup_actions">Selecciona una acció.</string>
-
-    <string name="alert_delete_title">Esborrar</string>
-
-    <string name="alert_file_title">%1$s</string>
-    <string name="alert_file_summary">Ruta: %1$s\nTamany: %2$s\nModificat: %3$s</string>
-    <string name="alert_file_close">"Tancar"</string>
-    <string name="alert_file_md5">MD5</string>
-    <string name="alert_file_delete">Esborrar després de flashear</string>
-
-    <string name="to_be_deleted">(Serà esborrat)</string>
-
-    <string name="alert_md5_title">Comprovar MD5</string>
-    <string name="alert_md5_summary">Introdueix la suma MD5 per comparar o deixar en blanc per mostrar el MD5</string>
-    <string name="alert_md5_ok">Comprovar</string>
-    <string name="alert_md5_loading">Generant suma MD5&#8230;</string>
-    <string name="alert_md5_match">La suma MD5 especificada és correcta</string>
-    <string name="alert_md5_no_match">Les sumes MD5 no concorden:\nEspecificada: %1$s\nGenerada: %2$s</string>
-
-    <string name="alert_file_checking">Comprovant arxius&#8230;</string>
-    <string name="alert_file_alert">Alerta</string>
-    <string name="alert_file_exists_checking">Comprovant arxiu %1$s&#8230;</string>
-    <string name="alert_file_not_exists">Arxiu no trobat: %1$s</string>
-    <string name="alert_file_md5_checking">Comprovant MD5 per a l\'arxiu %1$s&#8230;</string>
-    <string name="alert_file_incorrect_md5_file">Arxiu MD5 incorrecte: %1$s</string>
-    <string name="alert_file_incorrect_md5">MD5 no coincideix per a l\'arxiu %1$s</string>
-
-    <string name="main_choose_zip">"Afegir arxiu"</string>
-
-    <string name="install_now">"Flashear ara"</string>
-
-    <string name="alert_changed_recovery_title">Canvi de recovery</string>
+    <!-- RECOVERY PLUGIN -->
+    <string name="recovery_cwm_official">CWM oficial</string>
+    <string name="recovery_cwm_based">CWM based</string>
+    <string name="recovery_twrp">TWRP</string>
+    <string name="recovery_4ext">4EXT</string>
+    <string name="reading_recovery_info">Llegint informació del recovery&#8230;</string>
+    <string name="alert_changed_recovery_title">Recovery canviat</string>
     <string name="alert_changed_recovery_message">Pareix que has canviat el teu recovery de %1$s a %2$s.\nVols que se configuri el teu nou recovery a ZipInstaller?</string>
     <string name="alert_changed_recovery_dont_show">No tornar a mostrar aquest diàleg</string>
-
-    <string name="menu_settings">Ajustaments</string>
-    <string name="menu_backup">Backup</string>
-    <string name="menu_restore">Restore</string>
-    <string name="menu_apply_rules">Aplicar regles</string>
-    <string name="menu_advanced_recovery">Recovery</string>
-    <string name="menu_sync_backups">Sync backups</string>
-    <string name="menu_loadlist">Carregar llista</string>
-    <string name="menu_savelist">Guardar llista</string>
-    <string name="menu_downloadzip">Descarregar zip</string>
-
-    <string name="recovery_change_alert_title">Recovery trobat</string>
-    <string name="recovery_change_alert_message">S\'ha trobat una carpeta del recovery %1$s. Vols que es configuri per defecte?</string>
-    <string name="recovery_changed">Recovery %1$s configurat.</string>
-    <string name="recovery_cwm">CWM-based</string>
-    <string name="recovery_cwm_official">CWM oficial</string>
-    <string name="recovery_4ext">4EXT</string>
-    <string name="recovery_twrp">TWRP</string>
-
-    <string name="recovery_title">Seleccionar recovery</string>
-    <string name="recovery_summary">"Selecciona el recovery instal·lat al teu dispositiu"</string>
     <string name="recovery_alert_title">Seleccionar recovery</string>
-    <string name="recovery_alert_summary">Especifica el recovery que utilitzes</string>
+    <string name="recovery_alert_summary">Especifica el recovery que estàs utilitzant</string>
+    <string name="recovery_changed">Recovery %1$s configurat.</string>
+    <string name="recovery_change_alert_title">Recovery trobat</string>
+    <string name="recovery_change_alert_message">%1$s recovery trobat. Vols que se configuri per defecte?</string>
 
-    <string name="internalsdcard_title">"Path al internal storage"</string>
-    <string name="internalsdcard_summary">Especifica la ruta al internal storage utilitzat pel recovery</string>
-    <string name="externalsdcard_title">"Path al external storage"</string>
-    <string name="externalsdcard_summary">Especifica la ruta al external storage utilitzat pel recovery</string>
-    <string name="sdcard_alert_title">"Path al storage"</string>
-    <string name="sdcard_alert_summary">"Especifica el nom del storage"</string>
-    <string name="sdcard_alert_error">"Per favor especifica el nom del storage"</string>
-
-    <string name="force_extsdcard_mount_title">Forçar muntatge sdcard externa</string>
-    <string name="force_extsdcard_mount_summary">Seleccionar aquesta opció si el teu CWM recovery no monta la sdcard externa per defecte</string>
-
-    <string name="force_datamedia_title">Utilitzar /data/media/</string>
-    <string name="force_datamedia_summary">Selecciona aquesta opció si el teu CWM recovery utilitza /data/media/clockworkmod/ per a guardar backups</string>
-
-    <string name="backup_external_title">Backup i restore a la sdcard externa</string>
-    <string name="backup_external_summary">Selecciona aquesta opció si vols fer els backup a la sdcard externa</string>
-
-    <string name="about_title">Quant a</string>
-    <string name="about_zip_title">ZipInstaller</string>
-    <string name="about_version_title">"Versió"</string>
-    <string name="about_version_unknown">"Versió desconeguda (error a l'administrador de paquets)"</string>
-
-    <string name="license_title">"Llicència"</string>
-    <string name="license_apache_title">"Llicència apache"</string>
-    <string name="license_error">"Error carregant l'arxiu de llicència"</string>
-
-    <string name="changelog_title">Canvis</string>
-    <string name="changelog_apache_title">Canvis a ZipInstaller</string>
-    <string name="changelog_error">"Error carregant l'arxiu de canvis"</string>
-
+    <!-- REBOOT PLUGIN -->
     <string name="backup">Backup</string>
     <string name="wipe_system">Wipe System</string>
     <string name="wipe_data">Wipe Data</string>
     <string name="wipe_caches">Wipe Cache &amp; Dalvik</string>
     <string name="fix_permissions">Fix permissions</string>
-
-    <string name="savelist_title">Guardar llista</string>
-    <string name="loadlist_title">Carregar llista</string>
-    <string name="list_saved">Llista guardada satisfactòriament</string>
-    <string name="list_loaded">Llista carregada satisfactòriament</string>
-
-    <string name="donate_title">Donar</string>
-
-    <string name="usefolder_title">"Botó d'instal·lar obre carpeta"</string>
-    <string name="usefolder_summary">Si està actiu, l\'aplicació obrirà el contingut d\'una carpeta en lloc d\'un explorador d\'arxius.</string>
-
-    <string name="folder_title">Carpeta per defecte</string>
-    <string name="folder_error">La carpeta no existeix o no és un directori</string>
-
-    <string name="pick_file">Seleccionar arxiu</string>
-    <string name="pick_folder">Seleccionar carpeta</string>
-
-    <string name="rules_title">Regles de carpeta</string>
-    <string name="rules_summary">Afegir arxius de la carpeta automàticamente siguint aquestes regles</string>
-    <string name="rule_starts_with">Comença per</string>
-    <string name="rule_ends_with">Acaba per</string>
-    <string name="rule_equals">Igual a</string>
-
-    <string name="alert_rules_title">Regles</string>
-    <string name="rules_text">Afegir els zips de la carpeta que:\n</string>
-    <string name="alert_rules_add">Afegir regla</string>
-    <string name="alert_rules_done">Fet</string>
-    <string name="alert_rules_delete">Esborrar totes</string>
-    <string name="alert_rules_delete_selected">Esborrar selecció</string>
-
-    <string name="folder_activity_title">Selecciona un arxiu</string>
-    <string name="alert_remove_file_title">Esborrar arxiu</string>
-    <string name="alert_remove_file_summary">Estàs segur que vols esborrar %1$s?</string>
-    <string name="alert_remove_file_done">Arxiu esborrat</string>
-    <string name="alert_remove_file_not_done">Arxiu no esborrat</string>
-
-    <string name="dad_title">Drag &amp; drop</string>
-    <string name="dad_summary">Utilitzar drag &amp; drop per a reordenar la llista</string>
-
-    <string name="overridelist_title">Carregar llista sobreescriu</string>
-    <string name="overridelist_summary">Carregar la llista guardada sobreescriurà la llista de zips seleccionats</string>
-
-    <string name="autoloadlist_title">Carregar llista en començar</string>
-    <string name="autoloadlist_summary">Carregar llista guardada automàticament en començar aplicació</string>
-
-    <string name="settings_showoptions_title">Opcions</string>
-    <string name="settings_showoptions_summary">"Tria les opcions a mostrar en presionar el botó Instal·lar ara"</string>
-
-    <string name="settings_title">Ajustaments</string>
-    <string name="settings_recovery">Recovery</string>
-    <string name="settings_security">Seguretat</string>
-    <string name="settings_interface">Interfície</string>
-    <string name="settings_update">Actualitzacions</string>
-    <string name="settings_misc">Misc</string>
-
-    <string name="settings_theme_title">Utilitzar tema obscur</string>
-    <string name="settings_theme_summary">Utilitzar tema obscur en lloc de Holo</string>
-
-    <string name="settings_checkexists_title">Comprovar arxius zip</string>
-    <string name="settings_checkexists_summary">"Comprovar que els arxius zips existeixen abans d'instal·lar"</string>
-
-    <string name="settings_checkmd5_title">Comprovar MD5</string>
-    <string name="settings_checkmd5_summary">"Comprovar MD5 si se troba un arxiu md5sum abans d'instal·lar"</string>
-
-    <string name="check_for_updates">Comprovar actualitzacions</string>
-    <string name="check_for_updates_startup">Comprovar en iniciar</string>
-    <string name="check_for_updates_error">Error comprovant actualitzacions</string>
-    <string name="no_new_version">No s\'ha trobat cap actualització</string>
-    <string name="new_version_title">Nova actualització</string>
-    <string name="new_version_summary">"%1$s trobat. Vols baixar-la i instal·lar-la ara?"</string>
-    <string name="new_version_download">"Baixar i instal·lar"</string>
-    <string name="download_path">Ruta descàrregues</string>
-    <string name="downloading">Baixant %1$s a %2$s</string>
-    <string name="downloading_error">Error baixant arxiu</string>
-    <string name="downloading_interrupted">Baixada interrompuda</string>
-    <string name="downloading_nospace">Error baixant arxiu: no hi ha espai</string>
-
-    <string name="downloadzip_alert_title">Descarregar zip</string>
-    <string name="downloadzip_alert_summary">Especifica la url del zip</string>
-    <string name="downloadzip_alert_error">Per favor especifica la url del zip</string>
-
-    <string name="recovery_activity_title">Recovery</string>
-    <string name="recovery_activity_backup_title">Backup</string>
-    <string name="recovery_activity_backup_summary">Fes un backup de la teva rom</string>
-    <string name="recovery_activity_restore_title">Restore</string>
-    <string name="recovery_activity_restore_summary">Restaura un backup anterior</string>
-    <string name="recovery_activity_delete_title">Esborrar</string>
-    <string name="recovery_activity_delete_summary">Esborra un backup anterior</string>
-    <string name="recovery_activity_reboot_title">Reiniciar al recovery</string>
-    <string name="recovery_activity_actions">Accions del recovery</string>
-    <string name="recovery_activity_actions_summary">Wipe data, caches i/o fix permissions</string>
-
-    <string name="alert_deleting_folder">Esborrant %1$s&#8230;</string>
-
-    <string name="consider_becoming_a_pro">Per favor, considera comprar l\'aplicació</string>
-    <string name="become_a_pro">Compra l\'aplicació</string>
-
-    <string name="zipposition_title">Posició dels zip</string>
-    <string name="zipposition_summary">Posició on afegir els nous zips afegits a la llista</string>
-    <string name="zip_position_first">Primer</string>
-    <string name="zip_position_last">Darrer</string>
-
-    <string name="spaceleft_title">Comprovar espai abans de backup</string>
-    <string name="spaceleft_summary">Mostrar alerta quan se fa un backup i hi ha menos espai que...</string>
-    <string name="spaceleft_dontcheck">No comprovar</string>
-
-    <string name="alert_backup_space_title">Espai disponible</string>
-    <string name="alert_backup_space_message">Hi ha menos de %1$sGB disponible a la sdcard interna. Vols continuar amb el backup?</string>
-
-    <string name="settings_wipesystem_alert_title">Alerta wipe system</string>
-    <string name="settings_wipesystem_alert_summary">Mostrar un diàleg de confirmació quan s\'intenta fer un system wipe</string>
-    <string name="restart_needed">Es necessita reiniciar</string>
-    <string name="restart_needed_theme_message">Es necessita reiniciar per aplicar els canvis al tema. Vols reiniciar l\'aplicació ara?</string>
-
-    <string name="checkroot_title">Verificar root</string>
-    <string name="checkroot_summary">Verificar si l\'accés root està ben configurat al teu dispositiu</string>
-    <string name="checkroot_yes">Accés root concedit amb èxit</string>
-    <string name="checkroot_no">No s\'ha pogut concedir l\'accés root</string>
-
+    <string name="alert_restore_title">Restaurar</string>
+    <string name="alert_restore_message">Restaurar backup?\n%1$s</string>
+    <string name="alert_backup_space_title">Espai sobrant</string>
+    <string name="alert_backup_space_message">Hi queda menys de %1$sGB a la sdcard interna. Vols continuar amb el backup?</string>
+    <string name="alert_backup_title">Backup</string>
+    <string name="alert_backup_message">Reiniciar al recovery i fer backup</string>
+    <string name="alert_backup_message_onandroid">Començar backup onandroid</string>
+    <string name="alert_backup_name">Especifica un nom per al backup</string>
+    <string name="alert_backup_message2">"Els caràters il·legals s'esborraran"</string>
+    <string name="alert_backup_actions">Selecciona una acció.</string>
     <string name="system">System</string>
     <string name="data">Data</string>
     <string name="cache">Cache</string>
@@ -267,108 +95,261 @@
     <string name="boot">Boot</string>
     <string name="androidsecure">Android secure</string>
     <string name="sdext">SD-Ext</string>
+    <string name="alert_reboot_title">"Selecciona les accions i instal·la"</string>
+    <string name="alert_reboot_now">"Instal·lar ara"</string>
+    <string name="alert_wipe_system_title">System wipe</string>
+    <string name="alert_wipe_system_message">Estàs a punt de fer un system wipe. Estàs segur que ho vols fer?</string>
+    <string name="alert_file_exists_checking">Comprovant arxiu %1$s&#8230;</string>
+    <string name="alert_file_not_exists">Arxiu no trobat: %1$s</string>
+    <string name="alert_file_md5_checking">Comprovant MD5 per a l\'arxiu %1$s&#8230;</string>
+    <string name="alert_file_incorrect_md5_file">Arxiu MD5 malformat: %1$s</string>
+    <string name="alert_file_incorrect_md5">MD5 no concorda per a l\'arxiu %1$s</string>
+    <string name="alert_file_alert">Alerta</string>
+    <string name="alert_file_checking">Comprovant arxius&#8230;</string>
+    <string name="use_onandroid">Utilitzar ONandroid</string>
 
-    <string name="cloud_service">Servei al núvol</string>
-    <string name="dropbox_title">Dropbox</string>
-    <string name="drive_title">Drive</string>
+    <!-- LICENSE PLUGIN -->
+    <string name="checking_license">Comprovant llicència&#8230;</string>
+    <string name="not_licensed_title">No autoritzat</string>
+    <string name="not_licensed_text">No has comprat l\'aplicació. Per favor, vés a la Play Store i cómprala.</string>
+    <string name="not_licensed_retry_title">Error de llicència</string>
+    <string name="not_licensed_retry_text">No s\'ha pogut comprovar la llicència al Play Store. Per favor, intenta-ho més tard.</string>
+    <string name="not_licensed_exit">Tancar aplicació</string>
+    <string name="consider_becoming_a_pro">Per favor, considera comprar l\'aplicació</string>
 
-    <string name="alert_backup_synchronize_title">Backup local</string>
-    <string name="alert_backup_synchronize_message">Selecciona una acció.\n%1$s</string>
-    <string name="alert_backup_synchronize">Comprimeix i puja</string>
-    <string name="alert_backup_delete">Esborrar</string>
-    <string name="backups_in_storage_title">Backups al storage</string>
-    <string name="backups_in_cloud_title">Backups al núvol</string>
-    <string name="backups_reading">Llegint arxius remots...</string>
-    <string name="backup_zipping">Comprimint backup...</string>
-    <string name="backup_unzipping">Descomprimint backup...</string>
-    <string name="backup_uploading">Pujant backup...</string>
-    <string name="backup_downloading">Descarregant backup...</string>
-    <string name="backup_error_uploading">Error pujant backup</string>
-    <string name="backup_error_downloading">Error descarregant backup</string>
-    <string name="alert_backup_remote_title">Backup remot</string>
-    <string name="alert_backup_remote_message">Selecciona una acció.\n%1$s</string>
-    <string name="alert_backup_download">Descarrega i restaura</string>
-    <string name="error_deleting_remote_file">Error esborrant arxiu remot</string>
-    <string name="alert_restore_title">Restaurar</string>
-    <string name="alert_restore_message">Restaurar backup?\n%1$s</string>
+    <!-- UPDATE PLUGIN -->
+    <string name="check_for_updates_error">Error comprovant actualitzacions</string>
+    <string name="no_new_version">No s\'han trobat actualitzacions</string>
+    <string name="new_version_title">Actualització trobada</string>
+    <string name="new_version_summary">"%1$s trobat. Vols descarregar-la i instal·lar-la ara?"</string>
+    <string name="new_version_download">"Descarregar i instal·lar"</string>
+    <string name="check_rom_updates_no_new">No s\'han trobat actualitzacions de la ROM</string>
+    <string name="check_rom_updates_error">Error comprovant actualitzacions de la ROM</string>
+    <string name="new_rom_found_title">Actualització de la ROM trobada</string>
+    <string name="new_rom_found_summary">S\'ha trobat una nova versió de la teva ROM. Vols descarregar-la ara?\n\n%1$s\n</string>
+    <string name="new_rom_name">%1$s</string>
 
-    <string name="error_zipping">Error comprimint backup</string>
-    <string name="error_unzipping">Error descomprimint backup</string>
+    <!-- INSTALL FRAGMENT -->
+    <string name="install_title">"Instal·lar"</string>
+    <string name="flashboot_installed">"Boot image instal·lada"</string>
+    <string name="flashboot_confirm_title">"Instal·lar boot image?"</string>
+    <string name="flashboot_confirm_message">"Instal·lar boot image %1$s"</string>
+    <string name="flashrecovery_installed">"Recovery instal·lat"</string>
+    <string name="flashrecovery_confirm_title">"Instal·lar recovery?"</string>
+    <string name="flashrecovery_confirm_message">"Instal·lar recovery %1$s"</string>
+    <string name="install_fragment_help">"Pulsa el botó + d\'adalt per afegir zips per instal·lar."</string>
 
-    <!-- PRO -->
-    <string name="enable_notifications">Habilitar notifications</string>
-    <string name="time_notifications_title">Temps notificacions</string>
-    <string name="time_notifications_summary">Temps d\'espera per buscar actualitzacions de la ROM</string>
-    <string name="time_notifications_never">No buscar</string>
+    <!-- BACKUP/RESTORE FRAGMENT -->
+    <string name="backuprestore_title">Backup i Restauració</string>
+    <string name="backups_in_storage">Backups a l\'emmagatzematge</string>
+    <string name="backups_folder_empty">No s\'han trobat backups a %1$s</string>
+    <string name="delete_backup_confirm">Estàs segur que vols esborrar el backup %1$s?</string>
+    <string name="backups_in_cloud">Backups a %1$s</string>
+    <string name="backups_cloud_empty">No s\'han trobat backups a %1$s</string>
+
+    <!-- RECOVERY FRAGMENT -->
+    <string name="recovery_fragment_title">Recovery</string>
+    <string name="recovery_fragment_backup_title">Backup</string>
+    <string name="recovery_fragment_backup_summary">Backup de la teva ROM</string>
+    <string name="recovery_fragment_restore_title">Restaurar</string>
+    <string name="recovery_fragment_restore_summary">Restaurar un backup previ</string>
+    <string name="recovery_fragment_delete_title">Esborrar</string>
+    <string name="recovery_fragment_delete_summary">Esborrar un backup previ</string>
+    <string name="recovery_fragment_wipe_data">Wipe data</string>
+    <string name="recovery_fragment_wipe_data_summary">Reinicia al recovery i fes un wipe data</string>
+    <string name="recovery_fragment_wipe_caches">Wipe cache i dalvik</string>
+    <string name="recovery_fragment_wipe_caches_summary">Reinicia al recovery i fes un wipe cache i un dalvik cache</string>
+    <string name="recovery_fragment_fix_permissions">Fix permissions</string>
+    <string name="recovery_fragment_fix_permissions_summary">Reinicia al recovery i fes un fix permissions</string>
+    <string name="recovery_fragment_reboot_title">Reinicia al recovery</string>
+    <string name="recovery_fragment_reboot_question">Reiniciar al recovery?</string>
+    <string name="recovery_fragment_reboot">Reiniciar al recovery i fer %1$s?</string>
+    <string name="alert_delete_title">Esborrar backup</string>
+    <string name="alert_deleting_folder">Esborrant %1$s&#8230;</string>
+
+    <!-- RULES FRAGMENT -->
+    <string name="rules_title">Regles</string>
+    <string name="rules_fragment_help">Pulsa el botó + d\'adalt per crear regles.</string>
+    <string name="alert_rules_title">Afegir regla</string>
+    <string name="alert_rules_text">Afegeix els zips de la carpeta per defecte que:</string>
+    <string name="alert_rules_add">Afegir</string>
+    <string name="rule_starts_with">Comença per</string>
+    <string name="rule_ends_with">Acaba per</string>
+    <string name="rule_equals">Igual a</string>
+
+    <!-- GOO FRAGMENT -->
+    <string name="goo_title">Navegar goo</string>
+    <string name="navigating_folder">Navegant a la carpeta %1$s</string>
+    <string name="only_compatible">Només ROMs compatibles</string>
+    <string name="goo_browse_error">Error navegant pels arxius</string>
+    <string name="goo_browse_searching">Buscant&#8230;</string>
+    <string name="goo_download_title">Descarregar</string>
+    <string name="goo_download_summary">Vols descarregar aquest arxiu ara?\n\n%1$s\n</string>
+    <string name="up_a_level">Puja un nivell</string>
+    <string name="username">Usuari</string>
+    <string name="password">Contrasenya</string>
+    <string name="logged_in">Has iniciat sessió</string>
+    <string name="logged_invalid">Usuari/contrasenya incorrecta</string>
+    <string name="logged_down">No s\'ha pogut arribar al servidor</string>
+    <string name="logged_out">Has tancat la sessió</string>
+    <string name="logged_error">Error desconegut iniciant sessió</string>
+    <string name="goo_login">Iniciar sessió a goo</string>
+    <string name="goo_loging">Iniciant sessió a goo&#8230;</string>
+
+    <!-- SETTINGS FRAGMENT -->
+    <string name="settings_title">Ajustaments</string>
+    <string name="settings_recovery">Recovery</string>
+    <string name="recovery_title">Seleccionar recovery</string>
+    <string name="recovery_summary">"Selecciona el recovery instal·lat al teu dispositiu"</string>
+    <string name="internalsdcard_title">Ruta a l\'emmagatzematge intern</string>
+    <string name="internalsdcard_summary">Especifica la ruta a l\'emmagatzematge intern utilitzada pel recovery</string>
+    <string name="externalsdcard_title">Ruta a l\'emmagatzematge extern</string>
+    <string name="externalsdcard_summary">Especifica la ruta a l\'emmagatzematge extern utilitzada pel recovery</string>
+    <string name="force_datamedia_title">Utilitzar /data/media/</string>
+    <string name="force_datamedia_summary">Selecciona aquesta opció si el teu CWM recovery utilitza /data/media/ per guardar backups</string>
+    <string name="force_extsdcard_mount_title">Forçar el muntatge de l\'emmagatzematge extern</string>
+    <string name="force_extsdcard_mount_summary">Selecciona aquesta opció si el teu CWM recovery no munta l\'emmagatzematge extern per defecte</string>
+    <string name="backup_external_title">Backup i restauració a l\'emmagatzematge extern</string>
+    <string name="backup_external_summary">Selecciona aquesta opció si vols que els backups es facin a l\'emmagatzematge extern</string>
+    <string name="settings_showoptions_title">Opcions</string>
+    <string name="settings_showoptions_summary">"Selecciona les opcions per mostrar abans d'instal·lar zips"</string>
+    <string name="settings_security">Seguretat</string>
+    <string name="settings_checkexists_title">Comprova els arxius zip</string>
+    <string name="settings_checkexists_summary">"Comprovar que els arxius zip existesquin abans d'instal·lar"</string>
+    <string name="settings_checkmd5_title">Comprovar MD5</string>
+    <string name="settings_checkmd5_summary">"Comprovar MD5 si existeix un arxiu md5sum abans d'instal·lar"</string>
+    <string name="spaceleft_title">Comprovar l\'espai abans de fer un backup</string>
+    <string name="spaceleft_summary">Mostrar una alerta quan se fa un backup i hi ha menys espai que&#8230;</string>
+    <string name="spaceleft_dontcheck">No comprovar</string>
+    <string name="settings_wipesystem_alert_title">Alerta a wipe system</string>
+    <string name="settings_wipesystem_alert_summary">Mostrar una confirmació si s\'ha de fer un system wipe</string>
+    <string name="checkroot_title">Comprovar accés root</string>
+    <string name="checkroot_summary">Comprova si l\'accés root està ben configurat al teu dispositiu</string>
+    <string name="settings_interface">Interfície</string>
+    <string name="usefolder_title">"El botó d'instal·lar obre una carpeta"</string>
+    <string name="usefolder_summary">Si està seleccionat, l\'aplicació obrirà el contingut d\'una carpeta en lloc d\'un administrador d\'arxius.</string>
+    <string name="folder_title">Carpeta per defecte</string>
+    <string name="dad_title">Drag &amp; drop</string>
+    <string name="dad_summary">Utilitzar drag &amp; drop per reordenar la llista</string>
+    <string name="zipposition_title">Posició dels zip</string>
+    <string name="zipposition_summary">Posició per afegir els zips a la llista</string>
+    <string name="zip_position_first">Primer</string>
+    <string name="zip_position_last">Últim</string>
+    <string name="settings_theme_title">Utilitzar tema obscur</string>
+    <string name="settings_theme_summary">Utilitzar tema obscur en lloc de holo light</string>
+    <string name="settings_update">Actualitzacions</string>
+    <string name="download_path">Ruta descàrregues</string>
+    <string name="sdcard_alert_title">Ruta emmagatzematge</string>
+    <string name="sdcard_alert_summary">Especifica la ruta a l\'emmagatzematge</string>
+    <string name="sdcard_alert_error">Per favor, especifica la ruta a l\'emmagatzematge</string>
+    <string name="restart_needed">Es necessita reiniciar</string>
+    <string name="restart_needed_theme_message">És necessari reiniciar per aplicar els canvis al tema. Vols reiniciar l\'aplicació ara?</string>
+    <string name="checkroot_yes">Accés root concedit amb èxit</string>
+    <string name="checkroot_no">Impossible concedir accés root</string>
+    <string name="check_for_updates_startup_title">Comprovar al començament</string>
+    <string name="check_for_updates_startup_summary">Comprovar actualitzacions de ZipInstaller quan s\'inicia l\'aplicació</string>
+    <string name="checktime_title">Freqüència de comprovació d\'actualitzacions</string>
+    <string name="checktime_summary">Especifica el temps entre cada comprovació d\'actualitzacions de la ROM</string>
+    <string name="time_notifications_never">No comprovar</string>
     <string name="time_notifications_half_an_hour">Mitja hora</string>
     <string name="time_notifications_an_hour">Una hora</string>
     <string name="time_notifications_two_hours">Dues hores</string>
     <string name="time_notifications_five_hours">Cinc hores</string>
     <string name="time_notifications_twentyfour_hours">Vint-i-quatre hores</string>
-    <string name="check_rom_updates">Cercar actualitzacions de la ROM</string>
-    <string name="check_rom_updates_error">Error cercant actualitzacions de la ROM</string>
-    <string name="check_rom_updates_no_new">No s\'ha trobat cap nova actualització de la ROM</string>
-    <string name="use_onandroid_title">Utilitzar ONandroid</string>
-    <string name="use_onandroid_summary">Fes un backup de la teva rom sense reiniciar al recovery</string>
-    <string name="configure_onandroid_title">Configurar ONandroid</string>
-    <string name="configure_onandroid_ok_summary">Comprova soport ONandroid (pareix configurat)</string>
-    <string name="configure_onandroid_nok_summary">Comprova soport ONandroid (no pareix configurat)</string>
+    <string name="check_rom_updates">Comprovar actualitzacions de la ROM</string>
 
-    <string name="new_rom_found_title">Nova versió de la ROM</string>
-    <string name="new_rom_found_summary">S\'ha trobat una nova versió de la teva ROM. Vols descarregar-la ara?\n\n%1$s\n%2$s\n</string>
-    <string name="new_rom_name">%1$s</string>
+    <!-- ABOUT FRAGMENT -->
+    <string name="about_title">Quant a</string>
+    <string name="about_zip_title">ZipInstaller</string>
+    <string name="about_version_title">Versió</string>
+    <string name="license_title">Llicència</string>
+    <string name="license_apache_title">Llicència GPL v3</string>
+    <string name="license_error">Error carregant l\'arxiu de llicència</string>
+    <string name="changelog_title">Canvis</string>
+    <string name="changelog_apache_title">Canvis a ZipInstaller</string>
+    <string name="changelog_error">Error carregant l\'arxiu de canvis</string>
+    <string name="checkforupdates_title">Comprovar actualitzacions</string>
+    <string name="donate_title">Donar</string>
+    <string name="become_a_pro">Comprar l\'aplicació</string>
 
-    <string name="menu_gooim">Goo.im</string>
-    <string name="goo_browse_all_compatible">Navegar per ROMs compatibles</string>
-    <string name="goo_browse_all">Navegar per tots els arxius</string>
-    <string name="goo_browse_error">Error navegant pels arxius</string>
-    <string name="goo_browse_searching">Buscant&#8230;</string>
-    <string name="goo_category_title">Navegant %1$s</string>
-    <string name="goo_download_title">Descarregar</string>
-    <string name="goo_download_summary">Vols descarregar aquest arxiu ara?\n\n%1$s\n%2$s\n</string>
-    <string name="goo_login">Iniciar sessió a goo.im</string>
-    <string name="goo_logout">Tancar sessió a goo.im</string>
-    <string name="username">Usuari</string>
-    <string name="password">Contrasenya</string>
-    <string name="logged_in">Ara estàs connectat</string>
-    <string name="logged_invalid">Usuari/contrasenya no vàlids</string>
-    <string name="logged_down">No s\'ha pogut arribar al servidor</string>
-    <string name="logged_out">T\'has desconnectat</string>
-    <string name="logged_error">Error desconegut connectant</string>
+    <!-- DOWNLOADS -->
+    <string name="download">Descàrrega</string>
+    <string name="downloading">Descarregant %1$s a %2$s</string>
+    <string name="downloading_error">Error descarregant arxiu</string>
+    <string name="downloading_interrupted">Descàrrega interrompuda</string>
+    <string name="downloading_nospace">Error descarregant arxiu: no hi ha espai sifucient</string>
 
-    <string name="checktime_title">Freqüència cercar updates</string>
-    <string name="checktime_summary">Especifica el temps entre cada cerca de noves versions</string>
-
-    <string name="nandroid_configure">Configurar</string>
-    <string name="nandroid_upload">Comprimir i pujar en acabar</string>
-    <string name="nandroid_start">Començar</string>
-    <string name="nandroid_configured">ONandroid script gràcies a Ameer Dawood.\n\nEl teu dispositiu pareix ben configurat per utilitzar ONandroid.</string>
-    <string name="nandroid_not_configured">ONandroid script gràcies a Ameer Dawood.\n\nEl teu dispositiu no pareix cofigurat correctament per utilitzar ONandroid. Per favor, comprovau a \'Ajustaments\' - \'Configurar ONandroid\'.</string>
-
-    <string name="onandroid_text">Selecciona el teu dispositiu de la llista i clicka \'Configurar\', se descarregarà un arxiu i s\'instal\·larà per recovery.</string>
-    <string name="onandroid_text2">Si el teu dispositiu no apareix adalt però està a la llista d\'abaix, no necesites cap altre configuració, ignora els missatges de \"no està configurat\".</string>
-
-    <string name="not_licensed_title">No autoritzat</string>
-    <string name="not_licensed_text">No has comprat l\'aplicació. Per favor, ves a la Play Store i compra-la.</string>
-    <string name="not_licensed_retry_title">Error de llicència</string>
-    <string name="not_licensed_retry_text">No s\'ha pogut comprovar la teva llicència al Play Store. Per favor, intenta-ho més tard.</string>
-    <string name="not_licensed_exit">Tancar app</string>
-
-    <string name="menu_flashrecovery">Flash recovery</string>
-    <string name="flashrecovery_not_supported">No s\'ha pogut trobar la instrucció per flashear el recovery al teu dispositiu</string>
-    <string name="flashrecovery_installed">"Recovery instal·lat"</string>
-    <string name="flashrecovery_confirm_title">"Instal·lar recovery?"</string>
-    <string name="flashrecovery_confirm_message">"Instal·lar recovery %1$s"</string>
-
-    <string name="menu_flashboot">Flash boot.img</string>
-    <string name="flashboot_not_supported">No s\'ha pogut trobar el teu boot mount point</string>
-    <string name="flashboot_installed">"Boot image instal·lat"</string>
-    <string name="flashboot_confirm_title">"Instal·lar boot image?"</string>
-    <string name="flashboot_confirm_message">"Instal·lar boot image %1$s"</string>
-
-    <string name="picker_recovery_title">Flashear recovery</string>
-    <string name="picker_recovery_zip">Triar arxiu</string>
-    <string name="picker_recovery_twrp">Descarregar TWRP</string>
+    <!-- PICKER RECOVERY -->
+    <string name="picker_recovery_title">Flash recovery</string>
+    <string name="picker_recovery_zip">Seleccionar arxiu</string>
+    <string name="picker_recovery_twrp">Descarrega TWRP</string>
     <string name="picker_recovery_error_twrp">Error descarregant TWRP</string>
-    <string name="picker_recovery_no_recovery_found">"No s'ha trobat cap recovery per al teu dispositiu"</string>
+    <string name="picker_recovery_no_recovery_found">No s\'ha trobat cap recovery per al teu dispositiu</string>
+
+    <!-- ONANDROID -->
+    <string name="onandroid_wizard_title">Configurar ONandroid</string>
+    <string name="onandroid_wizard_finish">Configurar</string>
+    <string name="onandroid_wizard_1">Aquest assistent t\'ajudarà a configurar el teu dispositiu per a utilitzar backups ONandroid.\n\nSi continues, l\'aplicació descarregarà els arxius necessaris.</string>
+    <string name="onandroid_wizard_2_checking">Comprovant versió del script&#8230;</string>
+    <string name="onandroid_wizard_2_updating">Actualitzant script&#8230;</string>
+    <string name="onandroid_wizard_2_continue">El script ONandroid està actualitzat a la seva darrera versió.\n\nContinua per descarregar les definicions de dispositius.</string>
+    <string name="onandroid_wizard_3_downloading_1">Descarregant format de particions&#8230;</string>
+    <string name="onandroid_wizard_3_downloading_2">Descarregant dispositius mtd&#8230;</string>
+    <string name="onandroid_wizard_3_reading">Llegint definició de dispositius&#8230;</string>
+    <string name="onandroid_wizard_3_continue">Continua per comprovar si el teu dispositiu està soportat.</string>
+    <string name="onandroid_wizard_4_text_1">"Selecciona el teu dispositiu de la següent llista i clicka a 'Configurar'. Es descarregarà l'arxiu de configuració i s'instal·larà al recovery."</string>
+    <string name="onandroid_wizard_4_text_2">"Si el teu dispositiu no està llistat adalt però apareix a la següent llista, simplement cancel·la l'assistent. Si el teu dispositiu no està a cap de les dues llistes, no està soportat."</string>
+    <string name="onandroid_dialog_title">Backup</string>
+    <string name="onandroid_dialog_button">Tancar</string>
+
+    <!-- DIALOG -->
+    <string name="wizard_continue">Continuar</string>
+    <string name="wizard_finish">Acabar</string>
+
+    <!-- ERRORS -->
+    <string name="error_title">Error</string>
+    <string name="alert_title">Alerta</string>
+    <string name="error_no_rommanager_connection">"No hi ha connexió amb RomManager. Assegura't que tens RomManager Premium instal·lat i que és 4.5.0.0+."</string>
+    <string name="error_no_rommanager_premium">"La teva instal·lació de RomManager no és premium."</string>
+    <string name="error_rommanager_unknown">Error desconegut connectant amb RomManager.</string>
+    <string name="error_file_manager">"No s'ha trobat cap aplicació per seleccionar un zip. Per favor, instal·la un administrador d'arxius."</string>
+    <string name="error_file_manager_zip">Per favor, selecciona un arxiu zip.</string>
+    <string name="error_file_manager_invalid_zip">Arxiu zip no vàlid.</string>
+    <string name="error_file_manager_not_found_zip">Item no trobat esborrat de la llista.</string>
+    <string name="error_folder">La carpeta no existeix o no és un directori.</string>
+    <string name="alert_no_superuser">No s\'ha pogut tenir accés a superusuari. Poden passar coses estranyes.</string>
+    <string name="error_zipping">Error comprimint backup</string>
+    <string name="error_unzipping">Error descomprimint backup</string>
+
+    <!-- CLOUD -->
+    <string name="cloud_service">Emmagatzematge al núvol</string>
+    <string name="storage_none">Cap</string>
+    <string name="dropbox">Dropbox</string>
+    <string name="drive">Drive</string>
+    <string name="cloud_backup_uploading">Publicant backup&#8230;</string>
+    <string name="cloud_backup_error_uploading">Error publicant backup</string>
+    <string name="cloud_backup_zipping">Comprimint backup&#8230;</string>
+    <string name="cloud_backup_downloading">Descarregant backup&#8230;</string>
+    <string name="cloud_backup_error_downloading">Error descarregant backup</string>
+    <string name="cloud_backup_unzipping">Descomprimint backup&#8230;</string>
+    <string name="cloud_error_deleting_remote_file">Error esborrant arxiu remot</string>
+
+    <!-- FOLDER PICKER -->
+    <string name="pick_file">Seleccionar arxiu</string>
+    <string name="pick_folder">Seleccionar carpeta</string>
+
+    <!-- FILE INFO -->
+    <string name="alert_file_title">%1$s</string>
+    <string name="alert_file_summary">Ruta: %1$s\nTamany: %2$s\nModificat: %3$s</string>
+    <string name="alert_file_close">Tancar</string>
+    <string name="alert_file_md5">MD5</string>
+    <string name="alert_file_delete">"Esborrar després d'instal·lar"</string>
+    <string name="to_be_deleted">(Serà esborrat)</string>
+    <string name="alert_md5_title">Comprovar MD5</string>
+    <string name="alert_md5_summary">Introdueix la suma MD5 per comparar o deixau en blanc per mostrar el MD5</string>
+    <string name="alert_md5_ok">Comprovar</string>
+    <string name="alert_md5_loading">Generant suma MD5&#8230;</string>
+    <string name="alert_md5_match">La suma MD5 especificada és correcta</string>
+    <string name="alert_md5_no_match">La suma MD5 no concorda:\nEspecificada: %1$s\nGenerada: %2$s</string>
+
 </resources>

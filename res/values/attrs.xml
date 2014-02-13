@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Copyright 2013 ZipInstaller Project
+  Copyright 2014 ZipInstaller Project
 
   This file is part of ZipInstaller.
 
@@ -18,48 +18,73 @@
   along with ZipInstaller.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
-    <declare-styleable name="Item">
+
+    <!-- drawer -->
+    <attr name="drawerBackgroundColor" format="reference|color" />
+    <attr name="drawerTextColor" format="reference|color" />
+    <attr name="drawerColor" format="reference" />
+
+    <!-- button and file items -->
+    <declare-styleable name="ButtonItem">
         <attr name="title" format="string" />
         <attr name="icon" format="integer" />
         <attr name="downColor" format="reference" />
     </declare-styleable>
+    <attr name="buttonItemBackgroundColor" format="reference|color" />
+    <attr name="buttonItemBorderColor" format="reference|color" />
+    <attr name="buttonItemDownColor" format="reference|color" />
 
-   <attr name="itemBackgroundColor" format="reference|color" />
-   <attr name="itemBorderColor" format="reference|color" />
-   <attr name="holoBlue" format="reference|color" />
-   <attr name="overflowIcon" format="reference" />
-   <attr name="backupIcon" format="reference" />
-   <attr name="restoreIcon" format="reference" />
-   <attr name="addIcon" format="reference" />
-   <attr name="flashIcon" format="reference" />
-   <attr name="removeIcon" format="reference" />
-   <attr name="applyIcon" format="reference" />
+    <!-- icons -->
+    <attr name="overflowIcon" format="reference" />
+    <attr name="addIcon" format="reference" />
+    <attr name="flashIcon" format="reference" />
+    <attr name="removeIcon" format="reference" />
+    <attr name="gridIcon" format="reference" />
+    <attr name="settingsIcon" format="reference" />
+    <attr name="starIcon" format="reference" />
+    <attr name="backupRestoreIcon" format="reference" />
+    <attr name="cloudIcon" format="reference" />
+    <attr name="refreshIcon" format="reference" />
+    <attr name="replyIcon" format="reference" />
+    <attr name="sdcardIcon" format="reference" />
+    <attr name="forwardIcon" format="reference" />
+    <attr name="syncIcon" format="reference" />
+    <attr name="webIcon" format="reference" />
+    <attr name="personIcon" format="reference" />
+    <attr name="folderIcon" format="reference" />
+    <attr name="fileIcon" format="reference" />
+    <attr name="acceptIcon" format="reference" />
 
-  <declare-styleable name="DragSortListView">
-    <attr name="collapsed_height" format="dimension" />
-    <attr name="drag_scroll_start" format="float" />
-    <attr name="max_drag_scroll_speed" format="float" />
-    <attr name="float_background_color" format="color" />
-    <attr name="remove_mode">
-      <enum name="clickRemove" value="0" />
-      <enum name="flingRemove" value="1" />
-    </attr>
-    <attr name="track_drag_sort" format="boolean"/>
-    <attr name="float_alpha" format="float"/>
-    <attr name="slide_shuffle_speed" format="float"/>
-    <attr name="remove_animation_duration" format="integer"/>
-    <attr name="drop_animation_duration" format="integer"/>
-    <attr name="drag_enabled" format="boolean" />
-    <attr name="sort_enabled" format="boolean" />
-    <attr name="remove_enabled" format="boolean" />
-    <attr name="drag_start_mode">
-      <enum name="onDown" value="0" />
-      <enum name="onMove" value="1" />
-      <enum name="onLongPress" value="2"/>
-    </attr>
-    <attr name="drag_handle_id" format="integer" />
-    <attr name="fling_handle_id" format="integer" />
-    <attr name="click_remove_id" format="integer" />
-    <attr name="use_default_controller" format="boolean" />
+    <!-- fragments -->
+    <attr name="fragmentTitleColor" format="color" />
+
+    <!-- DragSortListView -->
+    <declare-styleable name="DragSortListView">
+        <attr name="collapsed_height" format="dimension" />
+        <attr name="drag_scroll_start" format="float" />
+        <attr name="max_drag_scroll_speed" format="float" />
+        <attr name="float_background_color" format="color" />
+        <attr name="remove_mode">
+            <enum name="clickRemove" value="0" />
+            <enum name="flingRemove" value="1" />
+        </attr>
+        <attr name="track_drag_sort" format="boolean"/>
+        <attr name="float_alpha" format="float"/>
+        <attr name="slide_shuffle_speed" format="float"/>
+        <attr name="remove_animation_duration" format="integer"/>
+        <attr name="drop_animation_duration" format="integer"/>
+        <attr name="drag_enabled" format="boolean" />
+        <attr name="sort_enabled" format="boolean" />
+        <attr name="remove_enabled" format="boolean" />
+        <attr name="drag_start_mode">
+            <enum name="onDown" value="0" />
+            <enum name="onMove" value="1" />
+            <enum name="onLongPress" value="2"/>
+        </attr>
+        <attr name="drag_handle_id" format="integer" />
+        <attr name="fling_handle_id" format="integer" />
+        <attr name="click_remove_id" format="integer" />
+        <attr name="use_default_controller" format="boolean" />
   </declare-styleable>
+
 </resources>

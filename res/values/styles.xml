@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  Copyright 2013 ZipInstaller Project
+  Copyright 2014 ZipInstaller Project
 
   This file is part of ZipInstaller.
 
@@ -21,30 +21,72 @@
 
     <!-- light theme -->
     <style name="AppTheme" parent="@android:style/Theme.Holo.Light">
-        <item name="itemBackgroundColor">@android:color/white</item>
-        <item name="itemBorderColor">@color/gray</item>
-        <item name="holoBlue">@android:color/holo_blue_light</item>
+
+        <item name="drawerBackgroundColor">@android:color/white</item>
+        <item name="drawerTextColor">@android:color/black</item>
+        <item name="drawerColor">@color/listitem_color_selector_light</item>
+
+        <item name="buttonItemBackgroundColor">@android:color/white</item>
+        <item name="buttonItemBorderColor">@color/gray</item>
+        <item name="buttonItemDownColor">@android:color/holo_orange_dark</item>
+
+        <item name="fragmentTitleColor">@android:color/holo_orange_dark</item>
+
         <item name="overflowIcon">@drawable/ic_overflow_light</item>
-        <item name="backupIcon">@drawable/ic_backup_light</item>
-        <item name="restoreIcon">@drawable/ic_restore_light</item>
         <item name="addIcon">@drawable/ic_add_light</item>
         <item name="flashIcon">@drawable/ic_flash_light</item>
         <item name="removeIcon">@drawable/ic_delete_light</item>
-        <item name="applyIcon">@drawable/ic_apply_light</item>
+        <item name="gridIcon">@drawable/ic_grid_light</item>
+        <item name="settingsIcon">@drawable/ic_settings_light</item>
+        <item name="starIcon">@drawable/ic_star_light</item>
+        <item name="backupRestoreIcon">@drawable/ic_repeat_light</item>
+        <item name="cloudIcon">@drawable/ic_cloud_light</item>
+        <item name="refreshIcon">@drawable/ic_refresh_light</item>
+        <item name="replyIcon">@drawable/ic_reply_light</item>
+        <item name="sdcardIcon">@drawable/ic_sdcard_light</item>
+        <item name="forwardIcon">@drawable/ic_forward_light</item>
+        <item name="syncIcon">@drawable/ic_sync_light</item>
+        <item name="webIcon">@drawable/ic_web_light</item>
+        <item name="personIcon">@drawable/ic_person_light</item>
+        <item name="folderIcon">@drawable/ic_folder_light</item>
+        <item name="fileIcon">@drawable/ic_file_light</item>
+        <item name="acceptIcon">@drawable/ic_accept_light</item>
+
     </style>
 
     <!-- dark theme -->
     <style name="AppTheme.Dark" parent="@android:style/Theme.Holo">
-        <item name="itemBackgroundColor">@android:color/black</item>
-        <item name="itemBorderColor">@color/gray</item>
-        <item name="holoBlue">@android:color/holo_blue_light</item>
+
+        <item name="drawerBackgroundColor">@android:color/black</item>
+        <item name="drawerTextColor">@android:color/white</item>
+        <item name="drawerColor">@color/listitem_color_selector_dark</item>
+        
+        <item name="buttonItemBackgroundColor">@android:color/black</item>
+        <item name="buttonItemBorderColor">@color/gray</item>
+        <item name="buttonItemDownColor">@android:color/holo_blue_light</item>
+
+        <item name="fragmentTitleColor">@android:color/holo_blue_light</item>
+
         <item name="overflowIcon">@drawable/ic_overflow_dark</item>
-        <item name="backupIcon">@drawable/ic_backup_dark</item>
-        <item name="restoreIcon">@drawable/ic_restore_dark</item>
         <item name="addIcon">@drawable/ic_add_dark</item>
         <item name="flashIcon">@drawable/ic_flash_dark</item>
         <item name="removeIcon">@drawable/ic_delete_dark</item>
-        <item name="applyIcon">@drawable/ic_apply_dark</item>
+        <item name="gridIcon">@drawable/ic_grid_dark</item>
+        <item name="settingsIcon">@drawable/ic_settings_dark</item>
+        <item name="starIcon">@drawable/ic_star_dark</item>
+        <item name="backupRestoreIcon">@drawable/ic_repeat_dark</item>
+        <item name="cloudIcon">@drawable/ic_cloud_dark</item>
+        <item name="refreshIcon">@drawable/ic_refresh_dark</item>
+        <item name="replyIcon">@drawable/ic_reply_dark</item>
+        <item name="sdcardIcon">@drawable/ic_sdcard_dark</item>
+        <item name="forwardIcon">@drawable/ic_forward_dark</item>
+        <item name="syncIcon">@drawable/ic_sync_dark</item>
+        <item name="webIcon">@drawable/ic_web_dark</item>
+        <item name="personIcon">@drawable/ic_person_dark</item>
+        <item name="folderIcon">@drawable/ic_folder_dark</item>
+        <item name="fileIcon">@drawable/ic_file_dark</item>
+        <item name="acceptIcon">@drawable/ic_accept_dark</item>
+
     </style>
 
 </resources>
