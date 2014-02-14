@@ -88,7 +88,7 @@ public class RecoveryPlugin extends Plugin {
                 mBootBlock = prefs.getBootBlock();
                 mRecoveryBlock = prefs.getRecoveryBlock();
 
-                mInstalledRecovery = testLastLog();
+                mInstalledRecovery = testLastLog(new File("/cache/recovery/last_log"), suPlugin);
 
                 suPlugin.run("chmod -R 777 /data/media/clockworkmod/");
                 suPlugin.run("chmod -R 777 /data/media/clockworkmod/backup/");
@@ -301,62 +301,61 @@ public class RecoveryPlugin extends Plugin {
         return commands.toArray(new String[commands.size()]);
     }
 
-    private int testLastLog() {
-        File file = new File("/cache/recovery/last_log");
+    private int testLastLog(File file, SuperUserPlugin suPlugin) {
         int retValue = -1;
-        if (file.exists()) {
+        try {
+            Scanner scanner = null;
             try {
-                Scanner scanner = null;
-                try {
-                    scanner = new Scanner(file);
-                    while ((retValue == -1 || mBootBlock == null || mRecoveryBlock == null) && scanner.hasNext()) {
-                        String line = scanner.nextLine();
-                        if (line != null) {
-                            if (retValue == -1) {
-                                if (line.indexOf("CWM-based Recovery") >= 0) {
-                                    retValue = RecoveryInfo.RECOVERY_CWM_BASED;
-                                } else if (line.indexOf("ClockworkMod Recovery") >= 0) {
-                                    retValue = RecoveryInfo.RECOVERY_CWM;
-                                } else if (line.indexOf("TWRP") >= 0) {
-                                    retValue = RecoveryInfo.RECOVERY_TWRP;
-                                } else if (line.indexOf("4EXT") >= 0) {
-                                    retValue = RecoveryInfo.RECOVERY_4EXT;
+                scanner = new Scanner(file);
+                while ((retValue == -1 || mBootBlock == null || mRecoveryBlock == null) && scanner.hasNext()) {
+                    String line = scanner.nextLine();
+                    if (line != null) {
+                        if (retValue == -1) {
+                            if (line.indexOf("CWM-based Recovery") >= 0) {
+                                retValue = RecoveryInfo.RECOVERY_CWM_BASED;
+                            } else if (line.indexOf("ClockworkMod Recovery") >= 0) {
+                                retValue = RecoveryInfo.RECOVERY_CWM;
+                            } else if (line.indexOf("TWRP") >= 0) {
+                                retValue = RecoveryInfo.RECOVERY_TWRP;
+                            } else if (line.indexOf("4EXT") >= 0) {
+                                retValue = RecoveryInfo.RECOVERY_4EXT;
+                            }
+                        }
+                        if (mBootBlock == null) {
+                            if (line.indexOf("/boot") >= 0 && line.indexOf("/dev/block/") >= 0) {
+                                mBootBlock = line.substring(line.indexOf("/dev/block"));
+                                int index = -1;
+                                if ((index = mBootBlock.indexOf(" ")) > 0) {
+                                    mBootBlock = mBootBlock.substring(0, index);
                                 }
                             }
-                            if (mBootBlock == null) {
-                                if (line.indexOf("/boot") >= 0 && line.indexOf("/dev/block/") >= 0) {
-                                    mBootBlock = line.substring(line.indexOf("/dev/block"));
-                                    int index = -1;
-                                    if ((index = mBootBlock.indexOf(" ")) > 0) {
-                                        mBootBlock = mBootBlock.substring(0, index);
-                                    }
-                                }
-                            }
-                            if (mRecoveryBlock == null) {
-                                if (line.indexOf("/recovery") >= 0 && line.indexOf("/dev/block/") >= 0) {
-                                    mRecoveryBlock = line.substring(line.indexOf("/dev/block"));
-                                    int index = -1;
-                                    if ((index = mRecoveryBlock.indexOf(" ")) > 0) {
-                                        mRecoveryBlock = mRecoveryBlock.substring(0, index);
-                                    }
+                        }
+                        if (mRecoveryBlock == null) {
+                            if (line.indexOf("/recovery") >= 0 && line.indexOf("/dev/block/") >= 0) {
+                                mRecoveryBlock = line.substring(line.indexOf("/dev/block"));
+                                int index = -1;
+                                if ((index = mRecoveryBlock.indexOf(" ")) > 0) {
+                                    mRecoveryBlock = mRecoveryBlock.substring(0, index);
                                 }
                             }
                         }
                     }
-                    if (mRecoveryBlock == null) {
-                        mRecoveryBlock = "";
-                    }
-                    if (mBootBlock == null) {
-                        mBootBlock = "";
-                    }
-                } finally {
-                    if (scanner != null) {
-                        scanner.close();
-                    }
                 }
-            } catch (FileNotFoundException ex) {
-                ex.printStackTrace();
+                if (mRecoveryBlock == null) {
+                    mRecoveryBlock = "";
+                }
+                if (mBootBlock == null) {
+                    mBootBlock = "";
+                }
+            } finally {
+                if (scanner != null) {
+                    scanner.close();
+                }
             }
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+            suPlugin.run("cp " + file.getAbsolutePath() + " /sdcard/last_log");
+            return testLastLog(new File("/sdcard/last_log"), suPlugin);
         }
         return retValue;
     }
