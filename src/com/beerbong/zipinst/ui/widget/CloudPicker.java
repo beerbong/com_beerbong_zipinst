@@ -25,6 +25,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.os.Build.VERSION;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -109,7 +110,11 @@ public class CloudPicker extends Dialog implements OnItemClickListener {
 
             Resources res = getContext().getResources();
             name.setText(res.getString(cloud.getName()));
-            v.findViewById(R.id.folder_icon).setBackground(cloud.getDrawable());
+            if (VERSION.SDK_INT > 15) {
+                v.findViewById(R.id.folder_icon).setBackgroundDrawable(cloud.getDrawable());
+            } else {
+                v.findViewById(R.id.folder_icon).setBackground(cloud.getDrawable());
+            }
             return v;
         }
     }

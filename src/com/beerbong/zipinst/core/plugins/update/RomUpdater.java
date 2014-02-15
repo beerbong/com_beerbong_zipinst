@@ -27,6 +27,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.Build.VERSION;
 import android.view.WindowManager.BadTokenException;
 
 import com.beerbong.zipinst.IntroActivity;
@@ -171,11 +172,20 @@ public class RomUpdater implements Updater.UpdaterListener {
         PendingIntent pIntent = PendingIntent.getActivity(mContext, 0, intent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
 
-        Notification noti = new Notification.Builder(mContext)
+        Notification.Builder builder = new Notification.Builder(mContext)
                 .setContentTitle(resources.getString(R.string.new_rom_found_title))
                 .setContentText(
-                        resources.getString(R.string.new_rom_name, new Object[] { info.filename }))
-                .setSmallIcon(R.drawable.ic_launcher).setContentIntent(pIntent).build();
+                        resources.getString(R.string.new_rom_name, new Object[] {
+                            info.filename
+                        }))
+                .setSmallIcon(R.drawable.ic_launcher).setContentIntent(pIntent);
+
+        Notification noti = null;
+        if (VERSION.SDK_INT > 15) {
+            noti = builder.build();
+        } else {
+            noti = builder.getNotification();
+        }
 
         NotificationManager notificationManager = (NotificationManager) mContext
                 .getSystemService(Service.NOTIFICATION_SERVICE);

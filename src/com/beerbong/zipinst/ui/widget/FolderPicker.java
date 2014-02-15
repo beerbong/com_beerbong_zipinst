@@ -30,6 +30,7 @@ import android.content.DialogInterface;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.os.Environment;
+import android.os.Build.VERSION;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -228,7 +229,11 @@ public class FolderPicker extends Dialog implements OnItemClickListener, OnClick
                     drawable = mFileDrawable;
                 }
             }
-            v.findViewById(R.id.folder_icon).setBackground(drawable);
+            if (VERSION.SDK_INT > 15) {
+                v.findViewById(R.id.folder_icon).setBackgroundDrawable(drawable);
+            } else {
+                v.findViewById(R.id.folder_icon).setBackground(drawable);
+            }
             return v;
         }
     }
