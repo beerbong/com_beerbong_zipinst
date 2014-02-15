@@ -230,9 +230,9 @@ public class FolderPicker extends Dialog implements OnItemClickListener, OnClick
                 }
             }
             if (VERSION.SDK_INT > 15) {
-                v.findViewById(R.id.folder_icon).setBackgroundDrawable(drawable);
-            } else {
                 v.findViewById(R.id.folder_icon).setBackground(drawable);
+            } else {
+                v.findViewById(R.id.folder_icon).setBackgroundDrawable(drawable);
             }
             return v;
         }

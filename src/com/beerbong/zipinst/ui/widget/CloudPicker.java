@@ -111,9 +111,9 @@ public class CloudPicker extends Dialog implements OnItemClickListener {
             Resources res = getContext().getResources();
             name.setText(res.getString(cloud.getName()));
             if (VERSION.SDK_INT > 15) {
-                v.findViewById(R.id.folder_icon).setBackgroundDrawable(cloud.getDrawable());
-            } else {
                 v.findViewById(R.id.folder_icon).setBackground(cloud.getDrawable());
+            } else {
+                v.findViewById(R.id.folder_icon).setBackgroundDrawable(cloud.getDrawable());
             }
             return v;
         }
