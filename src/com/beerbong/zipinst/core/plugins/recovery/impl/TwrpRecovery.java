@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.os.Build;
 
 import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.core.Core;
@@ -41,6 +42,7 @@ public class TwrpRecovery extends RecoveryInfo {
         setId(RECOVERY_TWRP);
         setName("twrp");
         setInternalSdcard("sdcard");
+        setInternalSdcard("external_sd");
     }
 
     @Override
@@ -60,18 +62,15 @@ public class TwrpRecovery extends RecoveryInfo {
 
     @Override
     public String getBackupFolder(String sdcard, boolean force, boolean external) {
+        String serial = Build.SERIAL;
         while (sdcard.startsWith("/")) {
             sdcard = sdcard.substring(1);
         }
-        File f = new File("/" + sdcard + "/TWRP/BACKUPS/");
-        if (f.exists()) {
-            File[] fs = f.listFiles();
-            if (fs == null || fs.length == 0) {
-                return force ? f.getAbsolutePath() + "/" : f.getName() + "/";
-            }
-            return force ? fs[0].getAbsolutePath() + "/" : fs[0].getName() + "/";
+        File f = new File("/" + sdcard + "/TWRP/BACKUPS/" + serial);
+        if (external && !f.exists()) {
+            f.mkdirs();
         }
-        return f.getAbsolutePath();
+        return force ? f.getAbsolutePath() + "/" : f.getName() + "/";
     }
 
     @Override
@@ -122,9 +121,6 @@ public class TwrpRecovery extends RecoveryInfo {
             }
             if (backupOptions != null && backupOptions.indexOf("E") >= 0 && hasSdExt) {
                 str += "E";
-            }
-            if (external) {
-                backupFolder = "/" + storage + "/TWRP/BACKUPS/" + backupFolder;
             }
             commands.add(str + "O " + backupFolder);
         }
