@@ -19,8 +19,8 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.beerbong.zipinst"
-    android:versionCode="500100"
-    android:versionName="5.0.0-RC1" >
+    android:versionCode="500200"
+    android:versionName="5.0.0-RC2" >
 
     <uses-sdk
         android:minSdkVersion="14"
