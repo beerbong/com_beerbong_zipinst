@@ -307,7 +307,8 @@ public class RecoveryPlugin extends Plugin {
             Scanner scanner = null;
             try {
                 scanner = new Scanner(file);
-                while ((retValue == -1 || mBootBlock == null || mRecoveryBlock == null) && scanner.hasNext()) {
+                int lineNumber = 0;
+                while ((retValue == -1 || mBootBlock == null || mRecoveryBlock == null) && scanner.hasNext() && lineNumber < 1000) {
                     String line = scanner.nextLine();
                     if (line != null) {
                         if (retValue == -1) {
@@ -340,6 +341,7 @@ public class RecoveryPlugin extends Plugin {
                             }
                         }
                     }
+                    lineNumber++;
                 }
                 if (mRecoveryBlock == null) {
                     mRecoveryBlock = "";
