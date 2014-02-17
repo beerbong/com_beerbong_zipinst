@@ -19,13 +19,9 @@
 
 package com.beerbong.zipinst.core.plugins.license;
 
-import android.app.Activity;
-
 public interface ILicenseCallback {
 
     public void destroy();
 
     public void check(LicensePlugin plugin);
-
-    public void setActivity(Activity activity);
 }

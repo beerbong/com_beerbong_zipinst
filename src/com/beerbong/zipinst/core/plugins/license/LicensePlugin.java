@@ -19,8 +19,6 @@
 
 package com.beerbong.zipinst.core.plugins.license;
 
-import android.app.Activity;
-
 import com.beerbong.zipinst.R;
 import com.beerbong.zipinst.core.Core;
 import com.beerbong.zipinst.core.CoreImpl;
@@ -40,17 +38,18 @@ public class LicensePlugin extends Plugin {
     @Override
     public void start() {
         try {
-            Core core = getCore();
             Class<?> pClass = Class.forName(LICENSE_CALLBACK_CLASS);
             mLicenseCallback = (ILicenseCallback) pClass.newInstance();
 
             ((CoreImpl) getCore()).setMessage(R.string.checking_license);
 
-            mLicenseCallback.setActivity((Activity) core.getContext());
             mLicenseCallback.check(this);
+
+            mPurchased = true;
         } catch (Throwable t) {
-            started();
+            t.printStackTrace();
         }
+        started();
     }
 
     @Override
@@ -61,9 +60,8 @@ public class LicensePlugin extends Plugin {
         stopped();
     }
 
-    public void setPurchased() {
-        mPurchased = true;
-        started();
+    public void setPurchased(boolean purchased) {
+        mPurchased = purchased;
     }
 
     public boolean isPurchased() {
