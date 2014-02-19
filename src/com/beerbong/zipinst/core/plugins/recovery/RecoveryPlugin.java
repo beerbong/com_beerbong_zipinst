@@ -88,7 +88,7 @@ public class RecoveryPlugin extends Plugin {
                 mBootBlock = prefs.getBootBlock();
                 mRecoveryBlock = prefs.getRecoveryBlock();
 
-                mInstalledRecovery = testLastLog(new File("/cache/recovery/last_log"), suPlugin);
+                mInstalledRecovery = testLastLog(new File("/cache/recovery/last_log"), suPlugin, true);
 
                 suPlugin.run("chmod -R 777 /data/media/clockworkmod/");
                 suPlugin.run("chmod -R 777 /data/media/clockworkmod/backup/");
@@ -301,7 +301,7 @@ public class RecoveryPlugin extends Plugin {
         return commands.toArray(new String[commands.size()]);
     }
 
-    private int testLastLog(File file, SuperUserPlugin suPlugin) {
+    private int testLastLog(File file, SuperUserPlugin suPlugin, boolean retry) {
         int retValue = -1;
         try {
             Scanner scanner = null;
@@ -356,8 +356,10 @@ public class RecoveryPlugin extends Plugin {
             }
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
-            suPlugin.run("cp " + file.getAbsolutePath() + " /sdcard/last_log");
-            return testLastLog(new File("/sdcard/last_log"), suPlugin);
+            if (retry) {
+                suPlugin.run("cp " + file.getAbsolutePath() + " /sdcard/last_log");
+                return testLastLog(new File("/sdcard/last_log"), suPlugin, false);
+            }
         }
         return retValue;
     }
