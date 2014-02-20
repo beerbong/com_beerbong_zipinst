@@ -500,7 +500,9 @@ public class FragmentBackupRestore extends UIFragment implements ONandroidFinish
 
                     List<CloudEntry> entries = (List<CloudEntry>) mCloudStorage.getEntries();
                     mCloudBackups = new ArrayList<FileItem>();
-                    mCloudBackups.addAll(entries);
+                    if (entries != null) {
+                        mCloudBackups.addAll(entries);
+                    }
 
                     redrawCloudBackups();
                 }
