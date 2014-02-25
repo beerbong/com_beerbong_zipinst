@@ -190,7 +190,7 @@ public class MainActivity extends UIActivity {
         mAdView = (AdView) findViewById(R.id.adview);
 
         LicensePlugin lPlugin = (LicensePlugin) getCore().getPlugin(Core.PLUGIN_LICENSE);
-        if (lPlugin.isPurchased()) {
+        if (lPlugin.hasProCode()) {
             mAdView.setVisibility(View.GONE);
         } else {
             int resultCode = GooglePlayServicesUtil

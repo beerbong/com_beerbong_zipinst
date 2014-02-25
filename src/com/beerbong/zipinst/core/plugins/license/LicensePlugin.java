@@ -30,6 +30,7 @@ public class LicensePlugin extends Plugin {
 
     private ILicenseCallback mLicenseCallback;
     private boolean mPurchased = false;
+    private boolean mPro = false;
 
     public LicensePlugin(Core core) {
         super(core, Core.PLUGIN_LICENSE);
@@ -40,6 +41,8 @@ public class LicensePlugin extends Plugin {
         try {
             Class<?> pClass = Class.forName(LICENSE_CALLBACK_CLASS);
             mLicenseCallback = (ILicenseCallback) pClass.newInstance();
+
+            mPro = true;
 
             ((CoreImpl) getCore()).setMessage(R.string.checking_license);
 
@@ -66,6 +69,10 @@ public class LicensePlugin extends Plugin {
 
     public boolean isPurchased() {
         return mPurchased;
+    }
+
+    public boolean hasProCode() {
+        return mPro;
     }
 
 }
